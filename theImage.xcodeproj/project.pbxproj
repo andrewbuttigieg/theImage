@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F243B76C1879D13A001BABC8 /* ViewControllerDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = F243B76B1879D13A001BABC8 /* ViewControllerDetail.m */; };
 		F28699DA1874C06C0086D665 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28699D91874C06C0086D665 /* Foundation.framework */; };
 		F28699DC1874C06C0086D665 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28699DB1874C06C0086D665 /* CoreGraphics.framework */; };
 		F28699DE1874C06C0086D665 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28699DD1874C06C0086D665 /* UIKit.framework */; };
@@ -22,6 +23,14 @@
 		F28699FE1874C06C0086D665 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28699DD1874C06C0086D665 /* UIKit.framework */; };
 		F2869A061874C06C0086D665 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F2869A041874C06C0086D665 /* InfoPlist.strings */; };
 		F2869A081874C06C0086D665 /* theImageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F2869A071874C06C0086D665 /* theImageTests.m */; };
+		F2869A121874CA400086D665 /* footballApp.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F2869A111874CA400086D665 /* footballApp.jpg */; };
+		F2869A131874CA400086D665 /* footballApp.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F2869A111874CA400086D665 /* footballApp.jpg */; };
+		F2869A19187571840086D665 /* player@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2869A15187571840086D665 /* player@2x.png */; };
+		F2869A1A187571840086D665 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2869A16187571840086D665 /* logo@2x.png */; };
+		F2869A1B187571840086D665 /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = F2869A17187571840086D665 /* player.png */; };
+		F2869A1C187571840086D665 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F2869A18187571840086D665 /* logo.png */; };
+		F2869A1E1875C7A70086D665 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2869A1D1875C7A70086D665 /* MediaPlayer.framework */; };
+		F2B17BBF1878C58D003626F3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B17BBE1878C58D003626F3 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F243B76A1879D13A001BABC8 /* ViewControllerDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDetail.h; sourceTree = "<group>"; };
+		F243B76B1879D13A001BABC8 /* ViewControllerDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerDetail.m; sourceTree = "<group>"; };
 		F28699D61874C06C0086D665 /* theImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F28699D91874C06C0086D665 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F28699DB1874C06C0086D665 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -48,13 +59,20 @@
 		F28699EC1874C06C0086D665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		F28699EF1874C06C0086D665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		F28699F11874C06C0086D665 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F28699F21874C06C0086D665 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F28699F21874C06C0086D665 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; usesTabs = 0; };
 		F28699F41874C06C0086D665 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F28699FA1874C06C0086D665 /* theImageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = theImageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F28699FB1874C06C0086D665 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		F2869A031874C06C0086D665 /* theImageTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "theImageTests-Info.plist"; sourceTree = "<group>"; };
 		F2869A051874C06C0086D665 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F2869A071874C06C0086D665 /* theImageTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = theImageTests.m; sourceTree = "<group>"; };
+		F2869A111874CA400086D665 /* footballApp.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = footballApp.jpg; sourceTree = "<group>"; };
+		F2869A15187571840086D665 /* player@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player@2x.png"; sourceTree = "<group>"; };
+		F2869A16187571840086D665 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
+		F2869A17187571840086D665 /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
+		F2869A18187571840086D665 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		F2869A1D1875C7A70086D665 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		F2B17BBE1878C58D003626F3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2B17BBF1878C58D003626F3 /* CoreLocation.framework in Frameworks */,
+				F2869A1E1875C7A70086D665 /* MediaPlayer.framework in Frameworks */,
 				F28699DC1874C06C0086D665 /* CoreGraphics.framework in Frameworks */,
 				F28699DE1874C06C0086D665 /* UIKit.framework in Frameworks */,
 				F28699DA1874C06C0086D665 /* Foundation.framework in Frameworks */,
@@ -103,6 +123,8 @@
 		F28699D81874C06C0086D665 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F2B17BBE1878C58D003626F3 /* CoreLocation.framework */,
+				F2869A1D1875C7A70086D665 /* MediaPlayer.framework */,
 				F28699D91874C06C0086D665 /* Foundation.framework */,
 				F28699DB1874C06C0086D665 /* CoreGraphics.framework */,
 				F28699DD1874C06C0086D665 /* UIKit.framework */,
@@ -114,9 +136,13 @@
 		F28699DF1874C06C0086D665 /* theImage */ = {
 			isa = PBXGroup;
 			children = (
+				F2869A141875716E0086D665 /* image */,
 				F28699E81874C06C0086D665 /* AppDelegate.h */,
+				F2869A111874CA400086D665 /* footballApp.jpg */,
 				F28699E91874C06C0086D665 /* AppDelegate.m */,
 				F28699EB1874C06C0086D665 /* Main_iPhone.storyboard */,
+				F243B76A1879D13A001BABC8 /* ViewControllerDetail.h */,
+				F243B76B1879D13A001BABC8 /* ViewControllerDetail.m */,
 				F28699EE1874C06C0086D665 /* Main_iPad.storyboard */,
 				F28699F11874C06C0086D665 /* ViewController.h */,
 				F28699F21874C06C0086D665 /* ViewController.m */,
@@ -153,6 +179,17 @@
 				F2869A041874C06C0086D665 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F2869A141875716E0086D665 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				F2869A15187571840086D665 /* player@2x.png */,
+				F2869A16187571840086D665 /* logo@2x.png */,
+				F2869A17187571840086D665 /* player.png */,
+				F2869A18187571840086D665 /* logo.png */,
+			);
+			name = image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,8 +268,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2869A121874CA400086D665 /* footballApp.jpg in Resources */,
+				F2869A19187571840086D665 /* player@2x.png in Resources */,
+				F2869A1C187571840086D665 /* logo.png in Resources */,
+				F2869A1B187571840086D665 /* player.png in Resources */,
 				F28699F01874C06C0086D665 /* Main_iPad.storyboard in Resources */,
 				F28699F51874C06C0086D665 /* Images.xcassets in Resources */,
+				F2869A1A187571840086D665 /* logo@2x.png in Resources */,
 				F28699ED1874C06C0086D665 /* Main_iPhone.storyboard in Resources */,
 				F28699E41874C06C0086D665 /* InfoPlist.strings in Resources */,
 			);
@@ -242,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2869A131874CA400086D665 /* footballApp.jpg in Resources */,
 				F2869A061874C06C0086D665 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,6 +299,7 @@
 				F28699F31874C06C0086D665 /* ViewController.m in Sources */,
 				F28699EA1874C06C0086D665 /* AppDelegate.m in Sources */,
 				F28699E61874C06C0086D665 /* main.m in Sources */,
+				F243B76C1879D13A001BABC8 /* ViewControllerDetail.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +518,7 @@
 				F2869A0D1874C06C0086D665 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F2869A0E1874C06C0086D665 /* Build configuration list for PBXNativeTarget "theImageTests" */ = {
 			isa = XCConfigurationList;
@@ -482,6 +527,7 @@
 				F2869A101874C06C0086D665 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
