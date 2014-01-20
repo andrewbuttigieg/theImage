@@ -16,6 +16,8 @@
     IBOutlet UILabel *yLok;
     IBOutlet UILabel *playerOnline;
     IBOutlet UILabel *playerName;
+    
+    
     /*IBOutlet UIWebView *videoView;
     NSString *videoURL;
     NSString *videoHTML;*/
@@ -30,5 +32,7 @@
 - (IBAction)logoPressed:(id)sender;
 - (IBAction)logoPressedTwo:(id)sender;
 - (IBAction)getHTTP:(id)sender;
+
++ (int)playerID;
 
 @end

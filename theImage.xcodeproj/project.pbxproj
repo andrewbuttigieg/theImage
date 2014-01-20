@@ -30,7 +30,12 @@
 		F2869A1B187571840086D665 /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = F2869A17187571840086D665 /* player.png */; };
 		F2869A1C187571840086D665 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F2869A18187571840086D665 /* logo.png */; };
 		F2869A1E1875C7A70086D665 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2869A1D1875C7A70086D665 /* MediaPlayer.framework */; };
+		F2A00E04187DCE7A00CB0D3F /* FindPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A00E03187DCE7A00CB0D3F /* FindPlayerController.m */; };
+		F2A446FD18872864009EAD7D /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A446FC18872864009EAD7D /* Group.m */; };
 		F2B17BBF1878C58D003626F3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B17BBE1878C58D003626F3 /* CoreLocation.framework */; };
+		F2EC5DF0187E042B00D93403 /* PlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2EC5DEF187E042B00D93403 /* PlayerController.m */; };
+		F2EC5DF31883204900D93403 /* PlayerSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2EC5DF21883204900D93403 /* PlayerSettingsController.m */; };
+		F2EC5F2F18833DF200D93403 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2EC5F2E18833DF200D93403 /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +77,16 @@
 		F2869A17187571840086D665 /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
 		F2869A18187571840086D665 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		F2869A1D1875C7A70086D665 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		F2A00E02187DCE7A00CB0D3F /* FindPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPlayerController.h; sourceTree = "<group>"; };
+		F2A00E03187DCE7A00CB0D3F /* FindPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPlayerController.m; sourceTree = "<group>"; };
+		F2A446FB18872864009EAD7D /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		F2A446FC18872864009EAD7D /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		F2B17BBE1878C58D003626F3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F2EC5DEE187E042B00D93403 /* PlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerController.h; sourceTree = "<group>"; };
+		F2EC5DEF187E042B00D93403 /* PlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerController.m; sourceTree = "<group>"; };
+		F2EC5DF11883204900D93403 /* PlayerSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerSettingsController.h; sourceTree = "<group>"; };
+		F2EC5DF21883204900D93403 /* PlayerSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerSettingsController.m; sourceTree = "<group>"; };
+		F2EC5F2E18833DF200D93403 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +99,7 @@
 				F28699DC1874C06C0086D665 /* CoreGraphics.framework in Frameworks */,
 				F28699DE1874C06C0086D665 /* UIKit.framework in Frameworks */,
 				F28699DA1874C06C0086D665 /* Foundation.framework in Frameworks */,
+				F2EC5F2F18833DF200D93403 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +119,8 @@
 		F28699CD1874C06C0086D665 = {
 			isa = PBXGroup;
 			children = (
+				F2A446FB18872864009EAD7D /* Group.h */,
+				F2A446FC18872864009EAD7D /* Group.m */,
 				F28699DF1874C06C0086D665 /* theImage */,
 				F2869A011874C06C0086D665 /* theImageTests */,
 				F28699D81874C06C0086D665 /* Frameworks */,
@@ -123,6 +140,7 @@
 		F28699D81874C06C0086D665 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F2EC5F2E18833DF200D93403 /* FacebookSDK.framework */,
 				F2B17BBE1878C58D003626F3 /* CoreLocation.framework */,
 				F2869A1D1875C7A70086D665 /* MediaPlayer.framework */,
 				F28699D91874C06C0086D665 /* Foundation.framework */,
@@ -141,6 +159,12 @@
 				F2869A111874CA400086D665 /* footballApp.jpg */,
 				F28699E91874C06C0086D665 /* AppDelegate.m */,
 				F28699EB1874C06C0086D665 /* Main_iPhone.storyboard */,
+				F2EC5DF11883204900D93403 /* PlayerSettingsController.h */,
+				F2EC5DF21883204900D93403 /* PlayerSettingsController.m */,
+				F2EC5DEE187E042B00D93403 /* PlayerController.h */,
+				F2EC5DEF187E042B00D93403 /* PlayerController.m */,
+				F2A00E02187DCE7A00CB0D3F /* FindPlayerController.h */,
+				F2A00E03187DCE7A00CB0D3F /* FindPlayerController.m */,
 				F243B76A1879D13A001BABC8 /* ViewControllerDetail.h */,
 				F243B76B1879D13A001BABC8 /* ViewControllerDetail.m */,
 				F28699EE1874C06C0086D665 /* Main_iPad.storyboard */,
@@ -251,6 +275,7 @@
 			knownRegions = (
 				en,
 				Base,
+				he,
 			);
 			mainGroup = F28699CD1874C06C0086D665;
 			productRefGroup = F28699D71874C06C0086D665 /* Products */;
@@ -296,10 +321,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2EC5DF31883204900D93403 /* PlayerSettingsController.m in Sources */,
 				F28699F31874C06C0086D665 /* ViewController.m in Sources */,
 				F28699EA1874C06C0086D665 /* AppDelegate.m in Sources */,
+				F2A00E04187DCE7A00CB0D3F /* FindPlayerController.m in Sources */,
 				F28699E61874C06C0086D665 /* main.m in Sources */,
+				F2EC5DF0187E042B00D93403 /* PlayerController.m in Sources */,
 				F243B76C1879D13A001BABC8 /* ViewControllerDetail.m in Sources */,
+				F2A446FD18872864009EAD7D /* Group.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,9 +465,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/andrewbuttigieg/Documents/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "theImage/theImage-Prefix.pch";
 				INFOPLIST_FILE = "theImage/theImage-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/andrewbuttigieg/Documents/FacebookSDK/FacebookSDK.framework/Versions/A,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -449,9 +486,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/andrewbuttigieg/Documents/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "theImage/theImage-Prefix.pch";
 				INFOPLIST_FILE = "theImage/theImage-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/andrewbuttigieg/Documents/FacebookSDK/FacebookSDK.framework/Versions/A,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

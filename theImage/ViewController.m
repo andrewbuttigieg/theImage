@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "ViewControllerDetail.h"
+#import "FindPlayerController.h"
 
 @interface ViewController() // <ViewControllerDetailDelegate>
 
@@ -16,16 +17,42 @@
 @implementation ViewController
 
     CLLocationManager *locationManager;
+    static int playerID = 0;
 
++ (int) playerID{
+    return playerID;
+}
+
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    //[[self navigationController] setNavigationBarHidden:YES animated:YES];
+    
     locationManager = [[CLLocationManager alloc] init];
     
     playerOnline.text = @"Player Online";
     playerName.text = @"ANDREW BUTTIGIEG";
+    playerID = 32;
+    
+    
+    // Create Login View so that the app will be granted "status_update" permission.
+/*    FBLoginView *loginView = [[FBLoginView alloc] init];
+    [self.view addSubview:loginView];*/
+    
   /*
     NSURL *url = [NSURL URLWithString:@"http://www.youtube.com/watch?v=fDXWW5vX-64"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -108,6 +135,16 @@ otherButtonTitles:nil];
         *ViewControllerDetail = [[navigationController viewControllers]
 objectAtIndex:0];
 		ViewControllerDetail.delegate = self;
+	}
+    
+    if ([segue.identifier isEqualToString:@"discover"])
+	{
+		UINavigationController *navigationController =
+        segue.destinationViewController;
+		FindPlayerController
+        *FindPlayerController = [[navigationController viewControllers]
+                                 objectAtIndex:0];
+		//FindPlayerController.delegate = self;
 	}
 }
 
