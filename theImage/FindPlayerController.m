@@ -59,11 +59,19 @@
     [super viewDidLoad];
     //[[self navigationController] setNavigationBarHidden:NO animated:YES];
 
-    NSString *urlAsString = [NSString stringWithFormat:@"http://newfootballers.com/get_users.php"];
-    NSURL *url = [[NSURL alloc] initWithString:urlAsString];
-    NSLog(@"%@", urlAsString);
+//    NSString *urlAsString = [NSString stringWithFormat:@"http://newfootballers.com/get_users.php"];
     
-    [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url] queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_users.php"]];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [request setHTTPBody:[[NSString stringWithFormat:@"me=%d", 1]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPMethod:@"POST"];
+    //dont get me
+    
+    
+//    NSURL *url = [[NSURL alloc] initWithString:urlAsString];
+    //NSLog(@"%@", urlAsString);
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
         if (error) {
             //[self.delegate fetchingGroupsFailedWithError:error];

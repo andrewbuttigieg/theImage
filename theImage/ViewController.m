@@ -46,7 +46,7 @@
     
     playerOnline.text = @"Player Online";
     playerName.text = @"ANDREW BUTTIGIEG";
-    playerID = 32;
+    playerID = 1; //make it andrew...
     
     
     // Create Login View so that the app will be granted "status_update" permission.

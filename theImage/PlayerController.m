@@ -27,12 +27,40 @@
 - (IBAction)addFriend:(id)sender{
     int x = ViewController.playerID;
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Your ID!"
-                                                    message:[NSString stringWithFormat:@"u=%d",x]
-                                                   delegate:self
-                                          cancelButtonTitle:@"Go away box"
-                                          otherButtonTitles:nil];
-    [alert show];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/add_friend.php/"]];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [request setHTTPBody:[[NSString stringWithFormat:@"p1=%d&p2=%d", self.playerID, x]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPMethod:@"POST"];
+    //NSError *error = nil; NSURLResponse *response = nil;
+    //    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    
+    NSURLResponse *response;
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init]
+            //returningResponse:&response
+                           completionHandler:^(NSURLResponse *response,
+                                               NSData *data,
+                                               NSError *error) {
+        
+        if (error) {
+            //[self.delegate fetchingGroupsFailedWithError:error];
+        } else {
+            NSLog(@"%@", data);
+            
+            NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                        options:0
+                                                                          error:&error];
+            NSLog(@"%@", jsonArray);
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Your ID!"
+                                                            message:[NSString stringWithFormat:@"u=%@",data]
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Go away box"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+        
+    }];
+    
 }
 
 
@@ -65,10 +93,9 @@
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_user.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"u=%d",
-                           self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[NSString stringWithFormat:@"u=%d", self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
-    NSError *error = nil; NSURLResponse *response = nil;
+    //NSError *error = nil; NSURLResponse *response = nil;
 //    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -98,13 +125,9 @@
                     NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
                     self.playerImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
                 });
-                
-                //UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
             }
         }
     }];
-     
-
 	// Do any additional setup after loading the view.
 }
 
