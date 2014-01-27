@@ -50,13 +50,21 @@
                                                                         options:0
                                                                           error:&error];
             NSLog(@"%@", jsonArray);
+            for(NSDictionary *dictionary in jsonArray)
+            {
+                //NSLog(@"Data Dictionary is : %@",jsonArray);
+                NSString *returned = [jsonArray[0] objectForKey:@"value"];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Your ID!"
+                                                                message:[NSString stringWithFormat:@"%@",returned]
+                                                               delegate:self
+                                                      cancelButtonTitle:@"Go away box"
+                                                      otherButtonTitles:nil];
+                    [alert show];
+                });
+            }
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Your ID!"
-                                                            message:[NSString stringWithFormat:@"u=%@",data]
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Go away box"
-                                                  otherButtonTitles:nil];
-            [alert show];
         }
         
     }];

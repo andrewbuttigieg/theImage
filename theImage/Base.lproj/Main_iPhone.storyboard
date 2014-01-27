@@ -237,8 +237,12 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Discover" id="FKf-3V-dSQ"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="agent" destination="uyy-10-Bhg" id="3If-ii-86B"/>
+                        <outlet property="player" destination="rQi-JC-gr4" id="Ri9-td-q1a"/>
                         <outlet property="putThemThere" destination="lZi-qB-r8N" id="f3j-IU-MFI"/>
+                        <outlet property="scout" destination="Mwa-hb-kw5" id="5zL-ce-3ZP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RRC-7q-3vH" userLabel="First Responder" sceneMemberID="firstResponder"/>

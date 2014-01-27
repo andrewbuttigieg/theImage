@@ -17,5 +17,14 @@
  */
 
 @interface FindPlayerController : UIViewController
+
+- (void)findPeople:(NSInteger) type;
+
     @property IBOutlet UIScrollView *putThemThere;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *scout;
+
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *agent;
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *player;
 @end
