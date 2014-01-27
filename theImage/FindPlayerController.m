@@ -9,12 +9,19 @@
 #import "FindPlayerController.h"
 #import "PlayerController.h"
 #import "Group.h"
+#import "ViewController.h"
 
 @interface FindPlayerController ()
 
 @end
 
 @implementation FindPlayerController
+
+static int findPlayerID = 0;
+
++ (int) findPlayerID{
+    return findPlayerID;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,6 +30,19 @@
         // Custom initialization
     }
     return self;
+}
+
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.toolbarHidden = NO;
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.toolbarHidden = YES;
 }
 
 - (void)singleTapGestureCaptured:(UITapGestureRecognizer *)gesture
@@ -58,6 +78,8 @@
     
     //    NSString *urlAsString = [NSString stringWithFormat:@"http://newfootballers.com/get_users.php"];
     
+    [[self.putThemThere subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_users.php"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPBody:[[NSString stringWithFormat:@"me=%d&u=%d", 1, type]dataUsingEncoding:NSUTF8StringEncoding]];
@@ -89,6 +111,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSInteger col = 0;
                 NSInteger row = 0;
+                NSInteger total = 0;
                 
                 for(NSDictionary *dictionary in jsonArray)
                 {
@@ -115,6 +138,7 @@
                         col++;
                     }
                     
+                    total++;
                     [self.putThemThere addSubview:iv];
                 }
                 
@@ -127,11 +151,16 @@
     }];
 }
 
+- (IBAction)findScout:(id)sender {
+    findPlayerID = 2;
+    [self findPeople:findPlayerID];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self findPeople:2];
-
+    findPlayerID = 1; //player...
+    [self findPeople:findPlayerID];
 }
 
 - (void)didReceiveMemoryWarning
@@ -140,4 +169,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)findPlayer:(id)sender {
+    findPlayerID = 1;
+    [self findPeople:findPlayerID];
+}
+- (IBAction)findAgent:(id)sender {
+    findPlayerID = 3;
+    [self findPeople:findPlayerID];
+}
 @end

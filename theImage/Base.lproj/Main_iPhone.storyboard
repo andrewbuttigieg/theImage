@@ -24,7 +24,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="player.png" id="WBj-46-UNR">
-                                <rect key="frame" x="0.0" y="61" width="320" height="341"/>
+                                <rect key="frame" x="0.0" y="71" width="320" height="341"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E93-9x-16d">
@@ -102,7 +102,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9kB-cB-ntp">
-                                <rect key="frame" x="20" y="253" width="88" height="30"/>
+                                <rect key="frame" x="9" y="109" width="109" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Discover">
@@ -113,7 +113,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bys-sZ-FmN">
-                                <rect key="frame" x="191" y="379" width="109" height="30"/>
+                                <rect key="frame" x="9" y="71" width="109" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Edit me">
@@ -225,19 +225,31 @@
             <objects>
                 <viewController id="aRb-J5-Rrh" customClass="FindPlayerController" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" contentMode="scaleToFill" id="lZi-qB-r8N">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </scrollView>
                     <toolbarItems>
                         <barButtonItem title="All" id="gYI-e3-Xy8"/>
-                        <barButtonItem title="Players" id="rQi-JC-gr4"/>
-                        <barButtonItem title="Agents" id="uyy-10-Bhg"/>
-                        <barButtonItem title="Scouts" id="Mwa-hb-kw5"/>
+                        <barButtonItem title="Players" id="rQi-JC-gr4">
+                            <connections>
+                                <action selector="findPlayer:" destination="aRb-J5-Rrh" id="LRg-3d-394"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Agents" id="uyy-10-Bhg">
+                            <connections>
+                                <action selector="findAgent:" destination="aRb-J5-Rrh" id="kbL-aQ-iTB"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Scouts" id="Mwa-hb-kw5">
+                            <connections>
+                                <action selector="findScout:" destination="aRb-J5-Rrh" id="8uf-Tk-G3F"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Discover" id="FKf-3V-dSQ"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="agent" destination="uyy-10-Bhg" id="3If-ii-86B"/>
                         <outlet property="player" destination="rQi-JC-gr4" id="Ri9-td-q1a"/>

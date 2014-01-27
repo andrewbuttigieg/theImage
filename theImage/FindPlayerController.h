@@ -20,11 +20,18 @@
 
 - (void)findPeople:(NSInteger) type;
 
+- (IBAction)findScout:(id)sender;
     @property IBOutlet UIScrollView *putThemThere;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *scout;
 
+- (IBAction)findAgent:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *agent;
 
+- (IBAction)findPlayer:(id)sender;
+
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *player;
+
++ (int)findPlayerID;
+
 @end

@@ -34,5 +34,4 @@
 - (IBAction)getHTTP:(id)sender;
 
 + (int)playerID;
-
 @end

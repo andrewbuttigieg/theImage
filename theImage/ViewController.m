@@ -18,11 +18,11 @@
 
     CLLocationManager *locationManager;
     static int playerID = 0;
+    
 
 + (int) playerID{
     return playerID;
 }
-
 
 - (void) viewWillAppear:(BOOL)animated
 {
