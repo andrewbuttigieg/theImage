@@ -26,16 +26,10 @@
 
 - (IBAction)addFriend:(id)sender{
     int x = ViewController.playerID;
-    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/add_friend.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    
     [request setHTTPBody:[[NSString stringWithFormat:@"p1=%d&p2=%d", x, self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
-    //NSError *error = nil; NSURLResponse *response = nil;
-    //    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    
-    NSURLResponse *response;
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init]
             //returningResponse:&response
                            completionHandler:^(NSURLResponse *response,
@@ -67,9 +61,89 @@
             }
             
         }
-        
     }];
-    
+}
+
+- (IBAction)noFriendClick:(id)sender {
+    int x = ViewController.playerID;
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/deny_friend.php/"]];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [request setHTTPBody:[[NSString stringWithFormat:@"p1=%d&p2=%d", x, self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPMethod:@"POST"];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init]
+     //returningResponse:&response
+                           completionHandler:^(NSURLResponse *response,
+                                               NSData *data,
+                                               NSError *error) {
+                               
+                               if (error) {
+                                   //[self.delegate fetchingGroupsFailedWithError:error];
+                               } else {
+                                   NSLog(@"%@", data);
+                                   
+                                   NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                                               options:0
+                                                                                                 error:&error];
+                                   NSLog(@"%@", jsonArray);
+                                   for(NSDictionary *dictionary in jsonArray)
+                                   {
+                                       //NSLog(@"Data Dictionary is : %@",jsonArray);
+                                       NSString *returned = [jsonArray[0] objectForKey:@"value"];
+                                       
+                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                           UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Your ID!"
+                                                                                           message:[NSString stringWithFormat:@"%@",returned]
+                                                                                          delegate:self
+                                                                                 cancelButtonTitle:@"Go away box"
+                                                                                 otherButtonTitles:nil];
+                                           [alert show];
+                                       });
+                                   }
+                                   
+                               }
+                               
+                           }];
+}
+
+- (IBAction)yeahFriendClick:(id)sender {
+    int x = ViewController.playerID;
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/accept_friend.php/"]];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [request setHTTPBody:[[NSString stringWithFormat:@"p1=%d&p2=%d", x, self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPMethod:@"POST"];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init]
+     //returningResponse:&response
+                           completionHandler:^(NSURLResponse *response,
+                                               NSData *data,
+                                               NSError *error) {
+                               
+                               if (error) {
+                                   //[self.delegate fetchingGroupsFailedWithError:error];
+                               } else {
+                                   NSLog(@"%@", data);
+                                   
+                                   NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                                               options:0
+                                                                                                 error:&error];
+                                   NSLog(@"%@", jsonArray);
+                                   for(NSDictionary *dictionary in jsonArray)
+                                   {
+                                       //NSLog(@"Data Dictionary is : %@",jsonArray);
+                                       NSString *returned = [jsonArray[0] objectForKey:@"value"];
+                                       
+                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                           UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Your ID!"
+                                                                                           message:[NSString stringWithFormat:@"%@",returned]
+                                                                                          delegate:self
+                                                                                 cancelButtonTitle:@"Go away box"
+                                                                                 otherButtonTitles:nil];
+                                           [alert show];
+                                       });
+                                   }
+                                   
+                               }
+                               
+                           }];
 }
 
 
@@ -135,6 +209,12 @@
                     if ([dictionary objectForKey:@"Accepted"] != nil){
                         accepted = [[dictionary objectForKey:@"Accepted"] intValue];
                     }
+                    //////
+                    int youPending = -1;
+                    if ([dictionary objectForKey:@"YouPending"] != nil){
+                        youPending = [[dictionary objectForKey:@"YouPending"] intValue];
+                    }
+                    
                     if (accepted == 0 || accepted == 1 || accepted == 2){
                         self.addFriendButton.hidden = TRUE;
                     }
@@ -142,12 +222,28 @@
                         self.addFriendButton.hidden = FALSE;
                     }
                     
-                    if (accepted ==1 ){
+                    if (accepted ==1){
                         self.areFriend.hidden = FALSE;
                     }
-                    if (accepted == 0){
+                    else{
+                        self.areFriend.hidden = TRUE;
+                    }
+                    if (accepted == 0 && youPending != 1){
                         self.reqWaiting.hidden = FALSE;
                     }
+                    else if (accepted == 0 && youPending == 1){
+                        self.reqWaiting.hidden = TRUE;
+                        self.beFriendLabel.hidden = FALSE;
+                        self.acceptFriend.hidden = FALSE;
+                        self.dontWantToFriend.hidden = FALSE;
+                    }
+                    else{
+                        self.beFriendLabel.hidden = TRUE;
+                        self.acceptFriend.hidden = TRUE;
+                        self.dontWantToFriend.hidden = TRUE;
+                    }
+                    
+                    
                     //get the player image
                     NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
                     self.playerImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];

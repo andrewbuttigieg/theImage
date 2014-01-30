@@ -326,12 +326,43 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dQB-MP-afi">
+                                <rect key="frame" x="271" y="344" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.1019607931" green="0.69019609689999994" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" title="No">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="noFriendClick:" destination="iMm-Ef-769" eventType="touchUpInside" id="X21-Pe-VgS"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Be Friend" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hT6-Fc-qM0">
+                                <rect key="frame" x="131" y="348" width="78" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rKl-Qy-U4l">
+                                <rect key="frame" x="217" y="344" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.1019607931" green="0.69019609689999994" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" title="Yeah">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="yeahFriendClick:" destination="iMm-Ef-769" eventType="touchUpInside" id="LXR-pp-qas"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="acceptFriend" destination="rKl-Qy-U4l" id="89Y-qW-fU7"/>
                         <outlet property="addFriendButton" destination="EdP-Lq-JQO" id="i8Q-L9-r9V"/>
                         <outlet property="areFriend" destination="dHl-HC-2Ho" id="y8g-Lh-hK7"/>
+                        <outlet property="beFriendLabel" destination="hT6-Fc-qM0" id="Mh0-Dj-hcb"/>
+                        <outlet property="dontWantToFriend" destination="dQB-MP-afi" id="FPQ-3Q-CmI"/>
                         <outlet property="height" destination="alj-xI-BSX" id="vRx-SC-CBK"/>
                         <outlet property="name" destination="AoK-Jn-gip" id="avl-oZ-nld"/>
                         <outlet property="playerImage" destination="4Qn-Or-cwm" id="1Ml-Ng-sSR"/>
