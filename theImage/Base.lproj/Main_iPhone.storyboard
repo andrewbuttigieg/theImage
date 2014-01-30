@@ -280,7 +280,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playing postion" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lga-QM-KZw">
-                                <rect key="frame" x="20" y="370" width="136" height="21"/>
+                                <rect key="frame" x="20" y="373" width="136" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
@@ -292,7 +292,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ILH-Aj-vjj">
-                                <rect key="frame" x="188" y="370" width="63" height="21"/>
+                                <rect key="frame" x="188" y="373" width="63" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
@@ -303,8 +303,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EdP-Lq-JQO">
-                                <rect key="frame" x="20" y="428" width="82" height="30"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EdP-Lq-JQO">
+                                <rect key="frame" x="183" y="344" width="82" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" label="Add Friend"/>
                                 <state key="normal" title="Add Friend">
@@ -314,16 +314,30 @@
                                     <action selector="addFriend:" destination="iMm-Ef-769" eventType="touchUpInside" id="OJD-uD-AaG"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Friend)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dHl-HC-2Ho">
+                                <rect key="frame" x="183" y="348" width="117" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Request sent)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LDc-vt-3fd">
+                                <rect key="frame" x="183" y="348" width="115" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="addFriendButton" destination="EdP-Lq-JQO" id="i8Q-L9-r9V"/>
+                        <outlet property="areFriend" destination="dHl-HC-2Ho" id="y8g-Lh-hK7"/>
                         <outlet property="height" destination="alj-xI-BSX" id="vRx-SC-CBK"/>
                         <outlet property="name" destination="AoK-Jn-gip" id="avl-oZ-nld"/>
                         <outlet property="playerImage" destination="4Qn-Or-cwm" id="1Ml-Ng-sSR"/>
                         <outlet property="playerName" destination="AoK-Jn-gip" id="AxA-S2-CnX"/>
                         <outlet property="postion" destination="n1J-L8-T2j" id="SQ0-zw-vcx"/>
+                        <outlet property="reqWaiting" destination="LDc-vt-3fd" id="wT5-1s-1tH"/>
                         <outlet property="weight" destination="ILH-Aj-vjj" id="ZtJ-6K-Xt7"/>
                     </connections>
                 </viewController>

@@ -19,6 +19,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *playerName;
 @property (strong, nonatomic) IBOutlet UIImageView *playerImage;
 @property (strong, nonatomic) IBOutlet UIButton *addFriendButton;
+@property (strong, nonatomic) IBOutlet UILabel *areFriend;
+@property (strong, nonatomic) IBOutlet UILabel *reqWaiting;
 
 - (IBAction)addFriend:(id)sender;
 

@@ -29,7 +29,8 @@
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/add_friend.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"p1=%d&p2=%d", self.playerID, x]dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [request setHTTPBody:[[NSString stringWithFormat:@"p1=%d&p2=%d", x, self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     //NSError *error = nil; NSURLResponse *response = nil;
     //    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -101,7 +102,7 @@
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_user.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"u=%d", self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[NSString stringWithFormat:@"u=%d&me=%d", p, p2]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     //NSError *error = nil; NSURLResponse *response = nil;
 //    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -129,6 +130,24 @@
                     self.height.text = [dictionary objectForKey:@"Height"];
                     self.weight.text = [dictionary objectForKey:@"Weight"];
                     self.postion.text = [dictionary objectForKey:@"Position"];
+                    
+                    int accepted = -1;
+                    if ([dictionary objectForKey:@"Accepted"] != nil){
+                        accepted = [[dictionary objectForKey:@"Accepted"] intValue];
+                    }
+                    if (accepted == 0 || accepted == 1 || accepted == 2){
+                        self.addFriendButton.hidden = TRUE;
+                    }
+                    else{
+                        self.addFriendButton.hidden = FALSE;
+                    }
+                    
+                    if (accepted ==1 ){
+                        self.areFriend.hidden = FALSE;
+                    }
+                    if (accepted == 0){
+                        self.reqWaiting.hidden = FALSE;
+                    }
                     //get the player image
                     NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
                     self.playerImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
