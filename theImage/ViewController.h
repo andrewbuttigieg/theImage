@@ -28,10 +28,12 @@
 /*@property(nonatomic, retain) IBOutlet UIWebView *videoView;
 @property(nonatomic, retain) NSString *videoURL;
 @property(nonatomic, retain) NSString *videoHTML;*/
+@property (strong, nonatomic) IBOutlet UIImageView *toUpload;
 
 - (IBAction)logoPressed:(id)sender;
 - (IBAction)logoPressedTwo:(id)sender;
 - (IBAction)getHTTP:(id)sender;
+- (IBAction)uploadImage:(id)sender;
 
 + (int)playerID;
 @end
