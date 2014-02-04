@@ -125,9 +125,7 @@
 - (IBAction)uploadImage:(id)sender {
     NSData *imageData = UIImageJPEGRepresentation(self.toUpload.image, 0.2);     //change Image to NSData
     NSString *baseurl = @"http://newfootballers.com/upload_image.php";
-    NSDictionary *parameters = @{@"foo": @"bar"};
-  
-
+    NSDictionary *parameters = @{@"u": @"1", @"t": @"having fun!", @"n": @"Winning!"};
     
     // 1. Create `AFHTTPRequestSerializer` which will create your request.
     AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
