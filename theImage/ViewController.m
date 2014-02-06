@@ -22,6 +22,7 @@
 #import <AFNetworking/AFURLResponseSerialization.h>
 #import <AFNetworking/AFHTTPSessionManager.h>
 
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface ViewController() // <ViewControllerDetailDelegate>
 
@@ -53,12 +54,19 @@
 {
     [super viewDidLoad];
     
+    FBLoginView *loginView = [[FBLoginView alloc] init];
+    // Align the button in the center horizontally
+    loginView.readPermissions = @[@"basic_info", @"email", @"user_likes"];
+    loginView.delegate = self;
+    loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 5);
+    [self.view addSubview:loginView];
+    
     //[[self navigationController] setNavigationBarHidden:YES animated:YES];
     
     locationManager = [[CLLocationManager alloc] init];
     
     playerOnline.text = @"Player Online";
-    playerName.text = @"ANDREW BUTTIGIEG";
+    playerName.text = @"ANDREW BUTTIGIEG!!!!";
     playerID = 1; //make it andrew...
     
     
@@ -73,6 +81,14 @@
 */
 	// Do any additional setup after loading the view, typically from a nib.
 }
+
+// This method will be called when the user information has been fetched
+- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
+                            user:(id<FBGraphUser>)user {
+    playerID = user.id;
+    playerName.text = user.name;
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -121,6 +137,7 @@
      */
 
 }
+
 
 - (IBAction)uploadImage:(id)sender {
     NSData *imageData = UIImageJPEGRepresentation(self.toUpload.image, 0.2);     //change Image to NSData

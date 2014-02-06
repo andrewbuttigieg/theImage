@@ -10,7 +10,9 @@
 #import <CoreLocation/CoreLocation.h>
 #import "ViewControllerDetail.h"
 
-@interface ViewController : UIViewController<CLLocationManagerDelegate, ViewControllerDetailDelegate> {
+#import <FacebookSDK/FacebookSDK.h>
+
+@interface ViewController : UIViewController<CLLocationManagerDelegate, ViewControllerDetailDelegate, FBLoginViewDelegate> {
     IBOutlet UIImageView *playerImage;
     IBOutlet UILabel *xLok;
     IBOutlet UILabel *yLok;
