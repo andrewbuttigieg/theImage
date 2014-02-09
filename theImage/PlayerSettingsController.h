@@ -14,5 +14,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *position;
 @property (strong, nonatomic) IBOutlet UITextField *about;
 - (IBAction)save_player:(id)sender;
+@property (strong, nonatomic) IBOutlet UIImageView *toUpload;
+- (IBAction)uploadImage:(id)sender;
+- (IBAction)uploadImageMe:(id)sender;
 
 @end

@@ -7,6 +7,11 @@
 //
 
 #import "PlayerSettingsController.h"
+#import <AFNetworking/AFHTTPRequestOperationManager.h>
+#import <AFNetworking/AFHTTPRequestOperation.h>
+#import <AFNetworking/AFURLResponseSerialization.h>
+#import <AFNetworking/AFHTTPSessionManager.h>
+
 
 @interface PlayerSettingsController ()
 
@@ -35,6 +40,73 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (IBAction)uploadImage:(id)sender {
+    NSData *imageData = UIImageJPEGRepresentation(self.toUpload.image, 0.2);     //change Image to NSData
+    NSString *baseurl = @"http://newfootballers.com/upload_image.php";
+    NSDictionary *parameters = @{@"u": @"1", @"t": @"having fun!", @"n": @"Winning!"};
+    
+    // 1. Create `AFHTTPRequestSerializer` which will create your request.
+    AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
+    
+    // 2. Create an `NSMutableURLRequest`.
+    NSMutableURLRequest *request =
+    [serializer multipartFormRequestWithMethod:@"POST" URLString:baseurl
+                                    parameters:parameters
+                     constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                         [formData appendPartWithFileData:imageData
+                                                     name:@"attachment"
+                                                 fileName:@"myimage.jpg"
+                                                 mimeType:@"image/jpeg"];
+                     }];
+    
+    // 3. Create and use `AFHTTPRequestOperationManager` to create an `AFHTTPRequestOperation` from the `NSMutableURLRequest` that we just created.
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPRequestOperation *operation =
+    [manager HTTPRequestOperationWithRequest:request
+                                     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                         NSLog(@"Success %@", responseObject);
+                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                         NSLog(@"Failure %@", error.description);
+                                     }];
+    
+    // 4. Set the progress block of the operation.
+    [operation setUploadProgressBlock:^(NSUInteger __unused bytesWritten,
+                                        long long totalBytesWritten,
+                                        long long totalBytesExpectedToWrite) {
+        NSLog(@"Wrote %lld/%lld", totalBytesWritten, totalBytesExpectedToWrite);
+    }];
+    
+    // 5. Begin!
+    [operation start];
+    /*
+     if (imageData != nil && 1 == 2)
+     {
+     //NSData *data = [NSData dataWithContentsOfFile:filePath];
+     NSMutableString *urlString = [[NSMutableString alloc] initWithFormat:@"name=thefile&filename="];
+     [urlString appendFormat:@"%@", imageData];
+     NSData *postData = [urlString dataUsingEncoding:NSASCIIStringEncoding
+     allowLossyConversion:YES];
+     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+     
+     
+     NSURL *url = [NSURL URLWithString:baseurl];
+     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+     [urlRequest setHTTPMethod: @"POST"];
+     [urlRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
+     [urlRequest setValue:@"application/x-www-form-urlencoded"
+     forHTTPHeaderField:@"Content-Type"];
+     
+     [urlRequest setHTTPBody:postData];
+     
+     NSData *returnData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:nil];
+     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+     NSLog(returnString);
+     
+     NSLog(@"Started!");
+     }*/
+}
+
 - (IBAction)save_player:(id)sender {
     
 //    NSString *postData = [NSString stringWithFormat:@"h=%@&w=/%@&a=/%@&p=/%@&u=/%@", 1, self.position.text,  self.about.text,
@@ -55,4 +127,5 @@
     }
     
 }
+
 @end

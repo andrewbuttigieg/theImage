@@ -35,7 +35,6 @@
 - (IBAction)logoPressed:(id)sender;
 - (IBAction)logoPressedTwo:(id)sender;
 - (IBAction)getHTTP:(id)sender;
-- (IBAction)uploadImage:(id)sender;
 
 + (int)playerID;
 + (NSString *)facebookID;
