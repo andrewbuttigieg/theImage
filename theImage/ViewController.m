@@ -32,10 +32,14 @@
 
     CLLocationManager *locationManager;
     static int playerID = 0;
-    
+    static NSString* facebookPlayerID;
 
 + (int) playerID{
     return playerID;
+}
+
++ (NSString *)facebookID{
+    return  facebookPlayerID;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -65,28 +69,55 @@
     
     locationManager = [[CLLocationManager alloc] init];
     
+    /*
     playerOnline.text = @"Player Online";
     playerName.text = @"ANDREW BUTTIGIEG!!!!";
     playerID = 1; //make it andrew...
-    
-    
-    // Create Login View so that the app will be granted "status_update" permission.
-/*    FBLoginView *loginView = [[FBLoginView alloc] init];
-    [self.view addSubview:loginView];*/
-    
-  /*
-    NSURL *url = [NSURL URLWithString:@"http://www.youtube.com/watch?v=fDXWW5vX-64"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [self.webView loadRequest:request];
-*/
+    */
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
 // This method will be called when the user information has been fetched
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
-    playerID = user.id;
+    
+    
+    /*
+     the guy logged in on facebook!!
+     */
+    
+    facebookPlayerID = user.id;
     playerName.text = user.name;
+    
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/login_user.php"]];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [request setHTTPBody:[[NSString stringWithFormat:@"fb=%@", facebookPlayerID]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPMethod:@"POST"];
+    
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (error) {
+            //[self.delegate fetchingGroupsFailedWithError:error];
+        } else {
+            //[self.delegate receivedGroupsJSON:data];
+            NSError *localError = nil;
+            NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&localError];
+            
+            NSMutableArray *groups = [[NSMutableArray alloc] init];
+            NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                        options:0
+                                                                          error:&error];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                for(NSDictionary *dictionary in jsonArray)
+                {
+                    NSLog(@"Data Dictionary is : %@",dictionary);
+                }
+            });
+        }
+    }];
+
 }
 
 
@@ -123,19 +154,6 @@
     
     // Construct a String around the Data from the response
     NSString *http = [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
-    
-    /*
-     [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url] queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-     
-     if (error) {
-     [self.delegate fetchingGroupsFailedWithError:error];
-     } else {
-     [self.delegate receivedGroupsJSON:data];
-     }
-     }];
-     
-     */
-
 }
 
 
@@ -177,63 +195,6 @@
     
     // 5. Begin!
     [operation start];
-
- /*
-    [self POST:baseurl parameters:parameters
-            constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:imageData name:@"photo" fileName:@"photo.jpg" mimeType:@"image/jpeg"];
-    } success:^(NSURLSessionDataTask *task, id responseObject) {
-        if (success) success(responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        if (failure) failure(error);
-    }];*/
-    
-  /*  [[ASAPIManager sharedManager] POST:@"/some/url" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        if(_profileImageView.image){
-            [formData appendPartWithFileData:UIImageJPEGRepresentation(_profileImageView.image, 0.5) name:@"avatar" fileName:@"avatar.jpg" mimeType:@"image/jpeg"];
-        }
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];*/
-    
-/*    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"foo": @"bar"};
-    NSURL *filePath = [NSURL fileURLWithPath:@"image.png"];
-    [manager POST:@"http://newfootballers.com/upload_image.php" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:imageData name:@"myfile"];
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Success: %@", responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];*/
-    /*
-    // setting up the request object now
-	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-	[request setURL:[NSURL URLWithString:baseurl]];
-	[request setHTTPMethod:@"POST"];
-	
-	NSString *boundary = [NSString stringWithString:@"---------------------------14737809831466499882746641449"];
-	NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
-	[request addValue:contentType forHTTPHeaderField: @"Content-Type"];
-	
-	NSMutableData *body = [NSMutableData data];
-	[body appendData:[[NSString stringWithFormat:@"rn--%@rn",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-	[body appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"userfile\"; filename=\"ipodfile.jpg\"rn"] dataUsingEncoding:NSUTF8StringEncoding]];
-	[body appendData:[[NSString stringWithString:@"Content-Type: application/octet-streamrnrn"] dataUsingEncoding:NSUTF8StringEncoding]];
-	[body appendData:[NSData dataWithData:imageData]];
-	[body appendData:[[NSString stringWithFormat:@"rn--%@--rn",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-	// setting the body of the post to the reqeust
-	[request setHTTPBody:body];
-	
-	// now lets make the connection to the web
-	NSData *returnData2 = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-	NSString *returnString2 = [[NSString alloc] initWithData:returnData2 encoding:NSUTF8StringEncoding];
-	
-	NSLog(returnString2);*/
-    
-    
     
     if (imageData != nil && 1 == 2)
     {
@@ -256,70 +217,11 @@
         
         [urlRequest setHTTPBody:postData];
         
-        /*
-        
-        NSString *boundary = [NSString stringWithString:@"---------------------------14737809831466499882746641449"];
-        NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
-        [urlRequest addValue:contentType forHTTPHeaderField: @"Content-Type"];
-        
-        NSMutableData *body = [NSMutableData data];
-        
-        [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"filenames\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-        //[body appendData:[filenames dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"userfile\"; filename=\"hereiam.jpg\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        [body appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[NSData dataWithData:imageData]];
-        [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        // setting the body of the post to the reqeust
-        [urlRequest setHTTPBody:body];
-        
-        //NSURLConnection *connection = [NSURLConnection connectionWithRequest:urlRequest delegate:self];
-        //[connection start];
-        */
-        
         NSData *returnData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:nil];
         NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
         NSLog(returnString);
         
         NSLog(@"Started!");
-        
-        /*
-        //filenames = [NSString stringWithFormat:@"TextLabel"];      //set name here
-        //NSLog(@"%@", filenames);
-        NSString *urlString = @"http://newfootballers.com/upload_image.php";
-        
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setURL:[NSURL URLWithString:urlString]];
-        [request setHTTPMethod:@"POST"];
-        
-        NSString *boundary = [NSString stringWithString:@"---------------------------14737809831466499882746641449"];
-        NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
-        [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
-        
-        NSMutableData *body = [NSMutableData data];
-        
-        [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"filenames\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-        //[body appendData:[filenames dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"userfile\"; filename=\"hereiam.jpg\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        [body appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[NSData dataWithData:imageData]];
-        [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        // setting the body of the post to the reqeust
-        [request setHTTPBody:body];
-        // now lets make the connection to the web
-        NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-        NSLog(returnString);
-        NSLog(@"finish");*/
-        
     }
     
 }

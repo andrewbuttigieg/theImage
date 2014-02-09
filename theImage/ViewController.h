@@ -38,4 +38,5 @@
 - (IBAction)uploadImage:(id)sender;
 
 + (int)playerID;
++ (NSString *)facebookID;
 @end
