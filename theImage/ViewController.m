@@ -151,6 +151,7 @@
                 {
                     NSLog(@"Data Dictionary is : %@",dictionary);
                     NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
+                    playerID = [[dictionary objectForKey:@"UserID"] intValue];
                     self.toUpload.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
                 }
             });

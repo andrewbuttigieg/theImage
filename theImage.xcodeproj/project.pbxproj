@@ -32,6 +32,7 @@
 		F2869A1C187571840086D665 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F2869A18187571840086D665 /* logo.png */; };
 		F2869A1E1875C7A70086D665 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2869A1D1875C7A70086D665 /* MediaPlayer.framework */; };
 		F287CD2A18A18E6800A196E3 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F287CD2918A18E6800A196E3 /* FacebookSDK.framework */; };
+		F287CD2D18A972C800A196E3 /* MessageCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = F287CD2C18A972C800A196E3 /* MessageCenterController.m */; };
 		F2A00E04187DCE7A00CB0D3F /* FindPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A00E03187DCE7A00CB0D3F /* FindPlayerController.m */; };
 		F2A446FD18872864009EAD7D /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A446FC18872864009EAD7D /* Group.m */; };
 		F2B17BBF1878C58D003626F3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B17BBE1878C58D003626F3 /* CoreLocation.framework */; };
@@ -120,6 +121,8 @@
 		F2869A18187571840086D665 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		F2869A1D1875C7A70086D665 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		F287CD2918A18E6800A196E3 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		F287CD2B18A972C800A196E3 /* MessageCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCenterController.h; sourceTree = "<group>"; };
+		F287CD2C18A972C800A196E3 /* MessageCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCenterController.m; sourceTree = "<group>"; };
 		F2A00E02187DCE7A00CB0D3F /* FindPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPlayerController.h; sourceTree = "<group>"; };
 		F2A00E03187DCE7A00CB0D3F /* FindPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPlayerController.m; sourceTree = "<group>"; };
 		F2A446FB18872864009EAD7D /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
@@ -246,6 +249,8 @@
 				F2869A111874CA400086D665 /* footballApp.jpg */,
 				F28699E91874C06C0086D665 /* AppDelegate.m */,
 				F28699EB1874C06C0086D665 /* Main_iPhone.storyboard */,
+				F287CD2B18A972C800A196E3 /* MessageCenterController.h */,
+				F287CD2C18A972C800A196E3 /* MessageCenterController.m */,
 				F2EC5DF11883204900D93403 /* PlayerSettingsController.h */,
 				F2EC5DF21883204900D93403 /* PlayerSettingsController.m */,
 				F2EC5DEE187E042B00D93403 /* PlayerController.h */,
@@ -587,6 +592,7 @@
 				F2EC5DF31883204900D93403 /* PlayerSettingsController.m in Sources */,
 				F28699F31874C06C0086D665 /* ViewController.m in Sources */,
 				F28699EA1874C06C0086D665 /* AppDelegate.m in Sources */,
+				F287CD2D18A972C800A196E3 /* MessageCenterController.m in Sources */,
 				F2A00E04187DCE7A00CB0D3F /* FindPlayerController.m in Sources */,
 				F28699E61874C06C0086D665 /* main.m in Sources */,
 				F2EC5DF0187E042B00D93403 /* PlayerController.m in Sources */,
