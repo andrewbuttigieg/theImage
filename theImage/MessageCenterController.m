@@ -8,12 +8,15 @@
 
 #import "MessageCenterController.h"
 #import "ViewController.h"
+#import "messageGroupCell.h"
 
 @interface MessageCenterController ()
 
 @end
 
 @implementation MessageCenterController
+
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -24,9 +27,77 @@
     return self;
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    return [self.dateForTable count];
+}
+
+- (void)tableView: (UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath {
+    
+    int idx=indexPath.row;
+    NSString *o = [self.userIDForTable objectAtIndex:idx];
+    self.textForTable = self.textForTable;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"messageGroupCell";
+    
+    messageGroupCell *cell = [tableView
+                              dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[messageGroupCell alloc]
+                initWithStyle:UITableViewCellStyleDefault
+                reuseIdentifier:CellIdentifier];
+    }
+    
+    // Configure the cell...
+    cell.name.text = [self.nameForTable
+                      objectAtIndex: [indexPath row]];
+    cell.date.text = [self.dateForTable
+                      objectAtIndex: [indexPath row]];
+
+    cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.imageForTable objectAtIndex: [indexPath row]]]]];
+    
+     
+    cell.message.text = [self.textForTable
+                      objectAtIndex: [indexPath row]];
+    
+    return cell;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.dateForTable = [[NSMutableArray alloc]
+                         initWithObjects:nil];
+
+    self.textForTable = [[NSMutableArray alloc]
+                         initWithObjects:nil];
+
+    self.nameForTable  = [[NSMutableArray alloc]
+                         initWithObjects:nil];
+
+    self.imageForTable = [[NSMutableArray alloc]
+                         initWithObjects:nil];
+    
+    self.userIDForTable = [[NSMutableArray alloc]
+                          initWithObjects:nil];
+
+    
+    UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
+    self.myData = [NSMutableArray arrayWithCapacity:1];
+    
+    
     int me = ViewController.playerID;
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_messages.php/"]];
@@ -52,6 +123,13 @@
                 NSLog(@"%@", [dictionary objectForKey:@"Firstname"]);
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [self.nameForTable addObject:[dictionary objectForKey:@"Firstname"]];
+                    [self.imageForTable addObject:[dictionary objectForKey:@"PhotoURL"]];
+                    [self.dateForTable addObject:[dictionary objectForKey:@"Timestamp"]];
+                    [self.textForTable addObject:[dictionary objectForKey:@"Text"]];
+                    [self.userIDForTable addObject:[dictionary objectForKey:@"UserID"]];
+                    [self.tableView reloadData];
                     //get the player information
                  /*   self.playerName.text = [dictionary objectForKey:@"Firstname"];
                     self.height.text = [dictionary objectForKey:@"Height"];
@@ -74,81 +152,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end
