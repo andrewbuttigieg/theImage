@@ -9,6 +9,7 @@
 #import "MessageCenterController.h"
 #import "ViewController.h"
 #import "messageGroupCell.h"
+#import "ChatController.h"
 
 @interface MessageCenterController ()
 
@@ -44,9 +45,21 @@
     int idx=indexPath.row;
     NSString *o = [self.userIDForTable objectAtIndex:idx];
     self.textForTable = self.textForTable;
+    
+    
+    /////////
+    NSString * storyboardName = @"Main_iPhone";
+    NSString * viewControllerID = @"ChatController";
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    ChatController * controller = (ChatController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+//    controller.playerID = tappedView.tag;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 
+/*
+ This sets the value of the items in the cell
+ */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"messageGroupCell";
@@ -67,13 +80,38 @@
 
     cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.imageForTable objectAtIndex: [indexPath row]]]]];
     
-     
-    cell.message.text = [self.textForTable
-                      objectAtIndex: [indexPath row]];
+    cell.personImage.layer.cornerRadius = 28.0;
+    cell.personImage.layer.masksToBounds = YES;
+    cell.personImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    cell.personImage.layer.borderWidth = 0.3;
+    
+    NSString *type = [self.userTypeForTable objectAtIndex: [indexPath row]];
+    if ([type isEqual: @"1"])
+    {
+        type = @"Player";
+    }
+    else if ([type isEqual: @"2"])
+    {
+        type = @"Scout";
+    }
+    else if ([type isEqual: @"3"])
+    {
+        type = @"Agent";
+    }
+    /*
+    else if ([type isEqual: @"4"])
+    {
+        type = @"";
+    }*/
+    cell.type.text = type;
+    cell.message.text = [self.textForTable objectAtIndex: [indexPath row]];
     
     return cell;
 }
 
+/*
+loads the view - we will get the users messages from the server so that they can choose which ones to read..
+ */
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -92,6 +130,9 @@
     
     self.userIDForTable = [[NSMutableArray alloc]
                           initWithObjects:nil];
+    
+    self.userTypeForTable = [[NSMutableArray alloc]
+                           initWithObjects:nil];
 
     
     UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
@@ -110,40 +151,26 @@
         if (error) {
             //[self.delegate fetchingGroupsFailedWithError:error];
         } else {
-            //[self.delegate receivedGroupsJSON:data];
-            //NSError *localError = nil;
             NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                         options:0
                                                                           error:&error];
-            for(NSDictionary *dictionary in jsonArray)
-            {
-                NSLog(@"Data Dictionary is : %@",dictionary);
-                /*NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
-                NSLog(@"%@", imageURL);*/
-                NSLog(@"%@", [dictionary objectForKey:@"Firstname"]);
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
+            dispatch_async(dispatch_get_main_queue(), ^{
+                for(NSDictionary *dictionary in jsonArray)
+                {
+                    NSLog(@"Data Dictionary is : %@",dictionary);
+                    NSLog(@"%@", [dictionary objectForKey:@"Firstname"]);
+                                    
                     [self.nameForTable addObject:[dictionary objectForKey:@"Firstname"]];
                     [self.imageForTable addObject:[dictionary objectForKey:@"PhotoURL"]];
                     [self.dateForTable addObject:[dictionary objectForKey:@"Timestamp"]];
                     [self.textForTable addObject:[dictionary objectForKey:@"Text"]];
+                    [self.userTypeForTable addObject:[dictionary objectForKey:@"UserType"]];
                     [self.userIDForTable addObject:[dictionary objectForKey:@"UserID"]];
-                    [self.tableView reloadData];
-                    //get the player information
-                 /*   self.playerName.text = [dictionary objectForKey:@"Firstname"];
-                    self.height.text = [dictionary objectForKey:@"Height"];
-                    self.weight.text = [dictionary objectForKey:@"Weight"];
-                    self.postion.text = [dictionary objectForKey:@"Position"];*/
-                });
-            }
+                }
+                [self.tableView reloadData];
+            });
         }
     }];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning

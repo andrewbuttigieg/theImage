@@ -45,6 +45,9 @@ static int findPlayerID = 0;
     self.navigationController.toolbarHidden = YES;
 }
 
+/*
+ show the person details. let you friend them etc
+ */
 - (void)singleTapGestureCaptured:(UITapGestureRecognizer *)gesture
 {
     UIView *tappedView = [gesture.view hitTest:[gesture locationInView:gesture.view] withEvent:nil];
@@ -58,19 +61,7 @@ static int findPlayerID = 0;
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
     PlayerController * controller = (PlayerController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
     controller.playerID = tappedView.tag;
-    /*
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-    
-    UIBarButtonItem *temporaryBarButtonItem = [UIBarButtonItem new];
-    [temporaryBarButtonItem setTitle:@"Back"];
-    self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
-    [self presentViewController:navigationController animated:YES completion:nil];
-     */
     [self.navigationController pushViewController:controller animated:YES];
-    
-/*    PlayerController *viewController = [[PlayerController alloc] init];
-    [self presentViewController:viewController animated:YES completion:nil];*/
-    ///////
 }
 
 - (void)findPeople:(NSInteger) type{
