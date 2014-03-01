@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-PHFComposeBarView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-PHFDelegateChain.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>D80800DB7D1F489D85818738</key>
+		<key>07CB2E98368441ADA1B45F82</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EE50BD38B86444B4B7298AE6</key>
+		<key>2AC8A82D52944FE4B3305C6F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>37433857E44941708EF82B7C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7C81B704B9A0461E9812A754</key>
 		<dict>
 			<key>primary</key>
 			<true/>

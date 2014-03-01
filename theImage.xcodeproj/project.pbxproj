@@ -37,6 +37,7 @@
 		F287CD3018AAB79F00A196E3 /* messageGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F287CD2F18AAB79F00A196E3 /* messageGroupCell.m */; };
 		F2A00E04187DCE7A00CB0D3F /* FindPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A00E03187DCE7A00CB0D3F /* FindPlayerController.m */; };
 		F2A446FD18872864009EAD7D /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A446FC18872864009EAD7D /* Group.m */; };
+		F2ABD41A18BC72BE003F03E5 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2ABD41918BC72BE003F03E5 /* MessageViewController.m */; };
 		F2B17BBF1878C58D003626F3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B17BBE1878C58D003626F3 /* CoreLocation.framework */; };
 		F2B9E1CD189D7E060044DE04 /* AFNetworking.h in Resources */ = {isa = PBXBuildFile; fileRef = F2B9E19F189D7E060044DE04 /* AFNetworking.h */; };
 		F2B9E1CE189D7E060044DE04 /* AFHTTPRequestOperation.h in Resources */ = {isa = PBXBuildFile; fileRef = F2B9E1A0189D7E060044DE04 /* AFHTTPRequestOperation.h */; };
@@ -133,6 +134,8 @@
 		F2A00E03187DCE7A00CB0D3F /* FindPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPlayerController.m; sourceTree = "<group>"; };
 		F2A446FB18872864009EAD7D /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		F2A446FC18872864009EAD7D /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		F2ABD41818BC72BE003F03E5 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		F2ABD41918BC72BE003F03E5 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		F2B17BBE1878C58D003626F3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F2B9E19F189D7E060044DE04 /* AFNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AFNetworking.h; path = AFNetworking/AFNetworking.h; sourceTree = "<group>"; };
 		F2B9E1A0189D7E060044DE04 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperation.h; path = AFNetworking/AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -273,6 +276,8 @@
 				F28699E01874C06C0086D665 /* Supporting Files */,
 				F201C84618B53D6F00467AB5 /* ChatController.h */,
 				F201C84718B53D6F00467AB5 /* ChatController.m */,
+				F2ABD41818BC72BE003F03E5 /* MessageViewController.h */,
+				F2ABD41918BC72BE003F03E5 /* MessageViewController.m */,
 			);
 			path = theImage;
 			sourceTree = "<group>";
@@ -613,6 +618,7 @@
 				F28699EA1874C06C0086D665 /* AppDelegate.m in Sources */,
 				F287CD2D18A972C800A196E3 /* MessageCenterController.m in Sources */,
 				F2A00E04187DCE7A00CB0D3F /* FindPlayerController.m in Sources */,
+				F2ABD41A18BC72BE003F03E5 /* MessageViewController.m in Sources */,
 				F28699E61874C06C0086D665 /* main.m in Sources */,
 				F2EC5DF0187E042B00D93403 /* PlayerController.m in Sources */,
 				F243B76C1879D13A001BABC8 /* ViewControllerDetail.m in Sources */,
