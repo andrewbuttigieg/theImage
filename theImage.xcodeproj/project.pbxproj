@@ -261,6 +261,8 @@
 				F28699EB1874C06C0086D665 /* Main_iPhone.storyboard */,
 				F287CD2B18A972C800A196E3 /* MessageCenterController.h */,
 				F287CD2C18A972C800A196E3 /* MessageCenterController.m */,
+				F2ABD41818BC72BE003F03E5 /* MessageViewController.h */,
+				F2ABD41918BC72BE003F03E5 /* MessageViewController.m */,
 				F2EC5DF11883204900D93403 /* PlayerSettingsController.h */,
 				F2EC5DF21883204900D93403 /* PlayerSettingsController.m */,
 				F2EC5DEE187E042B00D93403 /* PlayerController.h */,
@@ -276,8 +278,6 @@
 				F28699E01874C06C0086D665 /* Supporting Files */,
 				F201C84618B53D6F00467AB5 /* ChatController.h */,
 				F201C84718B53D6F00467AB5 /* ChatController.m */,
-				F2ABD41818BC72BE003F03E5 /* MessageViewController.h */,
-				F2ABD41918BC72BE003F03E5 /* MessageViewController.m */,
 			);
 			path = theImage;
 			sourceTree = "<group>";

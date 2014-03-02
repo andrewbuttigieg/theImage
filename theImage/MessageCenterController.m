@@ -9,7 +9,7 @@
 #import "MessageCenterController.h"
 #import "ViewController.h"
 #import "messageGroupCell.h"
-#import "ChatController.h"
+#import "MessageViewController.h"
 
 @interface MessageCenterController ()
 
@@ -44,14 +44,17 @@
     
     int idx=indexPath.row;
     NSString *o = [self.userIDForTable objectAtIndex:idx];
+    NSString *name = [self.nameForTable objectAtIndex:idx];
     self.textForTable = self.textForTable;
     
     
     /////////
     NSString * storyboardName = @"Main_iPhone";
-    NSString * viewControllerID = @"ChatController";
+    NSString * viewControllerID = @"MessageViewController";
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
-    ChatController * controller = (ChatController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+    MessageViewController * controller = (MessageViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+    controller.chattingToID = [o intValue];
+    controller.name = name;
 //    controller.playerID = tappedView.tag;
     [self.navigationController pushViewController:controller animated:YES];
 }

@@ -12,7 +12,8 @@
 @interface MessageViewController : UIViewController<PHFComposeBarViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *containerMain;
-
+@property (nonatomic) int chattingToID;
+@property (nonatomic) NSString *name;
 
 + (float)top;
 

@@ -7,21 +7,20 @@
 //
 
 #import "MessageViewController.h"
+#import "ViewController.h"
 
 @interface MessageViewController ()
     @property (readonly, nonatomic) UIView *container;
     @property (readonly, nonatomic) PHFComposeBarView *composeBarView;
     @property (readonly, nonatomic) UIScrollView *textView;
     @property (readonly, nonatomic) UIScrollView *mcontainer;
-
 @end
 
 CGRect const kInitialViewFrame = { 0.0f, 0.0f, 320.0f, 480.0f };
 
 @implementation MessageViewController
 
-static float top = 5;
-
+static float top = 0;
 + (float) top{
     return top;
 }
@@ -61,6 +60,7 @@ static float top = 5;
 }
 
 - (void)loadView {
+    top = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillToggle:)
                                                  name:UIKeyboardWillShowNotification
@@ -84,28 +84,77 @@ static float top = 5;
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
     [self setView:view];
     
-    [self appendTextToTextView: @"You are really good keeper" :false];
-    /*
-    UIView *bubbleView = [[UIView alloc] initWithFrame:CGRectMake(80.0f, 90.0f, 220.0f, 40.0f)];;
-    [bubbleView setBackgroundColor:[UIColor colorWithRed:0.0f green:1.0f blue:0.0f alpha:1]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_messages_convo.php"]];
+    int u = ViewController.playerID;
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [request setHTTPBody:[[NSString stringWithFormat:@"m=%d&u=%d", u, self.chattingToID]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPMethod:@"POST"];
     
-    //the text to add to the bubble
-    UITextView *textViewInner = [[UITextView alloc] initWithFrame:CGRectMake(10.0f, 5.0f, 200.0f, 20.0f)];
-    [textViewInner setBackgroundColor:[UIColor colorWithRed:0.0f green:1.0f blue:0.0f alpha:1]];
-    [textViewInner setTextColor:[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1]];
-    [textViewInner setFont:[UIFont systemFontOfSize:[UIFont labelFontSize]]];
-    textViewInner.text = @"I like you playing style!";
-    [textViewInner sizeToFit];
-    [bubbleView addSubview:textViewInner];
+    self.title = self.name;
     
-    [[bubbleView layer] setCornerRadius:20.0f];
-    
-    //put the bubble in the right place
-    bubbleView.frame=CGRectMake(10, top, textViewInner.frame.size.width + 20, textViewInner.frame.size.height + 10);
-    
-    //where to put the text
-    top = 0 + textViewInner.frame.size.height + 20;
-    [self.textView addSubview:bubbleView];*/
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (error) {
+            //[self.delegate fetchingGroupsFailedWithError:error];
+        } else {
+            //[self.delegate receivedGroupsJSON:data];
+            NSError *localError = nil;
+            NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                        options:0
+                                                                          error:&error];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                for(NSDictionary *dictionary in jsonArray)
+                {
+                    NSString *text = [dictionary objectForKey:@"Text"];
+                    
+                    if ( [[dictionary objectForKey:@"FromUserID"] intValue] !=  u){
+                        [self appendTextToTextView: text :false];
+                    }
+                    else{
+                        [self appendTextToTextView: text :true];
+                    }
+                }
+            });
+        }
+    }];
+    NSTimer *aTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(aTime) userInfo:nil repeats:YES];
+
+}
+
+-(void)aTime
+{
+    //check what messages the other person has sent me
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_messages_convo_unread.php"]];
+    int u = ViewController.playerID;
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [request setHTTPBody:[[NSString stringWithFormat:@"m=%d&u=%d", u, self.chattingToID]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPMethod:@"POST"];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (error) {
+            //[self.delegate fetchingGroupsFailedWithError:error];
+        } else {
+            //[self.delegate receivedGroupsJSON:data];
+            NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                        options:0
+                                                                          error:&error];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                for(NSDictionary *dictionary in jsonArray)
+                {
+                    NSString *text = [dictionary objectForKey:@"Text"];
+                    
+                    if ( [[dictionary objectForKey:@"FromUserID"] intValue] !=  u){
+                        [self appendTextToTextView: text :false];
+                    }
+                    else{
+                        [self appendTextToTextView: text :true];
+                    }
+                }
+            });
+        }
+    }];
 }
 
 - (void)keyboardWillToggle:(NSNotification *)notification {
@@ -148,6 +197,24 @@ static float top = 5;
     //width
     //height
     
+    //send text to the server so the other person can get it
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/send_message.php"]];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    int p1 = ViewController.playerID;
+    int p2 = self.chattingToID;
+    NSString *text = [composeBarView text];
+    [request setHTTPBody:[[NSString stringWithFormat:@"p1=%d&p2=%d&tx=%@", p1, p2, text]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPMethod:@"POST"];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (error) {
+            //didn't work, bugger
+        } else {
+            //worked!
+        }
+    }];
+    
+    //show the message on screen
     [self appendTextToTextView: [composeBarView text] :true];
     //clear the typing area
     [composeBarView setText:@"" animated:YES];
@@ -191,6 +258,7 @@ static float top = 5;
         //the text to add to the bubble
         UITextView *textViewInner = [[UITextView alloc] initWithFrame:CGRectMake(10.0f, 5.0f, 200.0f, 20.0f)];
         
+        //determine the right color of the message
         if (MeOwner){
             [bubbleView setBackgroundColor:[UIColor colorWithHue:206.0f/360.0f saturation:0.81f brightness:0.99f alpha:1]];
             [textViewInner setBackgroundColor:[UIColor colorWithHue:206.0f/360.0f saturation:0.81f brightness:0.99f alpha:0]];
@@ -204,6 +272,7 @@ static float top = 5;
         [textViewInner setFont:[UIFont systemFontOfSize:[UIFont labelFontSize]]];
         textViewInner.text = text;
         textViewInner.editable = false;
+        textViewInner.scrollEnabled = false;
         [textViewInner sizeToFit];
         [bubbleView addSubview:textViewInner];
         
@@ -215,6 +284,7 @@ static float top = 5;
         
         float left = (screenWidth - (textViewInner.frame.size.width + 30));
         
+        //left align if other person messaged us
         if (!MeOwner){
             left = 5.0f;
         }
@@ -225,10 +295,14 @@ static float top = 5;
         top = top + textViewInner.frame.size.height + 20;
         [self.textView addSubview:bubbleView];
         
-       
-        //set the scroll of the view
-        self.textView.contentSize = CGSizeMake(320, top);
-        [self.textView setContentSize:(CGSizeMake(320, top))];
+        
+        float xtop = self.textView.frame.size.height;
+        if ((top + 45) > xtop){
+            //set the scroll of the view
+            self.textView.contentSize = CGSizeMake(320, top);
+            CGPoint bottomOffset = CGPointMake(0, (top + 45) - xtop);
+            [self.textView setContentOffset:bottomOffset animated:YES];
+        }
     });
 }
 
