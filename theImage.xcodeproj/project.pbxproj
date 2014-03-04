@@ -45,6 +45,7 @@
 		F2ABD42418C4FFA9003F03E5 /* signup-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ABD42018C4FFA9003F03E5 /* signup-button@2x.png */; };
 		F2ABD42718C51083003F03E5 /* signup.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ABD42518C51083003F03E5 /* signup.png */; };
 		F2ABD42818C51083003F03E5 /* signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ABD42618C51083003F03E5 /* signup@2x.png */; };
+		F2ABD42B18C68280003F03E5 /* SignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2ABD42A18C68280003F03E5 /* SignUpController.m */; };
 		F2B17BBF1878C58D003626F3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B17BBE1878C58D003626F3 /* CoreLocation.framework */; };
 		F2B9E1CD189D7E060044DE04 /* AFNetworking.h in Resources */ = {isa = PBXBuildFile; fileRef = F2B9E19F189D7E060044DE04 /* AFNetworking.h */; };
 		F2B9E1CE189D7E060044DE04 /* AFHTTPRequestOperation.h in Resources */ = {isa = PBXBuildFile; fileRef = F2B9E1A0189D7E060044DE04 /* AFHTTPRequestOperation.h */; };
@@ -150,6 +151,8 @@
 		F2ABD42018C4FFA9003F03E5 /* signup-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-button@2x.png"; sourceTree = "<group>"; };
 		F2ABD42518C51083003F03E5 /* signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signup.png; sourceTree = "<group>"; };
 		F2ABD42618C51083003F03E5 /* signup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup@2x.png"; sourceTree = "<group>"; };
+		F2ABD42918C68280003F03E5 /* SignUpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpController.h; sourceTree = "<group>"; };
+		F2ABD42A18C68280003F03E5 /* SignUpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpController.m; sourceTree = "<group>"; };
 		F2B17BBE1878C58D003626F3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F2B9E19F189D7E060044DE04 /* AFNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AFNetworking.h; path = AFNetworking/AFNetworking.h; sourceTree = "<group>"; };
 		F2B9E1A0189D7E060044DE04 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperation.h; path = AFNetworking/AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -273,6 +276,8 @@
 				F2869A111874CA400086D665 /* footballApp.jpg */,
 				F28699E91874C06C0086D665 /* AppDelegate.m */,
 				F28699EB1874C06C0086D665 /* Main_iPhone.storyboard */,
+				F2ABD42918C68280003F03E5 /* SignUpController.h */,
+				F2ABD42A18C68280003F03E5 /* SignUpController.m */,
 				F287CD2B18A972C800A196E3 /* MessageCenterController.h */,
 				F287CD2C18A972C800A196E3 /* MessageCenterController.m */,
 				F2ABD41818BC72BE003F03E5 /* MessageViewController.h */,
@@ -642,6 +647,7 @@
 			files = (
 				F2EC5DF31883204900D93403 /* PlayerSettingsController.m in Sources */,
 				F201C84818B53D6F00467AB5 /* ChatController.m in Sources */,
+				F2ABD42B18C68280003F03E5 /* SignUpController.m in Sources */,
 				F28699F31874C06C0086D665 /* ViewController.m in Sources */,
 				F28699EA1874C06C0086D665 /* AppDelegate.m in Sources */,
 				F287CD2D18A972C800A196E3 /* MessageCenterController.m in Sources */,
