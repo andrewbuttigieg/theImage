@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		BB74C52A2CD6406F9F2D713C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E880AE6003B94608B66BFCFE /* libPods.a */; };
-		F201C84818B53D6F00467AB5 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = F201C84718B53D6F00467AB5 /* ChatController.m */; };
 		F243B76C1879D13A001BABC8 /* ViewControllerDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = F243B76B1879D13A001BABC8 /* ViewControllerDetail.m */; };
 		F28699DA1874C06C0086D665 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28699D91874C06C0086D665 /* Foundation.framework */; };
 		F28699DC1874C06C0086D665 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28699DB1874C06C0086D665 /* CoreGraphics.framework */; };
@@ -45,6 +44,9 @@
 		F2ABD42718C51083003F03E5 /* signup.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ABD42518C51083003F03E5 /* signup.png */; };
 		F2ABD42818C51083003F03E5 /* signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ABD42618C51083003F03E5 /* signup@2x.png */; };
 		F2ABD42B18C68280003F03E5 /* SignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2ABD42A18C68280003F03E5 /* SignUpController.m */; };
+		F2ABD42E18C6B0DE003F03E5 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2ABD42D18C6B0DE003F03E5 /* LoginController.m */; };
+		F2ABD43218C6C610003F03E5 /* StartController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2ABD43118C6C610003F03E5 /* StartController.m */; };
+		F2ABD43518C6C7A9003F03E5 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F2ABD43418C6C7A9003F03E5 /* KeychainItemWrapper.m */; };
 		F2B17BBF1878C58D003626F3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B17BBE1878C58D003626F3 /* CoreLocation.framework */; };
 		F2B9E1CD189D7E060044DE04 /* AFNetworking.h in Resources */ = {isa = PBXBuildFile; fileRef = F2B9E19F189D7E060044DE04 /* AFNetworking.h */; };
 		F2B9E1CE189D7E060044DE04 /* AFHTTPRequestOperation.h in Resources */ = {isa = PBXBuildFile; fileRef = F2B9E1A0189D7E060044DE04 /* AFHTTPRequestOperation.h */; };
@@ -102,8 +104,6 @@
 /* Begin PBXFileReference section */
 		02F02D2711384F7B99AED951 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		E880AE6003B94608B66BFCFE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		F201C84618B53D6F00467AB5 /* ChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatController.h; sourceTree = "<group>"; };
-		F201C84718B53D6F00467AB5 /* ChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatController.m; sourceTree = "<group>"; };
 		F243B76A1879D13A001BABC8 /* ViewControllerDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDetail.h; sourceTree = "<group>"; };
 		F243B76B1879D13A001BABC8 /* ViewControllerDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerDetail.m; sourceTree = "<group>"; };
 		F28699D61874C06C0086D665 /* theImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +150,12 @@
 		F2ABD42618C51083003F03E5 /* signup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup@2x.png"; sourceTree = "<group>"; };
 		F2ABD42918C68280003F03E5 /* SignUpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpController.h; sourceTree = "<group>"; };
 		F2ABD42A18C68280003F03E5 /* SignUpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpController.m; sourceTree = "<group>"; };
+		F2ABD42C18C6B0DE003F03E5 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
+		F2ABD42D18C6B0DE003F03E5 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
+		F2ABD43018C6C610003F03E5 /* StartController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartController.h; sourceTree = "<group>"; };
+		F2ABD43118C6C610003F03E5 /* StartController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartController.m; sourceTree = "<group>"; };
+		F2ABD43318C6C7A9003F03E5 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		F2ABD43418C6C7A9003F03E5 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		F2B17BBE1878C58D003626F3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F2B9E19F189D7E060044DE04 /* AFNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AFNetworking.h; path = AFNetworking/AFNetworking.h; sourceTree = "<group>"; };
 		F2B9E1A0189D7E060044DE04 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperation.h; path = AFNetworking/AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -265,11 +271,17 @@
 		F28699DF1874C06C0086D665 /* theImage */ = {
 			isa = PBXGroup;
 			children = (
+				F2ABD43318C6C7A9003F03E5 /* KeychainItemWrapper.h */,
+				F2ABD43418C6C7A9003F03E5 /* KeychainItemWrapper.m */,
 				F287CD3118AABBB400A196E3 /* Model */,
 				F2869A141875716E0086D665 /* image */,
 				F28699E81874C06C0086D665 /* AppDelegate.h */,
 				F28699E91874C06C0086D665 /* AppDelegate.m */,
 				F28699EB1874C06C0086D665 /* Main_iPhone.storyboard */,
+				F2ABD43018C6C610003F03E5 /* StartController.h */,
+				F2ABD43118C6C610003F03E5 /* StartController.m */,
+				F2ABD42C18C6B0DE003F03E5 /* LoginController.h */,
+				F2ABD42D18C6B0DE003F03E5 /* LoginController.m */,
 				F2ABD42918C68280003F03E5 /* SignUpController.h */,
 				F2ABD42A18C68280003F03E5 /* SignUpController.m */,
 				F287CD2B18A972C800A196E3 /* MessageCenterController.h */,
@@ -289,8 +301,6 @@
 				F28699F21874C06C0086D665 /* ViewController.m */,
 				F28699F41874C06C0086D665 /* Images.xcassets */,
 				F28699E01874C06C0086D665 /* Supporting Files */,
-				F201C84618B53D6F00467AB5 /* ChatController.h */,
-				F201C84718B53D6F00467AB5 /* ChatController.m */,
 			);
 			path = theImage;
 			sourceTree = "<group>";
@@ -641,12 +651,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2EC5DF31883204900D93403 /* PlayerSettingsController.m in Sources */,
-				F201C84818B53D6F00467AB5 /* ChatController.m in Sources */,
 				F2ABD42B18C68280003F03E5 /* SignUpController.m in Sources */,
 				F28699F31874C06C0086D665 /* ViewController.m in Sources */,
 				F28699EA1874C06C0086D665 /* AppDelegate.m in Sources */,
 				F287CD2D18A972C800A196E3 /* MessageCenterController.m in Sources */,
+				F2ABD42E18C6B0DE003F03E5 /* LoginController.m in Sources */,
+				F2ABD43518C6C7A9003F03E5 /* KeychainItemWrapper.m in Sources */,
 				F2A00E04187DCE7A00CB0D3F /* FindPlayerController.m in Sources */,
+				F2ABD43218C6C610003F03E5 /* StartController.m in Sources */,
 				F2ABD41A18BC72BE003F03E5 /* MessageViewController.m in Sources */,
 				F28699E61874C06C0086D665 /* main.m in Sources */,
 				F2EC5DF0187E042B00D93403 /* PlayerController.m in Sources */,

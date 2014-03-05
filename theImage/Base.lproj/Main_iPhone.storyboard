@@ -157,10 +157,10 @@
             </objects>
             <point key="canvasLocation" x="1737" y="-262"/>
         </scene>
-        <!--View Controller-->
+        <!--Start Controller-->
         <scene sceneID="5r0-CA-usp">
             <objects>
-                <viewController id="qoD-8u-CQR" sceneMemberID="viewController">
+                <viewController id="qoD-8u-CQR" customClass="StartController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gio-q2-Tz4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -184,6 +184,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="3xM-6X-bNL" kind="push" id="Qvi-0y-CbC"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5q4-aZ-eii">
                                 <rect key="frame" x="55" y="405" width="210" height="39"/>
@@ -212,7 +215,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tkx-ad-VTx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1822" y="361"/>
+            <point key="canvasLocation" x="1754" y="957"/>
         </scene>
         <!--Sign Up Controller-->
         <scene sceneID="Rgc-a7-eTd">
@@ -301,7 +304,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TfD-dh-EiD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2410" y="811"/>
+            <point key="canvasLocation" x="2442" y="951"/>
         </scene>
         <!--Message Center Controller - Messages-->
         <scene sceneID="jHL-WM-bic">
@@ -497,6 +500,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lSt-c6-lcz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2240" y="-1164"/>
+        </scene>
+        <!--Login Controller-->
+        <scene sceneID="lfK-eg-0hk">
+            <objects>
+                <viewController id="3xM-6X-bNL" customClass="LoginController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SVP-lp-9in">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" id="MBU-D3-XOO">
+                                <rect key="frame" x="20" y="96" width="275" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" id="GSm-Ds-LQA">
+                                <rect key="frame" x="20" y="134" width="275" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aVz-JW-JOr">
+                                <rect key="frame" x="27" y="172" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="login:" destination="3xM-6X-bNL" eventType="touchUpInside" id="y0M-WN-ARY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6wY-vM-CBg"/>
+                    <connections>
+                        <outlet property="email" destination="MBU-D3-XOO" id="wxV-bp-RBn"/>
+                        <outlet property="password" destination="GSm-Ds-LQA" id="L2e-ua-jbR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zpQ-ga-UBB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2142" y="381"/>
         </scene>
         <!--Find Player Controller - Discover-->
         <scene sceneID="Vsf-K4-HWq">
@@ -751,7 +797,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ePA-xy-HuY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1296" y="361"/>
+            <point key="canvasLocation" x="1183" y="877"/>
         </scene>
     </scenes>
     <resources>

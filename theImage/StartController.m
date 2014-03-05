@@ -1,18 +1,19 @@
 //
-//  ChatController.m
+//  StartController.m
 //  theImage
 //
-//  Created by Andrew Buttigieg on 2/19/14.
+//  Created by Andrew Buttigieg on 3/5/14.
 //  Copyright (c) 2014 PlayerCV. All rights reserved.
 //
 
-#import "ChatController.h"
+#import "StartController.h"
+#import "KeychainItemWrapper.h"
 
-@interface ChatController ()
+@interface StartController ()
 
 @end
 
-@implementation ChatController
+@implementation StartController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,7 +26,15 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
+    
+    
+    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"TestUDID" accessGroup:nil];
+    
+    NSString *login = [keychain objectForKey:(__bridge id)(kSecAttrAccount)];
+    NSString *pwd = [keychain objectForKey:(__bridge id)(kSecValueData)];
+    
 	// Do any additional setup after loading the view.
 }
 
