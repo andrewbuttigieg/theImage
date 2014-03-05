@@ -120,12 +120,10 @@
                                if (error) {
                                    //[self.delegate fetchingGroupsFailedWithError:error];
                                } else {
-                                   NSLog(@"%@", data);
                                    
                                    NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                                                options:0
                                                                                                  error:&error];
-                                   NSLog(@"%@", jsonArray);
                                    for(NSDictionary *dictionary in jsonArray)
                                    {
                                        //NSLog(@"Data Dictionary is : %@",jsonArray);

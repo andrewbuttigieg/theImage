@@ -16,7 +16,10 @@
 @property (strong, nonatomic) IBOutlet UITextField *lastName;
 @property (strong, nonatomic) IBOutlet UITextField *weight;
 @property (strong, nonatomic) IBOutlet UITextField *email;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UITextField *password;
+
+@property (strong, nonatomic) IBOutlet UITextField *activeTextField;
 
 - (IBAction)Done:(id)sender;
 

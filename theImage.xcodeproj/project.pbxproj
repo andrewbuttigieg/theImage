@@ -36,7 +36,6 @@
 		F287CD2D18A972C800A196E3 /* MessageCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = F287CD2C18A972C800A196E3 /* MessageCenterController.m */; };
 		F287CD3018AAB79F00A196E3 /* messageGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F287CD2F18AAB79F00A196E3 /* messageGroupCell.m */; };
 		F2A00E04187DCE7A00CB0D3F /* FindPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A00E03187DCE7A00CB0D3F /* FindPlayerController.m */; };
-		F2A446FD18872864009EAD7D /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A446FC18872864009EAD7D /* Group.m */; };
 		F2ABD41A18BC72BE003F03E5 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2ABD41918BC72BE003F03E5 /* MessageViewController.m */; };
 		F2ABD41C18C4F721003F03E5 /* intropage.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ABD41B18C4F721003F03E5 /* intropage.png */; };
 		F2ABD42118C4FFA9003F03E5 /* login-button.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ABD41D18C4FFA9003F03E5 /* login-button.png */; };
@@ -140,8 +139,6 @@
 		F287CD2F18AAB79F00A196E3 /* messageGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = messageGroupCell.m; sourceTree = "<group>"; };
 		F2A00E02187DCE7A00CB0D3F /* FindPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPlayerController.h; sourceTree = "<group>"; };
 		F2A00E03187DCE7A00CB0D3F /* FindPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPlayerController.m; sourceTree = "<group>"; };
-		F2A446FB18872864009EAD7D /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
-		F2A446FC18872864009EAD7D /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		F2ABD41818BC72BE003F03E5 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		F2ABD41918BC72BE003F03E5 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		F2ABD41B18C4F721003F03E5 /* intropage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = intropage.png; sourceTree = "<group>"; };
@@ -232,8 +229,6 @@
 			isa = PBXGroup;
 			children = (
 				F2B9E1CC189D7E060044DE04 /* AFNetworking */,
-				F2A446FB18872864009EAD7D /* Group.h */,
-				F2A446FC18872864009EAD7D /* Group.m */,
 				F28699DF1874C06C0086D665 /* theImage */,
 				F2869A011874C06C0086D665 /* theImageTests */,
 				F28699D81874C06C0086D665 /* Frameworks */,
@@ -273,7 +268,6 @@
 				F287CD3118AABBB400A196E3 /* Model */,
 				F2869A141875716E0086D665 /* image */,
 				F28699E81874C06C0086D665 /* AppDelegate.h */,
-				F2869A111874CA400086D665 /* footballApp.jpg */,
 				F28699E91874C06C0086D665 /* AppDelegate.m */,
 				F28699EB1874C06C0086D665 /* Main_iPhone.storyboard */,
 				F2ABD42918C68280003F03E5 /* SignUpController.h */,
@@ -333,6 +327,7 @@
 		F2869A141875716E0086D665 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				F2869A111874CA400086D665 /* footballApp.jpg */,
 				F2ABD42518C51083003F03E5 /* signup.png */,
 				F2ABD42618C51083003F03E5 /* signup@2x.png */,
 				F2ABD41D18C4FFA9003F03E5 /* login-button.png */,
@@ -656,7 +651,6 @@
 				F28699E61874C06C0086D665 /* main.m in Sources */,
 				F2EC5DF0187E042B00D93403 /* PlayerController.m in Sources */,
 				F243B76C1879D13A001BABC8 /* ViewControllerDetail.m in Sources */,
-				F2A446FD18872864009EAD7D /* Group.m in Sources */,
 				F287CD3018AAB79F00A196E3 /* messageGroupCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

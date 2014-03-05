@@ -8,7 +8,6 @@
 
 #import "FindPlayerController.h"
 #import "PlayerController.h"
-#import "Group.h"
 #import "ViewController.h"
 
 @interface FindPlayerController ()
@@ -89,16 +88,10 @@ static int findPlayerID = 0;
             //[self.delegate receivedGroupsJSON:data];
             NSError *localError = nil;
             NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&localError];
-            
             NSMutableArray *groups = [[NSMutableArray alloc] init];
-            
-            
-            
-            
             NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                         options:0
                                                                           error:&error];
-            
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSInteger col = 0;
                 NSInteger row = 0;
