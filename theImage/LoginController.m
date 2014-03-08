@@ -8,6 +8,8 @@
 
 #import "LoginController.h"
 #import "KeychainItemWrapper.h"
+#import "JNKeychain.h"
+#import "ViewController.h"
 
 @interface LoginController ()
 
@@ -76,10 +78,45 @@
                 }
                 else{
                     //keep the crediental for next time....
-                    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"PlayerCVUDID" accessGroup:nil];
+                /*    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"PlayerCVUDID" accessGroup:nil];
+                 */
+                   /*
+                    PKOAuth2Token *token = [[PKOAuth2Token alloc] initWithAccessToken:@"access1234"
+                                                                         refreshToken:@"refresh1234"
+                                                                        transferToken:@"transfer1234"
+                                                                            expiresOn:[NSDate dateWithTimeIntervalSinceNow:3600]
+                                                                              refData:@{@"ref": @"somedata"}];
+                    */
                     
+                    NSString *keyLogin = @"login";
+                    [JNKeychain saveValue:login forKey:keyLogin];
+                    
+                    NSString *keyPwd = @"pwd";
+                    [JNKeychain saveValue:password forKey:keyPwd];
+                    
+                    NSString * storyboardName = @"Main_iPhone";
+                    NSString * viewControllerID = @"Main";
+                    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+                    ViewController * controller = (ViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+                    
+                    [self.navigationController pushViewController:controller animated:YES];
+                    
+                    /*
+                    // Test archiving
+                    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:token];
+                    PKOAuth2Token *archivedToken = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+                    NSLog(@"Restored access token from archive %@", archivedToken.accessToken);
+                    
+                    // Test keychain
+                    NSString *keychainKey = @"AuthToken";
+                    [JNKeychain saveValue:token forKey:keychainKey];
+                    PKOAuth2Token *keychainToken = [JNKeychain loadValueForKey:keychainKey];
+                    NSLog(@"Restored access token from keychain: %@", keychainToken.accessToken);
                     [keychain setObject:login forKey:(__bridge id)(kSecAttrAccount)];
-                    [keychain setObject:password forKey:(__bridge id)(kSecValueData)];
+                    */
+                   // [keychain setObject:password forKey:(__bridge id)(kSecClassGenericPassword)];
+                    
+                 //   [keychainQuery setObject:[NSKeyedArchiver archivedDataWithRootObject:data] forKey:(id)kSecValueData];
                     
                 }
             });

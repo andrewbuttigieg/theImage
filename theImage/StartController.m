@@ -8,6 +8,7 @@
 
 #import "StartController.h"
 #import "KeychainItemWrapper.h"
+#import "JNKeychain.h"
 
 @interface StartController ()
 
@@ -30,10 +31,17 @@
     [super viewDidLoad];
     
     
-    KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"TestUDID" accessGroup:nil];
+    /*KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"TestUDID" accessGroup:nil];
     
     NSString *login = [keychain objectForKey:(__bridge id)(kSecAttrAccount)];
-    NSString *pwd = [keychain objectForKey:(__bridge id)(kSecValueData)];
+    NSString *pwd = [keychain objectForKey:(__bridge id)(kSecClassGenericPassword)];*/
+    
+    NSString *keyLogin = @"login";
+    NSString *keyPwd = @"pwd";
+    NSString *login = [JNKeychain loadValueForKey:keyLogin];
+    NSString *pwd = [JNKeychain loadValueForKey:keyPwd];
+    
+     //[keychain setObject:password forKey:(__bridge id)(kSecValueData)];
     
 	// Do any additional setup after loading the view.
 }

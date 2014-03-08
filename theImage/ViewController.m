@@ -52,12 +52,42 @@
 {
     [super viewDidLoad];
     
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_me.php"]];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+//    [request setHTTPBody:[[NSString stringWithFormat:@"fb=%@", facebookPlayerID]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPMethod:@"POST"];
+    
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (error) {
+            //[self.delegate fetchingGroupsFailedWithError:error];
+        } else {
+            //[self.delegate receivedGroupsJSON:data];
+            NSError *localError = nil;
+            NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                        options:0
+                                                                          error:&error];
+            NSLog(@"Data Dictionary is : %@", jsonArray);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                for(NSDictionary *dictionary in jsonArray)
+                {
+                    NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
+                    playerID = [[dictionary objectForKey:@"UserID"] intValue];
+                    self.toUpload.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                }
+            });
+        }
+    }];
+    
+    /*
     FBLoginView *loginView = [[FBLoginView alloc] init];
     // Align the button in the center horizontally
     loginView.readPermissions = @[@"basic_info", @"email", @"user_likes"];
     loginView.delegate = self;
     loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 5);
-    [self.view addSubview:loginView];
+    [self.view addSubview:loginView];*/
     
     //[[self navigationController] setNavigationBarHidden:YES animated:YES];
     
@@ -71,6 +101,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+/*
 // Handle possible errors that can occur during login
 - (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error {
     NSString *alertMessage, *alertTitle;
@@ -119,9 +150,9 @@
                             user:(id<FBGraphUser>)user {
     
     
-    /*
-     the guy logged in on facebook!!
-     */
+    b
+     //the guy logged in on facebook!!
+ 
     
     facebookPlayerID = user.id;
     playerName.text = user.name;
@@ -159,7 +190,7 @@
     }];
 
 }
-
+*/
 
 - (void)didReceiveMemoryWarning
 {

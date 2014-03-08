@@ -87,8 +87,8 @@ static int findPlayerID = 0;
         } else {
             //[self.delegate receivedGroupsJSON:data];
             NSError *localError = nil;
-            NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&localError];
-            NSMutableArray *groups = [[NSMutableArray alloc] init];
+/*            NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&localError];
+            NSMutableArray *groups = [[NSMutableArray alloc] init];*/
             NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                         options:0
                                                                           error:&error];

@@ -47,6 +47,7 @@
 		F2ABD42E18C6B0DE003F03E5 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2ABD42D18C6B0DE003F03E5 /* LoginController.m */; };
 		F2ABD43218C6C610003F03E5 /* StartController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2ABD43118C6C610003F03E5 /* StartController.m */; };
 		F2ABD43518C6C7A9003F03E5 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F2ABD43418C6C7A9003F03E5 /* KeychainItemWrapper.m */; };
+		F2ABD43818C6EF27003F03E5 /* JNKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = F2ABD43718C6EF27003F03E5 /* JNKeychain.m */; };
 		F2B17BBF1878C58D003626F3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B17BBE1878C58D003626F3 /* CoreLocation.framework */; };
 		F2B9E1CD189D7E060044DE04 /* AFNetworking.h in Resources */ = {isa = PBXBuildFile; fileRef = F2B9E19F189D7E060044DE04 /* AFNetworking.h */; };
 		F2B9E1CE189D7E060044DE04 /* AFHTTPRequestOperation.h in Resources */ = {isa = PBXBuildFile; fileRef = F2B9E1A0189D7E060044DE04 /* AFHTTPRequestOperation.h */; };
@@ -156,6 +157,8 @@
 		F2ABD43118C6C610003F03E5 /* StartController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartController.m; sourceTree = "<group>"; };
 		F2ABD43318C6C7A9003F03E5 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		F2ABD43418C6C7A9003F03E5 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		F2ABD43618C6EF27003F03E5 /* JNKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNKeychain.h; sourceTree = "<group>"; };
+		F2ABD43718C6EF27003F03E5 /* JNKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JNKeychain.m; sourceTree = "<group>"; };
 		F2B17BBE1878C58D003626F3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F2B9E19F189D7E060044DE04 /* AFNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AFNetworking.h; path = AFNetworking/AFNetworking.h; sourceTree = "<group>"; };
 		F2B9E1A0189D7E060044DE04 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperation.h; path = AFNetworking/AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -356,6 +359,8 @@
 		F287CD3118AABBB400A196E3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F2ABD43618C6EF27003F03E5 /* JNKeychain.h */,
+				F2ABD43718C6EF27003F03E5 /* JNKeychain.m */,
 				F287CD2E18AAB79F00A196E3 /* messageGroupCell.h */,
 				F287CD2F18AAB79F00A196E3 /* messageGroupCell.m */,
 			);
@@ -650,6 +655,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2ABD43818C6EF27003F03E5 /* JNKeychain.m in Sources */,
 				F2EC5DF31883204900D93403 /* PlayerSettingsController.m in Sources */,
 				F2ABD42B18C68280003F03E5 /* SignUpController.m in Sources */,
 				F28699F31874C06C0086D665 /* ViewController.m in Sources */,
