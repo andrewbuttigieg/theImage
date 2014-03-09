@@ -1,58 +1,34 @@
 //
-//  LoginController.m
+//  LogMeIn.m
 //  theImage
 //
-//  Created by Andrew Buttigieg on 3/5/14.
+//  Created by Andrew Buttigieg on 3/9/14.
 //  Copyright (c) 2014 PlayerCV. All rights reserved.
 //
 
-#import "LoginController.h"
-#import "KeychainItemWrapper.h"
 #import "LogMeIn.h"
+#import "JNKeychain.h"
 #import "ViewController.h"
 
-@interface LoginController ()
+@interface LogMeIn ()
 
 @end
 
-@implementation LoginController
+@implementation LogMeIn
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
++ (BOOL)logout
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    NSString *keyLogin = @"login";
+    [JNKeychain deleteValueForKey:keyLogin];
+    
+    NSString *keyPwd = @"pwd";
+    [JNKeychain deleteValueForKey:keyPwd];
+    
+    return true;
 }
 
-- (void)viewDidLoad
++ (BOOL)login:(NSString*)login :(NSString*)password
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)login:(id)sender {
-    
-    NSString *login = self.email.text;
-    NSString *password = self.password.text;
-    
-    
-    if ([LogMeIn login:login :password]){
-        NSString * storyboardName = @"Main_iPhone";
-        NSString * viewControllerID = @"Main";
-        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
-        ViewController * controller = (ViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
-    
-        [self.navigationController pushViewController:controller animated:YES];
-    }
-    /*
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/login_player.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPBody:[[NSString stringWithFormat:@"password=%@&email=%@",
@@ -76,7 +52,7 @@
             NSString *returned = [jsonArray[0] objectForKey:@"value"];
             int accepted = [[jsonArray[0] objectForKey:@"accepted"] intValue];
             
-            dispatch_async(dispatch_get_main_queue(), ^{
+            //dispatch_async(dispatch_get_main_queue(), ^{
                 if (accepted == 0){
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problem"
                                                                     message:[NSString stringWithFormat:@"%@",returned]
@@ -93,17 +69,12 @@
                     NSString *keyPwd = @"pwd";
                     [JNKeychain saveValue:password forKey:keyPwd];
                     
-                    NSString * storyboardName = @"Main_iPhone";
-                    NSString * viewControllerID = @"Main";
-                    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
-                    ViewController * controller = (ViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
-                    
-                    [self.navigationController pushViewController:controller animated:YES];
+                    return true;
                 }
-            });
+           // });
         }
     }
-*/
-    
+    return false;
 }
+
 @end

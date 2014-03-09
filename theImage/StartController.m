@@ -9,6 +9,8 @@
 #import "StartController.h"
 #import "KeychainItemWrapper.h"
 #import "JNKeychain.h"
+#import "LogMeIn.h"
+#import "ViewController.h"
 
 @interface StartController ()
 
@@ -40,6 +42,17 @@
     NSString *keyPwd = @"pwd";
     NSString *login = [JNKeychain loadValueForKey:keyLogin];
     NSString *pwd = [JNKeychain loadValueForKey:keyPwd];
+    
+    if (login != nil && pwd != nil){
+        if ([LogMeIn login:login :pwd]){
+            NSString * storyboardName = @"Main_iPhone";
+            NSString * viewControllerID = @"Main";
+            UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+            ViewController * controller = (ViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+        
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+    }
     
      //[keychain setObject:password forKey:(__bridge id)(kSecValueData)];
     

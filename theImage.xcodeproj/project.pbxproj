@@ -34,6 +34,7 @@
 		F287CD2A18A18E6800A196E3 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F287CD2918A18E6800A196E3 /* FacebookSDK.framework */; };
 		F287CD2D18A972C800A196E3 /* MessageCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = F287CD2C18A972C800A196E3 /* MessageCenterController.m */; };
 		F287CD3018AAB79F00A196E3 /* messageGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F287CD2F18AAB79F00A196E3 /* messageGroupCell.m */; };
+		F294A8F418CCE99B0012D000 /* LogMeIn.m in Sources */ = {isa = PBXBuildFile; fileRef = F294A8F318CCE99B0012D000 /* LogMeIn.m */; };
 		F2A00E04187DCE7A00CB0D3F /* FindPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A00E03187DCE7A00CB0D3F /* FindPlayerController.m */; };
 		F2ABD41A18BC72BE003F03E5 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2ABD41918BC72BE003F03E5 /* MessageViewController.m */; };
 		F2ABD41C18C4F721003F03E5 /* intropage.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ABD41B18C4F721003F03E5 /* intropage.png */; };
@@ -138,6 +139,8 @@
 		F287CD2C18A972C800A196E3 /* MessageCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCenterController.m; sourceTree = "<group>"; };
 		F287CD2E18AAB79F00A196E3 /* messageGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = messageGroupCell.h; sourceTree = "<group>"; };
 		F287CD2F18AAB79F00A196E3 /* messageGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = messageGroupCell.m; sourceTree = "<group>"; };
+		F294A8F218CCE99B0012D000 /* LogMeIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogMeIn.h; sourceTree = "<group>"; };
+		F294A8F318CCE99B0012D000 /* LogMeIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogMeIn.m; sourceTree = "<group>"; };
 		F2A00E02187DCE7A00CB0D3F /* FindPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPlayerController.h; sourceTree = "<group>"; };
 		F2A00E03187DCE7A00CB0D3F /* FindPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPlayerController.m; sourceTree = "<group>"; };
 		F2ABD41818BC72BE003F03E5 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
@@ -363,6 +366,8 @@
 				F2ABD43718C6EF27003F03E5 /* JNKeychain.m */,
 				F287CD2E18AAB79F00A196E3 /* messageGroupCell.h */,
 				F287CD2F18AAB79F00A196E3 /* messageGroupCell.m */,
+				F294A8F218CCE99B0012D000 /* LogMeIn.h */,
+				F294A8F318CCE99B0012D000 /* LogMeIn.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -670,6 +675,7 @@
 				F2EC5DF0187E042B00D93403 /* PlayerController.m in Sources */,
 				F243B76C1879D13A001BABC8 /* ViewControllerDetail.m in Sources */,
 				F287CD3018AAB79F00A196E3 /* messageGroupCell.m in Sources */,
+				F294A8F418CCE99B0012D000 /* LogMeIn.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

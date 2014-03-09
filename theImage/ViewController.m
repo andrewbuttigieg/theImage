@@ -17,6 +17,8 @@
 
 //#import <AFNetworking/ASAPIManager.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "StartController.h"
+#import "LogMeIn.h"
 
 @interface ViewController() // <ViewControllerDetailDelegate>
 
@@ -225,6 +227,17 @@
     
     // Construct a String around the Data from the response
     NSString *http = [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+}
+
+- (IBAction)logOut:(id)sender {
+    if ([LogMeIn logout]){
+        NSString * storyboardName = @"Main_iPhone";
+        NSString * viewControllerID = @"StartController";
+        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+        StartController * controller = (StartController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+        
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 
