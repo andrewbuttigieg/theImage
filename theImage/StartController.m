@@ -46,9 +46,9 @@
     NSString *pwd = [keychain objectForKey:(__bridge id)(kSecClassGenericPassword)];*/
     
     self.moviePlayer=[[MPMoviePlayerController alloc] initWithContentURL:theurl];
-    [self.moviePlayer.view setFrame:CGRectMake(0, 0, 320, 480)];
+    [self.moviePlayer.view setFrame:CGRectMake(0, 0, 320, (1138 / 2))];
     [self.moviePlayer prepareToPlay];
-    [self.moviePlayer repeatMode];
+    [self.moviePlayer setRepeatMode:YES];
     [self.moviePlayer setShouldAutoplay:YES]; // And other options you can look through the documentation.
     [self.back addSubview:self.moviePlayer.view];
     
