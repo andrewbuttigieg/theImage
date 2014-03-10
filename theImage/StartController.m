@@ -32,11 +32,25 @@
     
     [super viewDidLoad];
     
+    //NSString*thePath=[[NSBundle mainBundle] pathForResource:@"intro" ofType:@"mp4"];
+    /*NSURL *thePath = [[NSBundle mainBundle] URLForResource:@"intro" withExtension:@".mp4"];
+    NSURL*theurl=[NSURL fileURLWithPath:thePath];
+    */
+    
+    NSString*thePath=[[NSBundle mainBundle] pathForResource:@"intro" ofType:@"mp4"];
+    NSURL*theurl=[NSURL fileURLWithPath:thePath];
     
     /*KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"TestUDID" accessGroup:nil];
     
     NSString *login = [keychain objectForKey:(__bridge id)(kSecAttrAccount)];
     NSString *pwd = [keychain objectForKey:(__bridge id)(kSecClassGenericPassword)];*/
+    
+    self.moviePlayer=[[MPMoviePlayerController alloc] initWithContentURL:theurl];
+    [self.moviePlayer.view setFrame:CGRectMake(0, 0, 320, 480)];
+    [self.moviePlayer prepareToPlay];
+    [self.moviePlayer repeatMode];
+    [self.moviePlayer setShouldAutoplay:YES]; // And other options you can look through the documentation.
+    [self.back addSubview:self.moviePlayer.view];
     
     NSString *keyLogin = @"login";
     NSString *keyPwd = @"pwd";

@@ -223,6 +223,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="nut-BS-Doc"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="back" destination="PPo-Py-scg" id="yyx-g9-mY0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tkx-ad-VTx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

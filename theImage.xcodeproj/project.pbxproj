@@ -35,6 +35,7 @@
 		F287CD2D18A972C800A196E3 /* MessageCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = F287CD2C18A972C800A196E3 /* MessageCenterController.m */; };
 		F287CD3018AAB79F00A196E3 /* messageGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F287CD2F18AAB79F00A196E3 /* messageGroupCell.m */; };
 		F294A8F418CCE99B0012D000 /* LogMeIn.m in Sources */ = {isa = PBXBuildFile; fileRef = F294A8F318CCE99B0012D000 /* LogMeIn.m */; };
+		F2983D0118CE49D100E96233 /* intro.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F2983D0018CE486D00E96233 /* intro.mp4 */; };
 		F2A00E04187DCE7A00CB0D3F /* FindPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A00E03187DCE7A00CB0D3F /* FindPlayerController.m */; };
 		F2ABD41A18BC72BE003F03E5 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2ABD41918BC72BE003F03E5 /* MessageViewController.m */; };
 		F2ABD41C18C4F721003F03E5 /* intropage.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ABD41B18C4F721003F03E5 /* intropage.png */; };
@@ -141,6 +142,7 @@
 		F287CD2F18AAB79F00A196E3 /* messageGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = messageGroupCell.m; sourceTree = "<group>"; };
 		F294A8F218CCE99B0012D000 /* LogMeIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogMeIn.h; sourceTree = "<group>"; };
 		F294A8F318CCE99B0012D000 /* LogMeIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogMeIn.m; sourceTree = "<group>"; };
+		F2983D0018CE486D00E96233 /* intro.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = intro.mp4; sourceTree = "<group>"; };
 		F2A00E02187DCE7A00CB0D3F /* FindPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPlayerController.h; sourceTree = "<group>"; };
 		F2A00E03187DCE7A00CB0D3F /* FindPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPlayerController.m; sourceTree = "<group>"; };
 		F2ABD41818BC72BE003F03E5 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
@@ -277,10 +279,12 @@
 		F28699DF1874C06C0086D665 /* theImage */ = {
 			isa = PBXGroup;
 			children = (
+				F2983CFF18CE483500E96233 /* Video */,
+				F2869A141875716E0086D665 /* image */,
+				F287CD3118AABBB400A196E3 /* Model */,
+				F2983D0018CE486D00E96233 /* intro.mp4 */,
 				F2ABD43318C6C7A9003F03E5 /* KeychainItemWrapper.h */,
 				F2ABD43418C6C7A9003F03E5 /* KeychainItemWrapper.m */,
-				F287CD3118AABBB400A196E3 /* Model */,
-				F2869A141875716E0086D665 /* image */,
 				F28699E81874C06C0086D665 /* AppDelegate.h */,
 				F28699E91874C06C0086D665 /* AppDelegate.m */,
 				F28699EB1874C06C0086D665 /* Main_iPhone.storyboard */,
@@ -370,6 +374,13 @@
 				F294A8F318CCE99B0012D000 /* LogMeIn.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		F2983CFF18CE483500E96233 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Video;
 			sourceTree = "<group>";
 		};
 		F2B9E1A6189D7E060044DE04 /* NSURLConnection */ = {
@@ -554,6 +565,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2983D0118CE49D100E96233 /* intro.mp4 in Resources */,
 				F2B9E1D8189D7E060044DE04 /* AFNetworkReachabilityManager.h in Resources */,
 				F2B9E1DA189D7E060044DE04 /* AFSecurityPolicy.h in Resources */,
 				F2B9E1D3189D7E060044DE04 /* AFURLConnectionOperation.m in Resources */,
