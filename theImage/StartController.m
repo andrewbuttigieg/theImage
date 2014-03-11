@@ -27,10 +27,27 @@
     return self;
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self.moviePlayer play];
+    [super viewWillAppear:animated];
+    //self.navigationController.toolbarHidden = YES;
+    [self.navigationController setNavigationBarHidden:YES];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [self.moviePlayer pause];
+    [super viewWillDisappear:animated];
+    //self.navigationController.toolbarHidden = NO;
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
 - (void)viewDidLoad
 {
     
     [super viewDidLoad];
+    //[self.navigationController setNavigationBarHidden:YES];
     
     //NSString*thePath=[[NSBundle mainBundle] pathForResource:@"intro" ofType:@"mp4"];
     /*NSURL *thePath = [[NSBundle mainBundle] URLForResource:@"intro" withExtension:@".mp4"];

@@ -36,6 +36,10 @@
 		F287CD3018AAB79F00A196E3 /* messageGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F287CD2F18AAB79F00A196E3 /* messageGroupCell.m */; };
 		F294A8F418CCE99B0012D000 /* LogMeIn.m in Sources */ = {isa = PBXBuildFile; fileRef = F294A8F318CCE99B0012D000 /* LogMeIn.m */; };
 		F2983D0118CE49D100E96233 /* intro.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F2983D0018CE486D00E96233 /* intro.mp4 */; };
+		F2983D0418CF82A400E96233 /* LogoPlayerCV.png in Resources */ = {isa = PBXBuildFile; fileRef = F2983D0218CF82A300E96233 /* LogoPlayerCV.png */; };
+		F2983D0518CF82A400E96233 /* LogoPlayerCV@X2.png in Resources */ = {isa = PBXBuildFile; fileRef = F2983D0318CF82A400E96233 /* LogoPlayerCV@X2.png */; };
+		F2983D0718CF9A5300E96233 /* login.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F2983D0618CF9A5300E96233 /* login.jpg */; };
+		F2983D0918CF9E8800E96233 /* login2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F2983D0818CF9E8800E96233 /* login2.jpg */; };
 		F2A00E04187DCE7A00CB0D3F /* FindPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A00E03187DCE7A00CB0D3F /* FindPlayerController.m */; };
 		F2ABD41A18BC72BE003F03E5 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2ABD41918BC72BE003F03E5 /* MessageViewController.m */; };
 		F2ABD41C18C4F721003F03E5 /* intropage.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ABD41B18C4F721003F03E5 /* intropage.png */; };
@@ -143,6 +147,10 @@
 		F294A8F218CCE99B0012D000 /* LogMeIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogMeIn.h; sourceTree = "<group>"; };
 		F294A8F318CCE99B0012D000 /* LogMeIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogMeIn.m; sourceTree = "<group>"; };
 		F2983D0018CE486D00E96233 /* intro.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = intro.mp4; sourceTree = "<group>"; };
+		F2983D0218CF82A300E96233 /* LogoPlayerCV.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoPlayerCV.png; sourceTree = "<group>"; };
+		F2983D0318CF82A400E96233 /* LogoPlayerCV@X2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LogoPlayerCV@X2.png"; sourceTree = "<group>"; };
+		F2983D0618CF9A5300E96233 /* login.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login.jpg; sourceTree = "<group>"; };
+		F2983D0818CF9E8800E96233 /* login2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login2.jpg; sourceTree = "<group>"; };
 		F2A00E02187DCE7A00CB0D3F /* FindPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPlayerController.h; sourceTree = "<group>"; };
 		F2A00E03187DCE7A00CB0D3F /* FindPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPlayerController.m; sourceTree = "<group>"; };
 		F2ABD41818BC72BE003F03E5 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
@@ -347,6 +355,10 @@
 		F2869A141875716E0086D665 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				F2983D0818CF9E8800E96233 /* login2.jpg */,
+				F2983D0618CF9A5300E96233 /* login.jpg */,
+				F2983D0218CF82A300E96233 /* LogoPlayerCV.png */,
+				F2983D0318CF82A400E96233 /* LogoPlayerCV@X2.png */,
 				F2869A111874CA400086D665 /* footballApp.jpg */,
 				F2ABD42518C51083003F03E5 /* signup.png */,
 				F2ABD42618C51083003F03E5 /* signup@2x.png */,
@@ -566,7 +578,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2983D0118CE49D100E96233 /* intro.mp4 in Resources */,
+				F2983D0918CF9E8800E96233 /* login2.jpg in Resources */,
 				F2B9E1D8189D7E060044DE04 /* AFNetworkReachabilityManager.h in Resources */,
+				F2983D0418CF82A400E96233 /* LogoPlayerCV.png in Resources */,
+				F2983D0718CF9A5300E96233 /* login.jpg in Resources */,
 				F2B9E1DA189D7E060044DE04 /* AFSecurityPolicy.h in Resources */,
 				F2B9E1D3189D7E060044DE04 /* AFURLConnectionOperation.m in Resources */,
 				F2B9E1E1189D7E060044DE04 /* Pods-AFNetworking-Private.xcconfig in Resources */,
@@ -612,6 +627,7 @@
 				F2B9E1D4189D7E060044DE04 /* AFHTTPSessionManager.h in Resources */,
 				F2B9E1F1189D7E060044DE04 /* UIWebView+AFNetworking.h in Resources */,
 				F28699E41874C06C0086D665 /* InfoPlist.strings in Resources */,
+				F2983D0518CF82A400E96233 /* LogoPlayerCV@X2.png in Resources */,
 				F2B9E1CD189D7E060044DE04 /* AFNetworking.h in Resources */,
 				F2B9E1DC189D7E060044DE04 /* AFURLRequestSerialization.h in Resources */,
 				F2B9E1DE189D7E060044DE04 /* AFURLResponseSerialization.h in Resources */,

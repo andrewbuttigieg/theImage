@@ -126,7 +126,11 @@ bool moved = false;
     // Step 3: Scroll the target text field into view.
     CGRect aRect = self.view.frame;
     aRect.size.height -= keyboardSize.height;
-    if (!CGRectContainsPoint(aRect, self.activeTextField.frame.origin) ) {
+    CGRect rect = [[UIApplication sharedApplication] statusBarFrame];
+    CGPoint xxx = self.activeTextField.frame.origin;
+    xxx.y += self.navigationController.navigationBar.frame.size.height + rect.size.height;
+    
+    if (!CGRectContainsPoint(aRect, xxx) ) {
         CGPoint scrollPoint = CGPointMake(0.0, self.activeTextField.frame.origin.y - (keyboardSize.height-35));
         [self.scrollView setContentOffset:scrollPoint animated:YES];
     }

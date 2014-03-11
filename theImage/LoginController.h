@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
 
-@interface LoginController : UIViewController
+@interface LoginController : UIViewController<FBLoginViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *email;
 @property (strong, nonatomic) IBOutlet UITextField *password;
 - (IBAction)login:(id)sender;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollViewLogin;
+@property (strong, nonatomic) IBOutlet UITextField *activeTextFieldLogin;
 
 @end
