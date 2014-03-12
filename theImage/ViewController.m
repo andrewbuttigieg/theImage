@@ -231,6 +231,13 @@
 
 - (IBAction)logOut:(id)sender {
     if ([LogMeIn logout]){
+        
+        if (FBSession.activeSession.isOpen)
+        {
+            [FBSession.activeSession closeAndClearTokenInformation];
+        }
+        
+        
         NSString * storyboardName = @"Main_iPhone";
         NSString * viewControllerID = @"StartController";
         UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];

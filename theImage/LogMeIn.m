@@ -24,6 +24,12 @@
     NSString *keyPwd = @"pwd";
     [JNKeychain deleteValueForKey:keyPwd];
     
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/logout.php/"]];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [request setHTTPMethod:@"POST"];
+    NSError *error = nil; NSURLResponse *response = nil;
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    
     return true;
 }
 
