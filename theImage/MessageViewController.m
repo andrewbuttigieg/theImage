@@ -87,7 +87,7 @@ static float top = 0;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_messages_convo.php"]];
     int u = ViewController.playerID;
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"m=%d&u=%d", u, self.chattingToID]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[NSString stringWithFormat:@"u=%d", self.chattingToID]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     
     self.title = self.name;
@@ -128,7 +128,7 @@ static float top = 0;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_messages_convo_unread.php"]];
     int u = ViewController.playerID;
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"m=%d&u=%d", u, self.chattingToID]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[NSString stringWithFormat:@"u=%d", self.chattingToID]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
@@ -200,10 +200,9 @@ static float top = 0;
     //send text to the server so the other person can get it
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/send_message.php"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    int p1 = ViewController.playerID;
     int p2 = self.chattingToID;
     NSString *text = [composeBarView text];
-    [request setHTTPBody:[[NSString stringWithFormat:@"p1=%d&p2=%d&tx=%@", p1, p2, text]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[NSString stringWithFormat:@"p2=%d&tx=%@", p2, text]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
