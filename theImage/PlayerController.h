@@ -21,15 +21,17 @@
 @property (strong, nonatomic) IBOutlet UIButton *addFriendButton;
 @property (strong, nonatomic) IBOutlet UILabel *areFriend;
 @property (strong, nonatomic) IBOutlet UILabel *reqWaiting;
+@property (strong, nonatomic) IBOutlet UIScrollView *theView;
+@property (strong, nonatomic) IBOutlet UIButton *message;
 
 
 @property (strong, nonatomic) IBOutlet UILabel *beFriendLabel;
 @property (strong, nonatomic) IBOutlet UIButton *dontWantToFriend;
 @property (strong, nonatomic) IBOutlet UIButton *acceptFriend;
 
+- (IBAction)sendMessage:(id)sender;
 - (IBAction)addFriend:(id)sender;
 - (IBAction)noFriendClick:(id)sender;
 - (IBAction)yeahFriendClick:(id)sender;
-
 
 @end

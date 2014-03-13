@@ -105,7 +105,15 @@ static int findPlayerID = 0;
                     NSLog(@"%@", imageURL);
                     
                     
-                    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                    UIImage *image;
+                    
+                    if ([imageURL length] > 5){
+                        image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                    }
+                    else{
+                        //default image
+                        image = [UIImage imageNamed:@"player.png"];
+                    }
                     UIImageView *iv = [[UIImageView alloc] initWithImage:image];
                     //CGRect frame;
                     iv.frame=CGRectMake(col * 106, row * 106, 106,106);

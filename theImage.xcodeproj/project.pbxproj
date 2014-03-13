@@ -40,6 +40,7 @@
 		F2983D0518CF82A400E96233 /* LogoPlayerCV@X2.png in Resources */ = {isa = PBXBuildFile; fileRef = F2983D0318CF82A400E96233 /* LogoPlayerCV@X2.png */; };
 		F2983D0718CF9A5300E96233 /* login.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F2983D0618CF9A5300E96233 /* login.jpg */; };
 		F2983D0918CF9E8800E96233 /* login2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F2983D0818CF9E8800E96233 /* login2.jpg */; };
+		F2983D0B18D23BB800E96233 /* profilevisitor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F2983D0A18D23BB800E96233 /* profilevisitor.jpg */; };
 		F2A00E04187DCE7A00CB0D3F /* FindPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A00E03187DCE7A00CB0D3F /* FindPlayerController.m */; };
 		F2ABD41A18BC72BE003F03E5 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2ABD41918BC72BE003F03E5 /* MessageViewController.m */; };
 		F2ABD41C18C4F721003F03E5 /* intropage.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ABD41B18C4F721003F03E5 /* intropage.png */; };
@@ -151,6 +152,7 @@
 		F2983D0318CF82A400E96233 /* LogoPlayerCV@X2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LogoPlayerCV@X2.png"; sourceTree = "<group>"; };
 		F2983D0618CF9A5300E96233 /* login.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login.jpg; sourceTree = "<group>"; };
 		F2983D0818CF9E8800E96233 /* login2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login2.jpg; sourceTree = "<group>"; };
+		F2983D0A18D23BB800E96233 /* profilevisitor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = profilevisitor.jpg; sourceTree = "<group>"; };
 		F2A00E02187DCE7A00CB0D3F /* FindPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPlayerController.h; sourceTree = "<group>"; };
 		F2A00E03187DCE7A00CB0D3F /* FindPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPlayerController.m; sourceTree = "<group>"; };
 		F2ABD41818BC72BE003F03E5 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 		F2869A141875716E0086D665 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				F2983D0A18D23BB800E96233 /* profilevisitor.jpg */,
 				F2983D0818CF9E8800E96233 /* login2.jpg */,
 				F2983D0618CF9A5300E96233 /* login.jpg */,
 				F2983D0218CF82A300E96233 /* LogoPlayerCV.png */,
@@ -623,6 +626,7 @@
 				F2B9E1EC189D7E060044DE04 /* UIImageView+AFNetworking.h in Resources */,
 				F2ABD42118C4FFA9003F03E5 /* login-button.png in Resources */,
 				F2B9E1E5189D7E060044DE04 /* AFNetworkActivityIndicatorManager.m in Resources */,
+				F2983D0B18D23BB800E96233 /* profilevisitor.jpg in Resources */,
 				F2B9E1DD189D7E060044DE04 /* AFURLRequestSerialization.m in Resources */,
 				F2B9E1D4189D7E060044DE04 /* AFHTTPSessionManager.h in Resources */,
 				F2B9E1F1189D7E060044DE04 /* UIWebView+AFNetworking.h in Resources */,

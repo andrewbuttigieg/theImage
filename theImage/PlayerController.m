@@ -8,6 +8,7 @@
 
 #import "PlayerController.h"
 #import "ViewController.h"
+#import "MessageViewController.h"
 
 @interface PlayerController ()
 
@@ -22,6 +23,17 @@
         // Custom initialization
     }
     return self;
+}
+
+- (IBAction)sendMessage:(id)sender {
+    /////////
+    NSString * storyboardName = @"Main_iPhone";
+    NSString * viewControllerID = @"MessageViewController";
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    MessageViewController * controller = (MessageViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+    controller.chattingToID = (int)self.playerID;
+    controller.name = @"name";
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (IBAction)addFriend:(id)sender{
@@ -172,6 +184,8 @@
         self.addFriendButton.hidden = false;
     }
     
+    self.theView.contentSize = CGSizeMake(320, 480);
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_user.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPBody:[[NSString stringWithFormat:@"u=%d&me=%d", p, p2]dataUsingEncoding:NSUTF8StringEncoding]];
@@ -221,15 +235,20 @@
                     }
                     
                     if (accepted ==1){
+                        //you are a friend
                         self.areFriend.hidden = FALSE;
+                        self.message.hidden = FALSE;
                     }
                     else{
+                        //you are not friend yet
                         self.areFriend.hidden = TRUE;
                     }
                     if (accepted == 0 && youPending != 1){
+                        //
                         self.reqWaiting.hidden = FALSE;
                     }
                     else if (accepted == 0 && youPending == 1){
+                        //not a friend yet, but req there
                         self.reqWaiting.hidden = TRUE;
                         self.beFriendLabel.hidden = FALSE;
                         self.acceptFriend.hidden = FALSE;
@@ -244,7 +263,16 @@
                     
                     //get the player image
                     NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
-                    self.playerImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                    
+                    
+                    if ([imageURL length] > 5){
+                        self.playerImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+
+                    }
+                    else{
+                        //default image
+                        self.playerImage.image = [UIImage imageNamed:@"player.png"];
+                    }
                 });
             }
         }

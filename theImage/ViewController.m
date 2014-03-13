@@ -76,8 +76,12 @@
                 for(NSDictionary *dictionary in jsonArray)
                 {
                     NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
+                    
                     playerID = [[dictionary objectForKey:@"UserID"] intValue];
-                    self.toUpload.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                    
+                    if ([imageURL length] > 5){
+                        self.toUpload.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                    }
                 }
             });
         }
