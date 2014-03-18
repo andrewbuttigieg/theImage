@@ -11,16 +11,13 @@
 #import "FindPlayerController.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "AFNetworking.h"
-//#import "AFHTTPClient.h"
 #import "UIActivityIndicatorView+AFNetworking.h"
 #import "UIAlertView+AFNetworking.h"
-
-//#import <AFNetworking/ASAPIManager.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import "StartController.h"
 #import "LogMeIn.h"
 
-@interface ViewController() // <ViewControllerDetailDelegate>
+@interface ViewController() //  <ViewControllerDetailDelegate>
 
 @end
 
@@ -38,6 +35,7 @@
     return  facebookPlayerID;
 }
 
+/*
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -48,18 +46,41 @@
 {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
-}
+}*/
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    /*
+    self.title = @"My View";
+    self.view.backgroundColor = [UIColor blackColor];
     
+    UIBarButtonItem *openItem = [[UIBarButtonItem alloc] initWithTitle:@"Open" style:UIBarButtonItemStylePlain target:self action:@selector(openButtonPressed)];
+    self.navigationItem.leftBarButtonItem = openItem;
+    */
+  /*  CGFloat transformSize = 0.5f;
+    CGAffineTransform newTransform = CGAffineTransformTranslate(self.view.transform, 500.0, 100.0);
+
+    CGAffineTransform transform = CGAffineTransformScale(newTransform, transformSize, transformSize);
+//    CGAffineTransform transform = CGAffineTransformMakeScale(0.5,0.5);
+    self.view.transform = transform;*/
+ /*
+    [UIView animateWithDuration:1.0f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         
+                         self.view.transform = CGAffineTransformTranslate(self.view.transform, 250, 0);
+                     }
+                     completion:^(BOOL finished){}
+     ];
+   */
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_me.php"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
 //    [request setHTTPBody:[[NSString stringWithFormat:@"fb=%@", facebookPlayerID]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
-    
+  
     
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         

@@ -11,8 +11,8 @@
 #import "ViewControllerDetail.h"
 
 #import <FacebookSDK/FacebookSDK.h>
-
-@interface ViewController : UIViewController<CLLocationManagerDelegate, ViewControllerDetailDelegate, FBLoginViewDelegate> {
+@interface ViewController: UIViewController<CLLocationManagerDelegate>
+{
     IBOutlet UIImageView *playerImage;
     IBOutlet UILabel *xLok;
     IBOutlet UILabel *yLok;

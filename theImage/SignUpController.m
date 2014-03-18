@@ -7,6 +7,7 @@
 //
 
 #import "SignUpController.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface SignUpController ()
 
@@ -29,6 +30,14 @@ bool moved = false;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    FBLoginView *loginView = [[FBLoginView alloc] init];
+    // Align the button in the center horizontally
+    loginView.readPermissions = @[@"basic_info", @"email", @"user_likes"];
+    loginView.delegate = self;
+    loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 80);
+    [self.scrollView addSubview:loginView];
     
 //    self.activeTextField = self.password;
 
@@ -54,6 +63,63 @@ bool moved = false;
 	// Do any additional setup after loading the view.
 }
 
+// This method will be called when the user information has been fetched
+- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
+                            user:(id<FBGraphUser>)user {
+    
+    
+    NSString *facebookPlayerID = user.id;
+    NSLog(@"%@", user);
+    
+    /*
+     
+     theImage[12681:70b] {
+     email = "andrewbuttigieg@gmail.com";
+     "favorite_athletes" =     (
+     {
+     id = 131704393549116;
+     name = "Thierry Henry";
+     },
+     {
+     id = 20242388857;
+     name = "Usain Bolt";
+     },
+     {
+     id = 110860195607943;
+     name = Thropedo;
+     }
+     );
+     "favorite_teams" =     (
+     {
+     id = 20669912712;
+     name = Arsenal;
+     }
+     );
+     "first_name" = Andrew;
+     gender = male;
+     id = 100000221033456;
+     "last_name" = Buttigieg;
+     link = "https://www.facebook.com/andrew.buttigieg.85";
+     locale = "en_GB";
+     name = "Andrew Buttigieg";
+     sports =     (
+     {
+     id = 106342482738088;
+     name = Footsal;
+     },
+     {
+     id = 112682915412781;
+     name = Powerlifting;
+     }
+     );
+     timezone = 1;
+     "updated_time" = "2014-01-15T14:22:26+0000";
+     username = "andrew.buttigieg.85";
+     verified = 1;
+     }
+     
+     */
+}
 
 - (void)viewDidUnload{
     [[NSNotificationCenter defaultCenter] removeObserver:self];

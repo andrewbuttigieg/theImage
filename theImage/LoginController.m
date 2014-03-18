@@ -9,7 +9,7 @@
 #import "LoginController.h"
 #import "KeychainItemWrapper.h"
 #import "LogMeIn.h"
-#import "ViewController.h"
+#import "MainVC.h"
 #import <FacebookSDK/FacebookSDK.h>
 
 @interface LoginController ()
@@ -226,7 +226,7 @@ bool movedHere = false;
     NSString * storyboardName = @"Main_iPhone";
     NSString * viewControllerID = @"Main";
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
-    ViewController * controller = (ViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+    MainVC * controller = (MainVC *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
     
     [self.navigationController pushViewController:controller animated:YES];
 }

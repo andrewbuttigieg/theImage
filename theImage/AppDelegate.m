@@ -8,6 +8,12 @@
 
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "ViewController.h"
+#import "LoginController.h"
+
+@interface AppDelegate ()
+
+@end
 
 @implementation AppDelegate
 
@@ -15,6 +21,23 @@
 {
     [FBLoginView class];
     // Override point for customization after application launch.
+    
+    
+  /*
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    self.menuViewController = [[TWTMenuViewController alloc] initWithNibName:nil bundle:nil];
+    self.mainViewController = [[ViewController alloc] initWithNibName:nil bundle:nil];
+    self.sideMenuViewController = [[TWTSideMenuViewController alloc] initWithMenuViewController:self.menuViewController mainViewController:[[UINavigationController alloc] initWithRootViewController:self.mainViewController]];
+    self.sideMenuViewController.shadowColor = [UIColor blackColor];
+    self.sideMenuViewController.edgeOffset = (UIOffset) { .horizontal = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 18.0f : 0.0f };
+    self.sideMenuViewController.zoomScale = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 0.5634f : 0.85f;
+    self.sideMenuViewController.delegate = self;
+    
+    self.window.rootViewController = self.sideMenuViewController;
+*/
+    self.window.backgroundColor = [UIColor whiteColor];
+    
     return YES;
 //- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 }
@@ -28,6 +51,7 @@
     BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
     
     // You can add your app-specific url handling code here if needed
+    
     
     return wasHandled;
 }

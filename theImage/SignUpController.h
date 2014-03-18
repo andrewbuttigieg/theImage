@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
 
-@interface SignUpController : UIViewController
+@interface SignUpController : UIViewController<FBLoginViewDelegate>
+
 
 @property (strong, nonatomic) IBOutlet UITextField *accountType;
 @property (strong, nonatomic) IBOutlet UITextField *name;

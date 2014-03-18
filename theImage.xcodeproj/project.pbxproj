@@ -34,6 +34,15 @@
 		F287CD2A18A18E6800A196E3 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F287CD2918A18E6800A196E3 /* FacebookSDK.framework */; };
 		F287CD2D18A972C800A196E3 /* MessageCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = F287CD2C18A972C800A196E3 /* MessageCenterController.m */; };
 		F287CD3018AAB79F00A196E3 /* messageGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F287CD2F18AAB79F00A196E3 /* messageGroupCell.m */; };
+		F2905EB918D7C413007F16D1 /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2905EB818D7C413007F16D1 /* MenuController.m */; };
+		F2905EBC18D7CBD8007F16D1 /* RightController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2905EBB18D7CBD8007F16D1 /* RightController.m */; };
+		F2905EBF18D7D5CE007F16D1 /* MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2905EBE18D7D5CE007F16D1 /* MainVC.m */; };
+		F2905EC418D7F4EA007F16D1 /* icon-menu.png in Resources */ = {isa = PBXBuildFile; fileRef = F2905EC018D7F4EA007F16D1 /* icon-menu.png */; };
+		F2905EC518D7F4EA007F16D1 /* icon-menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2905EC118D7F4EA007F16D1 /* icon-menu@2x.png */; };
+		F2905EC618D7F4EA007F16D1 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F2905EC218D7F4EA007F16D1 /* icon.png */; };
+		F2905EC718D7F4EA007F16D1 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2905EC318D7F4EA007F16D1 /* icon@2x.png */; };
+		F2905ECA18D7F4FB007F16D1 /* simpleMenuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F2905EC818D7F4FB007F16D1 /* simpleMenuButton.png */; };
+		F2905ECB18D7F4FB007F16D1 /* simpleMenuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2905EC918D7F4FB007F16D1 /* simpleMenuButton@2x.png */; };
 		F294A8F418CCE99B0012D000 /* LogMeIn.m in Sources */ = {isa = PBXBuildFile; fileRef = F294A8F318CCE99B0012D000 /* LogMeIn.m */; };
 		F2983D0118CE49D100E96233 /* intro.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F2983D0018CE486D00E96233 /* intro.mp4 */; };
 		F2983D0418CF82A400E96233 /* LogoPlayerCV.png in Resources */ = {isa = PBXBuildFile; fileRef = F2983D0218CF82A300E96233 /* LogoPlayerCV.png */; };
@@ -145,6 +154,18 @@
 		F287CD2C18A972C800A196E3 /* MessageCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCenterController.m; sourceTree = "<group>"; };
 		F287CD2E18AAB79F00A196E3 /* messageGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = messageGroupCell.h; sourceTree = "<group>"; };
 		F287CD2F18AAB79F00A196E3 /* messageGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = messageGroupCell.m; sourceTree = "<group>"; };
+		F2905EB718D7C413007F16D1 /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
+		F2905EB818D7C413007F16D1 /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
+		F2905EBA18D7CBD8007F16D1 /* RightController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightController.h; sourceTree = "<group>"; };
+		F2905EBB18D7CBD8007F16D1 /* RightController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightController.m; sourceTree = "<group>"; };
+		F2905EBD18D7D5CE007F16D1 /* MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainVC.h; sourceTree = "<group>"; };
+		F2905EBE18D7D5CE007F16D1 /* MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainVC.m; sourceTree = "<group>"; };
+		F2905EC018D7F4EA007F16D1 /* icon-menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-menu.png"; sourceTree = "<group>"; };
+		F2905EC118D7F4EA007F16D1 /* icon-menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-menu@2x.png"; sourceTree = "<group>"; };
+		F2905EC218D7F4EA007F16D1 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		F2905EC318D7F4EA007F16D1 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		F2905EC818D7F4FB007F16D1 /* simpleMenuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = simpleMenuButton.png; sourceTree = "<group>"; };
+		F2905EC918D7F4FB007F16D1 /* simpleMenuButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "simpleMenuButton@2x.png"; sourceTree = "<group>"; };
 		F294A8F218CCE99B0012D000 /* LogMeIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogMeIn.h; sourceTree = "<group>"; };
 		F294A8F318CCE99B0012D000 /* LogMeIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogMeIn.m; sourceTree = "<group>"; };
 		F2983D0018CE486D00E96233 /* intro.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = intro.mp4; sourceTree = "<group>"; };
@@ -249,6 +270,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F226AE6B18D7735A00862048 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				F294A8F218CCE99B0012D000 /* LogMeIn.h */,
+				F294A8F318CCE99B0012D000 /* LogMeIn.m */,
+				F2ABD43618C6EF27003F03E5 /* JNKeychain.h */,
+				F2ABD43718C6EF27003F03E5 /* JNKeychain.m */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 		F28699CD1874C06C0086D665 = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +321,9 @@
 		F28699DF1874C06C0086D665 /* theImage */ = {
 			isa = PBXGroup;
 			children = (
+				F226AE6B18D7735A00862048 /* API */,
+				F2905ECD18D8099F007F16D1 /* Login and Signup */,
+				F2905ECC18D8097E007F16D1 /* Menu */,
 				F2983CFF18CE483500E96233 /* Video */,
 				F2869A141875716E0086D665 /* image */,
 				F287CD3118AABBB400A196E3 /* Model */,
@@ -298,12 +333,6 @@
 				F28699E81874C06C0086D665 /* AppDelegate.h */,
 				F28699E91874C06C0086D665 /* AppDelegate.m */,
 				F28699EB1874C06C0086D665 /* Main_iPhone.storyboard */,
-				F2ABD43018C6C610003F03E5 /* StartController.h */,
-				F2ABD43118C6C610003F03E5 /* StartController.m */,
-				F2ABD42C18C6B0DE003F03E5 /* LoginController.h */,
-				F2ABD42D18C6B0DE003F03E5 /* LoginController.m */,
-				F2ABD42918C68280003F03E5 /* SignUpController.h */,
-				F2ABD42A18C68280003F03E5 /* SignUpController.m */,
 				F287CD2B18A972C800A196E3 /* MessageCenterController.h */,
 				F287CD2C18A972C800A196E3 /* MessageCenterController.m */,
 				F2ABD41818BC72BE003F03E5 /* MessageViewController.h */,
@@ -329,6 +358,8 @@
 			isa = PBXGroup;
 			children = (
 				F28699E11874C06C0086D665 /* theImage-Info.plist */,
+				F2905EC818D7F4FB007F16D1 /* simpleMenuButton.png */,
+				F2905EC918D7F4FB007F16D1 /* simpleMenuButton@2x.png */,
 				F28699E21874C06C0086D665 /* InfoPlist.strings */,
 				F28699E51874C06C0086D665 /* main.m */,
 				F28699E71874C06C0086D665 /* theImage-Prefix.pch */,
@@ -357,6 +388,10 @@
 		F2869A141875716E0086D665 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				F2905EC018D7F4EA007F16D1 /* icon-menu.png */,
+				F2905EC118D7F4EA007F16D1 /* icon-menu@2x.png */,
+				F2905EC218D7F4EA007F16D1 /* icon.png */,
+				F2905EC318D7F4EA007F16D1 /* icon@2x.png */,
 				F2983D0A18D23BB800E96233 /* profilevisitor.jpg */,
 				F2983D0818CF9E8800E96233 /* login2.jpg */,
 				F2983D0618CF9A5300E96233 /* login.jpg */,
@@ -381,14 +416,36 @@
 		F287CD3118AABBB400A196E3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F2ABD43618C6EF27003F03E5 /* JNKeychain.h */,
-				F2ABD43718C6EF27003F03E5 /* JNKeychain.m */,
 				F287CD2E18AAB79F00A196E3 /* messageGroupCell.h */,
 				F287CD2F18AAB79F00A196E3 /* messageGroupCell.m */,
-				F294A8F218CCE99B0012D000 /* LogMeIn.h */,
-				F294A8F318CCE99B0012D000 /* LogMeIn.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		F2905ECC18D8097E007F16D1 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				F2905EBD18D7D5CE007F16D1 /* MainVC.h */,
+				F2905EBE18D7D5CE007F16D1 /* MainVC.m */,
+				F2905EBA18D7CBD8007F16D1 /* RightController.h */,
+				F2905EBB18D7CBD8007F16D1 /* RightController.m */,
+				F2905EB718D7C413007F16D1 /* MenuController.h */,
+				F2905EB818D7C413007F16D1 /* MenuController.m */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		F2905ECD18D8099F007F16D1 /* Login and Signup */ = {
+			isa = PBXGroup;
+			children = (
+				F2ABD42C18C6B0DE003F03E5 /* LoginController.h */,
+				F2ABD42D18C6B0DE003F03E5 /* LoginController.m */,
+				F2ABD43018C6C610003F03E5 /* StartController.h */,
+				F2ABD43118C6C610003F03E5 /* StartController.m */,
+				F2ABD42918C68280003F03E5 /* SignUpController.h */,
+				F2ABD42A18C68280003F03E5 /* SignUpController.m */,
+			);
+			name = "Login and Signup";
 			sourceTree = "<group>";
 		};
 		F2983CFF18CE483500E96233 /* Video */ = {
@@ -597,17 +654,21 @@
 				F2ABD41C18C4F721003F03E5 /* intropage.png in Resources */,
 				F2B9E1E7189D7E060044DE04 /* UIActivityIndicatorView+AFNetworking.m in Resources */,
 				F2869A121874CA400086D665 /* footballApp.jpg in Resources */,
+				F2905EC718D7F4EA007F16D1 /* icon@2x.png in Resources */,
 				F2B9E1D6189D7E060044DE04 /* AFURLSessionManager.h in Resources */,
 				F2ABD42818C51083003F03E5 /* signup@2x.png in Resources */,
+				F2905ECA18D7F4FB007F16D1 /* simpleMenuButton.png in Resources */,
 				F2B9E1E8189D7E060044DE04 /* UIAlertView+AFNetworking.h in Resources */,
 				F2B9E1EF189D7E060044DE04 /* UIProgressView+AFNetworking.h in Resources */,
 				F2B9E1D5189D7E060044DE04 /* AFHTTPSessionManager.m in Resources */,
 				F2B9E1D7189D7E060044DE04 /* AFURLSessionManager.m in Resources */,
 				F2869A19187571840086D665 /* player@2x.png in Resources */,
+				F2905EC518D7F4EA007F16D1 /* icon-menu@2x.png in Resources */,
 				F2B9E1CE189D7E060044DE04 /* AFHTTPRequestOperation.h in Resources */,
 				F2B9E1D1189D7E060044DE04 /* AFHTTPRequestOperationManager.m in Resources */,
 				F2B9E1E0189D7E060044DE04 /* Pods-AFNetworking.xcconfig in Resources */,
 				F2B9E1E4189D7E060044DE04 /* AFNetworkActivityIndicatorManager.h in Resources */,
+				F2905EC618D7F4EA007F16D1 /* icon.png in Resources */,
 				F2B9E1EE189D7E060044DE04 /* UIKit+AFNetworking.h in Resources */,
 				F2869A1C187571840086D665 /* logo.png in Resources */,
 				F2ABD42318C4FFA9003F03E5 /* signup-button.png in Resources */,
@@ -631,10 +692,12 @@
 				F2B9E1D4189D7E060044DE04 /* AFHTTPSessionManager.h in Resources */,
 				F2B9E1F1189D7E060044DE04 /* UIWebView+AFNetworking.h in Resources */,
 				F28699E41874C06C0086D665 /* InfoPlist.strings in Resources */,
+				F2905ECB18D7F4FB007F16D1 /* simpleMenuButton@2x.png in Resources */,
 				F2983D0518CF82A400E96233 /* LogoPlayerCV@X2.png in Resources */,
 				F2B9E1CD189D7E060044DE04 /* AFNetworking.h in Resources */,
 				F2B9E1DC189D7E060044DE04 /* AFURLRequestSerialization.h in Resources */,
 				F2B9E1DE189D7E060044DE04 /* AFURLResponseSerialization.h in Resources */,
+				F2905EC418D7F4EA007F16D1 /* icon-menu.png in Resources */,
 				F2ABD42718C51083003F03E5 /* signup.png in Resources */,
 				F2B9E1E6189D7E060044DE04 /* UIActivityIndicatorView+AFNetworking.h in Resources */,
 				F2B9E1D9189D7E060044DE04 /* AFNetworkReachabilityManager.m in Resources */,
@@ -701,12 +764,15 @@
 				F2ABD42E18C6B0DE003F03E5 /* LoginController.m in Sources */,
 				F2ABD43518C6C7A9003F03E5 /* KeychainItemWrapper.m in Sources */,
 				F2A00E04187DCE7A00CB0D3F /* FindPlayerController.m in Sources */,
+				F2905EBF18D7D5CE007F16D1 /* MainVC.m in Sources */,
 				F2ABD43218C6C610003F03E5 /* StartController.m in Sources */,
 				F2ABD41A18BC72BE003F03E5 /* MessageViewController.m in Sources */,
 				F28699E61874C06C0086D665 /* main.m in Sources */,
+				F2905EB918D7C413007F16D1 /* MenuController.m in Sources */,
 				F2EC5DF0187E042B00D93403 /* PlayerController.m in Sources */,
 				F243B76C1879D13A001BABC8 /* ViewControllerDetail.m in Sources */,
 				F287CD3018AAB79F00A196E3 /* messageGroupCell.m in Sources */,
+				F2905EBC18D7CBD8007F16D1 /* RightController.m in Sources */,
 				F294A8F418CCE99B0012D000 /* LogMeIn.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
