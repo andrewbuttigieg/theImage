@@ -52,6 +52,9 @@
             identifier = @"thirdRow";
             break;
         case 3:
+            identifier = @"forthRow";
+            break;
+        case 4:
             if ([LogMeIn logout]){
                 
                 if (FBSession.activeSession.isOpen)

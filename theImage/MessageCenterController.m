@@ -138,8 +138,8 @@ loads the view - we will get the users messages from the server so that they can
                            initWithObjects:nil];
 
     
-    UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
-    self.myData = [NSMutableArray arrayWithCapacity:1];
+    //UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
+    //self.myData = [NSMutableArray arrayWithCapacity:1];
     
     
     int me = ViewController.playerID;
@@ -160,8 +160,8 @@ loads the view - we will get the users messages from the server so that they can
             dispatch_async(dispatch_get_main_queue(), ^{
                 for(NSDictionary *dictionary in jsonArray)
                 {
-                    NSLog(@"Data Dictionary is : %@",dictionary);
-                    NSLog(@"%@", [dictionary objectForKey:@"Firstname"]);
+/*                    NSLog(@"Data Dictionary is : %@",dictionary);
+                    NSLog(@"%@", [dictionary objectForKey:@"Firstname"]);*/
                                     
                     [self.nameForTable addObject:[dictionary objectForKey:@"Firstname"]];
                     [self.imageForTable addObject:[dictionary objectForKey:@"PhotoURL"]];

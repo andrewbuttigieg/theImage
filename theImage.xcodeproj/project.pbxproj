@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		BB74C52A2CD6406F9F2D713C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E880AE6003B94608B66BFCFE /* libPods.a */; };
 		F243B76C1879D13A001BABC8 /* ViewControllerDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = F243B76B1879D13A001BABC8 /* ViewControllerDetail.m */; };
+		F284BFDA18DB7E810002EB81 /* FriendRequestsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F284BFD918DB7E810002EB81 /* FriendRequestsController.m */; };
+		F284BFE018DB9FA10002EB81 /* friendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F284BFDF18DB9FA10002EB81 /* friendCell.m */; };
 		F28699DA1874C06C0086D665 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28699D91874C06C0086D665 /* Foundation.framework */; };
 		F28699DC1874C06C0086D665 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28699DB1874C06C0086D665 /* CoreGraphics.framework */; };
 		F28699DE1874C06C0086D665 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28699DD1874C06C0086D665 /* UIKit.framework */; };
@@ -123,6 +125,10 @@
 		E880AE6003B94608B66BFCFE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F243B76A1879D13A001BABC8 /* ViewControllerDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDetail.h; sourceTree = "<group>"; };
 		F243B76B1879D13A001BABC8 /* ViewControllerDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerDetail.m; sourceTree = "<group>"; };
+		F284BFD818DB7E810002EB81 /* FriendRequestsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequestsController.h; sourceTree = "<group>"; };
+		F284BFD918DB7E810002EB81 /* FriendRequestsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRequestsController.m; sourceTree = "<group>"; };
+		F284BFDE18DB9FA10002EB81 /* friendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = friendCell.h; sourceTree = "<group>"; };
+		F284BFDF18DB9FA10002EB81 /* friendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = friendCell.m; sourceTree = "<group>"; };
 		F28699D61874C06C0086D665 /* theImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F28699D91874C06C0086D665 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F28699DB1874C06C0086D665 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -333,6 +339,8 @@
 				F28699E81874C06C0086D665 /* AppDelegate.h */,
 				F28699E91874C06C0086D665 /* AppDelegate.m */,
 				F28699EB1874C06C0086D665 /* Main_iPhone.storyboard */,
+				F284BFD818DB7E810002EB81 /* FriendRequestsController.h */,
+				F284BFD918DB7E810002EB81 /* FriendRequestsController.m */,
 				F287CD2B18A972C800A196E3 /* MessageCenterController.h */,
 				F287CD2C18A972C800A196E3 /* MessageCenterController.m */,
 				F2ABD41818BC72BE003F03E5 /* MessageViewController.h */,
@@ -418,6 +426,8 @@
 			children = (
 				F287CD2E18AAB79F00A196E3 /* messageGroupCell.h */,
 				F287CD2F18AAB79F00A196E3 /* messageGroupCell.m */,
+				F284BFDE18DB9FA10002EB81 /* friendCell.h */,
+				F284BFDF18DB9FA10002EB81 /* friendCell.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -768,6 +778,8 @@
 				F2ABD43218C6C610003F03E5 /* StartController.m in Sources */,
 				F2ABD41A18BC72BE003F03E5 /* MessageViewController.m in Sources */,
 				F28699E61874C06C0086D665 /* main.m in Sources */,
+				F284BFE018DB9FA10002EB81 /* friendCell.m in Sources */,
+				F284BFDA18DB7E810002EB81 /* FriendRequestsController.m in Sources */,
 				F2905EB918D7C413007F16D1 /* MenuController.m in Sources */,
 				F2EC5DF0187E042B00D93403 /* PlayerController.m in Sources */,
 				F243B76C1879D13A001BABC8 /* ViewControllerDetail.m in Sources */,

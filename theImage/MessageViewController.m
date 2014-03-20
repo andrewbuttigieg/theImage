@@ -8,6 +8,7 @@
 
 #import "MessageViewController.h"
 #import "ViewController.h"
+#import "messageGroupCell.h"
 
 @interface MessageViewController ()
     @property (readonly, nonatomic) UIView *container;
@@ -58,6 +59,54 @@ static float top = 0;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return YES;
 }
+
+/*
+ This sets the value of the items in the cell
+ */
+/*
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"messageGroupCell";
+    
+    messageGroupCell *cell = [tableView
+                              dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[messageGroupCell alloc]
+                initWithStyle:UITableViewCellStyleDefault
+                reuseIdentifier:CellIdentifier];
+    }
+    
+    // Configure the cell...
+    cell.name.text = [self.nameForTable
+                      objectAtIndex: [indexPath row]];
+    cell.date.text = [self.dateForTable
+                      objectAtIndex: [indexPath row]];
+    
+    cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.imageForTable objectAtIndex: [indexPath row]]]]];
+    
+    cell.personImage.layer.cornerRadius = 28.0;
+    cell.personImage.layer.masksToBounds = YES;
+    cell.personImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    cell.personImage.layer.borderWidth = 0.3;
+    
+    NSString *type = [self.userTypeForTable objectAtIndex: [indexPath row]];
+    if ([type isEqual: @"1"])
+    {
+        type = @"Player";
+    }
+    else if ([type isEqual: @"2"])
+    {
+        type = @"Scout";
+    }
+    else if ([type isEqual: @"3"])
+    {
+        type = @"Agent";
+    }
+    cell.type.text = type;
+    cell.message.text = [self.textForTable objectAtIndex: [indexPath row]];
+    
+    return cell;
+}*/
 
 - (void)loadView {
     top = 0;
