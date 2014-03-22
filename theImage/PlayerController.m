@@ -77,10 +77,9 @@
 }
 
 - (IBAction)noFriendClick:(id)sender {
-    int x = ViewController.playerID;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/deny_friend.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"p1=%d&p2=%d", x, self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[NSString stringWithFormat:@"p2=%d", self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init]
      //returningResponse:&response
@@ -118,10 +117,10 @@
 }
 
 - (IBAction)yeahFriendClick:(id)sender {
-    int x = ViewController.playerID;
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/accept_friend.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"p1=%d&p2=%d", x, self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[NSString stringWithFormat:@"p2=%d", self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init]
      //returningResponse:&response
@@ -131,16 +130,14 @@
                                
                                if (error) {
                                    //[self.delegate fetchingGroupsFailedWithError:error];
-                               } else {
-                                   
+                               }
+                               else {
                                    NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                                                options:0
                                                                                                  error:&error];
                                    for(NSDictionary *dictionary in jsonArray)
                                    {
-                                       //NSLog(@"Data Dictionary is : %@",jsonArray);
                                        NSString *returned = [jsonArray[0] objectForKey:@"value"];
-                                       
                                        dispatch_async(dispatch_get_main_queue(), ^{
                                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Your ID!"
                                                                                            message:[NSString stringWithFormat:@"%@",returned]
@@ -148,6 +145,7 @@
                                                                                  cancelButtonTitle:@"Go away box"
                                                                                  otherButtonTitles:nil];
                                            [alert show];
+                                           
                                        });
                                    }
                                    

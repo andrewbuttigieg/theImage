@@ -37,6 +37,87 @@
     return [self.dateForFR count];
 }
 
+-(void)acceptClicked:(UIButton*)sender
+{
+    NSLog(@"%ld", (long)sender.tag);
+    NSLog(@"%@", self.userIDForFR);
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/accept_friend.php/"]];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    
+    NSString *o = [self.userIDForFR objectAtIndex:sender.tag];
+    [request setHTTPBody:[[NSString stringWithFormat:@"p2=%d", [o intValue]]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPMethod:@"POST"];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init]
+     //returningResponse:&response
+                           completionHandler:^(NSURLResponse *response,
+                                               NSData *data,
+                                               NSError *error) {
+                               
+                               if (error) {
+                                   //[self.delegate fetchingGroupsFailedWithError:error];
+                               }
+                               else {
+                                   NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                                               options:0
+                                                                                                 error:&error];
+                                   for(NSDictionary *dictionary in jsonArray)
+                                   {
+                                       NSString *returned = [jsonArray[0] objectForKey:@"value"];
+                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                           [self.dateForFR removeObjectAtIndex:sender.tag];
+                                           [self.imageForFR removeObjectAtIndex:sender.tag];
+                                           //[self.textForFR removeObjectAtIndex:sender.tag];
+                                           [self.nameForFR removeObjectAtIndex:sender.tag];
+                                           [self.userTypeForFR removeObjectAtIndex:sender.tag];
+                                           [self.userIDForFR removeObjectAtIndex:sender.tag];
+                                           [self.tableView reloadData];
+                                       });
+                                   }
+                                   
+                               }
+                               
+                           }];
+}
+
+-(void)denyClicked:(UIButton*)sender
+{
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/deny_friend.php/"]];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    
+    NSString *o = [self.userIDForFR objectAtIndex:sender.tag];
+    [request setHTTPBody:[[NSString stringWithFormat:@"p2=%d", [o intValue]]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPMethod:@"POST"];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init]
+     //returningResponse:&response
+                           completionHandler:^(NSURLResponse *response,
+                                               NSData *data,
+                                               NSError *error) {
+                               
+                               if (error) {
+                                   //[self.delegate fetchingGroupsFailedWithError:error];
+                               }
+                               else {
+                                   NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                                               options:0
+                                                                                                 error:&error];
+                                   for(NSDictionary *dictionary in jsonArray)
+                                   {
+                                       NSString *returned = [jsonArray[0] objectForKey:@"value"];
+                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                           [self.dateForFR removeObjectAtIndex:sender.tag];
+                                           [self.imageForFR removeObjectAtIndex:sender.tag];
+//                                           [self.textForFR removeObjectAtIndex:sender.tag];
+                                           [self.nameForFR removeObjectAtIndex:sender.tag];
+                                           [self.userTypeForFR removeObjectAtIndex:sender.tag];
+                                           [self.userIDForFR removeObjectAtIndex:sender.tag];
+                                           [self.tableView reloadData];
+                                       });
+                                   }
+                                   
+                               }
+                               
+                           }];
+}
 /*
  This sets the value of the items in the cell
  */
@@ -51,6 +132,12 @@
                 initWithStyle:UITableViewCellStyleDefault
                 reuseIdentifier:CellIdentifier];
     }
+    
+    cell.accept.tag = indexPath.row;
+    [cell.accept addTarget:self action:@selector(acceptClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    cell.deny.tag = indexPath.row;
+    [cell.deny addTarget:self action:@selector(denyClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     // Configure the cell...
     cell.name.text = [self.nameForFR
@@ -89,28 +176,21 @@
     return cell;
 }
 
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
+-(void)load{
     self.dateForFR =[[NSMutableArray alloc]
-                         initWithObjects:nil];
-    
-    /*self.textForFR =[[NSMutableArray alloc]
-                         initWithObjects:nil];*/
+                     initWithObjects:nil];
     
     self.nameForFR  = [[NSMutableArray alloc]
-                          initWithObjects:nil];
+                       initWithObjects:nil];
     
     self.imageForFR =[[NSMutableArray alloc]
-                          initWithObjects:nil];
+                      initWithObjects:nil];
     
     self.userIDForFR =[[NSMutableArray alloc]
-                           initWithObjects:nil];
+                       initWithObjects:nil];
     
     self.userTypeForFR =[[NSMutableArray alloc]
-                             initWithObjects:nil];
+                         initWithObjects:nil];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_friend_requests.php"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
@@ -141,9 +221,32 @@
                     [self.userIDForFR addObject:[dictionary objectForKey:@"UserID"]];
                 }
                 [self.tableView reloadData];
+                [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
             });
         }
     }];
+
+}
+
+- (void)stopRefresh
+
+{
+    [self.refreshControl endRefreshing];
+    
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    [refresh addTarget:self action:@selector(load) forControlEvents:UIControlEventValueChanged];
+    
+    self.refreshControl = refresh;
+
+    [self load];
 }
 
 - (void)didReceiveMemoryWarning

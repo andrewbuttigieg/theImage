@@ -80,7 +80,7 @@
             NSString * viewControllerID = @"Main";
             UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
             ViewController * controller = (ViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
-        
+            [self.moviePlayer stop];
             [self.navigationController pushViewController:controller animated:YES];
         }
     }

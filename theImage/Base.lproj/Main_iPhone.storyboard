@@ -88,6 +88,7 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fNJ-rg-SHM">
                                         <rect key="frame" x="0.0" y="176" width="320" height="44"/>
@@ -1125,27 +1126,44 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U9g-Xo-X6I">
-                                            <rect key="frame" x="70" y="12" width="184" height="21"/>
+                                            <rect key="frame" x="70" y="12" width="153" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k25-Ie-Ce3">
-                                            <rect key="frame" x="70" y="28" width="184" height="21"/>
+                                            <rect key="frame" x="70" y="28" width="153" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cnb-vI-3iv">
-                                            <rect key="frame" x="70" y="47" width="184" height="21"/>
+                                            <rect key="frame" x="70" y="47" width="153" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qm7-cM-njd">
+                                            <rect key="frame" x="270" y="17" width="40" height="41"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" backgroundImage="accept-friend.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cNN-cc-AhP">
+                                            <rect key="frame" x="222" y="17" width="40" height="41"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" backgroundImage="decline-friend.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="accept" destination="qm7-cM-njd" id="7Pb-BY-ZMh"/>
+                                    <outlet property="deny" destination="cNN-cc-AhP" id="yyo-SJ-gfC"/>
                                     <outlet property="name" destination="U9g-Xo-X6I" id="aIg-ik-9BY"/>
                                     <outlet property="personImage" destination="NHk-o9-kOG" id="BYm-mb-JdZ"/>
                                     <outlet property="type" destination="Cnb-vI-3iv" id="ld7-zH-sGx"/>
@@ -1166,6 +1184,8 @@
     </scenes>
     <resources>
         <image name="LogoPlayerCV.png" width="452" height="151"/>
+        <image name="accept-friend.png" width="41" height="39"/>
+        <image name="decline-friend.png" width="41" height="39"/>
         <image name="intropage.png" width="640" height="1093"/>
         <image name="login-button.png" width="1" height="45"/>
         <image name="login2.jpg" width="640" height="1010"/>

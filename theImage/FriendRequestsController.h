@@ -16,5 +16,6 @@
 @property (nonatomic, strong) NSMutableArray *nameForFR;
 @property (nonatomic, strong) NSMutableArray *userTypeForFR;
 @property (nonatomic, strong) NSMutableArray *userIDForFR;
+@property (strong, nonatomic) IBOutlet UIImageView *accept;
 
 @end

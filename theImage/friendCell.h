@@ -14,4 +14,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *message;
 @property (strong, nonatomic) IBOutlet UILabel *type;
 @property (nonatomic, strong) IBOutlet UIImageView *personImage;
+@property (strong, nonatomic) IBOutlet UIButton *accept;
+@property (strong, nonatomic) IBOutlet UIButton *deny;
 @end

@@ -11,6 +11,10 @@
 		F243B76C1879D13A001BABC8 /* ViewControllerDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = F243B76B1879D13A001BABC8 /* ViewControllerDetail.m */; };
 		F284BFDA18DB7E810002EB81 /* FriendRequestsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F284BFD918DB7E810002EB81 /* FriendRequestsController.m */; };
 		F284BFE018DB9FA10002EB81 /* friendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F284BFDF18DB9FA10002EB81 /* friendCell.m */; };
+		F284BFE518DBB30A0002EB81 /* accept-friend.png in Resources */ = {isa = PBXBuildFile; fileRef = F284BFE118DBB30A0002EB81 /* accept-friend.png */; };
+		F284BFE618DBB30A0002EB81 /* accept-friend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F284BFE218DBB30A0002EB81 /* accept-friend@2x.png */; };
+		F284BFE718DBB30A0002EB81 /* decline-friend.png in Resources */ = {isa = PBXBuildFile; fileRef = F284BFE318DBB30A0002EB81 /* decline-friend.png */; };
+		F284BFE818DBB30A0002EB81 /* decline-friend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F284BFE418DBB30A0002EB81 /* decline-friend@2x.png */; };
 		F28699DA1874C06C0086D665 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28699D91874C06C0086D665 /* Foundation.framework */; };
 		F28699DC1874C06C0086D665 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28699DB1874C06C0086D665 /* CoreGraphics.framework */; };
 		F28699DE1874C06C0086D665 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28699DD1874C06C0086D665 /* UIKit.framework */; };
@@ -129,6 +133,10 @@
 		F284BFD918DB7E810002EB81 /* FriendRequestsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRequestsController.m; sourceTree = "<group>"; };
 		F284BFDE18DB9FA10002EB81 /* friendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = friendCell.h; sourceTree = "<group>"; };
 		F284BFDF18DB9FA10002EB81 /* friendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = friendCell.m; sourceTree = "<group>"; };
+		F284BFE118DBB30A0002EB81 /* accept-friend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "accept-friend.png"; sourceTree = "<group>"; };
+		F284BFE218DBB30A0002EB81 /* accept-friend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "accept-friend@2x.png"; sourceTree = "<group>"; };
+		F284BFE318DBB30A0002EB81 /* decline-friend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "decline-friend.png"; sourceTree = "<group>"; };
+		F284BFE418DBB30A0002EB81 /* decline-friend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "decline-friend@2x.png"; sourceTree = "<group>"; };
 		F28699D61874C06C0086D665 /* theImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F28699D91874C06C0086D665 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F28699DB1874C06C0086D665 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -396,6 +404,10 @@
 		F2869A141875716E0086D665 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				F284BFE118DBB30A0002EB81 /* accept-friend.png */,
+				F284BFE218DBB30A0002EB81 /* accept-friend@2x.png */,
+				F284BFE318DBB30A0002EB81 /* decline-friend.png */,
+				F284BFE418DBB30A0002EB81 /* decline-friend@2x.png */,
 				F2905EC018D7F4EA007F16D1 /* icon-menu.png */,
 				F2905EC118D7F4EA007F16D1 /* icon-menu@2x.png */,
 				F2905EC218D7F4EA007F16D1 /* icon.png */,
@@ -652,6 +664,7 @@
 				F2B9E1D8189D7E060044DE04 /* AFNetworkReachabilityManager.h in Resources */,
 				F2983D0418CF82A400E96233 /* LogoPlayerCV.png in Resources */,
 				F2983D0718CF9A5300E96233 /* login.jpg in Resources */,
+				F284BFE818DBB30A0002EB81 /* decline-friend@2x.png in Resources */,
 				F2B9E1DA189D7E060044DE04 /* AFSecurityPolicy.h in Resources */,
 				F2B9E1D3189D7E060044DE04 /* AFURLConnectionOperation.m in Resources */,
 				F2B9E1E1189D7E060044DE04 /* Pods-AFNetworking-Private.xcconfig in Resources */,
@@ -681,6 +694,7 @@
 				F2905EC618D7F4EA007F16D1 /* icon.png in Resources */,
 				F2B9E1EE189D7E060044DE04 /* UIKit+AFNetworking.h in Resources */,
 				F2869A1C187571840086D665 /* logo.png in Resources */,
+				F284BFE518DBB30A0002EB81 /* accept-friend.png in Resources */,
 				F2ABD42318C4FFA9003F03E5 /* signup-button.png in Resources */,
 				F2B9E1ED189D7E060044DE04 /* UIImageView+AFNetworking.m in Resources */,
 				F2869A1B187571840086D665 /* player.png in Resources */,
@@ -692,10 +706,12 @@
 				F2B9E1EA189D7E060044DE04 /* UIButton+AFNetworking.h in Resources */,
 				F2B9E1E2189D7E060044DE04 /* Pods-AFNetworking-dummy.m in Resources */,
 				F2B9E1D2189D7E060044DE04 /* AFURLConnectionOperation.h in Resources */,
+				F284BFE618DBB30A0002EB81 /* accept-friend@2x.png in Resources */,
 				F2869A1A187571840086D665 /* logo@2x.png in Resources */,
 				F28699ED1874C06C0086D665 /* Main_iPhone.storyboard in Resources */,
 				F2B9E1EC189D7E060044DE04 /* UIImageView+AFNetworking.h in Resources */,
 				F2ABD42118C4FFA9003F03E5 /* login-button.png in Resources */,
+				F284BFE718DBB30A0002EB81 /* decline-friend.png in Resources */,
 				F2B9E1E5189D7E060044DE04 /* AFNetworkActivityIndicatorManager.m in Resources */,
 				F2983D0B18D23BB800E96233 /* profilevisitor.jpg in Resources */,
 				F2B9E1DD189D7E060044DE04 /* AFURLRequestSerialization.m in Resources */,
