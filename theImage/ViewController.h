@@ -18,7 +18,7 @@
     IBOutlet UILabel *yLok;
     IBOutlet UILabel *playerOnline;
     IBOutlet UILabel *playerName;
-    
+    IBOutlet UILabel *addressLabel;
     
     /*IBOutlet UIWebView *videoView;
     NSString *videoURL;

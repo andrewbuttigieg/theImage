@@ -142,8 +142,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="logoPressed" destination="vXZ-lx-hvc" eventType="touchUpInside" id="SGA-lb-HBh"/>
-                                    <action selector="logoPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="mIP-Z2-Bz2"/>
+                                    <action selector="logoPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="5zW-Pe-3Gb"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="player.png" id="WBj-46-UNR">
@@ -253,14 +252,6 @@
                                     <action selector="logOut:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="hT0-vt-Xhx"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fhz-8e-1XG">
-                                <rect key="frame" x="9" y="183" width="109" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Friend Req">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hrX-zz-UcL">
                                 <rect key="frame" x="9" y="221" width="109" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -269,11 +260,19 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1po-1K-dJt">
+                                <rect key="frame" x="126" y="71" width="174" height="92"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="tKe-kF-a5r"/>
                     <connections>
+                        <outlet property="addressLabel" destination="1po-1K-dJt" id="iw9-35-2MH"/>
                         <outlet property="playerName" destination="Frw-Ov-tp4" id="cYf-vd-XFF"/>
                         <outlet property="playerOnline" destination="wAf-Yx-NJo" id="aNi-Fu-ZRZ"/>
                         <outlet property="toUpload" destination="WBj-46-UNR" id="LOL-6L-04u"/>

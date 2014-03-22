@@ -22,17 +22,16 @@
 @end
 
 @implementation ViewController
-
     CLLocationManager *locationManager;
+    CLGeocoder *geocoder;
+    CLPlacemark *placemark;
+
+
     static int playerID = 0;
     static NSString* facebookPlayerID;
 
 + (int) playerID{
     return playerID;
-}
-
-+ (NSString *)facebookID{
-    return  facebookPlayerID;
 }
 
 /*
@@ -52,42 +51,15 @@
 {
     [super viewDidLoad];
     
-    /*
-    self.title = @"My View";
-    self.view.backgroundColor = [UIColor blackColor];
-    
-    UIBarButtonItem *openItem = [[UIBarButtonItem alloc] initWithTitle:@"Open" style:UIBarButtonItemStylePlain target:self action:@selector(openButtonPressed)];
-    self.navigationItem.leftBarButtonItem = openItem;
-    */
-  /*  CGFloat transformSize = 0.5f;
-    CGAffineTransform newTransform = CGAffineTransformTranslate(self.view.transform, 500.0, 100.0);
-
-    CGAffineTransform transform = CGAffineTransformScale(newTransform, transformSize, transformSize);
-//    CGAffineTransform transform = CGAffineTransformMakeScale(0.5,0.5);
-    self.view.transform = transform;*/
- /*
-    [UIView animateWithDuration:1.0f
-                          delay:0.0f
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         
-                         self.view.transform = CGAffineTransformTranslate(self.view.transform, 250, 0);
-                     }
-                     completion:^(BOOL finished){}
-     ];
-   */
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_me.php"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-//    [request setHTTPBody:[[NSString stringWithFormat:@"fb=%@", facebookPlayerID]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
   
     
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
         if (error) {
-            //[self.delegate fetchingGroupsFailedWithError:error];
         } else {
-            //[self.delegate receivedGroupsJSON:data];
             NSError *localError = nil;
             NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                         options:0
@@ -107,117 +79,10 @@
             });
         }
     }];
-    
-    /*
-    FBLoginView *loginView = [[FBLoginView alloc] init];
-    // Align the button in the center horizontally
-    loginView.readPermissions = @[@"basic_info", @"email", @"user_likes"];
-    loginView.delegate = self;
-    loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 5);
-    [self.view addSubview:loginView];*/
-    
-    //[[self navigationController] setNavigationBarHidden:YES animated:YES];
-    
+
     locationManager = [[CLLocationManager alloc] init];
-    
-    /*
-    playerOnline.text = @"Player Online";
-    playerName.text = @"ANDREW BUTTIGIEG!!!!";
-    playerID = 1; //make it andrew...
-    */
-	// Do any additional setup after loading the view, typically from a nib.
+    geocoder = [[CLGeocoder alloc] init];
 }
-
-/*
-// Handle possible errors that can occur during login
-- (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error {
-    NSString *alertMessage, *alertTitle;
-    
-    // If the user should perform an action outside of you app to recover,
-    // the SDK will provide a message for the user, you just need to surface it.
-    // This conveniently handles cases like Facebook password change or unverified Facebook accounts.
-    if ([FBErrorUtility shouldNotifyUserForError:error]) {
-        alertTitle = @"Facebook error";
-        alertMessage = [FBErrorUtility userMessageForError:error];
-        
-        // This code will handle session closures that happen outside of the app
-        // You can take a look at our error handling guide to know more about it
-        // https://developers.facebook.com/docs/ios/errors
-    } else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryAuthenticationReopenSession) {
-        alertTitle = @"Session Error";
-        alertMessage = @"Your current session is no longer valid. Please log in again.";
-        
-        // If the user has cancelled a login, we will do nothing.
-        // You can also choose to show the user a message if cancelling login will result in
-        // the user not being able to complete a task they had initiated in your app
-        // (like accessing FB-stored information or posting to Facebook)
-    } else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
-        NSLog(@"user cancelled login");
-        
-        // For simplicity, this sample handles other errors with a generic message
-        // You can checkout our error handling guide for more detailed information
-        // https://developers.facebook.com/docs/ios/errors
-    } else {
-        alertTitle  = @"Something went wrong";
-        alertMessage = @"Please try again later.";
-        NSLog(@"Unexpected error:%@", error);
-    }
-    
-    if (alertMessage) {
-        [[[UIAlertView alloc] initWithTitle:alertTitle
-                                    message:alertMessage
-                                   delegate:nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil] show];
-    }
-}
-
-// This method will be called when the user information has been fetched
-- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
-                            user:(id<FBGraphUser>)user {
-    
-    
-    b
-     //the guy logged in on facebook!!
- 
-    
-    facebookPlayerID = user.id;
-    playerName.text = user.name;
-    
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/login_user.php"]];
-    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"fb=%@", facebookPlayerID]dataUsingEncoding:NSUTF8StringEncoding]];
-    [request setHTTPMethod:@"POST"];
-    
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        
-        if (error) {
-            //[self.delegate fetchingGroupsFailedWithError:error];
-        } else {
-            //[self.delegate receivedGroupsJSON:data];
-            NSError *localError = nil;
-            NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&localError];
-            
-            NSMutableArray *groups = [[NSMutableArray alloc] init];
-            NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
-                                                                        options:0
-                                                                          error:&error];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                for(NSDictionary *dictionary in jsonArray)
-                {
-                    NSLog(@"Data Dictionary is : %@",dictionary);
-                    NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
-                    playerID = [[dictionary objectForKey:@"UserID"] intValue];
-                    self.toUpload.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
-                }
-            });
-        }
-    }];
-
-}
-*/
 
 - (void)didReceiveMemoryWarning
 {
@@ -275,19 +140,13 @@
 
 
 - (IBAction)logoPressed:(id)sender {
-    /*
+    
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [locationManager startUpdatingLocation];
-     */
+     
    NSLog(@"Pressed!");
-   /* UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Good one!"
-message:@"You hit the logo"
-delegate:self
-cancelButtonTitle:@"Go Away"
-otherButtonTitles:nil];
-    [alert show];*/
-    
+   
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -351,6 +210,24 @@ objectAtIndex:0];
         xLok.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
         yLok.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
     }
+    
+    [locationManager stopUpdatingLocation];
+    // Reverse Geocoding
+    NSLog(@"Resolving the Address");
+    [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+        NSLog(@"Found placemarks: %@, error: %@", placemarks, error);
+        if (error == nil && [placemarks count] > 0) {
+            placemark = [placemarks lastObject];
+            addressLabel.text = [NSString stringWithFormat:@"%@ %@\n%@ %@\n%@\n%@",
+                                 placemark.subThoroughfare, placemark.thoroughfare,
+                                 placemark.postalCode, placemark.locality,
+                                 placemark.administrativeArea,
+                                 placemark.country];
+            addressLabel.numberOfLines = 5;
+        } else {
+            NSLog(@"%@", error.debugDescription);
+        }
+    } ];
 }
 
 @end
