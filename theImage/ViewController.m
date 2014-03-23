@@ -205,10 +205,11 @@ objectAtIndex:0];
 {
     NSLog(@"didUpdateToLocation: %@", newLocation);
     CLLocation *currentLocation = newLocation;
-    
+    NSString *l1;
+    NSString *l2;
     if (currentLocation != nil) {
-        xLok.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
-        yLok.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
+        l1 = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
+        l2 = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
     }
     
     [locationManager stopUpdatingLocation];
@@ -224,10 +225,43 @@ objectAtIndex:0];
                                  placemark.administrativeArea,
                                  placemark.country];
             addressLabel.numberOfLines = 5;
+            NSString *a1 = [NSString stringWithFormat:@"%@ %@", placemark.subThoroughfare, placemark.thoroughfare];
+            NSString *a2 = [NSString stringWithFormat:@"%@ %@", placemark.postalCode, placemark.locality];
+            NSString *a3 = [NSString stringWithFormat:@"%@", placemark.administrativeArea];
+            NSString *c = [NSString stringWithFormat:@"%@", placemark.country];
+            ////
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/update_user_location.php/"]];
+            [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+            
+            [request setHTTPBody:[[NSString stringWithFormat:@"l1=%@&l2=%@&a1=%@&a2=%@&a3=%@&c=%@", l1, l2, a1, a2, a3, c]dataUsingEncoding:NSUTF8StringEncoding]];
+            [request setHTTPMethod:@"POST"];
+            [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init]
+             //returningResponse:&response
+                                   completionHandler:^(NSURLResponse *response,
+                                                       NSData *data,
+                                                       NSError *error) {
+                                       
+                                       if (error) {
+                                           //[self.delegate fetchingGroupsFailedWithError:error];
+                                       }
+                                       else {
+                                           NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                                                       options:0
+                                                                                                         error:&error];
+                                           for(NSDictionary *dictionary in jsonArray)
+                                           {
+                                               NSString *returned = [jsonArray[0] objectForKey:@"value"];
+                                           }
+                                      }
+                                   }];
+            ////
+            
         } else {
             NSLog(@"%@", error.debugDescription);
         }
     } ];
+    
+    
 }
 
 @end
