@@ -27,7 +27,11 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *beFriendLabel;
 @property (strong, nonatomic) IBOutlet UIButton *dontWantToFriend;
-@property (strong, nonatomic) IBOutlet UIButton *acceptFriend;
+@property (strong, nonatomic) IBOutlet UIButton *acceptFriendButton;
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *playerInteract;
+- (IBAction)playerInteractionClick:(id)sender;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *acceptFriend;
 
 - (IBAction)sendMessage:(id)sender;
 - (IBAction)addFriend:(id)sender;

@@ -226,14 +226,16 @@ objectAtIndex:0];
                                  placemark.country];
             addressLabel.numberOfLines = 5;
             NSString *a1 = [NSString stringWithFormat:@"%@ %@", placemark.subThoroughfare, placemark.thoroughfare];
-            NSString *a2 = [NSString stringWithFormat:@"%@ %@", placemark.postalCode, placemark.locality];
+            NSString *a2 = [NSString stringWithFormat:@"%@", placemark.locality];
             NSString *a3 = [NSString stringWithFormat:@"%@", placemark.administrativeArea];
+            NSString *p = [NSString stringWithFormat:@"%@", placemark.postalCode];
             NSString *c = [NSString stringWithFormat:@"%@", placemark.country];
             ////
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/update_user_location.php/"]];
             [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
             
-            [request setHTTPBody:[[NSString stringWithFormat:@"l1=%@&l2=%@&a1=%@&a2=%@&a3=%@&c=%@", l1, l2, a1, a2, a3, c]dataUsingEncoding:NSUTF8StringEncoding]];
+            [request setHTTPBody:[[NSString stringWithFormat:@"l1=%@&l2=%@&a1=%@&a2=%@&a3=%@&c=%@&p=%@",
+                                   l1, l2, a1, a2, a3, c, p]dataUsingEncoding:NSUTF8StringEncoding]];
             [request setHTTPMethod:@"POST"];
             [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init]
              //returningResponse:&response

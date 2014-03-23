@@ -784,7 +784,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AoK-Jn-gip">
-                                        <rect key="frame" x="40" y="362" width="148" height="32"/>
+                                        <rect key="frame" x="32" y="358" width="305" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Name">
@@ -803,19 +803,19 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Height" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="alj-xI-BSX">
-                                        <rect key="frame" x="208" y="399" width="63" height="21"/>
+                                        <rect key="frame" x="274" y="398" width="63" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Be Friend" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hT6-Fc-qM0">
-                                        <rect key="frame" x="151" y="348" width="78" height="21"/>
+                                        <rect key="frame" x="193" y="119" width="78" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EdP-Lq-JQO">
-                                        <rect key="frame" x="203" y="344" width="82" height="30"/>
+                                        <rect key="frame" x="86" y="107" width="82" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <accessibility key="accessibilityConfiguration" label="Add Friend"/>
                                         <state key="normal" title="Add Friend">
@@ -826,7 +826,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lga-QM-KZw">
-                                        <rect key="frame" x="40" y="412" width="136" height="21"/>
+                                        <rect key="frame" x="32" y="398" width="136" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Playing postion">
@@ -852,7 +852,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n1J-L8-T2j">
-                                        <rect key="frame" x="40" y="432" width="148" height="21"/>
+                                        <rect key="frame" x="32" y="420" width="297" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Playing">
@@ -867,13 +867,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Request sent)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LDc-vt-3fd">
-                                        <rect key="frame" x="203" y="348" width="115" height="21"/>
+                                        <rect key="frame" x="188" y="148" width="115" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Friend)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dHl-HC-2Ho">
-                                        <rect key="frame" x="203" y="348" width="117" height="21"/>
+                                        <rect key="frame" x="269" y="116" width="117" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
@@ -890,7 +890,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ILH-Aj-vjj">
-                                        <rect key="frame" x="208" y="373" width="63" height="21"/>
+                                        <rect key="frame" x="208" y="398" width="63" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
@@ -906,15 +906,36 @@
                                             <action selector="sendMessage:" destination="iMm-Ef-769" eventType="touchUpInside" id="PKW-DI-OhY"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cpE-xd-SEn">
+                                        <rect key="frame" x="32" y="443" width="297" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="About">
+                                                <attributes>
+                                                    <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <font key="NSFont" size="16" name="HelveticaNeue-Bold"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationItem key="navigationItem" id="L0z-cm-a8Z">
+                        <barButtonItem key="leftBarButtonItem" title="Accept" id="rxP-u1-0pg"/>
+                        <barButtonItem key="rightBarButtonItem" title="Connect" id="ZCV-ZB-w1W">
+                            <connections>
+                                <action selector="playerInteractionClick:" destination="iMm-Ef-769" id="HYA-Vq-07G"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="acceptFriend" destination="rKl-Qy-U4l" id="89Y-qW-fU7"/>
+                        <outlet property="acceptFriend" destination="rxP-u1-0pg" id="opZ-Ow-rBA"/>
                         <outlet property="addFriendButton" destination="EdP-Lq-JQO" id="i8Q-L9-r9V"/>
                         <outlet property="areFriend" destination="dHl-HC-2Ho" id="y8g-Lh-hK7"/>
                         <outlet property="beFriendLabel" destination="hT6-Fc-qM0" id="Mh0-Dj-hcb"/>
@@ -923,6 +944,7 @@
                         <outlet property="message" destination="FDI-Q3-pXV" id="XaY-Oh-laP"/>
                         <outlet property="name" destination="AoK-Jn-gip" id="avl-oZ-nld"/>
                         <outlet property="playerImage" destination="4Qn-Or-cwm" id="1Ml-Ng-sSR"/>
+                        <outlet property="playerInteract" destination="ZCV-ZB-w1W" id="6aJ-bL-lKM"/>
                         <outlet property="playerName" destination="AoK-Jn-gip" id="AxA-S2-CnX"/>
                         <outlet property="postion" destination="n1J-L8-T2j" id="SQ0-zw-vcx"/>
                         <outlet property="reqWaiting" destination="LDc-vt-3fd" id="wT5-1s-1tH"/>
@@ -932,7 +954,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RzT-b2-8gC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4002" y="346"/>
+            <point key="canvasLocation" x="4864" y="530"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="p02-0M-Oq7">
@@ -1179,6 +1201,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uWJ-kY-OCQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3442" y="1087"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="oXt-tH-BAw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yOI-fc-XKJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nZG-Mq-6vx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="iMm-Ef-769" kind="relationship" relationship="rootViewController" id="a6M-hd-fZD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ii1-up-kE9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4338" y="530"/>
         </scene>
     </scenes>
     <resources>

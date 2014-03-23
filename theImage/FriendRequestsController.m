@@ -62,16 +62,18 @@
                                                                                                  error:&error];
                                    for(NSDictionary *dictionary in jsonArray)
                                    {
-                                       NSString *returned = [jsonArray[0] objectForKey:@"value"];
-                                       dispatch_async(dispatch_get_main_queue(), ^{
-                                           [self.dateForFR removeObjectAtIndex:sender.tag];
-                                           [self.imageForFR removeObjectAtIndex:sender.tag];
+                                       NSString *accepted = [jsonArray[0] objectForKey:@"accepted"];
+                                       if ([accepted  isEqual: @"1"]){
+                                           dispatch_async(dispatch_get_main_queue(), ^{
+                                                [self.dateForFR removeObjectAtIndex:sender.tag];
+                                                [self.imageForFR removeObjectAtIndex:sender.tag];
                                            //[self.textForFR removeObjectAtIndex:sender.tag];
-                                           [self.nameForFR removeObjectAtIndex:sender.tag];
-                                           [self.userTypeForFR removeObjectAtIndex:sender.tag];
-                                           [self.userIDForFR removeObjectAtIndex:sender.tag];
-                                           [self.tableView reloadData];
-                                       });
+                                                [self.nameForFR removeObjectAtIndex:sender.tag];
+                                                [self.userTypeForFR removeObjectAtIndex:sender.tag];
+                                                [self.userIDForFR removeObjectAtIndex:sender.tag];
+                                                [self.tableView reloadData];
+                                            });
+                                       }
                                    }
                                    
                                }
@@ -102,16 +104,18 @@
                                                                                                  error:&error];
                                    for(NSDictionary *dictionary in jsonArray)
                                    {
-                                       NSString *returned = [jsonArray[0] objectForKey:@"value"];
-                                       dispatch_async(dispatch_get_main_queue(), ^{
-                                           [self.dateForFR removeObjectAtIndex:sender.tag];
-                                           [self.imageForFR removeObjectAtIndex:sender.tag];
-//                                           [self.textForFR removeObjectAtIndex:sender.tag];
-                                           [self.nameForFR removeObjectAtIndex:sender.tag];
-                                           [self.userTypeForFR removeObjectAtIndex:sender.tag];
-                                           [self.userIDForFR removeObjectAtIndex:sender.tag];
-                                           [self.tableView reloadData];
-                                       });
+                                       NSString *accepted = [jsonArray[0] objectForKey:@"accepted"];
+                                       if ([accepted  isEqual: @"1"]){
+                                           dispatch_async(dispatch_get_main_queue(), ^{
+                                               [self.dateForFR removeObjectAtIndex:sender.tag];
+                                               [self.imageForFR removeObjectAtIndex:sender.tag];
+//                                              [self.textForFR removeObjectAtIndex:sender.tag];
+                                               [self.nameForFR removeObjectAtIndex:sender.tag];
+                                               [self.userTypeForFR removeObjectAtIndex:sender.tag];
+                                               [self.userIDForFR removeObjectAtIndex:sender.tag];
+                                               [self.tableView reloadData];
+                                           });
+                                       }
                                    }
                                    
                                }

@@ -25,6 +25,9 @@
     return self;
 }
 
+- (IBAction)playerInteractionClick:(id)sender {
+}
+
 - (IBAction)sendMessage:(id)sender {
     /////////
     NSString * storyboardName = @"Main_iPhone";
@@ -37,10 +40,9 @@
 }
 
 - (IBAction)addFriend:(id)sender{
-    int x = ViewController.playerID;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/add_friend.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"p1=%d&p2=%d", x, self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[NSString stringWithFormat:@"p2=%d", (int)self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init]
             //returningResponse:&response
@@ -79,7 +81,7 @@
 - (IBAction)noFriendClick:(id)sender {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/deny_friend.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"p2=%d", self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[NSString stringWithFormat:@"p2=%d", (int)self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init]
      //returningResponse:&response
@@ -120,7 +122,7 @@
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/accept_friend.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"p2=%d", self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[NSString stringWithFormat:@"p2=%d", (int)self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init]
      //returningResponse:&response
@@ -158,6 +160,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    self.acceptFriend.a;
+
 //    self.title =
     //self.name.text = [NSString stringWithFormat:@"%d hello!", self.playerID];
     
@@ -172,7 +176,7 @@
     NSURL *url = [[NSURL alloc] initWithString:urlAsString];
     NSLog(@"%@", urlAsString);
   */
-    int p = self.playerID;
+    int p = (int)self.playerID;
     int p2 = ViewController.playerID;
     
     if (p == p2){
@@ -203,14 +207,11 @@
                                                                           error:&error];
             for(NSDictionary *dictionary in jsonArray)
             {
-                NSLog(@"Data Dictionary is : %@",dictionary);
-                NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
-                NSLog(@"%@", imageURL);
-                NSLog(@"%@", [dictionary objectForKey:@"Firstname"]);
+                //NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     //get the player information
-                    self.playerName.text = [dictionary objectForKey:@"Firstname"];
+                    self.playerName.text = [NSString stringWithFormat:@"%@ %@", [dictionary objectForKey:@"Firstname"], [dictionary objectForKey:@"Lastname"]];
                     self.height.text = [dictionary objectForKey:@"Height"];
                     self.weight.text = [dictionary objectForKey:@"Weight"];
                     self.postion.text = [dictionary objectForKey:@"Position"];
@@ -226,16 +227,20 @@
                     }
                     
                     if (accepted == 0 || accepted == 1 || accepted == 2){
-                        self.addFriendButton.hidden = TRUE;
+                        //cannot add to friend anymore
+                        //self.addFriendButton.hidden = TRUE;
                     }
                     else{
+                        self.playerInteract.title = @"Connect";
                         self.addFriendButton.hidden = FALSE;
                     }
                     
                     if (accepted ==1){
                         //you are a friend
-                        self.areFriend.hidden = FALSE;
-                        self.message.hidden = FALSE;
+                        //self.areFriend.hidden = FALSE;
+                        self.playerInteract.enabled = FALSE;
+                        self.playerInteract.title = @"Friends";
+                        //self.message.hidden = FALSE;
                     }
                     else{
                         //you are not friend yet
@@ -243,19 +248,29 @@
                     }
                     if (accepted == 0 && youPending != 1){
                         //
-                        self.reqWaiting.hidden = FALSE;
+                        self.playerInteract.enabled = FALSE;
+                        self.playerInteract.title = @"Requested";
+                        //self.reqWaiting.hidden = FALSE;
+                        self.navigationItem.leftBarButtonItem = nil;
                     }
                     else if (accepted == 0 && youPending == 1){
                         //not a friend yet, but req there
+                        
+                        self.playerInteract.enabled = TRUE;
+                        self.playerInteract.title = @"Decline";
+                       // self.acceptFriend.hidden = FALSE;
+                        /*
+                        
                         self.reqWaiting.hidden = TRUE;
                         self.beFriendLabel.hidden = FALSE;
                         self.acceptFriend.hidden = FALSE;
-                        self.dontWantToFriend.hidden = FALSE;
+                        self.dontWantToFriend.hidden = FALSE;*/
                     }
                     else{
-                        self.beFriendLabel.hidden = TRUE;
+                        self.navigationItem.leftBarButtonItem = nil;
+                        /*self.beFriendLabel.hidden = TRUE;
                         self.acceptFriend.hidden = TRUE;
-                        self.dontWantToFriend.hidden = TRUE;
+                        self.dontWantToFriend.hidden = TRUE;*/
                     }
                     
                     
