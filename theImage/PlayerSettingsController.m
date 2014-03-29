@@ -19,6 +19,9 @@
 
 @implementation PlayerSettingsController
 
+CGSize keyboardSize;
+bool movedAlready = false;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -31,8 +34,137 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Edit Profile";
+    
+    self.scrollview.contentSize = CGSizeMake(320, 833);
+    CGPoint bottomOffset = CGPointMake(0, 180);
+    [self.scrollview setContentOffset:bottomOffset animated:YES];
+    
+    self.scrollview.contentSize = CGSizeMake(320, 833);
+    [self.scrollview setContentSize:(CGSizeMake(320, 833))];
+
+    self.scrollview.userInteractionEnabled=YES;
+    [self.scrollview setScrollEnabled:YES];
+    
+    self.about.delegate = self;
+    self.height.delegate = self;
+    self.weight.delegate = self;
+    self.email.delegate = self;
+    self.position.delegate = self;
+    self.age.delegate = self;
+    self.gender.delegate = self;
+    self.email.delegate = self;
+    self.phone.delegate = self;
+    self.name.delegate = self;
+    self.surname.delegate = self;
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_me.php"]];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [request setHTTPMethod:@"POST"];
+    
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (error) {
+        } else {
+            NSError *localError = nil;
+            NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                        options:0
+                                                                          error:&error];
+            NSLog(@"Data Dictionary is : %@", jsonArray);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                for(NSDictionary *dictionary in jsonArray)
+                {
+                    NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
+
+                    self.about.text = [dictionary objectForKey:@"About"] ;
+                    self.height.text = [dictionary objectForKey:@"Height"];
+                    self.weight.text = [dictionary objectForKey:@"Weight"];
+                    self.email.text = [dictionary objectForKey:@"Email"];
+                    self.position.text = [dictionary objectForKey:@"Position"];
+                    self.age.text = [dictionary objectForKey:@"Age"];
+                    self.gender.text = [dictionary objectForKey:@"Gender"];
+                    self.email.text = [dictionary objectForKey:@"Email"];
+                    if ([dictionary objectForKey:@"Phone"] != [NSNull null]){
+                        self.phone.text = [dictionary objectForKey:@"Phone"];
+                    }
+                    self.name.text = [dictionary objectForKey:@"Firstname"];
+                    self.surname.text = [dictionary objectForKey:@"Lastname"];
+                    
+                    /*
+                    if ([imageURL length] > 5){
+                        self.toUpload.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                    }*/
+                }
+            });
+        }
+    }];
+
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 	// Do any additional setup after loading the view.
 }
+
+- (void)viewDidUnload{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (IBAction)dismissKeyboard:(id)sender
+{
+    [self.activePlayerTextField resignFirstResponder];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.activePlayerTextField = textField;
+    
+    if (movedAlready){
+        CGRect aRect = self.view.frame;
+        aRect.size.height -= keyboardSize.height;
+        CGPoint scrollPoint = CGPointMake(0.0, self.activePlayerTextField.frame.origin.y - (keyboardSize.height-35));
+        [self.scrollview setContentOffset:scrollPoint animated:YES];
+    }
+    
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.activePlayerTextField = nil;
+    
+}
+
+
+- (void) keyboardWillHide:(NSNotification *)notification {
+    movedAlready = false;
+}
+
+- (void)keyboardWasShown:(NSNotification *)notification
+{
+    keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= keyboardSize.height;
+    CGRect rect = [[UIApplication sharedApplication] statusBarFrame];
+    CGPoint xxx = self.activePlayerTextField.frame.origin;
+    xxx.y += self.navigationController.navigationBar.frame.size.height + rect.size.height;
+    
+    if (!CGRectContainsPoint(aRect, xxx) ) {
+        CGPoint scrollPoint = CGPointMake(0.0, self.activePlayerTextField.frame.origin.y - (keyboardSize.height-35));
+        [self.scrollview setContentOffset:scrollPoint animated:YES];
+    }
+    movedAlready = true;
+}
+
+///////////
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -69,42 +201,7 @@
                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                          NSLog(@"Failure %@", error.description);
                                      }];
-    /*
-    // 4. Set the progress block of the operation.
-    [operation setUploadProgressBlock:^(NSUInteger __unused bytesWritten,
-                                        long long totalBytesWritten,
-                                        long long totalBytesExpectedToWrite) {
-        NSLog(@"Wrote %lld/%lld", totalBytesWritten, totalBytesExpectedToWrite);
-    }];*/
-    
-    // 5. Begin!
     [operation start];
-    /*
-     if (imageData != nil && 1 == 2)
-     {
-     //NSData *data = [NSData dataWithContentsOfFile:filePath];
-     NSMutableString *urlString = [[NSMutableString alloc] initWithFormat:@"name=thefile&filename="];
-     [urlString appendFormat:@"%@", imageData];
-     NSData *postData = [urlString dataUsingEncoding:NSASCIIStringEncoding
-     allowLossyConversion:YES];
-     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
-     
-     
-     NSURL *url = [NSURL URLWithString:baseurl];
-     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
-     [urlRequest setHTTPMethod: @"POST"];
-     [urlRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
-     [urlRequest setValue:@"application/x-www-form-urlencoded"
-     forHTTPHeaderField:@"Content-Type"];
-     
-     [urlRequest setHTTPBody:postData];
-     
-     NSData *returnData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:nil];
-     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-     NSLog(returnString);
-     
-     NSLog(@"Started!");
-     }*/
 }
 
 - (IBAction)save_player:(id)sender {

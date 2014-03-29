@@ -71,6 +71,9 @@
                 [self.navigationController pushViewController:controller animated:YES];
             }
             break;
+        case 5:
+            identifier = @"fifthRow";
+            break;
     }
     
     return identifier;
