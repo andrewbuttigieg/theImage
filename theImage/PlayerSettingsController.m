@@ -11,7 +11,7 @@
 #import <AFNetworking/AFHTTPRequestOperation.h>
 #import <AFNetworking/AFURLResponseSerialization.h>
 #import <AFNetworking/AFHTTPSessionManager.h>
-
+#import "ViewController.h"
 
 @interface PlayerSettingsController ()
 
@@ -36,12 +36,13 @@ bool movedAlready = false;
     [super viewDidLoad];
     self.title = @"Edit Profile";
     
-    self.scrollview.contentSize = CGSizeMake(320, 833);
-    CGPoint bottomOffset = CGPointMake(0, 180);
+    self.scrollview.contentSize = CGSizeMake(320, 1433);
+    /*CGPoint bottomOffset = CGPointMake(0, 180);
     [self.scrollview setContentOffset:bottomOffset animated:YES];
+    */
     
-    self.scrollview.contentSize = CGSizeMake(320, 833);
-    [self.scrollview setContentSize:(CGSizeMake(320, 833))];
+    self.scrollview.contentSize = CGSizeMake(320, 1433);
+    [self.scrollview setContentSize:(CGSizeMake(320, 1433))];
 
     self.scrollview.userInteractionEnabled=YES;
     [self.scrollview setScrollEnabled:YES];
@@ -67,7 +68,7 @@ bool movedAlready = false;
         
         if (error) {
         } else {
-            NSError *localError = nil;
+            //NSError *localError = nil;
             NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                         options:0
                                                                           error:&error];
@@ -75,7 +76,7 @@ bool movedAlready = false;
             dispatch_async(dispatch_get_main_queue(), ^{
                 for(NSDictionary *dictionary in jsonArray)
                 {
-                    NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
+                    //NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
 
                     self.about.text = [dictionary objectForKey:@"About"] ;
                     self.height.text = [dictionary objectForKey:@"Height"];
@@ -91,14 +92,17 @@ bool movedAlready = false;
                     self.name.text = [dictionary objectForKey:@"Firstname"];
                     self.surname.text = [dictionary objectForKey:@"Lastname"];
                     
-                    /*
+                    
+                    NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
                     if ([imageURL length] > 5){
-                        self.toUpload.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
-                    }*/
+                        [self.toUpload setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
+                        
+                    }
                 }
             });
         }
     }];
+    
 
 
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -111,6 +115,53 @@ bool movedAlready = false;
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
 	// Do any additional setup after loading the view.
+}
+
+- (BOOL) textField: (UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range replacementString: (NSString *)string {
+    //return yes or no after comparing the characters
+    
+    // allow backspace
+    if (!string.length)
+    {
+        return YES;
+    }
+    
+    if (self.activePlayerTextField != self.age &&
+        self.activePlayerTextField != self.weight &&
+        self.activePlayerTextField != self.height){
+        return  YES;
+    }
+    ////for Decimal value start//////This code use use for allowing single decimal value
+    //    if ([theTextField.text rangeOfString:@"."].location == NSNotFound)
+    //    {
+    //        if ([string isEqualToString:@"."]) {
+    //            return YES;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        if ([[theTextField.text substringFromIndex:[theTextField.text rangeOfString:@"."].location] length]>2)   // this allow 2 digit after decimal
+    //        {
+    //            return NO;
+    //        }
+    //    }
+    ////for Decimal value End//////This code use use for allowing single decimal value
+    
+    if (([string isEqualToString:@"."] || [string isEqualToString:@","]) &&
+        ([self.activePlayerTextField.text rangeOfString:@"," options:NSCaseInsensitiveSearch].length > 0 ||
+         [self.activePlayerTextField.text rangeOfString:@"." options:NSCaseInsensitiveSearch].length > 0)){
+        return NO;
+    }
+    
+    // allow digit 0 to 9
+    if ([string intValue] || [string isEqualToString:@"0"] || [string isEqualToString:@"."] || [string isEqualToString:@","])
+    {
+        return YES;
+    }
+    
+
+    
+    return NO;
 }
 
 - (void)viewDidUnload{
@@ -172,11 +223,10 @@ bool movedAlready = false;
     // Dispose of any resources that can be recreated.
 }
 
-
-- (IBAction)uploadImage:(id)sender {
-    NSData *imageData = UIImageJPEGRepresentation(self.toUpload.image, 0.2);     //change Image to NSData
+-(void) uploadImage:(UIImage*)image {
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.2);     //change Image to NSData
     NSString *baseurl = @"http://newfootballers.com/upload_image.php";
-    NSDictionary *parameters = @{@"u": @"1", @"t": @"having fun!", @"n": @"Winning!"};
+    NSDictionary *parameters = @{@"t": @"Profile photo", @"n": @"Profile photo"};
     
     // 1. Create `AFHTTPRequestSerializer` which will create your request.
     AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
@@ -188,16 +238,18 @@ bool movedAlready = false;
                      constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                          [formData appendPartWithFileData:imageData
                                                      name:@"attachment"
-                                                 fileName:@"myimage.jpg"
+                                                 fileName:[NSString stringWithFormat:@"%d-profile.jpg", ViewController.playerID]
                                                  mimeType:@"image/jpeg"];
                      }];
     
+
     // 3. Create and use `AFHTTPRequestOperationManager` to create an `AFHTTPRequestOperation` from the `NSMutableURLRequest` that we just created.
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     AFHTTPRequestOperation *operation =
     [manager HTTPRequestOperationWithRequest:request
                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                          NSLog(@"Success %@", responseObject);
+                                         //
                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                          NSLog(@"Failure %@", error.description);
                                      }];
@@ -211,8 +263,8 @@ bool movedAlready = false;
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/update_user.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"h=%@&w=%@&a=%@&p=%@&u=1",
-                           self.height.text, self.weight.text, self.about.text,self.position.text]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[NSString stringWithFormat:@"h=%@&w=%@&a=%@&p=%@&u=1&name=%@&surname=%@&phone=%@&email=%@",
+                           self.height.text, self.weight.text, self.about.text,self.position.text, self.name.text, self.surname.text,self.phone.text, self.email.text]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     NSError *error = nil; NSURLResponse *response = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -221,8 +273,48 @@ bool movedAlready = false;
     }
     else {
         //success
+        NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                    options:0
+                                                                      error:&error];
+        NSLog(@"Data Dictionary is : %@", jsonArray);
     }
     
 }
 
+- (void)imagePickerController:(UIImagePickerController *)picker
+        didFinishPickingImage:(UIImage *)image
+                  editingInfo:(NSDictionary *)editingInfo
+{
+    // Dismiss the image selection, hide the picker and
+    //show the image view with the picked image
+    [picker dismissModalViewControllerAnimated:YES];
+//    self.toUpload.image = image;
+    
+    [self.toUpload setBackgroundImage:image forState:UIControlStateNormal];
+    
+    [self uploadImage:image];
+}
+
+- (IBAction)findImage:(id)sender {
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
+    imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentModalViewController:imagePickerController animated:YES];
+
+}
+
+- (IBAction)lookingForPlayer:(id)sender {
+    if (self.lookingForPlayerButton.on){
+        CGRect frame = self.privateInformationView.frame;
+        frame.origin.y=self.lookingForPlayerButton.frame.origin.y + 44 + 100;//pass the cordinate which you want
+        self.privateInformationView.frame= frame;
+    }
+    else{
+        CGRect frame = self.privateInformationView.frame;
+        frame.origin.y=self.lookingForPlayerButton.frame.origin.y + 44 + 18;//pass the cordinate which you want
+        self.privateInformationView.frame= frame;
+    }
+}
 @end

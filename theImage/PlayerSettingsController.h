@@ -16,10 +16,7 @@
 
 - (IBAction)save_player:(id)sender;
 
-@property (strong, nonatomic) IBOutlet UIImageView *toUpload;
-
-- (IBAction)uploadImage:(id)sender;
-- (IBAction)uploadImageMe:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *toUpload;
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollview;
 
@@ -36,5 +33,21 @@
 @property (strong, nonatomic) IBOutlet UITextField *name;
 
 @property (strong, nonatomic) IBOutlet UITextField *surname;
+
+- (IBAction)findImage:(id)sender;
+
+- (IBAction)lookingForPlayer:(id)sender;
+@property (strong, nonatomic) IBOutlet UISwitch *lookingForPlayerButton;
+
+@property (strong, nonatomic) IBOutlet UITextField *lfpPosition;
+@property (strong, nonatomic) IBOutlet UIImageView *lfpPositionImage;
+
+@property (strong, nonatomic) IBOutlet UITextField *lfpCountry;
+@property (strong, nonatomic) IBOutlet UIImageView *lfpCountryImage;
+
+@property (strong, nonatomic) IBOutlet UIView *privateInformationView;
+
+
+
 
 @end

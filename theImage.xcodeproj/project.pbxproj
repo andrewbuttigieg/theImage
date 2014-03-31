@@ -57,6 +57,10 @@
 		F28C2AB418E744D00047DA75 /* setting-position@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F28C2AA218E744D00047DA75 /* setting-position@2x.png */; };
 		F28C2AB518E744D00047DA75 /* setting-weight.png in Resources */ = {isa = PBXBuildFile; fileRef = F28C2AA318E744D00047DA75 /* setting-weight.png */; };
 		F28C2AB618E744D00047DA75 /* setting-weight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F28C2AA418E744D00047DA75 /* setting-weight@2x.png */; };
+		F28C2AB918E862EC0047DA75 /* setting-image.png in Resources */ = {isa = PBXBuildFile; fileRef = F28C2AB718E862EC0047DA75 /* setting-image.png */; };
+		F28C2ABA18E862EC0047DA75 /* setting-image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F28C2AB818E862EC0047DA75 /* setting-image@2x.png */; };
+		F28C2ABD18EA0F540047DA75 /* setting-single.png in Resources */ = {isa = PBXBuildFile; fileRef = F28C2ABB18EA0F540047DA75 /* setting-single.png */; };
+		F28C2ABE18EA0F540047DA75 /* setting-single@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F28C2ABC18EA0F540047DA75 /* setting-single@2x.png */; };
 		F2905EB918D7C413007F16D1 /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2905EB818D7C413007F16D1 /* MenuController.m */; };
 		F2905EBC18D7CBD8007F16D1 /* RightController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2905EBB18D7CBD8007F16D1 /* RightController.m */; };
 		F2905EBF18D7D5CE007F16D1 /* MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2905EBE18D7D5CE007F16D1 /* MainVC.m */; };
@@ -202,6 +206,10 @@
 		F28C2AA218E744D00047DA75 /* setting-position@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting-position@2x.png"; sourceTree = "<group>"; };
 		F28C2AA318E744D00047DA75 /* setting-weight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting-weight.png"; sourceTree = "<group>"; };
 		F28C2AA418E744D00047DA75 /* setting-weight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting-weight@2x.png"; sourceTree = "<group>"; };
+		F28C2AB718E862EC0047DA75 /* setting-image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting-image.png"; sourceTree = "<group>"; };
+		F28C2AB818E862EC0047DA75 /* setting-image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting-image@2x.png"; sourceTree = "<group>"; };
+		F28C2ABB18EA0F540047DA75 /* setting-single.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting-single.png"; sourceTree = "<group>"; };
+		F28C2ABC18EA0F540047DA75 /* setting-single@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting-single@2x.png"; sourceTree = "<group>"; };
 		F2905EB718D7C413007F16D1 /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
 		F2905EB818D7C413007F16D1 /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
 		F2905EBA18D7CBD8007F16D1 /* RightController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightController.h; sourceTree = "<group>"; };
@@ -440,12 +448,16 @@
 			children = (
 				F28C2A9318E744D00047DA75 /* setting-about.png */,
 				F28C2A9418E744D00047DA75 /* setting-about@2x.png */,
+				F28C2ABB18EA0F540047DA75 /* setting-single.png */,
+				F28C2ABC18EA0F540047DA75 /* setting-single@2x.png */,
 				F28C2A9518E744D00047DA75 /* setting-box.png */,
 				F28C2A9618E744D00047DA75 /* setting-gender.png */,
 				F28C2A9718E744D00047DA75 /* setting-gender@2x.png */,
 				F28C2A9818E744D00047DA75 /* setting-height.png */,
 				F28C2A9A18E744D00047DA75 /* setting-height-2.png */,
 				F28C2A9B18E744D00047DA75 /* setting-height@2x.png */,
+				F28C2AB718E862EC0047DA75 /* setting-image.png */,
+				F28C2AB818E862EC0047DA75 /* setting-image@2x.png */,
 				F28C2A9D18E744D00047DA75 /* setting-login.png */,
 				F28C2A9E18E744D00047DA75 /* setting-login@2x.png */,
 				F28C2A9F18E744D00047DA75 /* setting-password.png */,
@@ -720,6 +732,7 @@
 				F2983D0718CF9A5300E96233 /* login.jpg in Resources */,
 				F284BFE818DBB30A0002EB81 /* decline-friend@2x.png in Resources */,
 				F28C2AB218E744D00047DA75 /* setting-password@2x.png in Resources */,
+				F28C2AB918E862EC0047DA75 /* setting-image.png in Resources */,
 				F2B9E1DA189D7E060044DE04 /* AFSecurityPolicy.h in Resources */,
 				F2B9E1D3189D7E060044DE04 /* AFURLConnectionOperation.m in Resources */,
 				F2B9E1E1189D7E060044DE04 /* Pods-AFNetworking-Private.xcconfig in Resources */,
@@ -755,7 +768,9 @@
 				F2905EC618D7F4EA007F16D1 /* icon.png in Resources */,
 				F2B9E1EE189D7E060044DE04 /* UIKit+AFNetworking.h in Resources */,
 				F2869A1C187571840086D665 /* logo.png in Resources */,
+				F28C2ABE18EA0F540047DA75 /* setting-single@2x.png in Resources */,
 				F284BFE518DBB30A0002EB81 /* accept-friend.png in Resources */,
+				F28C2ABA18E862EC0047DA75 /* setting-image@2x.png in Resources */,
 				F2ABD42318C4FFA9003F03E5 /* signup-button.png in Resources */,
 				F28C2AA918E744D00047DA75 /* setting-gender@2x.png in Resources */,
 				F2B9E1ED189D7E060044DE04 /* UIImageView+AFNetworking.m in Resources */,
@@ -774,6 +789,7 @@
 				F2869A1A187571840086D665 /* logo@2x.png in Resources */,
 				F28699ED1874C06C0086D665 /* Main_iPhone.storyboard in Resources */,
 				F2B9E1EC189D7E060044DE04 /* UIImageView+AFNetworking.h in Resources */,
+				F28C2ABD18EA0F540047DA75 /* setting-single.png in Resources */,
 				F2ABD42118C4FFA9003F03E5 /* login-button.png in Resources */,
 				F284BFE718DBB30A0002EB81 /* decline-friend.png in Resources */,
 				F28C2AA818E744D00047DA75 /* setting-gender.png in Resources */,
