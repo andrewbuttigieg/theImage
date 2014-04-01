@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PlayerSettingsController : UIViewController
+@interface PlayerSettingsController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource>
+
+@property (strong, nonatomic) IBOutlet UIPickerView *picker;
+
+@property (strong, nonatomic) NSArray *genderArray;
 @property (strong, nonatomic) IBOutlet UITextField *height;
 @property (strong, nonatomic) IBOutlet UITextField *weight;
 @property (strong, nonatomic) IBOutlet UITextField *position;
@@ -22,6 +26,7 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *age;
 
+- (IBAction)genderClick:(id)sender;
 @property (strong, nonatomic) IBOutlet UITextField *gender;
 
 @property (strong, nonatomic) IBOutlet UITextField *email;

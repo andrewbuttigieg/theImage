@@ -59,6 +59,15 @@ bool movedAlready = false;
     self.name.delegate = self;
     self.surname.delegate = self;
     
+    self.genderArray =  [[NSArray alloc]initWithObjects:@"Male",@"Female",@"Hidden" , nil];
+    self.picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 100, 150)];
+    [self.picker setDataSource: self];
+    [self.picker setDelegate: self];
+    self.picker.showsSelectionIndicator = YES;
+    
+    self.gender.inputView = self.picker;
+    
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_me.php"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPMethod:@"POST"];
@@ -317,4 +326,44 @@ bool movedAlready = false;
         self.privateInformationView.frame= frame;
     }
 }
+- (IBAction)genderClick:(id)sender {
+}
+
+#pragma mark -
+#pragma mark PickerView DataSource
+
+- (NSInteger)numberOfComponentsInPickerView:
+(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView
+numberOfRowsInComponent:(NSInteger)component
+{
+    return self.genderArray.count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView
+             titleForRow:(NSInteger)row
+            forComponent:(NSInteger)component
+{
+    return [self.genderArray objectAtIndex:row];
+}
+
+#pragma mark -
+#pragma mark PickerView Delegate
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row
+      inComponent:(NSInteger)component
+{
+    NSString *genderX = self.genderArray[row];
+    
+/*    NSString *resultString = [[NSString alloc] initWithFormat:
+                              @"%.2f USD = %.2f %@", dollars, result,
+                              _countryNames[row]];*/
+
+    self.gender.text = genderX;
+}
+
+
 @end
