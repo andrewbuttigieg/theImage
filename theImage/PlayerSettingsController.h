@@ -52,6 +52,12 @@
 
 @property (strong, nonatomic) IBOutlet UIView *privateInformationView;
 
+@property (strong, nonatomic) IBOutlet UIView *lookingForPlayer;
+
+@property (strong, nonatomic) IBOutlet UISwitch *lookingForPartnerButton;
+- (IBAction)lookingForPartner:(id)sender;
+@property (strong, nonatomic) IBOutlet UIView *lookingForPartnerView;
+@property (strong, nonatomic) IBOutlet UIView *lookingForPartnerSwitch;
 
 
 

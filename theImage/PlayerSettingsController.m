@@ -36,13 +36,13 @@ bool movedAlready = false;
     [super viewDidLoad];
     self.title = @"Edit Profile";
     
-    self.scrollview.contentSize = CGSizeMake(320, 1433);
+    //self.scrollview.contentSize = CGSizeMake(320, 1433);
     /*CGPoint bottomOffset = CGPointMake(0, 180);
     [self.scrollview setContentOffset:bottomOffset animated:YES];
     */
     
-    self.scrollview.contentSize = CGSizeMake(320, 1433);
-    [self.scrollview setContentSize:(CGSizeMake(320, 1433))];
+    self.scrollview.contentSize = CGSizeMake(320, self.privateInformationView.frame.origin.y + self.privateInformationView.frame.size.height);
+    //[self.scrollview setContentSize:(CGSizeMake(320, 1433))];
 
     self.scrollview.userInteractionEnabled=YES;
     [self.scrollview setScrollEnabled:YES];
@@ -67,6 +67,7 @@ bool movedAlready = false;
     
     self.gender.inputView = self.picker;
     
+    [self lookingForPlayerAlign];    
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_me.php"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
@@ -140,21 +141,6 @@ bool movedAlready = false;
         self.activePlayerTextField != self.height){
         return  YES;
     }
-    ////for Decimal value start//////This code use use for allowing single decimal value
-    //    if ([theTextField.text rangeOfString:@"."].location == NSNotFound)
-    //    {
-    //        if ([string isEqualToString:@"."]) {
-    //            return YES;
-    //        }
-    //    }
-    //    else
-    //    {
-    //        if ([[theTextField.text substringFromIndex:[theTextField.text rangeOfString:@"."].location] length]>2)   // this allow 2 digit after decimal
-    //        {
-    //            return NO;
-    //        }
-    //    }
-    ////for Decimal value End//////This code use use for allowing single decimal value
     
     if (([string isEqualToString:@"."] || [string isEqualToString:@","]) &&
         ([self.activePlayerTextField.text rangeOfString:@"," options:NSCaseInsensitiveSearch].length > 0 ||
@@ -314,17 +300,70 @@ bool movedAlready = false;
 
 }
 
-- (IBAction)lookingForPlayer:(id)sender {
+- (void) lookingForPlayerAlign {
     if (self.lookingForPlayerButton.on){
+        CGRect frame = self.lookingForPartnerSwitch.frame;
+        frame.origin.y = self.lookingForPlayer.frame.origin.y +
+                        self.lookingForPlayer.frame.size.height + 18;//pass the cordinate which you want
+        
+        self.lookingForPartnerSwitch.frame= frame;
+        self.lookingForPlayer.hidden = FALSE;
+    }
+    else{
+        CGRect frame = self.lookingForPartnerSwitch.frame;
+        frame.origin.y = self.lookingForPlayerButton.frame.origin.y +
+                        self.lookingForPlayerButton.frame.size.height + 18;//pass the cordinate which you want
+        
+        self.lookingForPartnerSwitch.frame= frame;
+        self.lookingForPlayer.hidden = TRUE;
+    }
+    
+    CGRect frame2 = self.lookingForPartnerView.frame;
+    frame2.origin.y = self.lookingForPartnerSwitch.frame.origin.y
+        + self.lookingForPartnerSwitch.frame.size.height;
+    self.lookingForPartnerView.frame= frame2;
+    
+    if (self.lookingForPartnerButton.on){
         CGRect frame = self.privateInformationView.frame;
-        frame.origin.y=self.lookingForPlayerButton.frame.origin.y + 44 + 100;//pass the cordinate which you want
+        int y = self.lookingForPartnerView.frame.origin.y +
+            self.lookingForPartnerView.frame.size.height + 18;
+        frame.origin.y = y;//pass the cordinate which you want
+        
         self.privateInformationView.frame= frame;
+        self.lookingForPartnerView.hidden = FALSE;
     }
     else{
         CGRect frame = self.privateInformationView.frame;
-        frame.origin.y=self.lookingForPlayerButton.frame.origin.y + 44 + 18;//pass the cordinate which you want
+        int y = self.lookingForPartnerSwitch.frame.origin.y +
+            self.lookingForPartnerSwitch.frame.size.height + 18;
+        frame.origin.y = y;//pass the cordinate which you want
+        
         self.privateInformationView.frame= frame;
+        self.lookingForPartnerView.hidden = TRUE;
     }
+    
+    /*
+    if (self.lookingForPlayerButton.on){
+        CGRect frame = self.privateInformationView.frame;
+        frame.origin.y = self.lookingForPartnerView.frame.origin.y +
+                        self.lookingForPartnerView.frame.size.height + 18;
+        
+        self.privateInformationView.frame= frame;
+        self.lookingForPlayer.hidden = FALSE;
+    }
+    else{
+        CGRect frame = self.privateInformationView.frame;
+        frame.origin.y = self.lookingForPartnerView.frame.origin.y +
+            self.lookingForPartnerView.frame.size.height + 18;
+        
+        self.privateInformationView.frame= frame;
+        self.lookingForPlayer.hidden = TRUE;
+    }*/
+}
+
+- (IBAction)lookingForPlayer:(id)sender {
+    [self lookingForPlayerAlign];
+
 }
 - (IBAction)genderClick:(id)sender {
 }
@@ -358,12 +397,11 @@ numberOfRowsInComponent:(NSInteger)component
 {
     NSString *genderX = self.genderArray[row];
     
-/*    NSString *resultString = [[NSString alloc] initWithFormat:
-                              @"%.2f USD = %.2f %@", dollars, result,
-                              _countryNames[row]];*/
-
     self.gender.text = genderX;
 }
 
 
+- (IBAction)lookingForPartner:(id)sender {
+    [self lookingForPlayerAlign];
+}
 @end
