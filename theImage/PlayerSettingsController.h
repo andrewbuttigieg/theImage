@@ -59,6 +59,8 @@
 @property (strong, nonatomic) IBOutlet UIView *lookingForPartnerView;
 @property (strong, nonatomic) IBOutlet UIView *lookingForPartnerSwitch;
 
+@property (strong, nonatomic) IBOutlet UIView *lookingForPlayerSwitch;
 
+@property (strong, nonatomic) IBOutlet UILabel *marketLabel;
 
 @end

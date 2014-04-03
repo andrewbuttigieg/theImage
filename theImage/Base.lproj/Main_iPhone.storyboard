@@ -610,7 +610,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="About" minimumFontSize="17" id="dRZ-Xa-oBc">
-                                <rect key="frame" x="50" y="604" width="250" height="43"/>
+                                <rect key="frame" x="50" y="602" width="250" height="84"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -671,23 +671,6 @@
                                 <color key="textColor" red="0.79215693470000004" green="0.78823536630000002" blue="0.8078432083" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setting-single.png" id="AQT-hY-SlC">
-                                <rect key="frame" x="0.0" y="729" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looking for player" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uJt-wm-BbW">
-                                <rect key="frame" x="49" y="740" width="197" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="6Rl-js-guY">
-                                <rect key="frame" x="251" y="735" width="51" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="lookingForPlayer:" destination="Ah5-dz-Yya" eventType="valueChanged" id="b2h-Zw-243"/>
-                                </connections>
-                            </switch>
                             <view contentMode="scaleToFill" id="Da6-Hg-j9S">
                                 <rect key="frame" x="-20" y="1054" width="342" height="118"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -802,6 +785,30 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" id="0E3-nc-gsb">
+                                <rect key="frame" x="-20" y="729" width="360" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setting-single.png" id="AQT-hY-SlC">
+                                        <rect key="frame" x="20" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looking for player" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uJt-wm-BbW">
+                                        <rect key="frame" x="69" y="11" width="197" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="6Rl-js-guY">
+                                        <rect key="frame" x="271" y="6" width="51" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="lookingForPlayer:" destination="Ah5-dz-Yya" eventType="valueChanged" id="b2h-Zw-243"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.94117653369903564" green="0.93725496530532837" blue="0.95686280727386475" alpha="1" colorSpace="deviceRGB"/>
                     </scrollView>
@@ -828,6 +835,8 @@
                         <outlet property="lookingForPartnerView" destination="G9B-qZ-sYQ" id="Env-gR-E9B"/>
                         <outlet property="lookingForPlayer" destination="l4H-tE-vzw" id="9b0-YF-vxy"/>
                         <outlet property="lookingForPlayerButton" destination="6Rl-js-guY" id="1ts-nR-d3w"/>
+                        <outlet property="lookingForPlayerSwitch" destination="0E3-nc-gsb" id="y4J-hA-0Jh"/>
+                        <outlet property="marketLabel" destination="Pg4-KZ-ovC" id="bdh-rT-EJW"/>
                         <outlet property="name" destination="acH-Ax-Yax" id="C76-Zk-qQw"/>
                         <outlet property="phone" destination="3RM-HC-88m" id="4xQ-Wd-DXs"/>
                         <outlet property="position" destination="uf8-nP-TCg" id="oop-rA-0kn"/>

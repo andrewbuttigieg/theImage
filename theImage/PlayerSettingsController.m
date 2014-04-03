@@ -21,6 +21,7 @@
 
 CGSize keyboardSize;
 bool movedAlready = false;
+bool player = false;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,14 +37,6 @@ bool movedAlready = false;
     [super viewDidLoad];
     self.title = @"Edit Profile";
     
-    //self.scrollview.contentSize = CGSizeMake(320, 1433);
-    /*CGPoint bottomOffset = CGPointMake(0, 180);
-    [self.scrollview setContentOffset:bottomOffset animated:YES];
-    */
-    
-    self.scrollview.contentSize = CGSizeMake(320, self.privateInformationView.frame.origin.y + self.privateInformationView.frame.size.height);
-    //[self.scrollview setContentSize:(CGSizeMake(320, 1433))];
-
     self.scrollview.userInteractionEnabled=YES;
     [self.scrollview setScrollEnabled:YES];
     
@@ -102,7 +95,13 @@ bool movedAlready = false;
                     self.name.text = [dictionary objectForKey:@"Firstname"];
                     self.surname.text = [dictionary objectForKey:@"Lastname"];
                     
-                    
+                    if ([[dictionary objectForKey:@"UserType"] intValue] == 1){
+                        player = true;
+                        self.lookingForPartnerView.hidden = TRUE;
+                        self.lookingForPlayer.hidden = TRUE;
+                        self.lookingForPartnerSwitch.hidden = TRUE;
+                        self.lookingForPlayerSwitch.hidden = TRUE;
+                    }
                     NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
                     if ([imageURL length] > 5){
                         [self.toUpload setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
@@ -301,6 +300,7 @@ bool movedAlready = false;
 }
 
 - (void) lookingForPlayerAlign {
+    
     if (self.lookingForPlayerButton.on){
         CGRect frame = self.lookingForPartnerSwitch.frame;
         frame.origin.y = self.lookingForPlayer.frame.origin.y +
@@ -311,8 +311,8 @@ bool movedAlready = false;
     }
     else{
         CGRect frame = self.lookingForPartnerSwitch.frame;
-        frame.origin.y = self.lookingForPlayerButton.frame.origin.y +
-                        self.lookingForPlayerButton.frame.size.height + 18;//pass the cordinate which you want
+        frame.origin.y = self.lookingForPlayerSwitch.frame.origin.y +
+                        self.lookingForPlayerSwitch.frame.size.height + 18;//pass the cordinate which you want
         
         self.lookingForPartnerSwitch.frame= frame;
         self.lookingForPlayer.hidden = TRUE;
@@ -333,13 +333,23 @@ bool movedAlready = false;
         self.lookingForPartnerView.hidden = FALSE;
     }
     else{
-        CGRect frame = self.privateInformationView.frame;
-        int y = self.lookingForPartnerSwitch.frame.origin.y +
-            self.lookingForPartnerSwitch.frame.size.height + 18;
-        frame.origin.y = y;//pass the cordinate which you want
+        if (player){
+            CGRect frame = self.privateInformationView.frame;
+            int y = self.lookingForPartnerSwitch.frame.origin.y +
+                self.lookingForPartnerSwitch.frame.size.height + 18;
+            frame.origin.y = y;//pass the cordinate which you want
         
-        self.privateInformationView.frame= frame;
-        self.lookingForPartnerView.hidden = TRUE;
+            self.privateInformationView.frame= frame;
+            self.lookingForPartnerView.hidden = TRUE;
+        }
+        else{
+            CGRect frame = self.privateInformationView.frame;
+            int y = self.about.frame.origin.y +
+            self.about.frame.size.height + 18;
+            frame.origin.y = y;//pass the cordinate which you want
+            self.marketLabel.hidden = TRUE;
+            self.privateInformationView.frame= frame;
+        }
     }
     
     /*
@@ -359,6 +369,8 @@ bool movedAlready = false;
         self.privateInformationView.frame= frame;
         self.lookingForPlayer.hidden = TRUE;
     }*/
+    
+    self.scrollview.contentSize = CGSizeMake(320, self.privateInformationView.frame.origin.y + self.privateInformationView.frame.size.height + 10);
 }
 
 - (IBAction)lookingForPlayer:(id)sender {
