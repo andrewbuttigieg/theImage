@@ -58,7 +58,12 @@ bool movedHere = false;
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
     
-	// Do any additional setup after loading the view.
+}
+
+- (IBAction)BackgroundTap:(id)sender
+{
+    [self.email resignFirstResponder];
+    [self.password resignFirstResponder];
 }
 
 // This method will be called when the user information has been fetched
@@ -82,7 +87,6 @@ bool movedHere = false;
             //[self.delegate fetchingGroupsFailedWithError:error];
         } else {
             //[self.delegate receivedGroupsJSON:data];
-            NSError *localError = nil;
             NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                         options:0
                                                                           error:&error];
@@ -239,6 +243,46 @@ bool movedHere = false;
     
     if ([LogMeIn login:login :password]){
         [self GoToPlayer];
+    }
+}
+
+- (BOOL) validateEmail:(NSString *)emailStr {
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:emailStr];
+}
+- (IBAction)forgotPwd:(id)sender {
+
+    if ([self validateEmail:self.email.text]){
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/reset_password.php/"]];
+        [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+        [request setHTTPBody:[[NSString stringWithFormat:@"email=%@",
+                               self.email.text
+                               ]dataUsingEncoding:NSUTF8StringEncoding]];
+        [request setHTTPMethod:@"POST"];
+        
+        [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+            if (error) {
+                NSLog(@"Error:%@", error.localizedDescription);
+            }
+            else {
+                //success
+                NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                        options:0
+                                                                          error:&error];
+                NSString *value = [jsonArray[0] objectForKey:@"value"];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIAlertView *errorAlert = [[UIAlertView alloc]
+                                       initWithTitle:@"Forgot password" message:value delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [errorAlert show];
+                });
+            }
+        }];
+    }
+    else{
+        UIAlertView *errorAlert = [[UIAlertView alloc]
+                                   initWithTitle:@"Error" message:@"You need to enter a valid email" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [errorAlert show];
     }
 }
 @end

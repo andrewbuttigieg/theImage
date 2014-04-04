@@ -50,8 +50,8 @@ static int findPlayerID = 0;
 - (void)singleTapGestureCaptured:(UITapGestureRecognizer *)gesture
 {
     UIView *tappedView = [gesture.view hitTest:[gesture locationInView:gesture.view] withEvent:nil];
-    NSLog(@"Touch event on view: %@",[tappedView class]);
-    NSLog([NSString stringWithFormat:@"%d", tappedView.tag]);
+//    NSLog(@"Touch event on view: %@",[tappedView class]);
+//    NSLog([NSString stringWithFormat:@"%d", tappedView.tag]);
     
     
     /////////

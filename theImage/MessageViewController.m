@@ -147,7 +147,6 @@ static float top = 0;
             //[self.delegate fetchingGroupsFailedWithError:error];
         } else {
             //[self.delegate receivedGroupsJSON:data];
-            NSError *localError = nil;
             NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                         options:0
                                                                           error:&error];

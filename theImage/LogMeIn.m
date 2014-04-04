@@ -34,7 +34,7 @@
 }
 
 + (BOOL)login:(NSString*)login :(NSString*)password
-{
+{       
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/login_player.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPBody:[[NSString stringWithFormat:@"password=%@&email=%@",

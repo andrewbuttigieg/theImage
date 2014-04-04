@@ -60,7 +60,6 @@
         
         if (error) {
         } else {
-            NSError *localError = nil;
             NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                         options:0
                                                                           error:&error];
@@ -116,7 +115,7 @@
                                                 error:&error];
     
     // Construct a String around the Data from the response
-    NSString *http = [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+    //NSString *http = [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
 }
 
 - (IBAction)logOut:(id)sender {
@@ -151,7 +150,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	if ([segue.identifier isEqualToString:@"AddPlayer"])
+	/*if ([segue.identifier isEqualToString:@"AddPlayer"])
 	{
 		UINavigationController *navigationController =
         segue.destinationViewController;
@@ -169,7 +168,7 @@ objectAtIndex:0];
         *FindPlayerController = [[navigationController viewControllers]
                                  objectAtIndex:0];
 		//FindPlayerController.delegate = self;
-	}
+	}*/
 }
 
 #pragma mark - ViewControllerDetailDelegate
