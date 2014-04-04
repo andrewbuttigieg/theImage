@@ -52,17 +52,65 @@ bool player = false;
     self.name.delegate = self;
     self.surname.delegate = self;
     
-    self.genderArray =  [[NSArray alloc]initWithObjects:@"Male",@"Female",@"Hidden" , nil];
+    self.lfpCountry.delegate = self;
+    self.lfpPosition.delegate = self;
+    
+    self.surname.delegate = self;
+    self.phone.delegate = self;
+    
+    self.lfpartCountry.delegate = self;
+    
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_country.php"]];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [request setHTTPMethod:@"POST"];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (error) {
+        } else {
+            //NSError *localError = nil;
+            NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                        options:0
+                                                                          error:&error];
+//            NSLog(@"Data Dictionary is : %@", jsonArray);
+            for(NSDictionary *dictionary in jsonArray)
+            {
+                //NSLog(@"%@", [dictionary objectForKey:@"Country"]);
+                [self.countryArray addObject:[dictionary objectForKey:@"Country"]];
+            }
+            //[self.countryArray addObject:nil];
+        }
+    }];
+                           
+    
+    self.genderArray =  [[NSMutableArray alloc]initWithObjects:@"Male",@"Female",@"Hidden" , nil];
+    self.countryArray =  [[NSMutableArray alloc]initWithObjects:nil];
+
+    
     self.picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 100, 150)];
+    self.countryPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 100, 150)];
+    self.countryPicker2 = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 100, 150)];
+    
     [self.picker setDataSource: self];
     [self.picker setDelegate: self];
     self.picker.showsSelectionIndicator = YES;
     
+    [self.countryPicker setDataSource: self];
+    [self.countryPicker setDelegate: self];
+    self.countryPicker.showsSelectionIndicator = YES;
+    
+    [self.countryPicker2 setDataSource: self];
+    [self.countryPicker2 setDelegate: self];
+    self.countryPicker2.showsSelectionIndicator = YES;
+    
     self.gender.inputView = self.picker;
+    self.lfpCountry.inputView = self.countryPicker;
+    self.lfpartCountry.inputView = self.countryPicker2;
     
-    [self lookingForPlayerAlign];    
+    [self lookingForPlayerAlign];
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_me.php"]];
+    request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_me.php"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPMethod:@"POST"];
     
@@ -95,18 +143,42 @@ bool player = false;
                     self.name.text = [dictionary objectForKey:@"Firstname"];
                     self.surname.text = [dictionary objectForKey:@"Lastname"];
                     
+                    self.lfpCountry.text = [dictionary objectForKey:@"LFPCountry"];
+                    self.lfpPosition.text = [dictionary objectForKey:@"LFPPosition"];
+                    self.lfpartCountry.text = [dictionary objectForKey:@"PartnerCountry"];
+                    
+                    
                     if ([[dictionary objectForKey:@"UserType"] intValue] == 1){
+                        //player
                         player = true;
                         self.lookingForPartnerView.hidden = TRUE;
                         self.lookingForPlayer.hidden = TRUE;
                         self.lookingForPartnerSwitch.hidden = TRUE;
                         self.lookingForPlayerSwitch.hidden = TRUE;
+                        self.marketLabel.hidden = TRUE;
+                    }
+                    else{
+                        //not a player
+                        if ([[dictionary objectForKey:@"LookingForPlayer"] intValue] == 1){
+                            self.lookingForPlayerButton.on = TRUE;
+                        }
+                        else{
+                            self.lookingForPlayerButton.on = FALSE;
+                        }
+                        if ([[dictionary objectForKey:@"LookingForPartnership"] boolValue]){
+                            self.lookingForPartnerButton.on = TRUE;
+                        }
+                        else{
+                            self.lookingForPartnerButton.on = FALSE;
+                        }
                     }
                     NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
                     if ([imageURL length] > 5){
                         [self.toUpload setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
                         
                     }
+                    
+                    [self lookingForPlayerAlign];
                 }
             });
         }
@@ -137,7 +209,8 @@ bool player = false;
     
     if (self.activePlayerTextField != self.age &&
         self.activePlayerTextField != self.weight &&
-        self.activePlayerTextField != self.height){
+        self.activePlayerTextField != self.height &&
+        self.activePlayerTextField != self.phone){
         return  YES;
     }
     
@@ -170,11 +243,23 @@ bool player = false;
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.activePlayerTextField = textField;
+    float topY = 0;
+    if ([textField isEqual: self.lfpPosition] || [textField isEqual: self.lfpCountry]){
+        topY = self.lookingForPlayer.frame.origin.y;
+    }
+    
+    if ([textField isEqual:self.lfpartCountry]){
+        topY = self.lookingForPartnerSwitch.frame.origin.y;
+    }
+    
+    if ([textField isEqual:self.email] || [textField isEqual:self.phone]){
+        topY = self.privateInformationView.frame.origin.y;
+    }
     
     if (movedAlready){
         CGRect aRect = self.view.frame;
         aRect.size.height -= keyboardSize.height;
-        CGPoint scrollPoint = CGPointMake(0.0, self.activePlayerTextField.frame.origin.y - (keyboardSize.height-35));
+        CGPoint scrollPoint = CGPointMake(0.0, self.activePlayerTextField.frame.origin.y + topY - (keyboardSize.height-35));
         [self.scrollview setContentOffset:scrollPoint animated:YES];
     }
     
@@ -194,15 +279,26 @@ bool player = false;
 - (void)keyboardWasShown:(NSNotification *)notification
 {
     keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    float topY = 0;
+    if ([self.activePlayerTextField isEqual: self.lfpPosition] || [self.activePlayerTextField isEqual: self.lfpCountry]){
+        topY = self.lookingForPlayer.frame.origin.y;
+    }
+    if ([self.activePlayerTextField isEqual:self.lfpartCountry]){
+        topY = self.lookingForPartnerSwitch.frame.origin.y;
+    }
+    if ([self.activePlayerTextField isEqual:self.email] || [self.activePlayerTextField isEqual:self.phone]){
+        topY = self.privateInformationView.frame.origin.y;
+    }
 
     CGRect aRect = self.view.frame;
     aRect.size.height -= keyboardSize.height;
     CGRect rect = [[UIApplication sharedApplication] statusBarFrame];
     CGPoint xxx = self.activePlayerTextField.frame.origin;
-    xxx.y += self.navigationController.navigationBar.frame.size.height + rect.size.height;
+    xxx.y +=  topY + self.navigationController.navigationBar.frame.size.height + rect.size.height;
     
     if (!CGRectContainsPoint(aRect, xxx) ) {
-        CGPoint scrollPoint = CGPointMake(0.0, self.activePlayerTextField.frame.origin.y - (keyboardSize.height-35));
+        CGPoint scrollPoint = CGPointMake(0.0, self.activePlayerTextField.frame.origin.y + topY - (keyboardSize.height-35));
         [self.scrollview setContentOffset:scrollPoint animated:YES];
     }
     movedAlready = true;
@@ -257,8 +353,13 @@ bool player = false;
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/update_user.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"h=%@&w=%@&a=%@&p=%@&u=1&name=%@&surname=%@&phone=%@&email=%@",
-                           self.height.text, self.weight.text, self.about.text,self.position.text, self.name.text, self.surname.text,self.phone.text, self.email.text]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[NSString stringWithFormat:@"h=%@&w=%@&a=%@&p=%@&u=1&name=%@&surname=%@&phone=%@&email=%@&lookingForPlayer=%@&lfpCountry=%@&lfpPosition=%@&lookingForPartnership=%@&partnerCountry=%@",
+                           self.height.text, self.weight.text, self.about.text,self.position.text, self.name.text, self.surname.text,self.phone.text, self.email.text,
+                           self.lookingForPlayerButton.on ? @"1" : @"0",
+                           self.lfpCountry.text, self.lfpPosition.text,
+                           self.lookingForPartnerButton.on ? @"1" : @"0",
+                           self.lfpartCountry.text
+                           ]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     NSError *error = nil; NSURLResponse *response = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -324,32 +425,36 @@ bool player = false;
     self.lookingForPartnerView.frame= frame2;
     
     if (self.lookingForPartnerButton.on){
-        CGRect frame = self.privateInformationView.frame;
-        int y = self.lookingForPartnerView.frame.origin.y +
-            self.lookingForPartnerView.frame.size.height + 18;
-        frame.origin.y = y;//pass the cordinate which you want
-        
-        self.privateInformationView.frame= frame;
-        self.lookingForPartnerView.hidden = FALSE;
-    }
-    else{
-        if (player){
+        if (!player){
             CGRect frame = self.privateInformationView.frame;
-            int y = self.lookingForPartnerSwitch.frame.origin.y +
-                self.lookingForPartnerSwitch.frame.size.height + 18;
+            int y = self.lookingForPartnerView.frame.origin.y +
+                self.lookingForPartnerView.frame.size.height + 18;
             frame.origin.y = y;//pass the cordinate which you want
         
+            self.privateInformationView.frame= frame;
+            self.lookingForPartnerView.hidden = FALSE;
+        }
+    }
+    else{
+        
+        if (!player){
+            CGRect frame = self.privateInformationView.frame;
+            int y = self.lookingForPartnerSwitch.frame.origin.y +
+            self.lookingForPartnerSwitch.frame.size.height + 18;
+            frame.origin.y = y;//pass the cordinate which you want
+            
             self.privateInformationView.frame= frame;
             self.lookingForPartnerView.hidden = TRUE;
         }
-        else{
-            CGRect frame = self.privateInformationView.frame;
-            int y = self.about.frame.origin.y +
-            self.about.frame.size.height + 18;
-            frame.origin.y = y;//pass the cordinate which you want
-            self.marketLabel.hidden = TRUE;
-            self.privateInformationView.frame= frame;
-        }
+    }
+    
+    if (player){
+        CGRect frame = self.privateInformationView.frame;
+        int y = self.about.frame.origin.y +
+        self.about.frame.size.height + 18;
+        frame.origin.y = y;//pass the cordinate which you want
+        self.marketLabel.hidden = TRUE;
+        self.privateInformationView.frame= frame;
     }
     
     /*
@@ -392,14 +497,46 @@ bool player = false;
 - (NSInteger)pickerView:(UIPickerView *)pickerView
 numberOfRowsInComponent:(NSInteger)component
 {
-    return self.genderArray.count;
+    if([pickerView isEqual: self.picker]){
+        return self.genderArray.count;
+    }
+    else if ([pickerView isEqual: self.countryPicker]){
+        return [self.countryArray count];
+    }
+    else if ([pickerView isEqual: self.countryPicker2]){
+        return [self.countryArray count];
+    }
+    else{
+        return 0;
+    }
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView
              titleForRow:(NSInteger)row
             forComponent:(NSInteger)component
 {
-    return [self.genderArray objectAtIndex:row];
+    if([pickerView isEqual: self.picker]){
+        return [self.genderArray objectAtIndex:row];
+    }
+    else if ([pickerView isEqual: self.countryPicker]){
+        if (row < [self.countryArray count]){
+            return [self.countryArray objectAtIndex:row];
+        }
+        else{
+            return NULL;
+        }
+    }
+    else if ([pickerView isEqual: self.countryPicker2]){
+        if (row < [self.countryArray count]){
+            return [self.countryArray objectAtIndex:row];
+        }
+        else{
+            return NULL;
+        }
+    }
+    else{
+        return NULL;
+    }
 }
 
 #pragma mark -
@@ -407,9 +544,21 @@ numberOfRowsInComponent:(NSInteger)component
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row
       inComponent:(NSInteger)component
 {
-    NSString *genderX = self.genderArray[row];
-    
-    self.gender.text = genderX;
+    if([pickerView isEqual: self.picker]){
+        NSString *genderX = self.genderArray[row];
+        self.gender.text = genderX;
+    }
+    else if ([pickerView isEqual: self.countryPicker]){
+        NSString *country = self.countryArray[row];
+        self.lfpCountry.text = country;
+    }
+    else if ([pickerView isEqual: self.countryPicker2]){
+        NSString *country = self.countryArray[row];
+        self.lfpartCountry.text = country;
+    }
+    else{
+
+    }
 }
 
 

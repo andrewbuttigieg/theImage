@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
 
-@interface SignUpController : UIViewController<FBLoginViewDelegate>
+@interface SignUpController : UIViewController<FBLoginViewDelegate, UITextFieldDelegate>
 
 
 @property (strong, nonatomic) IBOutlet UITextField *accountType;

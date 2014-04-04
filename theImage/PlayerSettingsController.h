@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PlayerSettingsController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource>
+@interface PlayerSettingsController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource,
+    UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UIPickerView *picker;
+@property (strong, nonatomic) IBOutlet UIPickerView *countryPicker;
+@property (strong, nonatomic) IBOutlet UIPickerView *countryPicker2;
 
-@property (strong, nonatomic) NSArray *genderArray;
+@property (strong, nonatomic) NSMutableArray *genderArray;
+@property (strong, nonatomic) NSMutableArray *countryArray;
+
 @property (strong, nonatomic) IBOutlet UITextField *height;
 @property (strong, nonatomic) IBOutlet UITextField *weight;
 @property (strong, nonatomic) IBOutlet UITextField *position;
@@ -49,6 +54,7 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *lfpCountry;
 @property (strong, nonatomic) IBOutlet UIImageView *lfpCountryImage;
+@property (strong, nonatomic) IBOutlet UITextField *lfpartCountry;
 
 @property (strong, nonatomic) IBOutlet UIView *privateInformationView;
 
@@ -62,5 +68,7 @@
 @property (strong, nonatomic) IBOutlet UIView *lookingForPlayerSwitch;
 
 @property (strong, nonatomic) IBOutlet UILabel *marketLabel;
+
+
 
 @end

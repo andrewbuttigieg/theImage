@@ -429,7 +429,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account type" minimumFontSize="17" id="9LZ-Yj-gXd">
                                         <rect key="frame" x="50" y="116" width="254" height="30"/>
@@ -680,14 +680,14 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" id="DcT-dy-1xT">
-                                        <rect key="frame" x="70" y="29" width="250" height="43"/>
+                                        <rect key="frame" x="69" y="29" width="250" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone" minimumFontSize="17" id="3RM-HC-88m">
-                                        <rect key="frame" x="69" y="73" width="250" height="43"/>
+                                        <rect key="frame" x="69" y="74" width="250" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -830,6 +830,7 @@
                         <outlet property="lfpCountryImage" destination="fTJ-Fo-3RF" id="VLu-by-qxe"/>
                         <outlet property="lfpPosition" destination="kmQ-bg-G4f" id="gsW-Rm-P6f"/>
                         <outlet property="lfpPositionImage" destination="bME-Bf-1OE" id="cYe-SF-MJq"/>
+                        <outlet property="lfpartCountry" destination="Efh-st-FTJ" id="3Yc-ns-0mD"/>
                         <outlet property="lookingForPartnerButton" destination="tFj-3x-qL3" id="Szw-c5-iHG"/>
                         <outlet property="lookingForPartnerSwitch" destination="W1C-GE-Hxf" id="ufw-Mq-L8x"/>
                         <outlet property="lookingForPartnerView" destination="G9B-qZ-sYQ" id="Env-gR-E9B"/>
@@ -935,10 +936,10 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" id="GSm-Ds-LQA">
-                                        <rect key="frame" x="45" y="247" width="275" height="30"/>
+                                        <rect key="frame" x="45" y="244" width="275" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
                             </scrollView>
