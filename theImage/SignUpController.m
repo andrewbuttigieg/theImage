@@ -31,6 +31,12 @@ bool moved = false;
 {
     [super viewDidLoad];
     
+    self.userTypeArray =  [[NSMutableArray alloc]initWithObjects:@"Male",@"Female",@"Hidden" , nil];
+    self.picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 100, 150)];
+    [self.picker setDataSource: self];
+    [self.picker setDelegate: self];
+    self.picker.showsSelectionIndicator = YES;
+    self.accountType.inputView = self.picker;
     
     FBLoginView *loginView = [[FBLoginView alloc] init];
     // Align the button in the center horizontally
@@ -199,5 +205,37 @@ bool moved = false;
             });
         }
     }
+}
+
+
+#pragma mark -
+#pragma mark PickerView DataSource
+
+- (NSInteger)numberOfComponentsInPickerView:
+(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView
+numberOfRowsInComponent:(NSInteger)component
+{
+    return self.userTypeArray.count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView
+             titleForRow:(NSInteger)row
+            forComponent:(NSInteger)component
+{
+    return [self.userTypeArray objectAtIndex:row];
+}
+
+#pragma mark -
+#pragma mark PickerView Delegate
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row
+      inComponent:(NSInteger)component
+{
+    NSString *type = self.userTypeArray[row];
+    self.accountType.text = type;
 }
 @end

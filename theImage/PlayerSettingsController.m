@@ -150,7 +150,7 @@ bool player = false;
                     
                     if ([[dictionary objectForKey:@"UserType"] intValue] == 1){
                         //player
-                        player = true;
+                        player = false;
                         self.lookingForPartnerView.hidden = TRUE;
                         self.lookingForPlayer.hidden = TRUE;
                         self.lookingForPartnerSwitch.hidden = TRUE;
@@ -448,14 +448,6 @@ bool player = false;
         }
     }
     
-    if (player){
-        CGRect frame = self.privateInformationView.frame;
-        int y = self.about.frame.origin.y +
-        self.about.frame.size.height + 18;
-        frame.origin.y = y;//pass the cordinate which you want
-        self.marketLabel.hidden = TRUE;
-        self.privateInformationView.frame= frame;
-    }
     
     /*
     if (self.lookingForPlayerButton.on){

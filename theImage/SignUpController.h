@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
 
-@interface SignUpController : UIViewController<FBLoginViewDelegate, UITextFieldDelegate>
+@interface SignUpController : UIViewController<FBLoginViewDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
+@property (strong, nonatomic) IBOutlet UIPickerView *picker;
+@property (strong, nonatomic) NSMutableArray *userTypeArray;
 
 @property (strong, nonatomic) IBOutlet UITextField *accountType;
 @property (strong, nonatomic) IBOutlet UITextField *name;
-
 @property (strong, nonatomic) IBOutlet UITextField *lastName;
 @property (strong, nonatomic) IBOutlet UITextField *weight;
 @property (strong, nonatomic) IBOutlet UITextField *email;
