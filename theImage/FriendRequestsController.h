@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PlayerController.h"
 
 @interface FriendRequestsController : UITableViewController
 

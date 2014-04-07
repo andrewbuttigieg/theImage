@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 //#import "FindPlayerController.h"
 
-@interface PlayerController : UIViewController/*<FindPlayerControllerDelegate>*/
+@interface PlayerController : UIViewController<UIActionSheetDelegate>
+/*<FindPlayerControllerDelegate>*/
 
     @property (nonatomic) NSInteger *playerID;
 @property (strong, nonatomic) IBOutlet UILabel *name;
@@ -18,24 +19,12 @@
 @property (strong, nonatomic) IBOutlet UILabel *postion;
 @property (strong, nonatomic) IBOutlet UILabel *playerName;
 @property (strong, nonatomic) IBOutlet UIImageView *playerImage;
-@property (strong, nonatomic) IBOutlet UIButton *addFriendButton;
-@property (strong, nonatomic) IBOutlet UILabel *areFriend;
-@property (strong, nonatomic) IBOutlet UILabel *reqWaiting;
 @property (strong, nonatomic) IBOutlet UIScrollView *theView;
 @property (strong, nonatomic) IBOutlet UIButton *message;
 
-
-@property (strong, nonatomic) IBOutlet UILabel *beFriendLabel;
-@property (strong, nonatomic) IBOutlet UIButton *dontWantToFriend;
-@property (strong, nonatomic) IBOutlet UIButton *acceptFriendButton;
-
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *playerInteract;
 - (IBAction)playerInteractionClick:(id)sender;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *acceptFriend;
 
 - (IBAction)sendMessage:(id)sender;
-- (IBAction)addFriend:(id)sender;
-- (IBAction)noFriendClick:(id)sender;
-- (IBAction)yeahFriendClick:(id)sender;
 
 @end

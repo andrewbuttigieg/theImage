@@ -1047,23 +1047,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Be Friend" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hT6-Fc-qM0">
-                                        <rect key="frame" x="193" y="119" width="78" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EdP-Lq-JQO">
-                                        <rect key="frame" x="86" y="107" width="82" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <accessibility key="accessibilityConfiguration" label="Add Friend"/>
-                                        <state key="normal" title="Add Friend">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="addFriend:" destination="iMm-Ef-769" eventType="touchUpInside" id="OJD-uD-AaG"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lga-QM-KZw">
                                         <rect key="frame" x="32" y="398" width="136" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1079,17 +1062,6 @@
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rKl-Qy-U4l">
-                                        <rect key="frame" x="237" y="344" width="46" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.1019607931" green="0.69019609689999994" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
-                                        <state key="normal" title="Yeah">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="yeahFriendClick:" destination="iMm-Ef-769" eventType="touchUpInside" id="LXR-pp-qas"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n1J-L8-T2j">
                                         <rect key="frame" x="32" y="420" width="297" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1105,29 +1077,6 @@
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Request sent)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LDc-vt-3fd">
-                                        <rect key="frame" x="188" y="148" width="115" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Friend)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dHl-HC-2Ho">
-                                        <rect key="frame" x="269" y="116" width="117" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dQB-MP-afi">
-                                        <rect key="frame" x="291" y="344" width="46" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.1019607931" green="0.69019609689999994" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
-                                        <state key="normal" title="No">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="noFriendClick:" destination="iMm-Ef-769" eventType="touchUpInside" id="X21-Pe-VgS"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ILH-Aj-vjj">
                                         <rect key="frame" x="208" y="398" width="63" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1165,7 +1114,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="L0z-cm-a8Z">
-                        <barButtonItem key="leftBarButtonItem" title="Accept" id="rxP-u1-0pg"/>
                         <barButtonItem key="rightBarButtonItem" title="Connect" id="ZCV-ZB-w1W">
                             <connections>
                                 <action selector="playerInteractionClick:" destination="iMm-Ef-769" id="HYA-Vq-07G"/>
@@ -1174,11 +1122,6 @@
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="acceptFriend" destination="rxP-u1-0pg" id="opZ-Ow-rBA"/>
-                        <outlet property="addFriendButton" destination="EdP-Lq-JQO" id="i8Q-L9-r9V"/>
-                        <outlet property="areFriend" destination="dHl-HC-2Ho" id="y8g-Lh-hK7"/>
-                        <outlet property="beFriendLabel" destination="hT6-Fc-qM0" id="Mh0-Dj-hcb"/>
-                        <outlet property="dontWantToFriend" destination="dQB-MP-afi" id="FPQ-3Q-CmI"/>
                         <outlet property="height" destination="alj-xI-BSX" id="vRx-SC-CBK"/>
                         <outlet property="message" destination="FDI-Q3-pXV" id="XaY-Oh-laP"/>
                         <outlet property="name" destination="AoK-Jn-gip" id="avl-oZ-nld"/>
@@ -1186,7 +1129,6 @@
                         <outlet property="playerInteract" destination="ZCV-ZB-w1W" id="6aJ-bL-lKM"/>
                         <outlet property="playerName" destination="AoK-Jn-gip" id="AxA-S2-CnX"/>
                         <outlet property="postion" destination="n1J-L8-T2j" id="SQ0-zw-vcx"/>
-                        <outlet property="reqWaiting" destination="LDc-vt-3fd" id="wT5-1s-1tH"/>
                         <outlet property="theView" destination="rCj-Bl-mrB" id="Pej-Mj-CBB"/>
                         <outlet property="weight" destination="ILH-Aj-vjj" id="ZtJ-6K-Xt7"/>
                     </connections>

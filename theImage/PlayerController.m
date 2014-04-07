@@ -26,7 +26,49 @@
 }
 
 - (IBAction)playerInteractionClick:(id)sender {
+    
+    if ([self.playerInteract.title isEqualToString:@"Respond"]){
+    
+        UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Do you want to be friends:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
+                            @"Accept",
+                            @"Decline",
+                            nil];
+        popup.tag = 1;
+        [popup showInView:[UIApplication sharedApplication].keyWindow];
+    }
+    if ([self.playerInteract.title isEqualToString:@"Connect"]){
+        self.playerInteract.enabled = FALSE;
+        [self addFriend];
+    }
 }
+
+- (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (popup.tag) {
+        case 1: {
+            switch (buttonIndex) {
+                case 0:
+                    if ([self.playerInteract.title isEqualToString:@"Respond"]){
+                        //accept
+                        [self acceptFriend];
+                    }
+                    break;
+                case 1:
+                    if ([self.playerInteract.title isEqualToString:@"Respond"]){
+                        //decline
+                        [self declineFriend];
+                    }
+                    break;
+                default:
+                    break;
+            }
+            break;
+        }
+        default:
+            break;
+    }
+}
+
 
 - (IBAction)sendMessage:(id)sender {
     /////////
@@ -39,7 +81,7 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (IBAction)addFriend:(id)sender{
+- (void)addFriend{
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/add_friend.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPBody:[[NSString stringWithFormat:@"p2=%d", (int)self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
@@ -65,12 +107,14 @@
                 NSString *returned = [jsonArray[0] objectForKey:@"value"];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Your ID!"
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
                                                                 message:[NSString stringWithFormat:@"%@",returned]
                                                                delegate:self
-                                                      cancelButtonTitle:@"Go away box"
+                                                      cancelButtonTitle:@"Ok"
                                                       otherButtonTitles:nil];
                     [alert show];
+                    self.playerInteract.title = @"Requested";
+                    self.playerInteract.enabled = FALSE;
                 });
             }
             
@@ -78,7 +122,7 @@
     }];
 }
 
-- (IBAction)noFriendClick:(id)sender {
+-(void)declineFriend{
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/deny_friend.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPBody:[[NSString stringWithFormat:@"p2=%d", (int)self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
@@ -104,12 +148,14 @@
                                        NSString *returned = [jsonArray[0] objectForKey:@"value"];
                                        
                                        dispatch_async(dispatch_get_main_queue(), ^{
-                                           UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Your ID!"
+                                           UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
                                                                                            message:[NSString stringWithFormat:@"%@",returned]
                                                                                           delegate:self
-                                                                                 cancelButtonTitle:@"Go away box"
+                                                                                 cancelButtonTitle:@"Ok"
                                                                                  otherButtonTitles:nil];
                                            [alert show];
+                                           self.playerInteract.title = @"Declined";
+                                           self.playerInteract.enabled = FALSE;
                                        });
                                    }
                                    
@@ -118,7 +164,7 @@
                            }];
 }
 
-- (IBAction)yeahFriendClick:(id)sender {
+-(void)acceptFriend{
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/accept_friend.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
@@ -141,13 +187,14 @@
                                    {
                                        NSString *returned = [jsonArray[0] objectForKey:@"value"];
                                        dispatch_async(dispatch_get_main_queue(), ^{
-                                           UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Your ID!"
+                                           UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
                                                                                            message:[NSString stringWithFormat:@"%@",returned]
                                                                                           delegate:self
-                                                                                 cancelButtonTitle:@"Go away box"
+                                                                                 cancelButtonTitle:@"Ok"
                                                                                  otherButtonTitles:nil];
                                            [alert show];
-                                           
+                                           self.playerInteract.title = @"Friend";
+                                           self.playerInteract.enabled = FALSE;
                                        });
                                    }
                                    
@@ -180,10 +227,7 @@
     int p2 = ViewController.playerID;
     
     if (p == p2){
-        self.addFriendButton.hidden = true;
-    }
-    else {
-        self.addFriendButton.hidden = false;
+        self.playerInteract.enabled = FALSE;
     }
     
     self.theView.contentSize = CGSizeMake(320, 480);
@@ -232,7 +276,7 @@
                     }
                     else{
                         self.playerInteract.title = @"Connect";
-                        self.addFriendButton.hidden = FALSE;
+                        self.playerInteract.enabled = TRUE;
                     }
                     
                     if (accepted ==1){
@@ -244,7 +288,6 @@
                     }
                     else{
                         //you are not friend yet
-                        self.areFriend.hidden = TRUE;
                     }
                     if (accepted == 0 && youPending != 1){
                         //
@@ -257,7 +300,7 @@
                         //not a friend yet, but req there
                         
                         self.playerInteract.enabled = TRUE;
-                        self.playerInteract.title = @"Decline";
+                        self.playerInteract.title = @"Respond";
                        // self.acceptFriend.hidden = FALSE;
                         /*
                         

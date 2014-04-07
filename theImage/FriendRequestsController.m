@@ -37,6 +37,21 @@
     return [self.dateForFR count];
 }
 
+- (void)tableView: (UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath {
+    
+    int idx=indexPath.row;
+    
+    NSString *o = [self.userIDForFR objectAtIndex:idx];
+    
+    /////////
+    NSString * storyboardName = @"Main_iPhone";
+    NSString * viewControllerID = @"PlayerController";
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    PlayerController * controller = (PlayerController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+    controller.playerID = [o integerValue];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 -(void)acceptClicked:(UIButton*)sender
 {
     NSLog(@"%ld", (long)sender.tag);
