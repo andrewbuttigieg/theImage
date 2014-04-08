@@ -248,36 +248,34 @@
             {
                 //NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
                 NSLog(@"%@", jsonArray);
+
+                NSDictionary *friendsD = [dictionary valueForKey:@"Friends"];
                 
-                NSDictionary *theUser = [dictionary valueForKey:@"User"];
-                NSLog(@"%@", theUser);
+                //get you friends
+                for (id key in friendsD) {
+                    NSDictionary *anObject = [friendsD objectForKey:key];
+                    NSLog(@"%@", anObject);
+                    /* Do something with anObject. */
+                }
                 
-                NSArray *ttt = [theUser valueForKey:@"0"];
-                NSLog(@"%@", ttt);
+                NSDictionary *theUserD = [dictionary valueForKey:@"User"];
+                NSArray *theUser = [theUserD valueForKey:@"0"];
                 
-                /*
-                NSMutableArray *jsonArray2 = [NSJSONSerialization JSONObjectWithData:theUser
-                                                                            options:0
-                                                                              error:&error];
-                for(NSDictionary *dictionary2 in jsonArray2)
-                {
-                    NSLog(@"%@", [dictionary2 valueForKey:@"Position"]);
-                }*/
                 dispatch_async(dispatch_get_main_queue(), ^{
                     //get the player information
-                    self.playerName.text = [NSString stringWithFormat:@"%@ %@", [ttt valueForKey:@"Firstname"], [ttt valueForKey:@"Lastname"]];
-                    self.height.text = [ttt valueForKey:@"Height"];
-                    self.weight.text = [ttt valueForKey:@"Weight"];
-                    self.postion.text = [ttt valueForKey:@"Position"];
+                    self.playerName.text = [NSString stringWithFormat:@"%@ %@", [theUser valueForKey:@"Firstname"], [theUser valueForKey:@"Lastname"]];
+                    self.height.text = [theUser valueForKey:@"Height"];
+                    self.weight.text = [theUser valueForKey:@"Weight"];
+                    self.postion.text = [theUser valueForKey:@"Position"];
                     
                     int accepted = -1;
-                    if ([dictionary objectForKey:@"Accepted"] != nil){
-                        accepted = [[dictionary objectForKey:@"Accepted"] intValue];
+                    if ([theUser valueForKey:@"Accepted"] != nil){
+                        accepted = [[theUser valueForKey:@"Accepted"] intValue];
                     }
                     //////
                     int youPending = -1;
-                    if ([dictionary objectForKey:@"YouPending"] != nil){
-                        youPending = [[dictionary objectForKey:@"YouPending"] intValue];
+                    if ([theUser valueForKey:@"YouPending"] != nil){
+                        youPending = [[theUser valueForKey:@"YouPending"] intValue];
                     }
                     
                     if (accepted == 0 || accepted == 1 || accepted == 2){
@@ -328,7 +326,7 @@
                     
                     
                     //get the player image
-                    NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
+                    NSString *imageURL = [theUser valueForKey:@"PhotoURL"];
                     
                     
                     if ([imageURL length] > 5){
