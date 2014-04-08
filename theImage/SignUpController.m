@@ -31,7 +31,7 @@ bool moved = false;
 {
     [super viewDidLoad];
     
-    self.userTypeArray =  [[NSMutableArray alloc]initWithObjects:@"Male",@"Female",@"Hidden" , nil];
+    self.userTypeArray =  [[NSMutableArray alloc]initWithObjects:@"Player",@"Scout	",@"Agent" , nil];
     self.picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 100, 150)];
     [self.picker setDataSource: self];
     [self.picker setDelegate: self];

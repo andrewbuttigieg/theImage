@@ -95,12 +95,10 @@
         if (error) {
             //[self.delegate fetchingGroupsFailedWithError:error];
         } else {
-            NSLog(@"%@", data);
             
             NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                         options:0
                                                                           error:&error];
-            NSLog(@"%@", jsonArray);
             for(NSDictionary *dictionary in jsonArray)
             {
                 //NSLog(@"Data Dictionary is : %@",jsonArray);
@@ -136,12 +134,9 @@
                                if (error) {
                                    //[self.delegate fetchingGroupsFailedWithError:error];
                                } else {
-                                   NSLog(@"%@", data);
-                                   
                                    NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                                                options:0
                                                                                                  error:&error];
-                                   NSLog(@"%@", jsonArray);
                                    for(NSDictionary *dictionary in jsonArray)
                                    {
                                        //NSLog(@"Data Dictionary is : %@",jsonArray);
@@ -234,7 +229,7 @@
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_user.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"u=%d&me=%d", p, p2]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[NSString stringWithFormat:@"u=%d", p, p2]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     //NSError *error = nil; NSURLResponse *response = nil;
 //    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -252,13 +247,28 @@
             for(NSDictionary *dictionary in jsonArray)
             {
                 //NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
+                NSLog(@"%@", jsonArray);
                 
+                NSDictionary *theUser = [dictionary valueForKey:@"User"];
+                NSLog(@"%@", theUser);
+                
+                NSArray *ttt = [theUser valueForKey:@"0"];
+                NSLog(@"%@", ttt);
+                
+                /*
+                NSMutableArray *jsonArray2 = [NSJSONSerialization JSONObjectWithData:theUser
+                                                                            options:0
+                                                                              error:&error];
+                for(NSDictionary *dictionary2 in jsonArray2)
+                {
+                    NSLog(@"%@", [dictionary2 valueForKey:@"Position"]);
+                }*/
                 dispatch_async(dispatch_get_main_queue(), ^{
                     //get the player information
-                    self.playerName.text = [NSString stringWithFormat:@"%@ %@", [dictionary objectForKey:@"Firstname"], [dictionary objectForKey:@"Lastname"]];
-                    self.height.text = [dictionary objectForKey:@"Height"];
-                    self.weight.text = [dictionary objectForKey:@"Weight"];
-                    self.postion.text = [dictionary objectForKey:@"Position"];
+                    self.playerName.text = [NSString stringWithFormat:@"%@ %@", [ttt valueForKey:@"Firstname"], [ttt valueForKey:@"Lastname"]];
+                    self.height.text = [ttt valueForKey:@"Height"];
+                    self.weight.text = [ttt valueForKey:@"Weight"];
+                    self.postion.text = [ttt valueForKey:@"Position"];
                     
                     int accepted = -1;
                     if ([dictionary objectForKey:@"Accepted"] != nil){
