@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 //#import "FindPlayerController.h"
 
-@interface PlayerController : UIViewController<UIActionSheetDelegate>
+@interface PlayerController : UIViewController<UIActionSheetDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
 /*<FindPlayerControllerDelegate>*/
 
     @property (nonatomic) NSInteger *playerID;
@@ -26,5 +26,8 @@
 - (IBAction)playerInteractionClick:(id)sender;
 
 - (IBAction)sendMessage:(id)sender;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollview;
+@property (strong, nonatomic) IBOutlet UILabel *aboutLabel;
+@property (strong, nonatomic) IBOutlet UIScrollView *playerConnectionView;
 
 @end

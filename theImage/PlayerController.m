@@ -207,6 +207,8 @@
 //    self.title =
     //self.name.text = [NSString stringWithFormat:@"%d hello!", self.playerID];
     
+    
+    
     NSString *empty = [NSString stringWithFormat:@""];
     self.name.text = empty;
     self.postion.text = empty;
@@ -225,11 +227,10 @@
         self.playerInteract.enabled = FALSE;
     }
     
-    self.theView.contentSize = CGSizeMake(320, 480);
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_user.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"u=%d", p, p2]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[NSString stringWithFormat:@"u=%d", p]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     //NSError *error = nil; NSURLResponse *response = nil;
 //    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -251,12 +252,46 @@
 
                 NSDictionary *friendsD = [dictionary valueForKey:@"Friends"];
                 
+                
                 //get you friends
-                for (id key in friendsD) {
-                    NSDictionary *anObject = [friendsD objectForKey:key];
-                    NSLog(@"%@", anObject);
-                    /* Do something with anObject. */
-                }
+              /*  dispatch_async(dispatch_get_main_queue(), ^{
+                    int total = 0;
+                    for (id key in friendsD) {
+                        NSDictionary *anObject = [friendsD objectForKey:key];
+                        NSLog(@"%@", anObject);
+                    
+                        NSString *imageURL = [anObject objectForKey:@"PhotoURL"];
+                        NSLog(@"%@", imageURL);
+                        
+                        
+                        UIImage *image;
+                        
+                        if ([imageURL length] > 5){
+                            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                        }
+                        else{
+                            //default image
+                            image = [UIImage imageNamed:@"player.png"];
+                        }
+                        UIImageView *iv = [[UIImageView alloc] initWithImage:image];
+                        //CGRect frame;
+                        iv.frame=CGRectMake(total * 106, 20, 106,106);
+                        iv.tag = [[anObject objectForKey:@"UserID"] intValue];
+                        //UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
+                        //[iv addGestureRecognizer:singleTap];
+                        [iv setMultipleTouchEnabled:YES];
+                        [iv setUserInteractionEnabled:YES];
+                    
+                        total++;
+                        [self.playerConnectionView addSubview:iv];
+               
+                    [self.playerConnectionView setContentSize:(CGSizeMake(total * 106, 206))];
+                        self.playerConnectionView.backgroundColor=[UIColor brownColor];
+                    self.playerConnectionView.userInteractionEnabled=YES;
+                    [self.playerConnectionView setScrollEnabled:YES];
+
+                    }
+                });*/
                 
                 NSDictionary *theUserD = [dictionary valueForKey:@"User"];
                 NSArray *theUser = [theUserD valueForKey:@"0"];
@@ -267,6 +302,10 @@
                     self.height.text = [theUser valueForKey:@"Height"];
                     self.weight.text = [theUser valueForKey:@"Weight"];
                     self.postion.text = [theUser valueForKey:@"Position"];
+                    self.aboutLabel.text = [theUser valueForKey:@"About"];
+                    
+                    self.aboutLabel.numberOfLines = 0;
+                    [self.aboutLabel sizeToFit];
                     
                     int accepted = -1;
                     if ([theUser valueForKey:@"Accepted"] != nil){
@@ -338,16 +377,67 @@
                         self.playerImage.image = [UIImage imageNamed:@"player.png"];
                     }
                 });
+                
+                
+                //friend people
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    int y;
+                    int x = 10;
+                    
+                    int total = 0;
+                    y = self.aboutLabel.frame.origin.y + self.aboutLabel.frame.size.height + 10;
+                    UIScrollView *secondScroll=[[UIScrollView alloc]initWithFrame:CGRectMake(x, y, 320, 150)];
+                    //to enable scrolling content size is kept more the 320
+                    //                secondScroll.backgroundColor=[UIColor greenColor];
+                    
+                    for (id key in friendsD)
+                    {
+                        NSDictionary *anObject = [friendsD objectForKey:key];
+                        //[secondScroll release];
+                        //[self.scrollview setContentSize:CGSizeMake(320, self.scrollview.contentSize.height+110)];
+                        
+                        NSString *imageURL = [anObject objectForKey:@"PhotoURL"];
+                        NSLog(@"%@", imageURL);
+                        
+                        UIImage *image;
+                        if ([imageURL length] > 5){
+                            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                        }
+                        else{
+                            //default image
+                            image = [UIImage imageNamed:@"player.png"];
+                        }
+                        UIImageView *iv = [[UIImageView alloc] initWithImage:image];
+                        iv.layer.cornerRadius = 30.0;
+                        iv.layer.masksToBounds = YES;
+                        iv.layer.borderColor = [UIColor lightGrayColor].CGColor;
+                        iv.layer.borderWidth = 0.3;
+                        iv.frame=CGRectMake(total * 70, 45, 60,60);
+                        
+                        UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(total * 70, 100, 60,30)];
+                        lb.textColor = [UIColor colorWithRed:(221.0f/255.0f) green:(221.0f/255.0f) blue:(135.0f/255.0f) alpha:1];
+                        lb.text = [anObject objectForKey:@"Firstname"];
+                        lb.textAlignment = NSTextAlignmentCenter;
+                        
+                        
+                        [secondScroll addSubview:iv];
+                        [secondScroll addSubview:lb];
+                        ++total;
+                    }
+                    [secondScroll setContentSize:CGSizeMake(total * 70, 60)];
+                    [self.scrollview addSubview:secondScroll];
+                    
+                    self.scrollview.contentSize = CGSizeMake(320, y + secondScroll.frame.size.height);
+                });
             }
         }
     }];
+    
 	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.scrollview.userInteractionEnabled=YES;
+    [self.scrollview setScrollEnabled:YES];
+    self.scrollview.contentSize = CGSizeMake(320, 700);
+    
 }
 
 @end
