@@ -248,9 +248,11 @@
             for(NSDictionary *dictionary in jsonArray)
             {
                 //NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
-                NSLog(@"%@", jsonArray);
+                //NSLog(@"%@", jsonArray);
 
-                NSDictionary *friendsD = [dictionary valueForKey:@"Friends"];
+                NSDictionary *playerD = [dictionary valueForKey:@"Players"];
+                NSDictionary *scoutD = [dictionary valueForKey:@"Scouts"];
+                NSDictionary *agentD = [dictionary valueForKey:@"Agents"];
                 
                 
                 //get you friends
@@ -381,23 +383,50 @@
                 
                 //friend people
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    for (int i = 0; i < 3; i++){
+                    
                     int y;
-                    int x = 10;
+                    int x = 0;
                     
                     int total = 0;
-                    y = self.aboutLabel.frame.origin.y + self.aboutLabel.frame.size.height + 10;
+                    y = self.aboutLabel.frame.origin.y + self.aboutLabel.frame.size.height + 10
+                        + (i *150);
                     UIScrollView *secondScroll=[[UIScrollView alloc]initWithFrame:CGRectMake(x, y, 320, 150)];
+                        
+                    CALayer *bottomBorder = [CALayer layer];
+                        
+                    bottomBorder.frame = CGRectMake(0.0f, 0.0f, secondScroll.frame.size.width, 1.0f);
+                        
+                    bottomBorder.backgroundColor = [UIColor colorWithWhite:0.8f
+                                                                         alpha:1.0f].CGColor;
+                    [secondScroll.layer addSublayer:bottomBorder];
+//                    secondScroll.layer.borderColor=[[UIColor colorWithRed:(20.0f/255.0f) green:(20.0f/255.0f) blue:(20.0f/255.0f) alpha:1]CGColor];
+  //                  secondScroll.layer.borderWidth= 1.0f;
                     //to enable scrolling content size is kept more the 320
                     //                secondScroll.backgroundColor=[UIColor greenColor];
                     
-                    for (id key in friendsD)
+                        NSDictionary *temp;
+                        
+                        
+                        if (i == 0)
+                            temp = playerD;
+                        if (i == 1)
+                            temp = scoutD;
+                        if (i == 2)
+                            temp = agentD;
+                        
+                    for (id key in temp)
                     {
-                        NSDictionary *anObject = [friendsD objectForKey:key];
+                        NSDictionary *anObject;
+                        
+                        anObject = [temp objectForKey:key];
+                        
                         //[secondScroll release];
                         //[self.scrollview setContentSize:CGSizeMake(320, self.scrollview.contentSize.height+110)];
                         
                         NSString *imageURL = [anObject objectForKey:@"PhotoURL"];
-                        NSLog(@"%@", imageURL);
+                        //NSLog(@"%@", imageURL);
                         
                         UIImage *image;
                         if ([imageURL length] > 5){
@@ -412,10 +441,15 @@
                         iv.layer.masksToBounds = YES;
                         iv.layer.borderColor = [UIColor lightGrayColor].CGColor;
                         iv.layer.borderWidth = 0.3;
-                        iv.frame=CGRectMake(total * 70, 45, 60,60);
+                        iv.frame=CGRectMake(total * 70 + 10, 45, 60,60);
                         
-                        UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(total * 70, 100, 60,30)];
-                        lb.textColor = [UIColor colorWithRed:(221.0f/255.0f) green:(221.0f/255.0f) blue:(135.0f/255.0f) alpha:1];
+                        UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(total * 70 + 10, 100, 60,30)];
+                        if (i == 0)
+                            lb.textColor = [UIColor colorWithRed:(221.0f/255.0f) green:(221.0f/255.0f) blue:(135.0f/255.0f) alpha:1];
+                        else if (i == 1)
+                            lb.textColor = [UIColor colorWithRed:(225.0f/255.0f) green:(144.0f/255.0f) blue:(2.0f/255.0f) alpha:1];
+                        else if (i == 2)
+                            lb.textColor = [UIColor colorWithRed:(0.0f/255.0f) green:(158.0f/255.0f) blue:(219.0f/255.0f) alpha:1];
                         lb.text = [anObject objectForKey:@"Firstname"];
                         lb.textAlignment = NSTextAlignmentCenter;
                         
@@ -424,10 +458,21 @@
                         [secondScroll addSubview:lb];
                         ++total;
                     }
-                    [secondScroll setContentSize:CGSizeMake(total * 70, 60)];
+                    [secondScroll setContentSize:CGSizeMake(total * 70 + 10, 60)];
+                        
+                    UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 60,30)];
+                    lb.textColor = [UIColor blackColor];
+                        lb.font = 
+                        lb.text = @"Player Connections";
+                    lb.textAlignment = NSTextAlignmentLeft;
+                    [secondScroll addSubview:lb];
                     [self.scrollview addSubview:secondScroll];
                     
+                    
+                    
+                    
                     self.scrollview.contentSize = CGSizeMake(320, y + secondScroll.frame.size.height);
+                    }
                 });
             }
         }
