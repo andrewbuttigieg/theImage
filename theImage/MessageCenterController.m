@@ -81,6 +81,7 @@
     cell.date.text = [self.dateForTable
                       objectAtIndex: [indexPath row]];
 
+    
     cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.imageForTable objectAtIndex: [indexPath row]]]]];
     
     cell.personImage.layer.cornerRadius = 28.0;
@@ -112,41 +113,38 @@
     return cell;
 }
 
-/*
-loads the view - we will get the users messages from the server so that they can choose which ones to read..
- */
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+
+-(void)load{
     
     self.dateForTable = [[NSMutableArray alloc]
                          initWithObjects:nil];
-
+    
     self.textForTable = [[NSMutableArray alloc]
                          initWithObjects:nil];
-
-    self.nameForTable  = [[NSMutableArray alloc]
-                         initWithObjects:nil];
-
-    self.imageForTable = [[NSMutableArray alloc]
-                         initWithObjects:nil];
     
-    self.userIDForTable = [[NSMutableArray alloc]
+    self.nameForTable  = [[NSMutableArray alloc]
                           initWithObjects:nil];
     
-    self.userTypeForTable = [[NSMutableArray alloc]
+    self.imageForTable = [[NSMutableArray alloc]
+                          initWithObjects:nil];
+    
+    self.userIDForTable = [[NSMutableArray alloc]
                            initWithObjects:nil];
-
+    
+    self.userTypeForTable = [[NSMutableArray alloc]
+                             initWithObjects:nil];
+    
+    
     
     //UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
     //self.myData = [NSMutableArray arrayWithCapacity:1];
     
     
-    int me = ViewController.playerID;
+    //int me = ViewController.playerID;
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_messages.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"u=%d", me]dataUsingEncoding:NSUTF8StringEncoding]];
+    //[request setHTTPBody:[[NSString stringWithFormat:@"u=%d", me]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -160,9 +158,9 @@ loads the view - we will get the users messages from the server so that they can
             dispatch_async(dispatch_get_main_queue(), ^{
                 for(NSDictionary *dictionary in jsonArray)
                 {
-/*                    NSLog(@"Data Dictionary is : %@",dictionary);
-                    NSLog(@"%@", [dictionary objectForKey:@"Firstname"]);*/
-                                    
+                    /*                    NSLog(@"Data Dictionary is : %@",dictionary);
+                     NSLog(@"%@", [dictionary objectForKey:@"Firstname"]);*/
+                    
                     [self.nameForTable addObject:[dictionary objectForKey:@"Firstname"]];
                     [self.imageForTable addObject:[dictionary objectForKey:@"PhotoURL"]];
                     [self.dateForTable addObject:[dictionary objectForKey:@"Timestamp"]];
@@ -171,9 +169,33 @@ loads the view - we will get the users messages from the server so that they can
                     [self.userIDForTable addObject:[dictionary objectForKey:@"UserID"]];
                 }
                 [self.tableView reloadData];
+                [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
             });
         }
     }];
+}
+
+- (void)stopRefresh
+
+{
+    [self.refreshControl endRefreshing];
+    
+}
+/*
+loads the view - we will get the users messages from the server so that they can choose which ones to read..
+ */
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    [refresh addTarget:self action:@selector(load) forControlEvents:UIControlEventValueChanged];
+    
+    self.refreshControl = refresh;
+    
+    [self load];    
 }
 
 - (void)didReceiveMemoryWarning

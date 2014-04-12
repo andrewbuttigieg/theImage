@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PHFComposeBarView.h"
 
-@interface MessageViewController : UIViewController<PHFComposeBarViewDelegate>
+@interface MessageViewController : UIViewController<PHFComposeBarViewDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *containerMain;
 @property (nonatomic) int chattingToID;

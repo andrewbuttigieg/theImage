@@ -22,11 +22,14 @@
 
 #import "UIButton+AFNetworking.h"
 
-#import <objc/runtime.h>
+#import <objc/message.h>
 
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
 
 #import "AFHTTPRequestOperation.h"
+
+static char kAFImageRequestOperationKey;
+static char kAFBackgroundImageRequestOperationKey;
 
 @interface UIButton (_AFNetworking)
 @property (readwrite, nonatomic, strong, setter = af_setImageRequestOperation:) AFHTTPRequestOperation *af_imageRequestOperation;
@@ -47,19 +50,19 @@
 }
 
 - (AFHTTPRequestOperation *)af_imageRequestOperation {
-    return (AFHTTPRequestOperation *)objc_getAssociatedObject(self, @selector(af_imageRequestOperation));
+    return (AFHTTPRequestOperation *)objc_getAssociatedObject(self, &kAFImageRequestOperationKey);
 }
 
 - (void)af_setImageRequestOperation:(AFHTTPRequestOperation *)imageRequestOperation {
-    objc_setAssociatedObject(self, @selector(af_imageRequestOperation), imageRequestOperation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &kAFImageRequestOperationKey, imageRequestOperation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (AFHTTPRequestOperation *)af_backgroundImageRequestOperation {
-    return (AFHTTPRequestOperation *)objc_getAssociatedObject(self, @selector(af_backgroundImageRequestOperation));
+    return (AFHTTPRequestOperation *)objc_getAssociatedObject(self, &kAFBackgroundImageRequestOperationKey);
 }
 
 - (void)af_setBackgroundImageRequestOperation:(AFHTTPRequestOperation *)imageRequestOperation {
-    objc_setAssociatedObject(self, @selector(af_backgroundImageRequestOperation), imageRequestOperation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &kAFBackgroundImageRequestOperationKey, imageRequestOperation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end
@@ -96,7 +99,6 @@
 
     __weak __typeof(self)weakSelf = self;
     self.af_imageRequestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:urlRequest];
-    self.af_imageRequestOperation.responseSerializer = [AFImageResponseSerializer serializer];
     [self.af_imageRequestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         __strong __typeof(weakSelf)strongSelf = weakSelf;
         if ([[urlRequest URL] isEqual:[operation.request URL]]) {
@@ -105,6 +107,8 @@
             } else if (responseObject) {
                 [strongSelf setImage:responseObject forState:state];
             }
+        } else {
+
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if ([[urlRequest URL] isEqual:[operation.response URL]]) {
@@ -147,7 +151,6 @@
 
     __weak __typeof(self)weakSelf = self;
     self.af_backgroundImageRequestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:urlRequest];
-    self.af_backgroundImageRequestOperation.responseSerializer = [AFImageResponseSerializer serializer];
     [self.af_backgroundImageRequestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         __strong __typeof(weakSelf)strongSelf = weakSelf;
         if ([[urlRequest URL] isEqual:[operation.request URL]]) {
@@ -156,6 +159,8 @@
             } else if (responseObject) {
                 [strongSelf setBackgroundImage:responseObject forState:state];
             }
+        } else {
+
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if ([[urlRequest URL] isEqual:[operation.response URL]]) {

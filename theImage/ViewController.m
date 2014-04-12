@@ -10,12 +10,14 @@
 #import "ViewControllerDetail.h"
 #import "FindPlayerController.h"
 #import "AFHTTPRequestOperationManager.h"
-#import "AFNetworking.h"
+//#import "AFNetworking.h"
 #import "UIActivityIndicatorView+AFNetworking.h"
 #import "UIAlertView+AFNetworking.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "StartController.h"
 #import "LogMeIn.h"
+
+#import "VideoController.h"
 
 @interface ViewController() //  <ViewControllerDetailDelegate>
 
@@ -136,6 +138,17 @@
     }
 }
 
+- (IBAction)open:(id)sender {
+    NSString * storyboardName = @"Main_iPhone";
+    NSString * viewControllerID = @"VideoController";
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    VideoController * controller = (VideoController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+    //controller.chattingToID = [o intValue];
+    //controller.name = name;
+    controller.playerID = playerID;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 
 
 - (IBAction)logoPressed:(id)sender {
@@ -246,13 +259,13 @@ objectAtIndex:0];
                                            //[self.delegate fetchingGroupsFailedWithError:error];
                                        }
                                        else {
-                                           NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                           /*NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                                                        options:0
                                                                                                          error:&error];
                                            for(NSDictionary *dictionary in jsonArray)
                                            {
                                                NSString *returned = [jsonArray[0] objectForKey:@"value"];
-                                           }
+                                           }*/
                                       }
                                    }];
             ////

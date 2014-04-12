@@ -163,6 +163,9 @@
                       objectAtIndex: [indexPath row]];
     cell.date.text = [self.dateForFR
                       objectAtIndex: [indexPath row]];
+    cell.country.text = [self.locationForFR
+                      objectAtIndex: [indexPath row]];
+
     
     cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.imageForFR objectAtIndex: [indexPath row]]]]];
     
@@ -211,6 +214,9 @@
     self.userTypeForFR =[[NSMutableArray alloc]
                          initWithObjects:nil];
     
+    self.locationForFR =[[NSMutableArray alloc]
+                         initWithObjects:nil];
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_friend_requests.php"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPMethod:@"POST"];
@@ -223,7 +229,6 @@
             //[self.delegate fetchingGroupsFailedWithError:error];
         } else {
             //[self.delegate receivedGroupsJSON:data];
-            NSError *localError = nil;
             NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                         options:0
                                                                           error:&error];
@@ -238,6 +243,11 @@
                     //[self.textForFR addObject:[dictionary objectForKey:@"Text"]];
                     [self.userTypeForFR addObject:[dictionary objectForKey:@"UserType"]];
                     [self.userIDForFR addObject:[dictionary objectForKey:@"UserID"]];
+                    if (![dictionary objectForKey:@"Country"]){
+                        //[self.locationForFR addObject:[dictionary objectForKey:@"Country"]];
+                    }
+                    else
+                         [self.locationForFR addObject:[dictionary objectForKey:@"Country"]];
                 }
                 [self.tableView reloadData];
                 [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];

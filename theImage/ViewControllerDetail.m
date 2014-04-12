@@ -54,7 +54,7 @@ static NSString *youTubeVideoHTML = @"<!DOCTYPE html><html><head><style>body{mar
     
     NSString *newHTML = @"<html>\
     <style>body{padding:0;margin:0;}</style>\
-    <iframe width=\"640\" height=\"390\" src=\"http://www.youtube.com/embed/zL0CCsdS1cE?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>\
+    <iframe width=\"300\" height=\"200\" src=\"http://www.youtube.com/embed/zL0CCsdS1cE?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>\
     </html>";
     [self.webView loadHTMLString:newHTML baseURL:nil];
     

@@ -166,7 +166,8 @@ static float top = 0;
             });
         }
     }];
-    NSTimer *aTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(aTime) userInfo:nil repeats:YES];
+    
+    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(aTime) userInfo:nil repeats:YES];
 
 }
 

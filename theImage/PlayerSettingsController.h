@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PlayerSettingsController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource,
-    UITextFieldDelegate>
+    UITextFieldDelegate, UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIPickerView *picker;
 @property (strong, nonatomic) IBOutlet UIPickerView *countryPicker;

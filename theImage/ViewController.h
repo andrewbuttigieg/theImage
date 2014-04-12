@@ -37,6 +37,8 @@
 - (IBAction)getHTTP:(id)sender;
 - (IBAction)logOut:(id)sender;
 
+- (IBAction)open:(id)sender;
+
 + (int)playerID;
 + (NSString *)facebookID;
 @end

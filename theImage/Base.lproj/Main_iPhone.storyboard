@@ -221,7 +221,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="OrR-TH-9sn" kind="modal" identifier="AddPlayer" modalTransitionStyle="coverVertical" id="9D6-yT-bsU"/>
+                                    <action selector="open:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="RXl-hX-WLa"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Nxk-pr-ves">
@@ -853,26 +853,6 @@
             <point key="canvasLocation" x="3442" y="1689"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="8k5-nK-M2L">
-            <objects>
-                <viewController id="soH-vH-lxv" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="x1S-QT-ong">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EditPlayer.jpg" id="Qpl-ra-We9">
-                                <rect key="frame" x="0.0" y="-517" width="320" height="1007"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="m1t-py-xUH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3865" y="1689"/>
-        </scene>
-        <!--View Controller-->
         <scene sceneID="2qn-OK-je4">
             <objects>
                 <viewController id="ZST-u8-4Sx" sceneMemberID="viewController">
@@ -1143,7 +1123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RzT-b2-8gC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3840" y="2354"/>
+            <point key="canvasLocation" x="4808" y="442"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="p02-0M-Oq7">
@@ -1158,7 +1138,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ML7-GL-jq4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5082" y="-584"/>
+            <point key="canvasLocation" x="4302" y="-136"/>
         </scene>
         <!--View Controller Detail - Play Video-->
         <scene sceneID="hEF-nL-Jnx">
@@ -1198,12 +1178,12 @@
                                 </connections>
                             </button>
                             <webView contentMode="scaleToFill" id="Xph-AF-CRz">
-                                <rect key="frame" x="12" y="246" width="288" height="302"/>
+                                <rect key="frame" x="11" y="71" width="300" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="U1e-HR-vCV">
-                                <rect key="frame" x="20" y="218" width="97" height="30"/>
+                                <rect key="frame" x="20" y="376" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Play Video">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1223,7 +1203,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E0V-tn-0dq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5554" y="-614"/>
+            <point key="canvasLocation" x="4702" y="-154"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nga-yG-Os0">
@@ -1343,7 +1323,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k25-Ie-Ce3">
-                                            <rect key="frame" x="70" y="28" width="153" height="21"/>
+                                            <rect key="frame" x="70" y="29" width="153" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
@@ -1373,6 +1353,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="accept" destination="qm7-cM-njd" id="7Pb-BY-ZMh"/>
+                                    <outlet property="country" destination="k25-Ie-Ce3" id="EGE-Ku-PjK"/>
                                     <outlet property="deny" destination="cNN-cc-AhP" id="yyo-SJ-gfC"/>
                                     <outlet property="name" destination="U9g-Xo-X6I" id="aIg-ik-9BY"/>
                                     <outlet property="personImage" destination="NHk-o9-kOG" id="BYm-mb-JdZ"/>
@@ -1409,6 +1390,63 @@
             </objects>
             <point key="canvasLocation" x="4338" y="530"/>
         </scene>
+        <!--Video Controller - Videos-->
+        <scene sceneID="WBw-BD-wb7">
+            <objects>
+                <viewController storyboardIdentifier="VideoController" title="Videos" id="qd1-DB-gTk" customClass="VideoController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VD5-Ht-dwd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="zSu-gh-3r6">
+                                <rect key="frame" x="0.0" y="114" width="320" height="366"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </scrollView>
+                            <view hidden="YES" contentMode="scaleToFill" id="YRl-Sz-aXC">
+                                <rect key="frame" x="0.0" y="76" width="320" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert Youtube or Vimeo link" minimumFontSize="17" id="pEF-My-Iuc">
+                                        <rect key="frame" x="20" y="0.0" width="195" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PT3-5A-3PT">
+                                        <rect key="frame" x="223" y="0.0" width="77" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="0.67843137254901964" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="addVideoButton:" destination="qd1-DB-gTk" eventType="touchUpInside" id="sy0-Ca-Z1k"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Zy5-Mc-PbT"/>
+                    <connections>
+                        <outlet property="addVideo" destination="YRl-Sz-aXC" id="ymc-ts-rjx"/>
+                        <outlet property="addVideoLink" destination="pEF-My-Iuc" id="WEu-0a-GZD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q4I-Ut-Kqb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4549" y="1223"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="rKw-8p-tbJ">
             <objects>
@@ -1427,9 +1465,26 @@
             </objects>
             <point key="canvasLocation" x="2917" y="1689"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Y64-U6-ZeO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4JP-sB-Dj9" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fyJ-2i-SIM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qd1-DB-gTk" kind="relationship" relationship="rootViewController" id="Oo8-wR-06P"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="owB-d1-9h7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4086" y="1212"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="EditPlayer.jpg" width="640" height="2014"/>
         <image name="LogoPlayerCV.png" width="452" height="151"/>
         <image name="accept-friend.png" width="41" height="39"/>
         <image name="decline-friend.png" width="41" height="39"/>

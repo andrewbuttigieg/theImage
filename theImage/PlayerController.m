@@ -25,6 +25,22 @@
     return self;
 }
 
+- (void)singleTapGestureCaptured:(UITapGestureRecognizer *)gesture
+{
+    UIView *tappedView = [gesture.view hitTest:[gesture locationInView:gesture.view] withEvent:nil];
+    //    NSLog(@"Touch event on view: %@",[tappedView class]);
+    //    NSLog([NSString stringWithFormat:@"%d", tappedView.tag]);
+    
+    
+    /////////
+    NSString * storyboardName = @"Main_iPhone";
+    NSString * viewControllerID = @"PlayerController";
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    PlayerController * controller = (PlayerController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+    controller.playerID = tappedView.tag;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 - (IBAction)playerInteractionClick:(id)sender {
     
     if ([self.playerInteract.title isEqualToString:@"Respond"]){
@@ -248,52 +264,16 @@
             for(NSDictionary *dictionary in jsonArray)
             {
                 //NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
-                //NSLog(@"%@", jsonArray);
+                NSLog(@"%@", dictionary);
 
                 NSDictionary *playerD = [dictionary valueForKey:@"Players"];
                 NSDictionary *scoutD = [dictionary valueForKey:@"Scouts"];
                 NSDictionary *agentD = [dictionary valueForKey:@"Agents"];
                 
+                int playerCount = [[dictionary valueForKey:@"PlayersCount"] intValue];
+                int scoutCount = [[dictionary valueForKey:@"ScoutsCount"] intValue];
+                int agentCount = [[dictionary valueForKey:@"AgentsCount"] intValue];
                 
-                //get you friends
-              /*  dispatch_async(dispatch_get_main_queue(), ^{
-                    int total = 0;
-                    for (id key in friendsD) {
-                        NSDictionary *anObject = [friendsD objectForKey:key];
-                        NSLog(@"%@", anObject);
-                    
-                        NSString *imageURL = [anObject objectForKey:@"PhotoURL"];
-                        NSLog(@"%@", imageURL);
-                        
-                        
-                        UIImage *image;
-                        
-                        if ([imageURL length] > 5){
-                            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
-                        }
-                        else{
-                            //default image
-                            image = [UIImage imageNamed:@"player.png"];
-                        }
-                        UIImageView *iv = [[UIImageView alloc] initWithImage:image];
-                        //CGRect frame;
-                        iv.frame=CGRectMake(total * 106, 20, 106,106);
-                        iv.tag = [[anObject objectForKey:@"UserID"] intValue];
-                        //UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
-                        //[iv addGestureRecognizer:singleTap];
-                        [iv setMultipleTouchEnabled:YES];
-                        [iv setUserInteractionEnabled:YES];
-                    
-                        total++;
-                        [self.playerConnectionView addSubview:iv];
-               
-                    [self.playerConnectionView setContentSize:(CGSizeMake(total * 106, 206))];
-                        self.playerConnectionView.backgroundColor=[UIColor brownColor];
-                    self.playerConnectionView.userInteractionEnabled=YES;
-                    [self.playerConnectionView setScrollEnabled:YES];
-
-                    }
-                });*/
                 
                 NSDictionary *theUserD = [dictionary valueForKey:@"User"];
                 NSArray *theUser = [theUserD valueForKey:@"0"];
@@ -384,14 +364,15 @@
                 //friend people
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
+                    int newY = 0;
                     for (int i = 0; i < 3; i++){
                     
                     int y;
                     int x = 0;
                     
                     int total = 0;
-                    y = self.aboutLabel.frame.origin.y + self.aboutLabel.frame.size.height + 10
-                        + (i *150);
+                    y = self.aboutLabel.frame.origin.y + self.aboutLabel.frame.size.height + 10 + newY;
+                        
                     UIScrollView *secondScroll=[[UIScrollView alloc]initWithFrame:CGRectMake(x, y, 320, 150)];
                         
                     CALayer *bottomBorder = [CALayer layer];
@@ -443,6 +424,12 @@
                         iv.layer.borderWidth = 0.3;
                         iv.frame=CGRectMake(total * 70 + 10, 45, 60,60);
                         
+                        iv.tag = [[anObject objectForKey:@"UserID"] intValue];
+                        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
+                        [iv addGestureRecognizer:singleTap];
+                        [iv setMultipleTouchEnabled:YES];
+                        [iv setUserInteractionEnabled:YES];
+                        
                         UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(total * 70 + 10, 100, 60,30)];
                         if (i == 0)
                             lb.textColor = [UIColor colorWithRed:(221.0f/255.0f) green:(221.0f/255.0f) blue:(135.0f/255.0f) alpha:1];
@@ -458,20 +445,32 @@
                         [secondScroll addSubview:lb];
                         ++total;
                     }
-                    [secondScroll setContentSize:CGSizeMake(total * 70 + 10, 60)];
                         
-                    UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 60,30)];
-                    lb.textColor = [UIColor blackColor];
-                        lb.font = 
-                        lb.text = @"Player Connections";
-                    lb.textAlignment = NSTextAlignmentLeft;
-                    [secondScroll addSubview:lb];
-                    [self.scrollview addSubview:secondScroll];
-                    
-                    
-                    
-                    
-                    self.scrollview.contentSize = CGSizeMake(320, y + secondScroll.frame.size.height);
+                    if (total > 0){
+                        newY += 150;
+                        [secondScroll setContentSize:CGSizeMake(total * 70 + 10, 60)];
+                            
+                        UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 60,30)];
+                        lb.textColor = [UIColor blackColor];
+                            
+                        [lb setFont:[UIFont systemFontOfSize:15]];
+                        if (i == 0)
+                            lb.text = [NSString stringWithFormat:@"Player Connections (%d)", playerCount];
+                        else if (i == 1)
+                            lb.text = [NSString stringWithFormat:@"Scout Connections (%d)", scoutCount];
+                        else if (i == 2)
+                            lb.text = [NSString stringWithFormat:@"Agent Connections (%d)", agentCount];
+                        [lb sizeToFit];
+                            
+                        lb.textAlignment = NSTextAlignmentLeft;
+                        [secondScroll addSubview:lb];
+                        [self.scrollview addSubview:secondScroll];
+                        
+                        
+                        
+                        
+                        self.scrollview.contentSize = CGSizeMake(320, y + secondScroll.frame.size.height);
+                    }
                     }
                 });
             }
