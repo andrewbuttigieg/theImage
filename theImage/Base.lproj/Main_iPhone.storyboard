@@ -1399,22 +1399,22 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="zSu-gh-3r6">
-                                <rect key="frame" x="0.0" y="114" width="320" height="366"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </scrollView>
                             <view hidden="YES" contentMode="scaleToFill" id="YRl-Sz-aXC">
-                                <rect key="frame" x="0.0" y="76" width="320" height="30"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert Youtube or Vimeo link" minimumFontSize="17" id="pEF-My-Iuc">
-                                        <rect key="frame" x="20" y="0.0" width="195" height="30"/>
+                                        <rect key="frame" x="20" y="12" width="195" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PT3-5A-3PT">
-                                        <rect key="frame" x="223" y="0.0" width="77" height="30"/>
+                                        <rect key="frame" x="223" y="12" width="77" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.67843137254901964" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Done">
@@ -1441,6 +1441,7 @@
                     <connections>
                         <outlet property="addVideo" destination="YRl-Sz-aXC" id="ymc-ts-rjx"/>
                         <outlet property="addVideoLink" destination="pEF-My-Iuc" id="WEu-0a-GZD"/>
+                        <outlet property="scrollview" destination="zSu-gh-3r6" id="lOf-8h-y5i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q4I-Ut-Kqb" userLabel="First Responder" sceneMemberID="firstResponder"/>

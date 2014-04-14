@@ -15,6 +15,12 @@
 
 @implementation VideoController
 
+
+static float top = 0;
++ (float) top{
+    return top;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,6 +33,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //lets us scroll and hold it
+    self.scrollview.userInteractionEnabled=YES;
+    [self.scrollview setScrollEnabled:YES];
     
     if (self.playerID == ViewController.playerID){
         self.addVideo.hidden = false;    
@@ -60,6 +70,46 @@
                     
                     [alert show];
                 }
+                else{
+                   /* UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV"
+                                                                   message: [dictionary objectForKey:@"Comment"]
+                                                                  delegate: self
+                                                         cancelButtonTitle:@"Ok"
+                                                         otherButtonTitles:nil];
+                    
+                    
+                    [alert show];*/
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+
+                       /* NSString *newHTML = @"<html>\
+                        <style>body{padding:0;margin:0;}</style>\
+                        <iframe width=\"300\" height=\"200\" src=\"http://www.youtube.com/embed/zL0CCsdS1cE?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>\
+                        </html>";*/
+                        
+                        NSString *newHTML = [NSString stringWithFormat:@"<html>\
+                                             <style>body{padding:0;margin:0;}</style>\
+                                             <iframe width=\"300\" height=\"200\" src=\"%@\" frameborder=\"0\" allowfullscreen></iframe>\
+                                             </html>", [dictionary objectForKey:@"URL"]];
+                        //http://www.youtube.com/embed/zL0CCsdS1cE?autoplay=1
+                        
+                        //[self.webView loadHTMLString:newHTML baseURL:nil];
+                        
+                        CGRect webFrame = CGRectMake(10.0, 0.0, 300.0, 200.0);
+                        UIWebView *bubbleView = [[UIWebView alloc] initWithFrame:webFrame];
+                        bubbleView.backgroundColor = [UIColor blackColor];
+                        bubbleView.frame=CGRectMake(10, top, 300, 200);
+                        [bubbleView loadHTMLString:newHTML baseURL:nil];
+                        
+                        //where to put the text
+                        top += 220;
+                        [self.scrollview addSubview:bubbleView];
+                        
+                        //set the scroll of the view
+                        self.scrollview.contentSize = CGSizeMake(320, top);
+                    });
+                }
+                
+                
                 NSLog(@"%@", dictionary);
             }
         }

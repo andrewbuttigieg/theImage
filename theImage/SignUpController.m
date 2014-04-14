@@ -8,6 +8,9 @@
 
 #import "SignUpController.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "JNKeychain.h"
+#import "LogMeIn.h"
+#import "MainVC.h"
 
 @interface SignUpController ()
 
@@ -79,7 +82,7 @@ bool moved = false;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/reg_player.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPBody:
-     [[NSString stringWithFormat:@"password=%@&email=%@&name=%@&lname=%@&weight=%dusertype=%d&facebookID=%@&gender=%@",
+     [[NSString stringWithFormat:@"password=%@&email=%@&name=%@&lname=%@&weight=%dusertype=%d&facebookid=%@&gender=%@",
                            @"", user[@"email"], user.first_name, user.last_name, 0, 1, user.id, user[@"gender"]]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     NSError *error = nil; NSURLResponse *response = nil;
@@ -109,6 +112,14 @@ bool moved = false;
                                                           cancelButtonTitle:@"Ok"
                                                           otherButtonTitles:nil];
                     [alert show];
+                }
+                else{
+                    NSString *login = self.email.text;
+                    NSString *password = self.password.text;
+                    
+                    if ([LogMeIn login:login :password]){
+                        [self GoToPlayer];
+                    }
                 }
             });
         }
@@ -168,6 +179,15 @@ bool moved = false;
     // Dispose of any resources that can be recreated.
 }
 
+-(void)GoToPlayer{
+    NSString * storyboardName = @"Main_iPhone";
+    NSString * viewControllerID = @"Main";
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    MainVC * controller = (MainVC *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+    
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 - (IBAction)Done:(id)sender {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/reg_player.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
@@ -186,7 +206,6 @@ bool moved = false;
         NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                     options:0
                                                                       error:&error];
-        NSLog(@"%@", jsonArray);
         for(NSDictionary *dictionary in jsonArray)
         {
             //NSLog(@"Data Dictionary is : %@",jsonArray);
@@ -201,6 +220,14 @@ bool moved = false;
                                                       cancelButtonTitle:@"Ok"
                                                       otherButtonTitles:nil];
                     [alert show];
+                }
+                else{
+                    NSString *login = self.email.text;
+                    NSString *password = self.password.text;
+                    
+                    if ([LogMeIn login:login :password]){
+                        [self GoToPlayer];
+                    }
                 }
             });
         }

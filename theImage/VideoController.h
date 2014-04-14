@@ -11,6 +11,7 @@
 @interface VideoController : UIViewController
     @property (nonatomic) int playerID;
     @property (strong, nonatomic) IBOutlet UIView *addVideo;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollview;
 
 - (IBAction)addVideoButton:(id)sender;
 @property (strong, nonatomic) IBOutlet UITextField *addVideoLink;

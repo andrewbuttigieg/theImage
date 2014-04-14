@@ -143,10 +143,15 @@ bool player = false;
                     self.name.text = [dictionary objectForKey:@"Firstname"];
                     self.surname.text = [dictionary objectForKey:@"Lastname"];
                     
-                    self.lfpCountry.text = [dictionary objectForKey:@"LFPCountry"];
-                    self.lfpPosition.text = [dictionary objectForKey:@"LFPPosition"];
-                    self.lfpartCountry.text = [dictionary objectForKey:@"PartnerCountry"];
-                    
+                    if ([dictionary objectForKey:@"LFPCountry"] && ![[dictionary objectForKey:@"LFPCountry" ] isKindOfClass:[NSNull class]]){
+                        self.lfpCountry.text = [dictionary objectForKey:@"LFPCountry"];
+                    }
+                    if ([dictionary objectForKey:@"LFPPosition"] && ![[dictionary objectForKey:@"LFPPosition" ] isKindOfClass:[NSNull class]]){
+                        self.lfpPosition.text = [dictionary objectForKey:@"LFPPosition"];
+                    }
+                    if ([dictionary objectForKey:@"PartnerCountry"] && ![[dictionary objectForKey:@"PartnerCountry" ] isKindOfClass:[NSNull class]]){
+                        self.lfpartCountry.text = [dictionary objectForKey:@"PartnerCountry"];
+                    }
                     
                     if ([[dictionary objectForKey:@"UserType"] intValue] == 1){
                         //player
@@ -159,14 +164,27 @@ bool player = false;
                     }
                     else{
                         //not a player
-                        if ([[dictionary objectForKey:@"LookingForPlayer"] intValue] == 1){
-                            self.lookingForPlayerButton.on = TRUE;
+                        if ([dictionary objectForKey:@"LookingForPlayer"] && ![[dictionary objectForKey:@"LookingForPlayer" ] isKindOfClass:[NSNull class]]){
+
+                            if ([[dictionary objectForKey:@"LookingForPlayer"] intValue] == 1){
+                                self.lookingForPlayerButton.on = TRUE;
+                            }
+                            
+                            else{
+                                self.lookingForPlayerButton.on = FALSE;
+                            }
                         }
                         else{
                             self.lookingForPlayerButton.on = FALSE;
                         }
-                        if ([[dictionary objectForKey:@"LookingForPartnership"] boolValue]){
-                            self.lookingForPartnerButton.on = TRUE;
+                        if ([dictionary objectForKey:@"LookingForPartnership"] && ![[dictionary objectForKey:@"LookingForPartnership" ] isKindOfClass:[NSNull class]]){
+
+                            if ([[dictionary objectForKey:@"LookingForPartnership"] boolValue]){
+                                self.lookingForPartnerButton.on = TRUE;
+                            }
+                            else{
+                                self.lookingForPartnerButton.on = FALSE;
+                            }
                         }
                         else{
                             self.lookingForPartnerButton.on = FALSE;
