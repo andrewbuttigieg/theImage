@@ -82,7 +82,7 @@ bool moved = false;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/reg_player.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPBody:
-     [[NSString stringWithFormat:@"password=%@&email=%@&name=%@&lname=%@&weight=%dusertype=%d&facebookid=%@&gender=%@",
+     [[NSString stringWithFormat:@"password=%@&email=%@&name=%@&lname=%@&weight=%d&usertype=%d&facebookid=%@&gender=%@",
                            @"", user[@"email"], user.first_name, user.last_name, 0, 1, user.id, user[@"gender"]]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     NSError *error = nil; NSURLResponse *response = nil;
@@ -114,12 +114,48 @@ bool moved = false;
                     [alert show];
                 }
                 else{
-                    NSString *login = self.email.text;
-                    NSString *password = self.password.text;
                     
-                    if ([LogMeIn login:login :password]){
-                        [self GoToPlayer];
-                    }
+                    
+                    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/login_player_fb.php"]];
+                    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+                    [request setHTTPBody:[[NSString stringWithFormat:@"fb=%@", user.id]dataUsingEncoding:NSUTF8StringEncoding]];
+                    [request setHTTPMethod:@"POST"];
+                    
+                    
+                    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                        
+                        if (error) {
+                            //[self.delegate fetchingGroupsFailedWithError:error];
+                        } else {
+                            //[self.delegate receivedGroupsJSON:data];
+                            NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                                        options:0
+                                                                                          error:&error];
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                for(NSDictionary *dictionary in jsonArray)
+                                {
+                                    NSLog(@"Data Dictionary is : %@",dictionary);
+                                    NSString *returned = [jsonArray[0] objectForKey:@"value"];
+                                    int accepted = [[jsonArray[0] objectForKey:@"accepted"] intValue];
+                                    
+                                    if (accepted == 0){
+                                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problem"
+                                                                                        message:[NSString stringWithFormat:@"%@",returned]
+                                                                                       delegate:self
+                                                                              cancelButtonTitle:@"Ok"
+                                                                              otherButtonTitles:nil];
+                                        [alert show];
+                                    }
+                                    else{    
+                                        //logged in by fb
+                                        [self GoToPlayer];
+                                    }
+                                }
+                            });
+                        }
+                    }];
+
+                    
                 }
             });
         }

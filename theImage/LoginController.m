@@ -94,13 +94,9 @@ bool movedHere = false;
                 for(NSDictionary *dictionary in jsonArray)
                 {
                     NSLog(@"Data Dictionary is : %@",dictionary);
-//                    NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
-                    /*playerID = [[dictionary objectForKey:@"UserID"] intValue];
-                    self.toUpload.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];*/
                     NSString *returned = [jsonArray[0] objectForKey:@"value"];
                     int accepted = [[jsonArray[0] objectForKey:@"accepted"] intValue];
                     
-                    //dispatch_async(dispatch_get_main_queue(), ^{
                     if (accepted == 0){
                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problem"
                                                                         message:[NSString stringWithFormat:@"%@",returned]

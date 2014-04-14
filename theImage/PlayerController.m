@@ -367,25 +367,28 @@
                     int newY = 0;
                     for (int i = 0; i < 3; i++){
                     
-                    int y;
-                    int x = 0;
+                        int y;
+                        int x = 0;
+                        
+                        int total = 0;
+                        y = self.aboutLabel.frame.origin.y + self.aboutLabel.frame.size.height + 10 + newY;
+                        
+                        //make default..
+                        self.scrollview.contentSize = CGSizeMake(320, y);
                     
-                    int total = 0;
-                    y = self.aboutLabel.frame.origin.y + self.aboutLabel.frame.size.height + 10 + newY;
+                        UIScrollView *secondScroll=[[UIScrollView alloc]initWithFrame:CGRectMake(x, y, 320, 150)];
                         
-                    UIScrollView *secondScroll=[[UIScrollView alloc]initWithFrame:CGRectMake(x, y, 320, 150)];
-                        
-                    CALayer *bottomBorder = [CALayer layer];
-                        
-                    bottomBorder.frame = CGRectMake(0.0f, 0.0f, secondScroll.frame.size.width, 1.0f);
-                        
-                    bottomBorder.backgroundColor = [UIColor colorWithWhite:0.8f
-                                                                         alpha:1.0f].CGColor;
-                    [secondScroll.layer addSublayer:bottomBorder];
-//                    secondScroll.layer.borderColor=[[UIColor colorWithRed:(20.0f/255.0f) green:(20.0f/255.0f) blue:(20.0f/255.0f) alpha:1]CGColor];
-  //                  secondScroll.layer.borderWidth= 1.0f;
-                    //to enable scrolling content size is kept more the 320
-                    //                secondScroll.backgroundColor=[UIColor greenColor];
+                        CALayer *bottomBorder = [CALayer layer];
+                            
+                        bottomBorder.frame = CGRectMake(0.0f, 0.0f, secondScroll.frame.size.width, 1.0f);
+                            
+                        bottomBorder.backgroundColor = [UIColor colorWithWhite:0.8f
+                                                                             alpha:1.0f].CGColor;
+                        [secondScroll.layer addSublayer:bottomBorder];
+    //                    secondScroll.layer.borderColor=[[UIColor colorWithRed:(20.0f/255.0f) green:(20.0f/255.0f) blue:(20.0f/255.0f) alpha:1]CGColor];
+      //                  secondScroll.layer.borderWidth= 1.0f;
+                        //to enable scrolling content size is kept more the 320
+                        //                secondScroll.backgroundColor=[UIColor greenColor];
                     
                         NSDictionary *temp;
                         
@@ -397,80 +400,80 @@
                         if (i == 2)
                             temp = agentD;
                         
-                    for (id key in temp)
-                    {
-                        NSDictionary *anObject;
-                        
-                        anObject = [temp objectForKey:key];
-                        
-                        //[secondScroll release];
-                        //[self.scrollview setContentSize:CGSizeMake(320, self.scrollview.contentSize.height+110)];
-                        
-                        NSString *imageURL = [anObject objectForKey:@"PhotoURL"];
-                        //NSLog(@"%@", imageURL);
-                        
-                        UIImage *image;
-                        if ([imageURL length] > 5){
-                            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                        for (id key in temp)
+                        {
+                            NSDictionary *anObject;
+                            
+                            anObject = [temp objectForKey:key];
+                            
+                            //[secondScroll release];
+                            //[self.scrollview setContentSize:CGSizeMake(320, self.scrollview.contentSize.height+110)];
+                            
+                            NSString *imageURL = [anObject objectForKey:@"PhotoURL"];
+                            //NSLog(@"%@", imageURL);
+                            
+                            UIImage *image;
+                            if ([imageURL length] > 5){
+                                image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                            }
+                            else{
+                                //default image
+                                image = [UIImage imageNamed:@"player.png"];
+                            }
+                            UIImageView *iv = [[UIImageView alloc] initWithImage:image];
+                            iv.layer.cornerRadius = 30.0;
+                            iv.layer.masksToBounds = YES;
+                            iv.layer.borderColor = [UIColor lightGrayColor].CGColor;
+                            iv.layer.borderWidth = 0.3;
+                            iv.frame=CGRectMake(total * 70 + 10, 45, 60,60);
+                            
+                            iv.tag = [[anObject objectForKey:@"UserID"] intValue];
+                            UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
+                            [iv addGestureRecognizer:singleTap];
+                            [iv setMultipleTouchEnabled:YES];
+                            [iv setUserInteractionEnabled:YES];
+                            
+                            UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(total * 70 + 10, 100, 60,30)];
+                            if (i == 0)
+                                lb.textColor = [UIColor colorWithRed:(221.0f/255.0f) green:(221.0f/255.0f) blue:(135.0f/255.0f) alpha:1];
+                            else if (i == 1)
+                                lb.textColor = [UIColor colorWithRed:(225.0f/255.0f) green:(144.0f/255.0f) blue:(2.0f/255.0f) alpha:1];
+                            else if (i == 2)
+                                lb.textColor = [UIColor colorWithRed:(0.0f/255.0f) green:(158.0f/255.0f) blue:(219.0f/255.0f) alpha:1];
+                            lb.text = [anObject objectForKey:@"Firstname"];
+                            lb.textAlignment = NSTextAlignmentCenter;
+                            
+                            
+                            [secondScroll addSubview:iv];
+                            [secondScroll addSubview:lb];
+                            ++total;
                         }
-                        else{
-                            //default image
-                            image = [UIImage imageNamed:@"player.png"];
+                            
+                        if (total > 0){
+                            newY += 150;
+                            [secondScroll setContentSize:CGSizeMake(total * 70 + 10, 60)];
+                                
+                            UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 60,30)];
+                            lb.textColor = [UIColor blackColor];
+                                
+                            [lb setFont:[UIFont systemFontOfSize:15]];
+                            if (i == 0)
+                                lb.text = [NSString stringWithFormat:@"Player Connections (%d)", playerCount];
+                            else if (i == 1)
+                                lb.text = [NSString stringWithFormat:@"Scout Connections (%d)", scoutCount];
+                            else if (i == 2)
+                                lb.text = [NSString stringWithFormat:@"Agent Connections (%d)", agentCount];
+                            [lb sizeToFit];
+                                
+                            lb.textAlignment = NSTextAlignmentLeft;
+                            [secondScroll addSubview:lb];
+                            [self.scrollview addSubview:secondScroll];
+                            
+                            
+                            
+                            
+                            self.scrollview.contentSize = CGSizeMake(320, y + secondScroll.frame.size.height);
                         }
-                        UIImageView *iv = [[UIImageView alloc] initWithImage:image];
-                        iv.layer.cornerRadius = 30.0;
-                        iv.layer.masksToBounds = YES;
-                        iv.layer.borderColor = [UIColor lightGrayColor].CGColor;
-                        iv.layer.borderWidth = 0.3;
-                        iv.frame=CGRectMake(total * 70 + 10, 45, 60,60);
-                        
-                        iv.tag = [[anObject objectForKey:@"UserID"] intValue];
-                        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
-                        [iv addGestureRecognizer:singleTap];
-                        [iv setMultipleTouchEnabled:YES];
-                        [iv setUserInteractionEnabled:YES];
-                        
-                        UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(total * 70 + 10, 100, 60,30)];
-                        if (i == 0)
-                            lb.textColor = [UIColor colorWithRed:(221.0f/255.0f) green:(221.0f/255.0f) blue:(135.0f/255.0f) alpha:1];
-                        else if (i == 1)
-                            lb.textColor = [UIColor colorWithRed:(225.0f/255.0f) green:(144.0f/255.0f) blue:(2.0f/255.0f) alpha:1];
-                        else if (i == 2)
-                            lb.textColor = [UIColor colorWithRed:(0.0f/255.0f) green:(158.0f/255.0f) blue:(219.0f/255.0f) alpha:1];
-                        lb.text = [anObject objectForKey:@"Firstname"];
-                        lb.textAlignment = NSTextAlignmentCenter;
-                        
-                        
-                        [secondScroll addSubview:iv];
-                        [secondScroll addSubview:lb];
-                        ++total;
-                    }
-                        
-                    if (total > 0){
-                        newY += 150;
-                        [secondScroll setContentSize:CGSizeMake(total * 70 + 10, 60)];
-                            
-                        UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 60,30)];
-                        lb.textColor = [UIColor blackColor];
-                            
-                        [lb setFont:[UIFont systemFontOfSize:15]];
-                        if (i == 0)
-                            lb.text = [NSString stringWithFormat:@"Player Connections (%d)", playerCount];
-                        else if (i == 1)
-                            lb.text = [NSString stringWithFormat:@"Scout Connections (%d)", scoutCount];
-                        else if (i == 2)
-                            lb.text = [NSString stringWithFormat:@"Agent Connections (%d)", agentCount];
-                        [lb sizeToFit];
-                            
-                        lb.textAlignment = NSTextAlignmentLeft;
-                        [secondScroll addSubview:lb];
-                        [self.scrollview addSubview:secondScroll];
-                        
-                        
-                        
-                        
-                        self.scrollview.contentSize = CGSizeMake(320, y + secondScroll.frame.size.height);
-                    }
                     }
                 });
             }

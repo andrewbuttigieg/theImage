@@ -243,8 +243,8 @@
                     //[self.textForFR addObject:[dictionary objectForKey:@"Text"]];
                     [self.userTypeForFR addObject:[dictionary objectForKey:@"UserType"]];
                     [self.userIDForFR addObject:[dictionary objectForKey:@"UserID"]];
-                    if (![dictionary objectForKey:@"Country"]){
-                        //[self.locationForFR addObject:[dictionary objectForKey:@"Country"]];
+                    if (![dictionary objectForKey:@"Country"] || [[dictionary objectForKey:@"Country" ] isKindOfClass:[NSNull class]]){
+                        [self.locationForFR addObject:@""];
                     }
                     else
                          [self.locationForFR addObject:[dictionary objectForKey:@"Country"]];
