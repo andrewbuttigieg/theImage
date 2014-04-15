@@ -1096,6 +1096,17 @@
                                 <rect key="frame" x="8" y="327" width="320" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </scrollView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="E4s-HW-cq5">
+                                <rect key="frame" x="175" y="289" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Video">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="videoClick:" destination="iMm-Ef-769" eventType="touchUpInside" id="6HQ-bb-2os"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </scrollView>
@@ -1118,12 +1129,13 @@
                         <outlet property="playerName" destination="AoK-Jn-gip" id="AxA-S2-CnX"/>
                         <outlet property="postion" destination="n1J-L8-T2j" id="SQ0-zw-vcx"/>
                         <outlet property="scrollview" destination="Pb8-Om-bF9" id="Shr-M6-gaM"/>
+                        <outlet property="videoButton" destination="E4s-HW-cq5" id="nto-7R-2uY"/>
                         <outlet property="weight" destination="ILH-Aj-vjj" id="ZtJ-6K-Xt7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RzT-b2-8gC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4808" y="442"/>
+            <point key="canvasLocation" x="4369" y="526"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="p02-0M-Oq7">
@@ -1388,7 +1400,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ii1-up-kE9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4338" y="530"/>
+            <point key="canvasLocation" x="3899" y="614"/>
         </scene>
         <!--Video Controller - Videos-->
         <scene sceneID="WBw-BD-wb7">
@@ -1446,7 +1458,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q4I-Ut-Kqb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4549" y="1223"/>
+            <point key="canvasLocation" x="4357" y="1435"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rKw-8p-tbJ">
@@ -1482,7 +1494,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="owB-d1-9h7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4086" y="1212"/>
+            <point key="canvasLocation" x="3894" y="1424"/>
         </scene>
     </scenes>
     <resources>

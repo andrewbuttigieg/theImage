@@ -9,6 +9,7 @@
 #import "PlayerController.h"
 #import "ViewController.h"
 #import "MessageViewController.h"
+#import "VideoController.h"
 
 @interface PlayerController ()
 
@@ -279,6 +280,13 @@
                 NSArray *theUser = [theUserD valueForKey:@"0"];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    if ([[theUser valueForKey:@"VideoCount"] intValue] > 0){
+                        self.videoButton.hidden = FALSE;
+                    }
+                    else{
+                        self.videoButton.hidden = TRUE;
+                    }
                     //get the player information
                     self.playerName.text = [NSString stringWithFormat:@"%@ %@", [theUser valueForKey:@"Firstname"], [theUser valueForKey:@"Lastname"]];
                     self.height.text = [theUser valueForKey:@"Height"];
@@ -487,4 +495,15 @@
     
 }
 
+- (IBAction)videoClick:(id)sender {
+    NSString * storyboardName = @"Main_iPhone";
+    NSString * viewControllerID = @"VideoController";
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    VideoController * controller = (VideoController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+    //controller.chattingToID = [o intValue];
+    //controller.name = name;
+    controller.playerID = self.playerID;
+    [self.navigationController pushViewController:controller animated:YES];
+
+}
 @end

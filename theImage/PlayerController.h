@@ -12,7 +12,7 @@
 @interface PlayerController : UIViewController<UIActionSheetDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
 /*<FindPlayerControllerDelegate>*/
 
-    @property (nonatomic) NSInteger *playerID;
+    @property (nonatomic) int playerID;
 @property (strong, nonatomic) IBOutlet UILabel *name;
 @property (strong, nonatomic) IBOutlet UILabel *weight;
 @property (strong, nonatomic) IBOutlet UILabel *height;
@@ -29,5 +29,8 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollview;
 @property (strong, nonatomic) IBOutlet UILabel *aboutLabel;
 @property (strong, nonatomic) IBOutlet UIScrollView *playerConnectionView;
+
+- (IBAction)videoClick:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *videoButton;
 
 @end

@@ -135,7 +135,11 @@ bool player = false;
                     self.email.text = [dictionary objectForKey:@"Email"];
                     self.position.text = [dictionary objectForKey:@"Position"];
                     self.age.text = [dictionary objectForKey:@"Age"];
-                    self.gender.text = [dictionary objectForKey:@"Gender"];
+                    
+                    if ([dictionary objectForKey:@"Gender"] != [NSNull null]) {
+                        self.gender.text = [dictionary objectForKey:@"Gender"];
+                    }
+                         
                     self.email.text = [dictionary objectForKey:@"Email"];
                     if ([dictionary objectForKey:@"Phone"] != [NSNull null]){
                         self.phone.text = [dictionary objectForKey:@"Phone"];
@@ -155,7 +159,7 @@ bool player = false;
                     
                     if ([[dictionary objectForKey:@"UserType"] intValue] == 1){
                         //player
-                        player = false;
+                        player = true;
                         self.lookingForPartnerView.hidden = TRUE;
                         self.lookingForPlayer.hidden = TRUE;
                         self.lookingForPartnerSwitch.hidden = TRUE;
@@ -464,6 +468,15 @@ bool player = false;
             self.privateInformationView.frame= frame;
             self.lookingForPartnerView.hidden = TRUE;
         }
+    }
+    
+    if (player){
+        CGRect frame = self.privateInformationView.frame;
+        int y = self.about.frame.origin.y + self.about.frame.size.height + 18;
+        frame.origin.y = y;//pass the cordinate which you want
+        
+        self.privateInformationView.frame= frame;
+        self.lookingForPartnerView.hidden = TRUE;
     }
     
     
