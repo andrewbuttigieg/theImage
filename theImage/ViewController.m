@@ -19,14 +19,11 @@
 
 #import "VideoController.h"
 
-@interface ViewController() //  <ViewControllerDetailDelegate>
+@interface ViewControllerxxxx() //  <ViewControllerDetailDelegate>
 
 @end
 
-@implementation ViewController
-    CLLocationManager *locationManager;
-    CLGeocoder *geocoder;
-    CLPlacemark *placemark;
+@implementation ViewControllerxxxx
 
 
     static int playerID = 0;
@@ -81,8 +78,6 @@
         }
     }];
 
-    locationManager = [[CLLocationManager alloc] init];
-    geocoder = [[CLGeocoder alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,9 +87,6 @@
 }
 - (IBAction)logoPressedTwo:(id)sender {
     NSLog(@"Pressed!");
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [locationManager startUpdatingLocation];
 }
 
 - (IBAction)getHTTP:(id)sender {
@@ -153,9 +145,6 @@
 
 - (IBAction)logoPressed:(id)sender {
     
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [locationManager startUpdatingLocation];
      
    NSLog(@"Pressed!");
    
@@ -201,81 +190,6 @@ objectAtIndex:0];
     self.returnedItem=item;
     
     //add item to array here and call reload
-}
-
-#pragma mark - CLLocationManagerDelegate
-
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
-{
-    NSLog(@"didFailWithError: %@", error);
-    UIAlertView *errorAlert = [[UIAlertView alloc]
-                               initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [errorAlert show];
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-    NSLog(@"didUpdateToLocation: %@", newLocation);
-    CLLocation *currentLocation = newLocation;
-    NSString *l1;
-    NSString *l2;
-    if (currentLocation != nil) {
-        l1 = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
-        l2 = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
-    }
-    
-    [locationManager stopUpdatingLocation];
-    // Reverse Geocoding
-    NSLog(@"Resolving the Address");
-    [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-        NSLog(@"Found placemarks: %@, error: %@", placemarks, error);
-        if (error == nil && [placemarks count] > 0) {
-            placemark = [placemarks lastObject];
-            addressLabel.text = [NSString stringWithFormat:@"%@ %@\n%@ %@\n%@\n%@",
-                                 placemark.subThoroughfare, placemark.thoroughfare,
-                                 placemark.postalCode, placemark.locality,
-                                 placemark.administrativeArea,
-                                 placemark.country];
-            addressLabel.numberOfLines = 5;
-            NSString *a1 = [NSString stringWithFormat:@"%@ %@", placemark.subThoroughfare, placemark.thoroughfare];
-            NSString *a2 = [NSString stringWithFormat:@"%@", placemark.locality];
-            NSString *a3 = [NSString stringWithFormat:@"%@", placemark.administrativeArea];
-            NSString *p = [NSString stringWithFormat:@"%@", placemark.postalCode];
-            NSString *c = [NSString stringWithFormat:@"%@", placemark.country];
-            ////
-            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/update_user_location.php/"]];
-            [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-            
-            [request setHTTPBody:[[NSString stringWithFormat:@"l1=%@&l2=%@&a1=%@&a2=%@&a3=%@&c=%@&p=%@",
-                                   l1, l2, a1, a2, a3, c, p]dataUsingEncoding:NSUTF8StringEncoding]];
-            [request setHTTPMethod:@"POST"];
-            [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init]
-             //returningResponse:&response
-                                   completionHandler:^(NSURLResponse *response,
-                                                       NSData *data,
-                                                       NSError *error) {
-                                       
-                                       if (error) {
-                                           //[self.delegate fetchingGroupsFailedWithError:error];
-                                       }
-                                       else {
-                                           /*NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
-                                                                                                       options:0
-                                                                                                         error:&error];
-                                           for(NSDictionary *dictionary in jsonArray)
-                                           {
-                                               NSString *returned = [jsonArray[0] objectForKey:@"value"];
-                                           }*/
-                                      }
-                                   }];
-            ////
-            
-        } else {
-            NSLog(@"%@", error.debugDescription);
-        }
-    } ];
-    
-    
 }
 
 @end

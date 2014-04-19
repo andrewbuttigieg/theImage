@@ -163,7 +163,71 @@
                     
                     [self.nameForTable addObject:[dictionary objectForKey:@"Firstname"]];
                     [self.imageForTable addObject:[dictionary objectForKey:@"PhotoURL"]];
-                    [self.dateForTable addObject:[dictionary objectForKey:@"Timestamp"]];
+                    
+                    
+                    
+                    
+                    //get the date time in the iphone timezone
+                    NSString *dateString = [dictionary objectForKey:@"SentDateTime"];
+                    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+                    //Special Locale for fixed dateStrings
+                    NSLocale *locale = [[NSLocale alloc]initWithLocaleIdentifier:@"en_US_POSIX"];
+                    [formatter setLocale:locale];
+                    //Assuming the dateString is in GMT+00:00
+                    //formatter by default would be set to local timezone
+                    NSTimeZone *timeZone = [NSTimeZone timeZoneWithAbbreviation:@"MDT"];
+                    [formatter setTimeZone:timeZone];
+                    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                    NSDate *date =[formatter dateFromString:dateString];
+                    //After forming the date set local time zone to formatter    
+                    NSTimeZone *localTimeZone = [NSTimeZone localTimeZone];
+                    [formatter setTimeZone:localTimeZone];
+                    NSString *newTimeZoneDateString = [formatter stringFromDate:date];
+                    NSLog(@"%@",newTimeZoneDateString);
+                    
+                    //
+                    NSDate *currentDate = [NSDate date];
+                    NSCalendar* calendar = [NSCalendar currentCalendar];
+                    NSDateComponents* today = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:currentDate]; // Get necessary date components
+                    
+                    NSDateComponents* components2 = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date]; // Get necessary date components
+                    
+                    if ([today year] == [components2 year] &&
+                        [today month] == [components2 month] &&
+                        [today day] == [components2 day]
+                        ){
+                        //today
+                        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                        [dateFormatter setDateFormat:@"HH:mm"];
+                        NSString *time = [dateFormatter stringFromDate:date];
+                        
+                        [self.dateForTable addObject:time];
+                    }
+                    else if([today year] == [components2 year] &&
+                            [today month] == [components2 month] &&
+                            [today day] - 1 == [components2 day])
+                    {
+                        //yesterday
+                        NSString *time = @"Yesterday";
+                        
+                        [self.dateForTable addObject:time];
+                        
+                    }
+                    else
+                    {
+                        //another day
+                        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                        [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+                        NSString *time = [dateFormatter stringFromDate:date];
+                        
+                        [self.dateForTable addObject:time];
+                        
+                    }
+                    
+                    //[self.dateForTable addObject:[dictionary objectForKey:@"SentDateTime"]];
+                    
+                    
+                    
                     [self.textForTable addObject:[dictionary objectForKey:@"Text"]];
                     [self.userTypeForTable addObject:[dictionary objectForKey:@"UserType"]];
                     [self.userIDForTable addObject:[dictionary objectForKey:@"UserID"]];

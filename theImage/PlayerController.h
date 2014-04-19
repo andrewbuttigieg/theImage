@@ -12,7 +12,9 @@
 @interface PlayerController : UIViewController<UIActionSheetDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
 /*<FindPlayerControllerDelegate>*/
 
-    @property (nonatomic) int playerID;
+@property (nonatomic) int playerID;
+@property (nonatomic) int meID;
+
 @property (strong, nonatomic) IBOutlet UILabel *name;
 @property (strong, nonatomic) IBOutlet UILabel *weight;
 @property (strong, nonatomic) IBOutlet UILabel *height;
@@ -33,4 +35,9 @@
 - (IBAction)videoClick:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *videoButton;
 
+
++ (int)playerID;
++ (int)meID;
+
++ (NSString *)facebookID;
 @end

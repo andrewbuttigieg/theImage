@@ -10,7 +10,8 @@
 #import "KeychainItemWrapper.h"
 #import "JNKeychain.h"
 #import "LogMeIn.h"
-#import "ViewController.h"
+#import "PlayerController.h"
+#import "MainVC.h"
 
 @interface StartController ()
 
@@ -66,10 +67,19 @@
     
     if (login != nil && pwd != nil){
         if ([LogMeIn login:login :pwd]){
+            /*
+            NSString * storyboardName = @"Main_iPhone";
+            NSString * viewControllerID = @"PlayerController";
+            UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+            PlayerController * controller = (PlayerController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+            */
             NSString * storyboardName = @"Main_iPhone";
             NSString * viewControllerID = @"Main";
             UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
-            ViewController * controller = (ViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+            MainVC * controller = (MainVC *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+            
+            //[self.navigationController pushViewController:controller animated:YES];
+ 
             [self.back removeFromSuperview];
             [self.moviePlayer stop];
             [self.moviePlayer setContentURL:nil];

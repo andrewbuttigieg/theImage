@@ -11,7 +11,7 @@
 #import <AFNetworking/AFHTTPRequestOperation.h>
 #import <AFNetworking/AFURLResponseSerialization.h>
 #import <AFNetworking/AFHTTPSessionManager.h>
-#import "ViewController.h"
+#import "PlayerController.h"
 
 @interface PlayerSettingsController ()
 
@@ -350,7 +350,7 @@ bool player = false;
                      constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                          [formData appendPartWithFileData:imageData
                                                      name:@"attachment"
-                                                 fileName:[NSString stringWithFormat:@"%d-profile.jpg", ViewController.playerID]
+                                                 fileName:[NSString stringWithFormat:@"%d-profile.jpg", PlayerController.meID]
                                                  mimeType:@"image/jpeg"];
                      }];
     

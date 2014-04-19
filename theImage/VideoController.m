@@ -7,7 +7,7 @@
 //
 
 #import "VideoController.h"
-#import "ViewController.h"
+#import "PlayerController.h"
 
 @interface VideoController ()
 
@@ -34,11 +34,13 @@ static float top = 0;
 {
     [super viewDidLoad];
     
+    top = 0;
+    
     //lets us scroll and hold it
     self.scrollview.userInteractionEnabled=YES;
     [self.scrollview setScrollEnabled:YES];
     
-    if (self.playerID == ViewController.playerID){
+    if (self.playerID == PlayerController.meID){
         self.addVideo.hidden = false;    
     }
     
@@ -87,7 +89,7 @@ static float top = 0;
                         </html>";*/
                         
                         NSString *newHTML = [NSString stringWithFormat:@"<html>\
-                                             <style>body{padding:0;margin:0;}</style>\
+                                             <style>body{padding:0;margin:0;background-color:red}</style>\
                                              <iframe width=\"300\" height=\"200\" src=\"%@\" frameborder=\"0\" allowfullscreen></iframe>\
                                              </html>", [dictionary objectForKey:@"URL"]];
                         //http://www.youtube.com/embed/zL0CCsdS1cE?autoplay=1
@@ -95,14 +97,29 @@ static float top = 0;
                         //[self.webView loadHTMLString:newHTML baseURL:nil];
                         
                         CGRect webFrame = CGRectMake(10.0, 0.0, 300.0, 200.0);
+                        int tempIndex = (int)([[dictionary objectForKey:@"URL"] rangeOfString:@"/" options:NSBackwardsSearch].location);
+                        NSString *newStr = [[dictionary objectForKey:@"URL"] substringFromIndex:tempIndex];
+                        NSString *theURL = [dictionary objectForKey:@"URL"];
+                        theURL = [theURL stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"];
+
+                        NSURL *url = [NSURL URLWithString:theURL];
+                        NSURLRequest *req = [NSURLRequest requestWithURL:url];
                         UIWebView *bubbleView = [[UIWebView alloc] initWithFrame:webFrame];
                         bubbleView.backgroundColor = [UIColor blackColor];
                         bubbleView.frame=CGRectMake(10, top, 300, 200);
-                        [bubbleView loadHTMLString:newHTML baseURL:nil];
+                        [bubbleView loadRequest:req];
                         
-                        //where to put the text
-                        top += 220;
+                        
+                        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//                        [button addTarget:self action:@selector(aMethod:)
+//                         forControlEvents:UIControlEventTouchUpInside];
+                        [button setTitle:@"Delete" forState:UIControlStateNormal];
+                        button.frame = CGRectMake(10.0, top + 200, 160.0, 40.0);
+                        
+                        //where to put the view
+                        top += 240;
                         [self.scrollview addSubview:bubbleView];
+                        [self.scrollview addSubview:button];
                         
                         //set the scroll of the view
                         self.scrollview.contentSize = CGSizeMake(320, top);
@@ -131,9 +148,12 @@ static float top = 0;
 
 - (IBAction)addVideoButton:(id)sender {
     if ([self isValidUrl:self.addVideoLink.text]){
+        NSString *theURL = self.addVideoLink.text;
+        theURL = [[theURL stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"] lowercaseString];
+        
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/add_video.php/"]];
         [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-        [request setHTTPBody:[[NSString stringWithFormat:@"url=%@&comment=%@", self.addVideoLink.text, @"-"]dataUsingEncoding:NSUTF8StringEncoding]];
+        [request setHTTPBody:[[NSString stringWithFormat:@"url=%@&comment=%@", theURL, @"-"]dataUsingEncoding:NSUTF8StringEncoding]];
         [request setHTTPMethod:@"POST"];
         //NSError *error = nil; NSURLResponse *response = nil;
         //    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];

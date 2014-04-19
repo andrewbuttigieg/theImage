@@ -7,7 +7,7 @@
 //
 
 #import "MessageViewController.h"
-#import "ViewController.h"
+#import "PlayerController.h"
 #import "messageGroupCell.h"
 
 @interface MessageViewController ()
@@ -134,7 +134,7 @@ static float top = 0;
     [self setView:view];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_messages_convo.php"]];
-    int u = ViewController.playerID;
+    int u = PlayerController.meID;
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPBody:[[NSString stringWithFormat:@"u=%d", self.chattingToID]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
@@ -167,7 +167,7 @@ static float top = 0;
         }
     }];
     
-    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(aTime) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(aTime) userInfo:nil repeats:YES];
 
 }
 
@@ -175,7 +175,7 @@ static float top = 0;
 {
     //check what messages the other person has sent me
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_messages_convo_unread.php"]];
-    int u = ViewController.playerID;
+    int u = PlayerController.meID;
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPBody:[[NSString stringWithFormat:@"u=%d", self.chattingToID]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
