@@ -30,6 +30,43 @@ static float top = 0;
     return self;
 }
 
+- (void)deleteVideo:(id)sender{
+    UIButton *button = (UIButton *)sender;
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/delete_video.php/"]];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [request setHTTPBody:[[NSString stringWithFormat:@"videoid=%d", (int)button.tag]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPMethod:@"POST"];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init]
+     //returningResponse:&response
+                           completionHandler:^(NSURLResponse *response,
+                                               NSData *data,
+                                               NSError *error) {
+                               
+           if (error) {
+               //[self.delegate fetchingGroupsFailedWithError:error];
+           }
+           else {
+               NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                           options:0
+                                                                             error:&error];
+               for(NSDictionary *dictionary in jsonArray)
+               {
+                   NSString *returned = [jsonArray[0] objectForKey:@"value"];
+                   dispatch_async(dispatch_get_main_queue(), ^{
+                       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
+                                                                       message:[NSString stringWithFormat:@"%@",returned]
+                                                                      delegate:self
+                                                             cancelButtonTitle:@"Ok"
+                                                             otherButtonTitles:nil];
+                       [alert show];
+                   });
+               }
+               
+           }
+       }];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -102,17 +139,17 @@ static float top = 0;
                         NSString *theURL = [dictionary objectForKey:@"URL"];
                         theURL = [theURL stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"];
 
+                        //the video
                         NSURL *url = [NSURL URLWithString:theURL];
                         NSURLRequest *req = [NSURLRequest requestWithURL:url];
                         UIWebView *bubbleView = [[UIWebView alloc] initWithFrame:webFrame];
                         bubbleView.backgroundColor = [UIColor blackColor];
                         bubbleView.frame=CGRectMake(10, top, 300, 200);
                         [bubbleView loadRequest:req];
-                        
-                        
+                        //delete button
                         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//                        [button addTarget:self action:@selector(aMethod:)
-//                         forControlEvents:UIControlEventTouchUpInside];
+                        [button addTarget:self action:@selector(deleteVideo:) forControlEvents:UIControlEventTouchUpInside];
+                        button.tag = [[dictionary objectForKey:@"VideoID"] intValue];
                         [button setTitle:@"Delete" forState:UIControlStateNormal];
                         button.frame = CGRectMake(10.0, top + 200, 160.0, 40.0);
                         
