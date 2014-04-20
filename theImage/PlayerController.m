@@ -20,13 +20,18 @@
 
 static int playerID = 0;
 static int meID = 0;
-//static NSString* facebookPlayerID;
+
+static NSString* facebookID;
 
 + (int) playerID{
     return playerID;
 }
 + (int) meID{
     return meID;
+}
+
++ (NSString*) facebookID{
+    return facebookID;
 }
 
 
@@ -270,10 +275,8 @@ static int meID = 0;
                 self.meID = [[dictionary objectForKey:@"UserID"] intValue];   
                 meID = [[dictionary objectForKey:@"UserID"] intValue];
                 
-
-                
-                NSLog(@"%@", [dictionary objectForKey:@"UserID"]);
-                
+                self.facebookID = [dictionary objectForKey:@"FacebookID"];
+                facebookID = [dictionary objectForKey:@"FacebookID"];
                 /*if ([imageURL length] > 5){
                  self.toUpload.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
                  }*/

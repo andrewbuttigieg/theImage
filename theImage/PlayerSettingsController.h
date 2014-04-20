@@ -69,6 +69,6 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *marketLabel;
 
-
+@property (strong, nonatomic) IBOutlet UIButton *changePwd;
 
 @end

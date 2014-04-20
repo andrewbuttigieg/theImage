@@ -498,7 +498,19 @@ bool player = false;
         self.lookingForPlayer.hidden = TRUE;
     }*/
     
-    self.scrollview.contentSize = CGSizeMake(320, self.privateInformationView.frame.origin.y + self.privateInformationView.frame.size.height + 10);
+    if (
+            ![PlayerController.facebookID isEqualToString:@""]
+        ){
+        
+        
+        CGRect frame = self.changePwd.frame;
+        int y = self.privateInformationView.frame.origin.y + self.privateInformationView.frame.size.height + 18;
+        frame.origin.y = y;//pass the cordinate which you want
+        
+        self.changePwd.frame= frame;
+    }
+    
+    self.scrollview.contentSize = CGSizeMake(320, self.changePwd.frame.origin.y + self.changePwd.frame.size.height + 10);
 }
 
 - (IBAction)lookingForPlayer:(id)sender {
@@ -587,5 +599,7 @@ numberOfRowsInComponent:(NSInteger)component
 
 - (IBAction)lookingForPartner:(id)sender {
     [self lookingForPlayerAlign];
+}
+- (IBAction)changePwdClick:(id)sender {
 }
 @end
