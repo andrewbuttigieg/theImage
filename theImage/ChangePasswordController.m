@@ -7,6 +7,7 @@
 //
 
 #import "ChangePasswordController.h"
+#import "JNKeychain.h"
 
 @interface ChangePasswordController ()
 
@@ -64,7 +65,10 @@
                                                                                  cancelButtonTitle:@"Ok"
                                                                                  otherButtonTitles:nil];
                                            [alert show];
-                                           NSLog(@"%@", self.oldpwd.text);
+                                           if ([[[jsonArray[0] objectForKey:@"accepted"] stringValue] isEqualToString:@"1"]){
+                                               NSString *keyPwd = @"pwd";
+                                               [JNKeychain saveValue:self.newpwd.text forKey:keyPwd];
+                                           }
                                        });
                                    }
                                    

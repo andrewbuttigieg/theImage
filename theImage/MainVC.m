@@ -72,6 +72,9 @@
             identifier = @"forthRow";
             break;
         case 4:
+            identifier = @"fifthRow";
+            break;
+        case 5:
             if ([LogMeIn logout]){
                 
                 if (FBSession.activeSession.isOpen)
@@ -88,8 +91,8 @@
                 [self.navigationController pushViewController:controller animated:YES];
             }
             break;
-        case 5:
-            identifier = @"fifthRow";
+        case 6:
+            identifier = @"sixthRow";
             break;
     }
     
