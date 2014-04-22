@@ -335,6 +335,42 @@ bool player = false;
     // Dispose of any resources that can be recreated.
 }
 
+- (NSString *)contentTypeForImageData:(NSData *)data {
+    uint8_t c;
+    [data getBytes:&c length:1];
+    
+    switch (c) {
+        case 0xFF:
+            return @"image/jpeg";
+        case 0x89:
+            return @"image/png";
+        case 0x47:
+            return @"image/gif";
+        case 0x49:
+        case 0x4D:
+            return @"image/tiff";
+    }
+    return nil;
+}
+
+- (NSString *)extesionnForImageData:(NSData *)data {
+    uint8_t c;
+    [data getBytes:&c length:1];
+    
+    switch (c) {
+        case 0xFF:
+            return @"jpg";
+        case 0x89:
+            return @"png";
+        case 0x47:
+            return @"gif";
+        case 0x49:
+        case 0x4D:
+            return @"tif";
+    }
+    return nil;
+}
+
 -(void) uploadImage:(UIImage*)image {
     NSData *imageData = UIImageJPEGRepresentation(image, 0.2);     //change Image to NSData
     NSString *baseurl = @"http://newfootballers.com/upload_image.php";
@@ -350,8 +386,9 @@ bool player = false;
                      constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                          [formData appendPartWithFileData:imageData
                                                      name:@"attachment"
-                                                 fileName:[NSString stringWithFormat:@"%d-profile.jpg", PlayerController.meID]
-                                                 mimeType:@"image/jpeg"];
+                                                 fileName:[NSString stringWithFormat:@"%d-profile.%@", PlayerController.meID, [self extesionnForImageData:imageData]]
+                                                 mimeType:
+                          [self contentTypeForImageData:imageData]];
                      }];
     
 
