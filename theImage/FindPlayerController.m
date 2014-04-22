@@ -71,9 +71,9 @@ static int findPlayerID = 0;
     [[self.putThemThere subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_users.php"]];
-    int me = PlayerController.meID;
+    
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"me=%d&u=%d", me, type]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[NSString stringWithFormat:@"&u=%d", type]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     //dont get me
     

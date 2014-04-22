@@ -9,6 +9,7 @@
 #import "NearYouController.h"
 #import "PlayerController.h"
 #import "nearYouCell.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface NearYouController ()
 
@@ -125,11 +126,11 @@
     self.locationForNear =[[NSMutableArray alloc]
                          initWithObjects:nil];
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_friend_requests.php"]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_near_me.php"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPMethod:@"POST"];
     
-    self.title = @"Friend Requests";
+    self.title = @"Near You";
     
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
@@ -141,20 +142,39 @@
                                                                         options:0
                                                                           error:&error];
             dispatch_async(dispatch_get_main_queue(), ^{
-                
+
+                                    NSLog(@"%@", jsonArray);
                 for(NSDictionary *dictionary in jsonArray)
                 {
-                    NSLog(@"%@", dictionary);
-                    [self.nameForNear addObject:[dictionary objectForKey:@"Firstname"]];
-                    [self.imageForNear addObject:[dictionary objectForKey:@"PhotoURL"]];
-                    //[self.textForNear addObject:[dictionary objectForKey:@"Text"]];
-                    [self.userTypeForNear addObject:[dictionary objectForKey:@"UserType"]];
-                    [self.userIDForNear addObject:[dictionary objectForKey:@"UserID"]];
-                    if (![dictionary objectForKey:@"Country"] || [[dictionary objectForKey:@"Country" ] isKindOfClass:[NSNull class]]){
-                        [self.locationForNear addObject:@""];
+
+                    NSDictionary *theUserD = [dictionary valueForKey:@"User"];
+                    for (id key in theUserD)
+                    {
+                        NSDictionary *anObject;
+                        
+                        anObject = [theUserD objectForKey:key];
+                    
+                        [self.nameForNear addObject:[anObject objectForKey:@"Firstname"]];
+                        [self.imageForNear addObject:[anObject objectForKey:@"PhotoURL"]];
+                        //[self.textForNear addObject:[dictionary objectForKey:@"Text"]];
+                        [self.userTypeForNear addObject:[anObject objectForKey:@"UserType"]];
+                        [self.userIDForNear addObject:[anObject objectForKey:@"UserID"]];
+                        
+                        float long1 = [[anObject objectForKey:@"long1"] floatValue];
+                        float long2 = [[anObject objectForKey:@"long2"] floatValue];
+                        float lat1 = [[anObject objectForKey:@"lat1"] floatValue];
+                        float lat2 = [[anObject objectForKey:@"lat2"] floatValue];
+                        
+                        CLLocation *location1 = [[CLLocation alloc] initWithLatitude:lat1 longitude:long1];
+                        CLLocation *location2 = [[CLLocation alloc] initWithLatitude:lat2 longitude:long2];
+                        
+                        //if (![dictionary objectForKey:@"Country"] || [[dictionary objectForKey:@"Country" ] isKindOfClass:[NSNull class]]){
+                            [self.locationForNear addObject:[NSString stringWithFormat:@"%d metres away",
+                                                             (int)[location1 distanceFromLocation:location2]]];
+                        //}
+                        //else
+                        //    [self.locationForNear addObject:[dictionary objectForKey:@"Country"]];
                     }
-                    else
-                        [self.locationForNear addObject:[dictionary objectForKey:@"Country"]];
                 }
                 [self.tableView reloadData];
 //                [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
