@@ -12,7 +12,7 @@
 #import "VideoController.h"
 #import "PlayerSettingsController.h"
 
-@interface PlayerController ()
+@interface PlayerController ()<PlayerImageDelegate>
 
 @end
 
@@ -82,6 +82,8 @@ static NSString* facebookID;
         NSString * viewControllerID = @"PlayerSettingsController";
         UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
         PlayerSettingsController * controller = (PlayerSettingsController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+        
+        controller.delegate = self;
         
         [self.navigationController pushViewController:controller animated:YES];
     }
@@ -554,4 +556,14 @@ static NSString* facebookID;
     [self.navigationController pushViewController:controller animated:YES];
 
 }
+
+#pragma mark - PlayerImageDelegate
+
+- (void)addItemViewController:
+(PlayerSettingsController *)controller didFinishEnteringItem: (UIImage *)item
+{
+    //update the image of the player
+    self.playerImage.image = item;
+}
+
 @end

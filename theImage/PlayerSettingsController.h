@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class PlayerSettingsController;
+
+@protocol PlayerImageDelegate <NSObject>
+- (void)playerDetailsViewControllerDidSave:
+(PlayerSettingsController *)controller;
+- (void)addItemViewController:(id)controller didFinishEnteringItem:(UIImage *)item;
+@end
+
 @interface PlayerSettingsController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource,
     UITextFieldDelegate, UIImagePickerControllerDelegate>
 
@@ -70,5 +78,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *marketLabel;
 
 @property (strong, nonatomic) IBOutlet UIButton *changePwd;
+
+
+@property (nonatomic, weak) id <PlayerImageDelegate> delegate;
 
 @end

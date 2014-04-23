@@ -13,9 +13,9 @@
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import "PlayerController.h"
 
-@interface PlayerSettingsController ()
 
-@end
+@class PlayerSettingsController;
+
 
 @implementation PlayerSettingsController
 
@@ -35,6 +35,9 @@ bool player = false;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //self.delegate = self;
+    
     self.title = @"Edit Profile";
     
     self.scrollview.userInteractionEnabled=YES;
@@ -446,7 +449,13 @@ bool player = false;
     
     [self.toUpload setBackgroundImage:image forState:UIControlStateNormal];
     
+    NSString *itemToPassBack = @"xxxxxxxx";
+    NSLog(@"returning: %@",itemToPassBack);
+    [self.delegate addItemViewController:self didFinishEnteringItem:image];
+    
     [self uploadImage:image];
+    
+//    [self.delegate playerDetailsViewControllerDidSave:self];
 }
 
 - (IBAction)findImage:(id)sender {
