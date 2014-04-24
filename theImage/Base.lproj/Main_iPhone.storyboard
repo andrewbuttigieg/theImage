@@ -144,6 +144,24 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="nmM-gP-G3a">
+                                        <rect key="frame" x="0.0" y="308" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nmM-gP-G3a" id="8mc-pX-U6n">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Videos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZpV-0e-rmc">
+                                                    <rect key="frame" x="20" y="11" width="151" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -159,6 +177,7 @@
                         <segue destination="YuA-Yb-GM8" kind="custom" identifier="forthRow" customClass="AMSlideMenuContentSegue" id="9yL-eu-xAb"/>
                         <segue destination="t8e-RT-IBV" kind="custom" identifier="sixthRow" customClass="AMSlideMenuContentSegue" id="01G-ql-7Fi"/>
                         <segue destination="heo-TK-9Du" kind="custom" identifier="fifthRow" customClass="AMSlideMenuContentSegue" id="eJo-SI-AVZ"/>
+                        <segue destination="Jmg-vm-Z4D" kind="custom" identifier="allVideoRow" customClass="AMSlideMenuContentSegue" id="E8L-2d-eFI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xlH-ZL-EoL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1582,6 +1601,23 @@
             </objects>
             <point key="canvasLocation" x="3416" y="1800"/>
         </scene>
+        <!--All Video Controller-->
+        <scene sceneID="yvH-58-ycj">
+            <objects>
+                <viewController id="oi6-Nh-DzO" customClass="AllVideoController" sceneMemberID="viewController">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="p3W-3b-poA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </scrollView>
+                    <navigationItem key="navigationItem" id="yqY-Fh-PM6"/>
+                    <connections>
+                        <outlet property="scrollView" destination="p3W-3b-poA" id="JoT-Y5-783"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2h1-QU-P3c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3288" y="4580"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="rKw-8p-tbJ">
             <objects>
@@ -1711,7 +1747,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SmH-uv-xsh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3762" y="3730"/>
+            <point key="canvasLocation" x="3760" y="3746"/>
         </scene>
         <!--View Controller - Privacy Policy-->
         <scene sceneID="tPz-as-Qev">
@@ -1763,6 +1799,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JCX-JY-Nws" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2906" y="1800"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mHT-US-ZQs">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jmg-vm-Z4D" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LA1-ky-MTr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="oi6-Nh-DzO" kind="relationship" relationship="rootViewController" id="wXO-iX-rEk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3qD-ls-Gv9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2762" y="4580"/>
         </scene>
     </scenes>
     <resources>

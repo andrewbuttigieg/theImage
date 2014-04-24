@@ -94,6 +94,9 @@
         case 6:
             identifier = @"sixthRow";
             break;
+        case 7:
+            identifier = @"allVideoRow";
+            break;
     }
     
     return identifier;

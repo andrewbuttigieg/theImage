@@ -12,6 +12,7 @@
 		F22781B7190400570016C3F1 /* ChangePasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781B6190400570016C3F1 /* ChangePasswordController.m */; };
 		F22781BF19059B030016C3F1 /* NearYouController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781BE19059B030016C3F1 /* NearYouController.m */; };
 		F22781C21905B4CD0016C3F1 /* nearYouCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781C11905B4CD0016C3F1 /* nearYouCell.m */; };
+		F22781C519099DDC0016C3F1 /* AllVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781C419099DDC0016C3F1 /* AllVideoController.m */; };
 		F2401BB418F99584002E5E2C /* VideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2401BB318F99584002E5E2C /* VideoController.m */; };
 		F243B76C1879D13A001BABC8 /* ViewControllerDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = F243B76B1879D13A001BABC8 /* ViewControllerDetail.m */; };
 		F284BFDA18DB7E810002EB81 /* FriendRequestsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F284BFD918DB7E810002EB81 /* FriendRequestsController.m */; };
@@ -161,6 +162,8 @@
 		F22781BE19059B030016C3F1 /* NearYouController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearYouController.m; sourceTree = "<group>"; };
 		F22781C01905B4CD0016C3F1 /* nearYouCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nearYouCell.h; sourceTree = "<group>"; };
 		F22781C11905B4CD0016C3F1 /* nearYouCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nearYouCell.m; sourceTree = "<group>"; };
+		F22781C319099DDB0016C3F1 /* AllVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllVideoController.h; sourceTree = "<group>"; };
+		F22781C419099DDC0016C3F1 /* AllVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllVideoController.m; sourceTree = "<group>"; };
 		F2401BB218F99584002E5E2C /* VideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoController.h; sourceTree = "<group>"; };
 		F2401BB318F99584002E5E2C /* VideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoController.m; sourceTree = "<group>"; };
 		F243B76A1879D13A001BABC8 /* ViewControllerDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDetail.h; sourceTree = "<group>"; };
@@ -404,6 +407,8 @@
 				F28699E81874C06C0086D665 /* AppDelegate.h */,
 				F28699E91874C06C0086D665 /* AppDelegate.m */,
 				F28699EB1874C06C0086D665 /* Main_iPhone.storyboard */,
+				F22781C319099DDB0016C3F1 /* AllVideoController.h */,
+				F22781C419099DDC0016C3F1 /* AllVideoController.m */,
 				F22781BD19059B030016C3F1 /* NearYouController.h */,
 				F22781BE19059B030016C3F1 /* NearYouController.m */,
 				F22781B5190400560016C3F1 /* ChangePasswordController.h */,
@@ -894,6 +899,7 @@
 				F2EC5DF31883204900D93403 /* PlayerSettingsController.m in Sources */,
 				F2ABD42B18C68280003F03E5 /* SignUpController.m in Sources */,
 				F28699F31874C06C0086D665 /* ViewController.m in Sources */,
+				F22781C519099DDC0016C3F1 /* AllVideoController.m in Sources */,
 				F28699EA1874C06C0086D665 /* AppDelegate.m in Sources */,
 				F287CD2D18A972C800A196E3 /* MessageCenterController.m in Sources */,
 				F2ABD42E18C6B0DE003F03E5 /* LoginController.m in Sources */,

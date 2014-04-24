@@ -125,7 +125,7 @@ static float top = 0;
                         <iframe width=\"300\" height=\"200\" src=\"http://www.youtube.com/embed/zL0CCsdS1cE?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>\
                         </html>";*/
                         
-                        NSString *newHTML = [NSString stringWithFormat:@"<html>\
+                        //NSString *newHTML = [NSString stringWithFormat:@"<html>\
                                              <style>body{padding:0;margin:0;background-color:red}</style>\
                                              <iframe width=\"300\" height=\"200\" src=\"%@\" frameborder=\"0\" allowfullscreen></iframe>\
                                              </html>", [dictionary objectForKey:@"URL"]];
@@ -133,9 +133,9 @@ static float top = 0;
                         
                         //[self.webView loadHTMLString:newHTML baseURL:nil];
                         
-                        CGRect webFrame = CGRectMake(10.0, 0.0, 300.0, 200.0);
-                        int tempIndex = (int)([[dictionary objectForKey:@"URL"] rangeOfString:@"/" options:NSBackwardsSearch].location);
-                        NSString *newStr = [[dictionary objectForKey:@"URL"] substringFromIndex:tempIndex];
+                        CGRect webFrame = CGRectMake(00.0, 0.0, 320.0, 200.0);
+                        //int tempIndex = (int)([[dictionary objectForKey:@"URL"] rangeOfString:@"/" options:NSBackwardsSearch].location);
+                        //NSString *newStr = [[dictionary objectForKey:@"URL"] substringFromIndex:tempIndex];
                         NSString *theURL = [dictionary objectForKey:@"URL"];
                         theURL = [theURL stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"];
 
@@ -144,7 +144,7 @@ static float top = 0;
                         NSURLRequest *req = [NSURLRequest requestWithURL:url];
                         UIWebView *bubbleView = [[UIWebView alloc] initWithFrame:webFrame];
                         bubbleView.backgroundColor = [UIColor blackColor];
-                        bubbleView.frame=CGRectMake(10, top, 300, 200);
+                        bubbleView.frame=CGRectMake(0, top, 320, 200);
                         [bubbleView loadRequest:req];
                         //delete button
                         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -162,9 +162,6 @@ static float top = 0;
                         self.scrollview.contentSize = CGSizeMake(320, top);
                     });
                 }
-                
-                
-                NSLog(@"%@", dictionary);
             }
         }
     }];
@@ -188,6 +185,13 @@ static float top = 0;
         NSString *theURL = self.addVideoLink.text;
         theURL = [[theURL stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"] lowercaseString];
         
+        if ([[theURL lowercaseString] rangeOfString:@"vimeo"].location != NSNotFound){
+            //vimeo video
+            NSURL* url=[NSURL URLWithString:theURL];
+            NSString* last=[url lastPathComponent];
+            theURL = [NSString stringWithFormat:@"http://player.vimeo.com/video/%@", last];
+        }
+        
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/add_video.php/"]];
         [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
         [request setHTTPBody:[[NSString stringWithFormat:@"url=%@&comment=%@", theURL, @"-"]dataUsingEncoding:NSUTF8StringEncoding]];
@@ -205,26 +209,43 @@ static float top = 0;
                                                                               error:&error];
                 for(NSDictionary *dictionary in jsonArray)
                 {
-                    NSLog(@"%@", dictionary);
-                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV"
+
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        //if ([self.playerInteract.title isEqualToString:@"Connect"]){
+                        if ([[dictionary objectForKey:@"accepted"] intValue] == 1){
+                            UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV"
                                                                    message: @"Video added"
                                                                   delegate: self
-                                                         cancelButtonTitle:@"Cancel"
-                                                         otherButtonTitles:@"OK",nil];
+                                                         cancelButtonTitle:@"OK"
+                                                         otherButtonTitles:nil];
                     
                     
-                    [alert show];
+                            [alert show];
+                        }
+                        else{
+                            UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV"
+                                                                           message: [dictionary objectForKey:@"value"]
+                                                                          delegate: self
+                                                                 cancelButtonTitle:@"OK"
+                                                                 otherButtonTitles:nil];
+                            
+                            
+                            [alert show];
+                        }
+                    });
                 }
             }
         }];
     }
     else{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
                                                         message:[NSString stringWithFormat:@"%@",@"That is not a valid link"]
                                                        delegate:self
                                               cancelButtonTitle:@"Ok"
                                               otherButtonTitles:nil];
-        [alert show];
+            [alert show];
+        });
     }
 }
 @end
