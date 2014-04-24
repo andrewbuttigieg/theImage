@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface AllVideoController : UIViewController
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollview;
 
 @end
