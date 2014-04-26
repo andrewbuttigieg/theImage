@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface LoginController : UIViewController<FBLoginViewDelegate, UITextFieldDelegate>
 
@@ -18,5 +19,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *activeTextFieldLogin;
 - (IBAction)forgotPwd:(id)sender;
 - (BOOL)validateEmail:(NSString *)emailStr;
+
+
+@property (strong, nonatomic) IBOutlet MPMoviePlayerController *moviePlayer;
+@property (strong, nonatomic) IBOutlet UIImageView *back;
 
 @end

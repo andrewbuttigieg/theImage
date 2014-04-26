@@ -35,6 +35,18 @@ bool movedHere = false;
 {
     [super viewDidLoad];
     
+    NSString*thePath=[[NSBundle mainBundle] pathForResource:@"intro" ofType:@"mp4"];
+    NSURL*theurl=[NSURL fileURLWithPath:thePath];
+    
+    self.moviePlayer=[[MPMoviePlayerController alloc] initWithContentURL:theurl];
+    self.moviePlayer.controlStyle = MPMovieControlStyleNone;
+    [self.moviePlayer.view setFrame:CGRectMake(0, 0, 320, (1138 / 2))];
+    [self.moviePlayer prepareToPlay];
+    [self.moviePlayer setRepeatMode:YES];
+    [self.moviePlayer setShouldAutoplay:NO];
+    [self.back addSubview:self.moviePlayer.view];
+    [self.moviePlayer play];
+    
     self.email.delegate = self;
     self.password.delegate = self;
     

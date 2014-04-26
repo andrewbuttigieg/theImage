@@ -14,6 +14,8 @@
 		F20175C7190C1EAF00392DD5 /* signup-box2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175C5190C1EAF00392DD5 /* signup-box2@2x.png */; };
 		F20175CA190C209600392DD5 /* done.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175C8190C209600392DD5 /* done.png */; };
 		F20175CB190C209600392DD5 /* done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175C9190C209600392DD5 /* done@2x.png */; };
+		F20175CE190C2D5400392DD5 /* login-box.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175CC190C2D5400392DD5 /* login-box.png */; };
+		F20175CF190C2D5400392DD5 /* login-box@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175CD190C2D5400392DD5 /* login-box@2x.png */; };
 		F22781B41903D9880016C3F1 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781B31903D9880016C3F1 /* SettingsController.m */; };
 		F22781B7190400570016C3F1 /* ChangePasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781B6190400570016C3F1 /* ChangePasswordController.m */; };
 		F22781BF19059B030016C3F1 /* NearYouController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781BE19059B030016C3F1 /* NearYouController.m */; };
@@ -164,6 +166,8 @@
 		F20175C5190C1EAF00392DD5 /* signup-box2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-box2@2x.png"; sourceTree = "<group>"; };
 		F20175C8190C209600392DD5 /* done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = done.png; sourceTree = "<group>"; };
 		F20175C9190C209600392DD5 /* done@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "done@2x.png"; sourceTree = "<group>"; };
+		F20175CC190C2D5400392DD5 /* login-box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-box.png"; sourceTree = "<group>"; };
+		F20175CD190C2D5400392DD5 /* login-box@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-box@2x.png"; sourceTree = "<group>"; };
 		F22781B21903D9880016C3F1 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		F22781B31903D9880016C3F1 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		F22781B5190400560016C3F1 /* ChangePasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordController.h; sourceTree = "<group>"; };
@@ -495,6 +499,8 @@
 				F2905EC218D7F4EA007F16D1 /* icon.png */,
 				F2905EC318D7F4EA007F16D1 /* icon@2x.png */,
 				F2ABD41B18C4F721003F03E5 /* intropage.png */,
+				F20175CC190C2D5400392DD5 /* login-box.png */,
+				F20175CD190C2D5400392DD5 /* login-box@2x.png */,
 				F2ABD41D18C4FFA9003F03E5 /* login-button.png */,
 				F2ABD41E18C4FFA9003F03E5 /* login-button@2x.png */,
 				F2983D0618CF9A5300E96233 /* login.jpg */,
@@ -779,6 +785,7 @@
 				F2B9E1D3189D7E060044DE04 /* AFURLConnectionOperation.m in Resources */,
 				F2B9E1E1189D7E060044DE04 /* Pods-AFNetworking-Private.xcconfig in Resources */,
 				F28C2AB618E744D00047DA75 /* setting-weight@2x.png in Resources */,
+				F20175CE190C2D5400392DD5 /* login-box.png in Resources */,
 				F2ABD42418C4FFA9003F03E5 /* signup-button@2x.png in Resources */,
 				F2B9E1F2189D7E060044DE04 /* UIWebView+AFNetworking.m in Resources */,
 				F2B9E1F0189D7E060044DE04 /* UIProgressView+AFNetworking.m in Resources */,
@@ -852,6 +859,7 @@
 				F28C2AB318E744D00047DA75 /* setting-position.png in Resources */,
 				F2983D0518CF82A400E96233 /* LogoPlayerCV@2x.png in Resources */,
 				F2B9E1CD189D7E060044DE04 /* AFNetworking.h in Resources */,
+				F20175CF190C2D5400392DD5 /* login-box@2x.png in Resources */,
 				F2B9E1DC189D7E060044DE04 /* AFURLRequestSerialization.h in Resources */,
 				F2B9E1DE189D7E060044DE04 /* AFURLResponseSerialization.h in Resources */,
 				F2905EC418D7F4EA007F16D1 /* icon-menu.png in Resources */,

@@ -57,7 +57,7 @@
     [self.moviePlayer.view setFrame:CGRectMake(0, 0, 320, (1138 / 2))];
     [self.moviePlayer prepareToPlay];
     [self.moviePlayer setRepeatMode:YES];
-    [self.moviePlayer setShouldAutoplay:NO]; // And other options you can look through the documentation.
+    [self.moviePlayer setShouldAutoplay:NO];
     [self.back addSubview:self.moviePlayer.view];
     
     NSString *keyLogin = @"login";
