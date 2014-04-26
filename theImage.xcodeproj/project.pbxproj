@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		BB74C52A2CD6406F9F2D713C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E880AE6003B94608B66BFCFE /* libPods.a */; };
+		F20175BE190C1C5700392DD5 /* signup-background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F20175BC190C1C5700392DD5 /* signup-background.jpg */; };
+		F20175BF190C1C5700392DD5 /* signup-background@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F20175BD190C1C5700392DD5 /* signup-background@2x.jpg */; };
+		F20175C6190C1EAF00392DD5 /* signup-box2.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175C4190C1EAF00392DD5 /* signup-box2.png */; };
+		F20175C7190C1EAF00392DD5 /* signup-box2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175C5190C1EAF00392DD5 /* signup-box2@2x.png */; };
+		F20175CA190C209600392DD5 /* done.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175C8190C209600392DD5 /* done.png */; };
+		F20175CB190C209600392DD5 /* done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175C9190C209600392DD5 /* done@2x.png */; };
 		F22781B41903D9880016C3F1 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781B31903D9880016C3F1 /* SettingsController.m */; };
 		F22781B7190400570016C3F1 /* ChangePasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781B6190400570016C3F1 /* ChangePasswordController.m */; };
 		F22781BF19059B030016C3F1 /* NearYouController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781BE19059B030016C3F1 /* NearYouController.m */; };
@@ -90,8 +96,6 @@
 		F2ABD42218C4FFA9003F03E5 /* login-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ABD41E18C4FFA9003F03E5 /* login-button@2x.png */; };
 		F2ABD42318C4FFA9003F03E5 /* signup-button.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ABD41F18C4FFA9003F03E5 /* signup-button.png */; };
 		F2ABD42418C4FFA9003F03E5 /* signup-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ABD42018C4FFA9003F03E5 /* signup-button@2x.png */; };
-		F2ABD42718C51083003F03E5 /* signup.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ABD42518C51083003F03E5 /* signup.png */; };
-		F2ABD42818C51083003F03E5 /* signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ABD42618C51083003F03E5 /* signup@2x.png */; };
 		F2ABD42B18C68280003F03E5 /* SignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2ABD42A18C68280003F03E5 /* SignUpController.m */; };
 		F2ABD42E18C6B0DE003F03E5 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2ABD42D18C6B0DE003F03E5 /* LoginController.m */; };
 		F2ABD43218C6C610003F03E5 /* StartController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2ABD43118C6C610003F03E5 /* StartController.m */; };
@@ -154,6 +158,12 @@
 /* Begin PBXFileReference section */
 		02F02D2711384F7B99AED951 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		E880AE6003B94608B66BFCFE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F20175BC190C1C5700392DD5 /* signup-background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "signup-background.jpg"; sourceTree = "<group>"; };
+		F20175BD190C1C5700392DD5 /* signup-background@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "signup-background@2x.jpg"; sourceTree = "<group>"; };
+		F20175C4190C1EAF00392DD5 /* signup-box2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-box2.png"; sourceTree = "<group>"; };
+		F20175C5190C1EAF00392DD5 /* signup-box2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-box2@2x.png"; sourceTree = "<group>"; };
+		F20175C8190C209600392DD5 /* done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = done.png; sourceTree = "<group>"; };
+		F20175C9190C209600392DD5 /* done@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "done@2x.png"; sourceTree = "<group>"; };
 		F22781B21903D9880016C3F1 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		F22781B31903D9880016C3F1 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		F22781B5190400560016C3F1 /* ChangePasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordController.h; sourceTree = "<group>"; };
@@ -257,8 +267,6 @@
 		F2ABD41E18C4FFA9003F03E5 /* login-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button@2x.png"; sourceTree = "<group>"; };
 		F2ABD41F18C4FFA9003F03E5 /* signup-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-button.png"; sourceTree = "<group>"; };
 		F2ABD42018C4FFA9003F03E5 /* signup-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-button@2x.png"; sourceTree = "<group>"; };
-		F2ABD42518C51083003F03E5 /* signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signup.png; sourceTree = "<group>"; };
-		F2ABD42618C51083003F03E5 /* signup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup@2x.png"; sourceTree = "<group>"; };
 		F2ABD42918C68280003F03E5 /* SignUpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpController.h; sourceTree = "<group>"; };
 		F2ABD42A18C68280003F03E5 /* SignUpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpController.m; sourceTree = "<group>"; };
 		F2ABD42C18C6B0DE003F03E5 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
@@ -474,15 +482,37 @@
 		F2869A141875716E0086D665 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				F284BFE118DBB30A0002EB81 /* accept-friend.png */,
+				F284BFE218DBB30A0002EB81 /* accept-friend@2x.png */,
+				F284BFE318DBB30A0002EB81 /* decline-friend.png */,
+				F284BFE418DBB30A0002EB81 /* decline-friend@2x.png */,
+				F20175C8190C209600392DD5 /* done.png */,
+				F20175C9190C209600392DD5 /* done@2x.png */,
+				F284BFEC18DFB4A90002EB81 /* EditPlayer.jpg */,
+				F2869A111874CA400086D665 /* footballApp.jpg */,
+				F2905EC018D7F4EA007F16D1 /* icon-menu.png */,
+				F2905EC118D7F4EA007F16D1 /* icon-menu@2x.png */,
+				F2905EC218D7F4EA007F16D1 /* icon.png */,
+				F2905EC318D7F4EA007F16D1 /* icon@2x.png */,
+				F2ABD41B18C4F721003F03E5 /* intropage.png */,
+				F2ABD41D18C4FFA9003F03E5 /* login-button.png */,
+				F2ABD41E18C4FFA9003F03E5 /* login-button@2x.png */,
+				F2983D0618CF9A5300E96233 /* login.jpg */,
+				F2983D0818CF9E8800E96233 /* login2.jpg */,
+				F2869A18187571840086D665 /* logo.png */,
+				F2869A16187571840086D665 /* logo@2x.png */,
+				F2983D0218CF82A300E96233 /* LogoPlayerCV.png */,
+				F2983D0318CF82A400E96233 /* LogoPlayerCV@2x.png */,
+				F2869A17187571840086D665 /* player.png */,
+				F2869A15187571840086D665 /* player@2x.png */,
+				F2983D0A18D23BB800E96233 /* profilevisitor.jpg */,
 				F28C2A9318E744D00047DA75 /* setting-about.png */,
 				F28C2A9418E744D00047DA75 /* setting-about@2x.png */,
-				F28C2ABB18EA0F540047DA75 /* setting-single.png */,
-				F28C2ABC18EA0F540047DA75 /* setting-single@2x.png */,
 				F28C2A9518E744D00047DA75 /* setting-box.png */,
 				F28C2A9618E744D00047DA75 /* setting-gender.png */,
 				F28C2A9718E744D00047DA75 /* setting-gender@2x.png */,
-				F28C2A9818E744D00047DA75 /* setting-height.png */,
 				F28C2A9A18E744D00047DA75 /* setting-height-2.png */,
+				F28C2A9818E744D00047DA75 /* setting-height.png */,
 				F28C2A9B18E744D00047DA75 /* setting-height@2x.png */,
 				F28C2AB718E862EC0047DA75 /* setting-image.png */,
 				F28C2AB818E862EC0047DA75 /* setting-image@2x.png */,
@@ -492,34 +522,16 @@
 				F28C2AA018E744D00047DA75 /* setting-password@2x.png */,
 				F28C2AA118E744D00047DA75 /* setting-position.png */,
 				F28C2AA218E744D00047DA75 /* setting-position@2x.png */,
+				F28C2ABB18EA0F540047DA75 /* setting-single.png */,
+				F28C2ABC18EA0F540047DA75 /* setting-single@2x.png */,
 				F28C2AA318E744D00047DA75 /* setting-weight.png */,
 				F28C2AA418E744D00047DA75 /* setting-weight@2x.png */,
-				F284BFEC18DFB4A90002EB81 /* EditPlayer.jpg */,
-				F284BFE118DBB30A0002EB81 /* accept-friend.png */,
-				F284BFE218DBB30A0002EB81 /* accept-friend@2x.png */,
-				F284BFE318DBB30A0002EB81 /* decline-friend.png */,
-				F284BFE418DBB30A0002EB81 /* decline-friend@2x.png */,
-				F2905EC018D7F4EA007F16D1 /* icon-menu.png */,
-				F2905EC118D7F4EA007F16D1 /* icon-menu@2x.png */,
-				F2905EC218D7F4EA007F16D1 /* icon.png */,
-				F2905EC318D7F4EA007F16D1 /* icon@2x.png */,
-				F2983D0A18D23BB800E96233 /* profilevisitor.jpg */,
-				F2983D0818CF9E8800E96233 /* login2.jpg */,
-				F2983D0618CF9A5300E96233 /* login.jpg */,
-				F2983D0218CF82A300E96233 /* LogoPlayerCV.png */,
-				F2983D0318CF82A400E96233 /* LogoPlayerCV@2x.png */,
-				F2869A111874CA400086D665 /* footballApp.jpg */,
-				F2ABD42518C51083003F03E5 /* signup.png */,
-				F2ABD42618C51083003F03E5 /* signup@2x.png */,
-				F2ABD41D18C4FFA9003F03E5 /* login-button.png */,
-				F2ABD41E18C4FFA9003F03E5 /* login-button@2x.png */,
+				F20175BC190C1C5700392DD5 /* signup-background.jpg */,
+				F20175BD190C1C5700392DD5 /* signup-background@2x.jpg */,
+				F20175C4190C1EAF00392DD5 /* signup-box2.png */,
+				F20175C5190C1EAF00392DD5 /* signup-box2@2x.png */,
 				F2ABD41F18C4FFA9003F03E5 /* signup-button.png */,
 				F2ABD42018C4FFA9003F03E5 /* signup-button@2x.png */,
-				F2ABD41B18C4F721003F03E5 /* intropage.png */,
-				F2869A15187571840086D665 /* player@2x.png */,
-				F2869A16187571840086D665 /* logo@2x.png */,
-				F2869A17187571840086D665 /* player.png */,
-				F2869A18187571840086D665 /* logo.png */,
 			);
 			name = image;
 			sourceTree = "<group>";
@@ -779,7 +791,6 @@
 				F2869A121874CA400086D665 /* footballApp.jpg in Resources */,
 				F2905EC718D7F4EA007F16D1 /* icon@2x.png in Resources */,
 				F2B9E1D6189D7E060044DE04 /* AFURLSessionManager.h in Resources */,
-				F2ABD42818C51083003F03E5 /* signup@2x.png in Resources */,
 				F2905ECA18D7F4FB007F16D1 /* simpleMenuButton.png in Resources */,
 				F28C2AAD18E744D00047DA75 /* setting-height@2x.png in Resources */,
 				F2B9E1E8189D7E060044DE04 /* UIAlertView+AFNetworking.h in Resources */,
@@ -801,6 +812,7 @@
 				F28C2ABE18EA0F540047DA75 /* setting-single@2x.png in Resources */,
 				F284BFE518DBB30A0002EB81 /* accept-friend.png in Resources */,
 				F28C2ABA18E862EC0047DA75 /* setting-image@2x.png in Resources */,
+				F20175BF190C1C5700392DD5 /* signup-background@2x.jpg in Resources */,
 				F2ABD42318C4FFA9003F03E5 /* signup-button.png in Resources */,
 				F28C2AA918E744D00047DA75 /* setting-gender@2x.png in Resources */,
 				F2B9E1ED189D7E060044DE04 /* UIImageView+AFNetworking.m in Resources */,
@@ -815,17 +827,22 @@
 				F2B9E1E2189D7E060044DE04 /* Pods-AFNetworking-dummy.m in Resources */,
 				F2B9E1D2189D7E060044DE04 /* AFURLConnectionOperation.h in Resources */,
 				F284BFE618DBB30A0002EB81 /* accept-friend@2x.png in Resources */,
+				F20175CB190C209600392DD5 /* done@2x.png in Resources */,
 				F28C2AAA18E744D00047DA75 /* setting-height.png in Resources */,
 				F2869A1A187571840086D665 /* logo@2x.png in Resources */,
 				F28699ED1874C06C0086D665 /* Main_iPhone.storyboard in Resources */,
 				F2B9E1EC189D7E060044DE04 /* UIImageView+AFNetworking.h in Resources */,
 				F28C2ABD18EA0F540047DA75 /* setting-single.png in Resources */,
+				F20175C7190C1EAF00392DD5 /* signup-box2@2x.png in Resources */,
+				F20175C6190C1EAF00392DD5 /* signup-box2.png in Resources */,
 				F2ABD42118C4FFA9003F03E5 /* login-button.png in Resources */,
 				F284BFE718DBB30A0002EB81 /* decline-friend.png in Resources */,
 				F28C2AA818E744D00047DA75 /* setting-gender.png in Resources */,
 				F2B9E1E5189D7E060044DE04 /* AFNetworkActivityIndicatorManager.m in Resources */,
 				F284BFED18DFB4A90002EB81 /* EditPlayer.jpg in Resources */,
 				F2983D0B18D23BB800E96233 /* profilevisitor.jpg in Resources */,
+				F20175BE190C1C5700392DD5 /* signup-background.jpg in Resources */,
+				F20175CA190C209600392DD5 /* done.png in Resources */,
 				F2B9E1DD189D7E060044DE04 /* AFURLRequestSerialization.m in Resources */,
 				F2B9E1D4189D7E060044DE04 /* AFHTTPSessionManager.h in Resources */,
 				F28C2AA518E744D00047DA75 /* setting-about.png in Resources */,
@@ -838,7 +855,6 @@
 				F2B9E1DC189D7E060044DE04 /* AFURLRequestSerialization.h in Resources */,
 				F2B9E1DE189D7E060044DE04 /* AFURLResponseSerialization.h in Resources */,
 				F2905EC418D7F4EA007F16D1 /* icon-menu.png in Resources */,
-				F2ABD42718C51083003F03E5 /* signup.png in Resources */,
 				F2B9E1E6189D7E060044DE04 /* UIActivityIndicatorView+AFNetworking.h in Resources */,
 				F2B9E1D9189D7E060044DE04 /* AFNetworkReachabilityManager.m in Resources */,
 				F2B9E1DF189D7E060044DE04 /* AFURLResponseSerialization.m in Resources */,

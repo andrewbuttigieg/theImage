@@ -26,4 +26,5 @@
 
 - (IBAction)Done:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UIView *backgroundview;
 @end

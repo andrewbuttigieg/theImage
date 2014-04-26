@@ -430,57 +430,57 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signup.png" id="C8d-dl-BLh">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signup-box2.png" id="gfU-a3-4F1">
+                                        <rect key="frame" x="0.0" y="107" width="320" height="265"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="18" id="nYb-Os-5g3">
-                                        <rect key="frame" x="50" y="161" width="263" height="30"/>
+                                        <rect key="frame" x="50" y="161" width="254" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Surname" minimumFontSize="17" id="Q3S-s3-rnj">
-                                        <rect key="frame" x="50" y="202" width="254" height="30"/>
+                                        <rect key="frame" x="50" y="206" width="254" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Weight" minimumFontSize="17" id="oV3-is-VYK">
-                                        <rect key="frame" x="50" y="242" width="254" height="30"/>
+                                        <rect key="frame" x="50" y="247" width="254" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" id="onU-lr-Jdr">
-                                        <rect key="frame" x="50" y="283" width="254" height="30"/>
+                                        <rect key="frame" x="50" y="290" width="254" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" id="H7e-Tw-dRC">
-                                        <rect key="frame" x="50" y="325" width="254" height="30"/>
+                                        <rect key="frame" x="50" y="334" width="254" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account type" minimumFontSize="17" id="9LZ-Yj-gXd">
-                                        <rect key="frame" x="50" y="116" width="254" height="30"/>
+                                        <rect key="frame" x="50" y="117" width="254" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XHU-uZ-wcl">
-                                        <rect key="frame" x="55" y="383" width="211" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XHU-uZ-wcl">
+                                        <rect key="frame" x="18" y="389" width="284" height="51"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.98039221759999995" green="0.99215692280000001" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
-                                        <state key="normal" title="Done">
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="done.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -495,6 +495,7 @@
                     <navigationItem key="navigationItem" id="Z8c-fK-UM7"/>
                     <connections>
                         <outlet property="accountType" destination="9LZ-Yj-gXd" id="2tR-6K-0Xy"/>
+                        <outlet property="backgroundview" destination="mRr-3B-N9g" id="wKW-iH-w8b"/>
                         <outlet property="email" destination="onU-lr-Jdr" id="Ygu-Ro-eGh"/>
                         <outlet property="lastName" destination="Q3S-s3-rnj" id="mqa-Zd-OJC"/>
                         <outlet property="name" destination="nYb-Os-5g3" id="Nvv-0l-zna"/>
@@ -1824,6 +1825,7 @@
         <image name="LogoPlayerCV.png" width="452" height="151"/>
         <image name="accept-friend.png" width="41" height="39"/>
         <image name="decline-friend.png" width="41" height="39"/>
+        <image name="done.png" width="284" height="51"/>
         <image name="intropage.png" width="640" height="1093"/>
         <image name="login-button.png" width="1" height="45"/>
         <image name="login2.jpg" width="640" height="1010"/>
@@ -1839,8 +1841,8 @@
         <image name="setting-position.png" width="320" height="44"/>
         <image name="setting-single.png" width="320" height="44"/>
         <image name="setting-weight.png" width="320" height="44"/>
+        <image name="signup-box2.png" width="320" height="265"/>
         <image name="signup-button.png" width="1" height="45"/>
-        <image name="signup.png" width="320" height="505"/>
     </resources>
     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
