@@ -465,6 +465,8 @@ static NSString* facebookID;
                                         
                                         NSString *imageURL = [anObject objectForKey:@"PhotoURL"];
                                         //NSLog(@"%@", imageURL);
+                                        imageURL = [imageURL stringByReplacingOccurrencesOfString:@".com/"
+                                                                                 withString:@".com/[120]-"];
                                         
                                         UIImage *image;
                                         if ([imageURL length] > 5){
