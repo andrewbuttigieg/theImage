@@ -15,6 +15,7 @@
 @property (nonatomic) int playerID;
 @property (nonatomic) int meID;
 @property (nonatomic) NSString * facebookID;
+@property (nonatomic) bool useLocalisation;
 
 @property (strong, nonatomic) IBOutlet UILabel *name;
 @property (strong, nonatomic) IBOutlet UILabel *weight;
@@ -36,7 +37,7 @@
 - (IBAction)videoClick:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *videoButton;
 
-
++ (bool)useLocalisation;
 + (int)playerID;
 + (int)meID;
 + (NSString *)facebookID;

@@ -1645,10 +1645,10 @@
             </objects>
             <point key="canvasLocation" x="2867" y="3080"/>
         </scene>
-        <!--View Controller - Settings-->
+        <!--Settings Controller - Settings-->
         <scene sceneID="dzw-fI-3HZ">
             <objects>
-                <viewController title="Settings" id="99Z-c2-2qL" sceneMemberID="viewController">
+                <viewController title="Settings" id="99Z-c2-2qL" customClass="SettingsController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xs8-jk-9p8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1683,7 +1683,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="pwK-lr-9hF">
-                                <rect key="frame" x="251" y="91" width="51" height="31"/>
+                                <rect key="frame" x="251" y="92" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JOE-nh-AsW">
@@ -1723,6 +1723,9 @@
                         <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="amO-mM-0fY"/>
+                    <connections>
+                        <outlet property="useLocalizationSwitch" destination="pwK-lr-9hF" id="sE3-2Y-NOP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OsZ-LH-jlw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

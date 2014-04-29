@@ -17,6 +17,7 @@
 
 
 static float top = 0;
+static UIRefreshControl *refreshControl;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +28,7 @@ static float top = 0;
     return self;
 }
 
--(void)load:(UIRefreshControl *)refreshControl{
+-(void)load{
     //int me = ViewController.playerID;
     
     top = 0.0;
@@ -89,17 +90,18 @@ static float top = 0;
                         bubbleView.frame=CGRectMake(0, top, 320, 200);
                         [bubbleView loadRequest:req];
                         //delete button
-                        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                    
+                        /*UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                         [button addTarget:self action:@selector(deleteVideo:) forControlEvents:UIControlEventTouchUpInside];
                         button.tag = [[dictionary objectForKey:@"VideoID"] intValue];
                         [button setTitle:@"Delete" forState:UIControlStateNormal];
-                        button.frame = CGRectMake(10.0, top + 200, 160.0, 40.0);
+                        button.frame = CGRectMake(10.0, top + 200, 160.0, 40.0);*/
                         
                         //where to put the view
-                        top += 240.0;
+                        top += 220.0;
                         //dispatch_sync(dispatch_get_main_queue(), ^{
                             [self.scrollview addSubview:bubbleView];
-                            [self.scrollview addSubview:button];
+                        //[self.scrollview addSubview:button];
                         
                             //set the scroll of the view
                             self.scrollview.contentSize = CGSizeMake(320, top);
@@ -117,15 +119,15 @@ static float top = 0;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refreshControl = [[UIRefreshControl alloc] init];
     
-    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
-    [refresh addTarget:self action:@selector(load) forControlEvents:UIControlEventValueChanged];
+    self.title = @"Videos";
     
-//    self.refreshControl = refresh;
-    [self.scrollview addSubview:refresh];
+    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    [refreshControl addTarget:self action:@selector(load) forControlEvents:UIControlEventValueChanged];
+    [self.scrollview addSubview:refreshControl];
     
-    [self load:refresh];
+    [self load];
 }
 
 - (void)didReceiveMemoryWarning

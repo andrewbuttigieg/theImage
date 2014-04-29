@@ -20,6 +20,7 @@
 
 static int playerID = 0;
 static int meID = 0;
+bool useLocalisation = true;
 
 static NSString* facebookID;
 
@@ -32,6 +33,10 @@ static NSString* facebookID;
 
 + (NSString*) facebookID{
     return facebookID;
+}
+
++ (bool) useLocalisation{
+    return useLocalisation;
 }
 
 
@@ -279,6 +284,7 @@ static NSString* facebookID;
                 
                 self.facebookID = [dictionary objectForKey:@"FacebookID"];
                 facebookID = [dictionary objectForKey:@"FacebookID"];
+                
                 /*if ([imageURL length] > 5){
                  self.toUpload.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
                  }*/
@@ -291,6 +297,14 @@ static NSString* facebookID;
                     p = p2;
                     self.playerID = p2;
                     playerID = p2;
+                    self.playerInteract.enabled = TRUE;
+                    self.playerInteract.title = @"Edit";
+                    
+                    self.useLocalisation = [[dictionary objectForKey:@"AllowLocalisation"] boolValue];
+                    useLocalisation = [[dictionary objectForKey:@"AllowLocalisation"] boolValue];
+                }
+                
+                if (p == p2){
                     self.playerInteract.enabled = TRUE;
                     self.playerInteract.title = @"Edit";
                 }

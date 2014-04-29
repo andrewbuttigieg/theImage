@@ -7,6 +7,7 @@
 //
 
 #import "SettingsController.h"
+#import "PlayerController.h"
 
 @interface SettingsController ()
 
@@ -27,6 +28,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.useLocalizationSwitch.on = PlayerController.useLocalisation;
 }
 
 - (void)didReceiveMemoryWarning

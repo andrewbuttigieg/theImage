@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingsController : UIViewController
+@property (strong, nonatomic) IBOutlet UISwitch *useLocalizationSwitch;
 
 @end
