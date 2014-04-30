@@ -16,6 +16,8 @@
 		F20175CB190C209600392DD5 /* done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175C9190C209600392DD5 /* done@2x.png */; };
 		F20175CE190C2D5400392DD5 /* login-box.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175CC190C2D5400392DD5 /* login-box.png */; };
 		F20175CF190C2D5400392DD5 /* login-box@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175CD190C2D5400392DD5 /* login-box@2x.png */; };
+		F20175D2191056BB00392DD5 /* loginBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175D0191056BB00392DD5 /* loginBtn.png */; };
+		F20175D3191056BB00392DD5 /* loginBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175D1191056BB00392DD5 /* loginBtn@2x.png */; };
 		F22781B41903D9880016C3F1 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781B31903D9880016C3F1 /* SettingsController.m */; };
 		F22781B7190400570016C3F1 /* ChangePasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781B6190400570016C3F1 /* ChangePasswordController.m */; };
 		F22781BF19059B030016C3F1 /* NearYouController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781BE19059B030016C3F1 /* NearYouController.m */; };
@@ -168,6 +170,8 @@
 		F20175C9190C209600392DD5 /* done@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "done@2x.png"; sourceTree = "<group>"; };
 		F20175CC190C2D5400392DD5 /* login-box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-box.png"; sourceTree = "<group>"; };
 		F20175CD190C2D5400392DD5 /* login-box@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-box@2x.png"; sourceTree = "<group>"; };
+		F20175D0191056BB00392DD5 /* loginBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBtn.png; sourceTree = "<group>"; };
+		F20175D1191056BB00392DD5 /* loginBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginBtn@2x.png"; sourceTree = "<group>"; };
 		F22781B21903D9880016C3F1 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		F22781B31903D9880016C3F1 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		F22781B5190400560016C3F1 /* ChangePasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordController.h; sourceTree = "<group>"; };
@@ -486,6 +490,8 @@
 		F2869A141875716E0086D665 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				F20175D0191056BB00392DD5 /* loginBtn.png */,
+				F20175D1191056BB00392DD5 /* loginBtn@2x.png */,
 				F284BFE118DBB30A0002EB81 /* accept-friend.png */,
 				F284BFE218DBB30A0002EB81 /* accept-friend@2x.png */,
 				F284BFE318DBB30A0002EB81 /* decline-friend.png */,
@@ -820,6 +826,7 @@
 				F284BFE518DBB30A0002EB81 /* accept-friend.png in Resources */,
 				F28C2ABA18E862EC0047DA75 /* setting-image@2x.png in Resources */,
 				F20175BF190C1C5700392DD5 /* signup-background@2x.jpg in Resources */,
+				F20175D2191056BB00392DD5 /* loginBtn.png in Resources */,
 				F2ABD42318C4FFA9003F03E5 /* signup-button.png in Resources */,
 				F28C2AA918E744D00047DA75 /* setting-gender@2x.png in Resources */,
 				F2B9E1ED189D7E060044DE04 /* UIImageView+AFNetworking.m in Resources */,
@@ -859,6 +866,7 @@
 				F28C2AB318E744D00047DA75 /* setting-position.png in Resources */,
 				F2983D0518CF82A400E96233 /* LogoPlayerCV@2x.png in Resources */,
 				F2B9E1CD189D7E060044DE04 /* AFNetworking.h in Resources */,
+				F20175D3191056BB00392DD5 /* loginBtn@2x.png in Resources */,
 				F20175CF190C2D5400392DD5 /* login-box@2x.png in Resources */,
 				F2B9E1DC189D7E060044DE04 /* AFURLRequestSerialization.h in Resources */,
 				F2B9E1DE189D7E060044DE04 /* AFURLResponseSerialization.h in Resources */,

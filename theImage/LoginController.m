@@ -31,6 +31,18 @@ bool movedHere = false;
     return self;
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self.moviePlayer play];
+    [super viewWillAppear:animated];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [self.moviePlayer pause];
+    [super viewWillDisappear:animated];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -54,7 +66,7 @@ bool movedHere = false;
     // Align the button in the center horizontally
     loginView.readPermissions = @[@"basic_info", @"email", @"user_likes"];
     loginView.delegate = self;
-    loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 80);
+    loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 100);
     [self.scrollViewLogin addSubview:loginView];
     
     self.scrollViewLogin.contentSize = CGSizeMake(320, 480);
@@ -190,7 +202,7 @@ bool movedHere = false;
         CGRect aRect = self.view.frame;
         aRect.size.height -= keyboardSize.height;
         //if (!CGRectContainsPoint(aRect, self.activeTextField.frame.origin) ) {
-        CGPoint scrollPoint = CGPointMake(0.0, self.activeTextFieldLogin.frame.origin.y - (keyboardSize.height-35));
+        CGPoint scrollPoint = CGPointMake(0.0, self.activeTextFieldLogin.frame.origin.y - (keyboardSize.height-95));
         [self.scrollViewLogin setContentOffset:scrollPoint animated:YES];
     }
     
@@ -222,7 +234,7 @@ bool movedHere = false;
     CGPoint xxx = self.activeTextFieldLogin.frame.origin;
     xxx.y += self.navigationController.navigationBar.frame.size.height + rect.size.height;
     if (!CGRectContainsPoint(aRect, xxx) ) {
-        CGPoint scrollPoint = CGPointMake(0.0, self.activeTextFieldLogin.frame.origin.y - (keyboardSize.height-55));
+        CGPoint scrollPoint = CGPointMake(0.0, self.activeTextFieldLogin.frame.origin.y - (keyboardSize.height-95));
         [self.scrollViewLogin setContentOffset:scrollPoint animated:YES];
     }
     movedHere = true;
@@ -235,6 +247,12 @@ bool movedHere = false;
 }
 
 -(void)GoToPlayer{
+    
+    [self.back removeFromSuperview];
+    [self.moviePlayer stop];
+    [self.moviePlayer setContentURL:nil];
+    [self.moviePlayer.view removeFromSuperview];
+    
     NSString * storyboardName = @"Main_iPhone";
     NSString * viewControllerID = @"Main";
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
@@ -250,7 +268,7 @@ bool movedHere = false;
     NSString *password = self.password.text;
     
     if ([LogMeIn login:login :password]){
-        [self GoToPlayer];
+        [self GoToPlayer]; //logged in now
     }
 }
 
