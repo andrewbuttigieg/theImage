@@ -17,12 +17,14 @@
 
 @implementation AppDelegate
 
+bool isAppResumingFromBackground = NO;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [FBLoginView class];
     // Override point for customization after application launch.
     
-    
+
   /*
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -41,6 +43,15 @@
     return YES;
 //- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 }
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    
+    if (isAppResumingFromBackground) {
+        
+        // Show Alert Here
+    }
+}
+
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
@@ -71,6 +82,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    isAppResumingFromBackground = YES;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

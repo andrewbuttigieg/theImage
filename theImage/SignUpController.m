@@ -228,6 +228,7 @@ bool moved = false;
 }
 
 - (IBAction)Done:(id)sender {
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/reg_player.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPBody:[[NSString stringWithFormat:@"password=%@&email=%@&name=%@&lname=%@&weight=%@usertype=%@",

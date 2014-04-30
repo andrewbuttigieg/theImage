@@ -44,10 +44,19 @@
     [self.navigationController setNavigationBarHidden:NO];
 }
 
+- (void)applicationDidBecomeActive:(NSNotification *) notification
+{
+    [self.moviePlayer play];
+}
+
 - (void)viewDidLoad
 {
-    
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidBecomeActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
     
     NSString*thePath=[[NSBundle mainBundle] pathForResource:@"intro" ofType:@"mp4"];
     NSURL*theurl=[NSURL fileURLWithPath:thePath];
@@ -101,5 +110,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
+}
+
 
 @end

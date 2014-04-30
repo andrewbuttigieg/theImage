@@ -454,10 +454,10 @@ static NSString* facebookID;
                                     
                                     CALayer *bottomBorder = [CALayer layer];
                                     
-                                    bottomBorder.frame = CGRectMake(0.0f, 0.0f, secondScroll.frame.size.width, 1.0f);
+                                    //bottomBorder.frame = CGRectMake(0.0f, 0.0f, secondScroll.frame.size.width, 1.0f);
                                     
-                                    bottomBorder.backgroundColor = [UIColor colorWithWhite:0.8f
-                                                                                     alpha:1.0f].CGColor;
+                                    //bottomBorder.backgroundColor = [UIColor colorWithWhite:0.8f
+                                    //                                                 alpha:1.0f].CGColor;
                                     [secondScroll.layer addSublayer:bottomBorder];
                                     
                                     NSDictionary *temp;
@@ -504,12 +504,13 @@ static NSString* facebookID;
                                         [iv setUserInteractionEnabled:YES];
                                         
                                         UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(total * 70 + 10, 100, 60,30)];
-                                        if (i == 0)
-                                            lb.textColor = [UIColor colorWithRed:(221.0f/255.0f) green:(221.0f/255.0f) blue:(135.0f/255.0f) alpha:1];
+                                        //if (i == 0)
+                                            lb.textColor = [UIColor colorWithRed:(92.0f/255.0f) green:(92.0f/255.0f) blue:(92.0f/255.0f) alpha:1];
+                                        /*
                                         else if (i == 1)
                                             lb.textColor = [UIColor colorWithRed:(225.0f/255.0f) green:(144.0f/255.0f) blue:(2.0f/255.0f) alpha:1];
                                         else if (i == 2)
-                                            lb.textColor = [UIColor colorWithRed:(0.0f/255.0f) green:(158.0f/255.0f) blue:(219.0f/255.0f) alpha:1];
+                                            lb.textColor = [UIColor colorWithRed:(0.0f/255.0f) green:(158.0f/255.0f) blue:(219.0f/255.0f) alpha:1];*/
                                         lb.text = [anObject objectForKey:@"Firstname"];
                                         lb.textAlignment = NSTextAlignmentCenter;
                                         
@@ -524,7 +525,7 @@ static NSString* facebookID;
                                         [secondScroll setContentSize:CGSizeMake(total * 70 + 10, 60)];
                                         
                                         UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 60,30)];
-                                        lb.textColor = [UIColor blackColor];
+                                        lb.textColor = [UIColor colorWithRed:(180.0f/255.0f) green:(180.0f/255.0f) blue:(180.0f/255.0f) alpha:1];
                                         
                                         [lb setFont:[UIFont systemFontOfSize:15]];
                                         if (i == 0)

@@ -18,6 +18,10 @@
 		F20175CF190C2D5400392DD5 /* login-box@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175CD190C2D5400392DD5 /* login-box@2x.png */; };
 		F20175D2191056BB00392DD5 /* loginBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175D0191056BB00392DD5 /* loginBtn.png */; };
 		F20175D3191056BB00392DD5 /* loginBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175D1191056BB00392DD5 /* loginBtn@2x.png */; };
+		F20175D61911A4F700392DD5 /* chatIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175D41911A4F700392DD5 /* chatIcon.png */; };
+		F20175D71911A4F700392DD5 /* chatIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175D51911A4F700392DD5 /* chatIcon@2x.png */; };
+		F20175DA1911A55B00392DD5 /* videoIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175D81911A55B00392DD5 /* videoIcon.png */; };
+		F20175DB1911A55B00392DD5 /* videoIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20175D91911A55B00392DD5 /* videoIcon@2x.png */; };
 		F22781B41903D9880016C3F1 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781B31903D9880016C3F1 /* SettingsController.m */; };
 		F22781B7190400570016C3F1 /* ChangePasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781B6190400570016C3F1 /* ChangePasswordController.m */; };
 		F22781BF19059B030016C3F1 /* NearYouController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781BE19059B030016C3F1 /* NearYouController.m */; };
@@ -172,6 +176,10 @@
 		F20175CD190C2D5400392DD5 /* login-box@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-box@2x.png"; sourceTree = "<group>"; };
 		F20175D0191056BB00392DD5 /* loginBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBtn.png; sourceTree = "<group>"; };
 		F20175D1191056BB00392DD5 /* loginBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginBtn@2x.png"; sourceTree = "<group>"; };
+		F20175D41911A4F700392DD5 /* chatIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatIcon.png; sourceTree = "<group>"; };
+		F20175D51911A4F700392DD5 /* chatIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatIcon@2x.png"; sourceTree = "<group>"; };
+		F20175D81911A55B00392DD5 /* videoIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoIcon.png; sourceTree = "<group>"; };
+		F20175D91911A55B00392DD5 /* videoIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoIcon@2x.png"; sourceTree = "<group>"; };
 		F22781B21903D9880016C3F1 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		F22781B31903D9880016C3F1 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		F22781B5190400560016C3F1 /* ChangePasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordController.h; sourceTree = "<group>"; };
@@ -490,6 +498,10 @@
 		F2869A141875716E0086D665 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				F20175D81911A55B00392DD5 /* videoIcon.png */,
+				F20175D91911A55B00392DD5 /* videoIcon@2x.png */,
+				F20175D41911A4F700392DD5 /* chatIcon.png */,
+				F20175D51911A4F700392DD5 /* chatIcon@2x.png */,
 				F20175D0191056BB00392DD5 /* loginBtn.png */,
 				F20175D1191056BB00392DD5 /* loginBtn@2x.png */,
 				F284BFE118DBB30A0002EB81 /* accept-friend.png */,
@@ -799,6 +811,7 @@
 				F2B9E1DB189D7E060044DE04 /* AFSecurityPolicy.m in Resources */,
 				F2B9E1EB189D7E060044DE04 /* UIButton+AFNetworking.m in Resources */,
 				F28C2AAF18E744D00047DA75 /* setting-login.png in Resources */,
+				F20175D71911A4F700392DD5 /* chatIcon@2x.png in Resources */,
 				F2ABD41C18C4F721003F03E5 /* intropage.png in Resources */,
 				F2B9E1E7189D7E060044DE04 /* UIActivityIndicatorView+AFNetworking.m in Resources */,
 				F2869A121874CA400086D665 /* footballApp.jpg in Resources */,
@@ -808,6 +821,7 @@
 				F28C2AAD18E744D00047DA75 /* setting-height@2x.png in Resources */,
 				F2B9E1E8189D7E060044DE04 /* UIAlertView+AFNetworking.h in Resources */,
 				F28C2AB018E744D00047DA75 /* setting-login@2x.png in Resources */,
+				F20175D61911A4F700392DD5 /* chatIcon.png in Resources */,
 				F28C2AAC18E744D00047DA75 /* setting-height-2.png in Resources */,
 				F2B9E1EF189D7E060044DE04 /* UIProgressView+AFNetworking.h in Resources */,
 				F28C2AA718E744D00047DA75 /* setting-box.png in Resources */,
@@ -850,6 +864,7 @@
 				F20175C7190C1EAF00392DD5 /* signup-box2@2x.png in Resources */,
 				F20175C6190C1EAF00392DD5 /* signup-box2.png in Resources */,
 				F2ABD42118C4FFA9003F03E5 /* login-button.png in Resources */,
+				F20175DA1911A55B00392DD5 /* videoIcon.png in Resources */,
 				F284BFE718DBB30A0002EB81 /* decline-friend.png in Resources */,
 				F28C2AA818E744D00047DA75 /* setting-gender.png in Resources */,
 				F2B9E1E5189D7E060044DE04 /* AFNetworkActivityIndicatorManager.m in Resources */,
@@ -867,6 +882,7 @@
 				F2983D0518CF82A400E96233 /* LogoPlayerCV@2x.png in Resources */,
 				F2B9E1CD189D7E060044DE04 /* AFNetworking.h in Resources */,
 				F20175D3191056BB00392DD5 /* loginBtn@2x.png in Resources */,
+				F20175DB1911A55B00392DD5 /* videoIcon@2x.png in Resources */,
 				F20175CF190C2D5400392DD5 /* login-box@2x.png in Resources */,
 				F2B9E1DC189D7E060044DE04 /* AFURLRequestSerialization.h in Resources */,
 				F2B9E1DE189D7E060044DE04 /* AFURLResponseSerialization.h in Resources */,

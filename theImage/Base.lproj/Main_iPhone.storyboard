@@ -1152,7 +1152,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n1J-L8-T2j">
-                                <rect key="frame" x="8" y="397" width="297" height="21"/>
+                                <rect key="frame" x="8" y="379" width="297" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Playing">
@@ -1172,17 +1172,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FDI-Q3-pXV">
-                                <rect key="frame" x="252" y="289" width="68" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.1019607931" green="0.69019609689999994" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
-                                <state key="normal" title="Message">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendMessage:" destination="iMm-Ef-769" eventType="touchUpInside" id="PKW-DI-OhY"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Height" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="alj-xI-BSX">
                                 <rect key="frame" x="257" y="360" width="63" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1231,15 +1220,24 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FDI-Q3-pXV">
+                                <rect key="frame" x="231" y="278" width="25" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="chatIcon.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendMessage:" destination="iMm-Ef-769" eventType="touchUpInside" id="PKW-DI-OhY"/>
+                                </connections>
+                            </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="OAm-oS-HL6">
-                                <rect key="frame" x="8" y="327" width="320" height="150"/>
+                                <rect key="frame" x="8" y="513" width="320" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </scrollView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="E4s-HW-cq5">
-                                <rect key="frame" x="175" y="289" width="62" height="30"/>
+                                <rect key="frame" x="276" y="278" width="25" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Video">
+                                <state key="normal" backgroundImage="videoIcon.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1867,6 +1865,7 @@
     <resources>
         <image name="LogoPlayerCV.png" width="452" height="151"/>
         <image name="accept-friend.png" width="41" height="39"/>
+        <image name="chatIcon.png" width="25" height="24"/>
         <image name="decline-friend.png" width="41" height="39"/>
         <image name="done.png" width="284" height="51"/>
         <image name="intropage.png" width="640" height="1093"/>
@@ -1887,6 +1886,7 @@
         <image name="setting-weight.png" width="320" height="44"/>
         <image name="signup-box2.png" width="320" height="265"/>
         <image name="signup-button.png" width="1" height="45"/>
+        <image name="videoIcon.png" width="25" height="24"/>
     </resources>
     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

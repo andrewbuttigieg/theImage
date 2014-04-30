@@ -43,9 +43,19 @@ bool movedHere = false;
     [super viewWillDisappear:animated];
 }
 
+- (void)applicationDidBecomeActive:(NSNotification *) notification
+{
+    [self.moviePlayer play];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidBecomeActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
     
     NSString*thePath=[[NSBundle mainBundle] pathForResource:@"intro" ofType:@"mp4"];
     NSURL*theurl=[NSURL fileURLWithPath:thePath];
