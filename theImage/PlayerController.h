@@ -37,6 +37,12 @@
 - (IBAction)videoClick:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *videoButton;
 
+@property (strong, nonatomic) IBOutlet UILabel *playingWhere;
+@property (strong, nonatomic) IBOutlet UIImageView *heightIcon;
+@property (strong, nonatomic) IBOutlet UIImageView *weightIcon;
+@property (strong, nonatomic) IBOutlet UILabel *age;
+
+
 + (bool)useLocalisation;
 + (int)playerID;
 + (int)meID;

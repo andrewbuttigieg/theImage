@@ -345,6 +345,10 @@ static NSString* facebookID;
                             
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 
+                                self.playingWhere.hidden = false;
+                                self.heightIcon.hidden = false;
+                                self.weightIcon.hidden = false;
+                                
                                 if ([[theUser valueForKey:@"VideoCount"] intValue] > 0 || p == p2){
                                     self.videoButton.hidden = FALSE;
                                 }
@@ -352,9 +356,18 @@ static NSString* facebookID;
                                     self.videoButton.hidden = TRUE;
                                 }
                                 //get the player information
-                                self.playerName.text = [NSString stringWithFormat:@"%@ %@", [theUser valueForKey:@"Firstname"], [theUser valueForKey:@"Lastname"]];
-                                self.height.text = [theUser valueForKey:@"Height"];
-                                self.weight.text = [theUser valueForKey:@"Weight"];
+                                self.playerName.text = [[NSString stringWithFormat:@"%@ %@", [theUser valueForKey:@"Firstname"], [theUser valueForKey:@"Lastname"] ] uppercaseString];
+                                
+                                [self.playerName sizeToFit];
+                                
+                                CGRect frame = self.age.frame;
+                                
+                                frame.origin.x = self.playerName.frame.origin.x + self.playerName.frame.size.width + 10;
+                                self.age.frame = frame;
+                                self.age.hidden = false;
+                                
+                                self.height.text = [NSString stringWithFormat:@"%.1fcm", [[theUser valueForKey:@"Height"] floatValue]];
+                                self.weight.text = [NSString stringWithFormat:@"%.1fkgs", [[theUser valueForKey:@"Weight"] floatValue]];
                                 self.postion.text = [theUser valueForKey:@"Position"];
                                 self.aboutLabel.text = [theUser valueForKey:@"About"];
                                 
@@ -374,7 +387,6 @@ static NSString* facebookID;
                                     
                                     if (accepted == 0 || accepted == 1 || accepted == 2){
                                         //cannot add to friend anymore
-                                        //self.addFriendButton.hidden = TRUE;
                                     }
                                     else{
                                         self.playerInteract.title = @"Connect";
@@ -383,10 +395,9 @@ static NSString* facebookID;
                                     
                                     if (accepted ==1){
                                         //you are a friend
-                                        //self.areFriend.hidden = FALSE;
                                         self.playerInteract.enabled = FALSE;
                                         self.playerInteract.title = @"Friends";
-                                        //self.message.hidden = FALSE;
+                                        self.message.hidden = FALSE;
                                     }
                                     else{
                                         //you are not friend yet
@@ -395,27 +406,15 @@ static NSString* facebookID;
                                         //
                                         self.playerInteract.enabled = FALSE;
                                         self.playerInteract.title = @"Requested";
-                                        //self.reqWaiting.hidden = FALSE;
                                         self.navigationItem.leftBarButtonItem = nil;
                                     }
                                     else if (accepted == 0 && youPending == 1){
                                         //not a friend yet, but req there
-                                        
                                         self.playerInteract.enabled = TRUE;
                                         self.playerInteract.title = @"Respond";
-                                        // self.acceptFriend.hidden = FALSE;
-                                        /*
-                                         
-                                         self.reqWaiting.hidden = TRUE;
-                                         self.beFriendLabel.hidden = FALSE;
-                                         self.acceptFriend.hidden = FALSE;
-                                         self.dontWantToFriend.hidden = FALSE;*/
                                     }
                                     else{
                                         self.navigationItem.leftBarButtonItem = nil;
-                                        /*self.beFriendLabel.hidden = TRUE;
-                                         self.acceptFriend.hidden = TRUE;
-                                         self.dontWantToFriend.hidden = TRUE;*/
                                     }
                                 }
                                 
