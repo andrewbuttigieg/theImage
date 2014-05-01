@@ -186,6 +186,29 @@ bool moved = false;
     }
 }
 
+- (BOOL) textField: (UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range replacementString: (NSString *)string {
+    //return yes or no after comparing the characters
+    
+    // allow backspace
+    if (!string.length)
+    {
+        return YES;
+    }
+    
+    // allow digit 0 to 9
+    if (
+        [self.activeTextField isEqual:self.weight] &&
+        ([string intValue] || [string isEqualToString:@"0"] || [string isEqualToString:@"."] || [string isEqualToString:@","])
+        )
+    {
+        return YES;
+    }
+    
+    
+    
+    return NO;
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     self.activeTextField = nil;

@@ -106,7 +106,7 @@ bool player = false;
     [self.countryPicker2 setDataSource: self];
     [self.countryPicker2 setDelegate: self];
     self.countryPicker2.showsSelectionIndicator = YES;
-    
+    //all the pickers are binded to their respective input view
     self.gender.inputView = self.picker;
     self.lfpCountry.inputView = self.countryPicker;
     self.lfpartCountry.inputView = self.countryPicker2;
@@ -137,7 +137,7 @@ bool player = false;
                     self.weight.text = [dictionary objectForKey:@"Weight"];
                     self.email.text = [dictionary objectForKey:@"Email"];
                     self.position.text = [dictionary objectForKey:@"Position"];
-                    self.age.text = [dictionary objectForKey:@"Age"];
+                    self.age.text = [dictionary objectForKey:@"Birthday"];
                     
                     if ([dictionary objectForKey:@"Gender"] != [NSNull null]) {
                         self.gender.text = [dictionary objectForKey:@"Gender"];
@@ -223,6 +223,13 @@ bool player = false;
 	// Do any additional setup after loading the view.
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return TRUE;
+}
+
+
 - (BOOL) textField: (UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range replacementString: (NSString *)string {
     //return yes or no after comparing the characters
     
@@ -265,9 +272,31 @@ bool player = false;
     [self.activePlayerTextField resignFirstResponder];
 }
 
+UIDatePicker *itsDatePicker;
+- (IBAction) incidentDateValueChanged:(id)sender{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMM d, yyyy"];
+    self.age.text = [dateFormatter stringFromDate:[itsDatePicker date]];
+}
+
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.activePlayerTextField = textField;
+    
+    if ([textField isEqual:self.age]){
+        /*itsRightBarButton.title  = @"Done";
+        itsRightBarButton.style = UIBarButtonItemStyleDone;
+        itsRightBarButton.target = self;
+        itsRightBarButton.action = @selector(doneAction:);*/
+        itsDatePicker = [[UIDatePicker alloc] init];
+        itsDatePicker.datePickerMode = UIDatePickerModeDate;
+        [itsDatePicker addTarget:self action:@selector(incidentDateValueChanged:) forControlEvents:UIControlEventValueChanged];
+        //datePicker.tag = indexPath.row;
+        textField.inputView = itsDatePicker;
+    }
+
+    
     float topY = 0;
     if ([textField isEqual: self.lfpPosition] || [textField isEqual: self.lfpCountry]){
         topY = self.lookingForPlayer.frame.origin.y;
@@ -410,17 +439,14 @@ bool player = false;
 
 - (IBAction)save_player:(id)sender {
     
-//    NSString *postData = [NSString stringWithFormat:@"h=%@&w=/%@&a=/%@&p=/%@&u=/%@", 1, self.position.text,  self.about.text,
-  //                          self.weight.text, self.height.text	];
-    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/update_user.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"h=%@&w=%@&a=%@&p=%@&u=1&name=%@&surname=%@&phone=%@&email=%@&lookingForPlayer=%@&lfpCountry=%@&lfpPosition=%@&lookingForPartnership=%@&partnerCountry=%@",
+    [request setHTTPBody:[[NSString stringWithFormat:@"h=%@&w=%@&a=%@&p=%@&u=1&name=%@&surname=%@&phone=%@&email=%@&lookingForPlayer=%@&lfpCountry=%@&lfpPosition=%@&lookingForPartnership=%@&partnerCountry=%@&age=%@&gender=%@",
                            self.height.text, self.weight.text, self.about.text,self.position.text, self.name.text, self.surname.text,self.phone.text, self.email.text,
                            self.lookingForPlayerButton.on ? @"1" : @"0",
                            self.lfpCountry.text, self.lfpPosition.text,
                            self.lookingForPartnerButton.on ? @"1" : @"0",
-                           self.lfpartCountry.text
+                           self.lfpartCountry.text, self.age.text, self.gender.text
                            ]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     NSError *error = nil; NSURLResponse *response = nil;
