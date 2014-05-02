@@ -137,7 +137,10 @@ bool player = false;
                     self.weight.text = [dictionary objectForKey:@"Weight"];
                     self.email.text = [dictionary objectForKey:@"Email"];
                     self.position.text = [dictionary objectForKey:@"Position"];
-                    self.age.text = [dictionary objectForKey:@"Birthday"];
+                    
+                    if ([dictionary objectForKey:@"Birthday"] != [NSNull null]){
+                        self.age.text = [dictionary objectForKey:@"Birthday"];
+                    }
                     
                     if ([dictionary objectForKey:@"Gender"] != [NSNull null]) {
                         self.gender.text = [dictionary objectForKey:@"Gender"];
@@ -209,8 +212,6 @@ bool player = false;
         }
     }];
     
-
-
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWasShown:)
                                                  name:UIKeyboardDidShowNotification
@@ -275,7 +276,7 @@ bool player = false;
 UIDatePicker *itsDatePicker;
 - (IBAction) incidentDateValueChanged:(id)sender{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MMM d, yyyy"];
+    [dateFormatter setDateFormat:@"MMM dd, yyyy"];
     self.age.text = [dateFormatter stringFromDate:[itsDatePicker date]];
 }
 
@@ -290,6 +291,14 @@ UIDatePicker *itsDatePicker;
         itsRightBarButton.target = self;
         itsRightBarButton.action = @selector(doneAction:);*/
         itsDatePicker = [[UIDatePicker alloc] init];
+        
+        if (!self.age.text){
+            NSDateFormatter * Dateformats= [[NSDateFormatter alloc] init];
+            [Dateformats setDateFormat:@"yyyy/MM/DD"]; //ex @"MM/DD/yyyy hh:mm:ss"
+            NSDate *myDate=[Dateformats dateFromString:self.age.text];
+            itsDatePicker.date = myDate;
+        }
+        
         itsDatePicker.datePickerMode = UIDatePickerModeDate;
         [itsDatePicker addTarget:self action:@selector(incidentDateValueChanged:) forControlEvents:UIControlEventValueChanged];
         //datePicker.tag = indexPath.row;
@@ -322,9 +331,7 @@ UIDatePicker *itsDatePicker;
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     self.activePlayerTextField = nil;
-    
 }
-
 
 - (void) keyboardWillHide:(NSNotification *)notification {
     movedAlready = false;
@@ -491,7 +498,6 @@ UIDatePicker *itsDatePicker;
     imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
     
     [self presentModalViewController:imagePickerController animated:YES];
-
 }
 
 - (void) lookingForPlayerAlign {

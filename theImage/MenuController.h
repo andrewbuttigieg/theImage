@@ -10,5 +10,6 @@
 #import "AMSlideMenuMainViewController.h"
 
 @interface MenuController : AMSlideMenuLeftTableViewController
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

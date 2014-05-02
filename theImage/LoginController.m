@@ -207,6 +207,8 @@ bool movedHere = false;
 {
     self.activeTextFieldLogin = textField;
     
+    [self.moviePlayer pause];
+    
     if (movedHere ){
         // Step 3: Scroll the target text field into view.
         CGRect aRect = self.view.frame;
@@ -221,6 +223,7 @@ bool movedHere = false;
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     self.activeTextFieldLogin = nil;
+    [self.moviePlayer play];
     
 }
 

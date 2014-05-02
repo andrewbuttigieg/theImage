@@ -65,18 +65,21 @@
             identifier = @"firstRow";
             break;
         case 1:
-            identifier = @"secondRow";
+            identifier = @"firstRow";
             break;
         case 2:
-            identifier = @"thirdRow";
+            identifier = @"secondRow";
             break;
         case 3:
-            identifier = @"forthRow";
+            identifier = @"thirdRow";
             break;
         case 4:
-            identifier = @"fifthRow";
+            identifier = @"forthRow";
             break;
         case 5:
+            identifier = @"fifthRow";
+            break;
+        case 6:
             if ([LogMeIn logout]){
                 
                 if (FBSession.activeSession.isOpen)
@@ -93,10 +96,10 @@
                 [self.navigationController pushViewController:controller animated:YES];
             }
             break;
-        case 6:
+        case 7:
             identifier = @"sixthRow";
             break;
-        case 7:
+        case 8:
             identifier = @"allVideoRow";
             break;
     }

@@ -371,6 +371,17 @@ static NSString* facebookID;
                                 self.postion.text = [theUser valueForKey:@"Position"];
                                 self.aboutLabel.text = [theUser valueForKey:@"About"];
                                 
+                                if ([theUser valueForKey:@"Age"] != [NSNull null])
+                                    self.age.text = [theUser valueForKey:@"Age"];
+                                else
+                                    self.age.text = @"";
+                                
+                                NSLog(@"%@", [theUser valueForKey:@"Age"]);
+                                
+                                NSLog(@"%@", self.age.text);
+                                
+//                                [theUser valueForKey:@"Birthday"];
+                                
                                 self.aboutLabel.numberOfLines = 0;
                                 [self.aboutLabel sizeToFit];
                                 
@@ -396,7 +407,13 @@ static NSString* facebookID;
                                     if (accepted ==1){
                                         //you are a friend
                                         self.playerInteract.enabled = FALSE;
-                                        self.playerInteract.title = @"Friends";
+                                        self.playerInteract.title = @"Connected";
+                                        //color bar button
+                                        [self.playerInteract setTitleTextAttributes:
+                                         [NSDictionary dictionaryWithObjectsAndKeys:
+                                          [UIColor greenColor], NSForegroundColorAttributeName,nil]
+                                                              forState:UIControlStateNormal];
+
                                         self.message.hidden = FALSE;
                                     }
                                     else{
@@ -538,9 +555,6 @@ static NSString* facebookID;
                                         lb.textAlignment = NSTextAlignmentLeft;
                                         [secondScroll addSubview:lb];
                                         [self.scrollview addSubview:secondScroll];
-                                        
-                                        
-                                        
                                         
                                         self.scrollview.contentSize = CGSizeMake(320, y + secondScroll.frame.size.height);
                                     }
