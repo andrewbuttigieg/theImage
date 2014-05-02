@@ -32,7 +32,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+   // tableView.separatorColor = [UIColor clearColor];
+    
     [self aTime];
     [NSTimer scheduledTimerWithTimeInterval:100 target:self selector:@selector(aTime) userInfo:nil repeats:YES];
     
