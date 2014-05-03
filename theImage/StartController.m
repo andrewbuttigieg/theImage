@@ -12,6 +12,7 @@
 #import "LogMeIn.h"
 #import "PlayerController.h"
 #import "MainVC.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface StartController ()
 
@@ -74,6 +75,10 @@
     NSString *login = [JNKeychain loadValueForKey:keyLogin];
     NSString *pwd = [JNKeychain loadValueForKey:keyPwd];
     
+    FBLoginView *loginView = [[FBLoginView alloc] init];
+    loginView.readPermissions = @[@"basic_info", @"email", @"user_likes"];
+    loginView.delegate = self;
+    
     if (login != nil && pwd != nil){
         if ([LogMeIn login:login :pwd]){
             /*
@@ -82,18 +87,8 @@
             UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
             PlayerController * controller = (PlayerController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
             */
-            NSString * storyboardName = @"Main_iPhone";
-            NSString * viewControllerID = @"Main";
-            UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
-            MainVC * controller = (MainVC *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
             
-            //[self.navigationController pushViewController:controller animated:YES];
- 
-            [self.back removeFromSuperview];
-            [self.moviePlayer stop];
-            [self.moviePlayer setContentURL:nil];
-            [self.moviePlayer.view removeFromSuperview];
-            [self.navigationController pushViewController:controller animated:YES];
+            [self GoToPlayer];
         }
     }
     else{
@@ -103,6 +98,72 @@
      //[keychain setObject:password forKey:(__bridge id)(kSecValueData)];
     
 	// Do any additional setup after loading the view.
+}
+
+
+// This method will be called when the user information has been fetched
+- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
+                            user:(id<FBGraphUser>)user {
+    
+    
+    NSString *facebookPlayerID = user.id;
+    //playerName.text = user.name;
+    
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/login_player_fb.php"]];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [request setHTTPBody:[[NSString stringWithFormat:@"fb=%@", facebookPlayerID]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPMethod:@"POST"];
+    
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (error) {
+            //[self.delegate fetchingGroupsFailedWithError:error];
+        } else {
+            //[self.delegate receivedGroupsJSON:data];
+            NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                        options:0
+                                                                          error:&error];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                for(NSDictionary *dictionary in jsonArray)
+                {
+                    NSLog(@"Data Dictionary is : %@",dictionary);
+                    NSString *returned = [jsonArray[0] objectForKey:@"value"];
+                    int accepted = [[jsonArray[0] objectForKey:@"accepted"] intValue];
+                    
+                    if (accepted == 0){
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problem"
+                                                                        message:[NSString stringWithFormat:@"%@",returned]
+                                                                       delegate:self
+                                                              cancelButtonTitle:@"Ok"
+                                                              otherButtonTitles:nil];
+                        [alert show];
+                    }
+                    else{
+                        //logged in by fb
+                        [self GoToPlayer];
+                    }
+                }
+            });
+        }
+    }];
+    
+}
+
+-(void)GoToPlayer{
+    NSString * storyboardName = @"Main_iPhone";
+    NSString * viewControllerID = @"Main";
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    MainVC * controller = (MainVC *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+    
+    //[self.navigationController pushViewController:controller animated:YES];
+    
+    [self.back removeFromSuperview];
+    [self.moviePlayer stop];
+    [self.moviePlayer setContentURL:nil];
+    [self.moviePlayer.view removeFromSuperview];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

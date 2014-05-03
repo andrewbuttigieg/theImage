@@ -87,7 +87,7 @@ bool player = false;
     }];
                            
     
-    self.genderArray =  [[NSMutableArray alloc]initWithObjects:@"Male",@"Female",@"Hidden" , nil];
+    self.genderArray =  [[NSMutableArray alloc]initWithObjects:@"", @"Male",@"Female",@"Hidden" , nil];
     self.countryArray =  [[NSMutableArray alloc]initWithObjects:nil];
 
     
@@ -276,7 +276,7 @@ bool player = false;
 UIDatePicker *itsDatePicker;
 - (IBAction) incidentDateValueChanged:(id)sender{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MMM dd, yyyy"];
+    [dateFormatter setDateFormat:@"yyyy/MM/DD"];
     self.age.text = [dateFormatter stringFromDate:[itsDatePicker date]];
 }
 

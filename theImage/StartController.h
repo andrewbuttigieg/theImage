@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <FacebookSDK/FacebookSDK.h>
 
-@interface StartController : UIViewController
+@interface StartController : UIViewController<FBLoginViewDelegate>
 
 @property (strong, nonatomic) IBOutlet MPMoviePlayerController *moviePlayer;
 @property (strong, nonatomic) IBOutlet UIImageView *back;
