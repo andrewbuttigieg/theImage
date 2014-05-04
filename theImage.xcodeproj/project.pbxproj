@@ -428,6 +428,8 @@
 		F226AE6B18D7735A00862048 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				F2ABD43318C6C7A9003F03E5 /* KeychainItemWrapper.h */,
+				F2ABD43418C6C7A9003F03E5 /* KeychainItemWrapper.m */,
 				F294A8F218CCE99B0012D000 /* LogMeIn.h */,
 				F294A8F318CCE99B0012D000 /* LogMeIn.m */,
 				F2ABD43618C6EF27003F03E5 /* JNKeychain.h */,
@@ -483,8 +485,6 @@
 				F2869A141875716E0086D665 /* image */,
 				F287CD3118AABBB400A196E3 /* Model */,
 				F2983D0018CE486D00E96233 /* intro.mp4 */,
-				F2ABD43318C6C7A9003F03E5 /* KeychainItemWrapper.h */,
-				F2ABD43418C6C7A9003F03E5 /* KeychainItemWrapper.m */,
 				F28699E81874C06C0086D665 /* AppDelegate.h */,
 				F28699E91874C06C0086D665 /* AppDelegate.m */,
 				F28699EB1874C06C0086D665 /* Main_iPhone.storyboard */,

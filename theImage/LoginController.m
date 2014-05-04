@@ -270,8 +270,7 @@ bool movedHere = false;
     // Dispose of any resources that can be recreated.
 }
 
--(void)GoToPlayer{
-    
+-(void)GoToPlayer{    
     [self.back removeFromSuperview];
     [self.moviePlayer stop];
     [self.moviePlayer setContentURL:nil];
@@ -280,8 +279,7 @@ bool movedHere = false;
     NSString * storyboardName = @"Main_iPhone";
     NSString * viewControllerID = @"Main";
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
-    MainVC * controller = (MainVC *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
-    
+    MainVC * controller = (MainVC *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];    
     [self.navigationController pushViewController:controller animated:YES];
 }
 

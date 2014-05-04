@@ -114,7 +114,7 @@ static int findPlayerID = 0;
                     }
                     UIImageView *iv = [[UIImageView alloc] initWithImage:image];
                     //CGRect frame;
-                    iv.frame=CGRectMake(col * 106, row * 106, 106,106);
+                    iv.frame=CGRectMake(col * 106, row * 106, 104,104);
                     iv.tag = [[dictionary objectForKey:@"UserID"] intValue];
                     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
                     [iv addGestureRecognizer:singleTap];
@@ -150,6 +150,7 @@ static int findPlayerID = 0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Explore";
     findPlayerID = 1; //player...
     [self findPeople:findPlayerID];
 }

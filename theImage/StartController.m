@@ -26,6 +26,8 @@ static int messageCounter;
     return messageCounter;
 }
 
+bool loggedIn = false;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -64,6 +66,9 @@ static int messageCounter;
     FBLoginView *loginView = [[FBLoginView alloc] init];
     loginView.readPermissions = @[@"basic_info", @"email", @"user_likes"];
     loginView.delegate = self;
+    loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 100);
+    loginView.hidden = true;
+    [self.view addSubview:loginView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationDidBecomeActive:)
@@ -144,6 +149,7 @@ static int messageCounter;
                         int accepted = [[jsonArray[0] objectForKey:@"accepted"] intValue];
                         
                         if (accepted == 0){
+                            loggedIn = false;
                             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problem"
                                                                             message:[NSString stringWithFormat:@"%@",returned]
                                                                            delegate:self
@@ -164,18 +170,24 @@ static int messageCounter;
 }
 
 -(void)GoToPlayer{
-    NSString * storyboardName = @"Main_iPhone";
-    NSString * viewControllerID = @"Main";
-    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
-    MainVC * controller = (MainVC *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
-    
-    //[self.navigationController pushViewController:controller animated:YES];
-    
+    loggedIn = true;
     [self.back removeFromSuperview];
     [self.moviePlayer stop];
     [self.moviePlayer setContentURL:nil];
     [self.moviePlayer.view removeFromSuperview];
+    
+    NSString * storyboardName = @"Main_iPhone";
+    NSString * viewControllerID = @"Main";
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    MainVC * controller = (MainVC *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    if (loggedIn){
+        self.navigationController.navigationBarHidden = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning

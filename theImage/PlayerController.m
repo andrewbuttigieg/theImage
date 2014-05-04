@@ -261,6 +261,8 @@ static NSString* facebookID;
     self.weight.text = empty;
     self.height.text = empty;
     
+    self.scrollview.delegate = self;
+    
     
     NSMutableURLRequest *arequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_me.php/"]];
     [arequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
@@ -572,6 +574,26 @@ static NSString* facebookID;
                 
             }
         });
+    }
+}
+
+float imageWidth = 0;
+float imageHeight = 0;
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    CGFloat y = -scrollView.contentOffset.y;
+    if (y > 64) {
+        self.playerImage.frame = CGRectMake(0, scrollView.contentOffset.y + 64, 320 + y - 64, 320 + y - 64);
+        self.playerImage.center = CGPointMake(self.view.center.x, self.playerImage.center.y);
+    }
+    else{
+        CGRect frame = self.playerImage.frame;
+        frame.size.width = 320;
+        frame.size.height = 320;
+        self.playerImage.frame = frame;
+        self.playerImage.center = CGPointMake(self.view.center.x, self.playerImage.center.y);
+        //        self.playerImage.center = CGPointMake(self.view.center.x, self.playerImage.center.y);
     }
 }
 
