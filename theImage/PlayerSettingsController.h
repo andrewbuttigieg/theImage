@@ -13,7 +13,10 @@
 @protocol PlayerImageDelegate <NSObject>
 - (void)playerDetailsViewControllerDidSave:
 (PlayerSettingsController *)controller;
-- (void)addItemViewController:(id)controller didFinishEnteringItem:(UIImage *)item;
+- (void)addItemViewController:(id)controller didFinishEnteringItem:(UIImage *)item ;
+
+- (void)addItemViewController:(id)controller didSave :(NSString *)name :(NSString *)lname
+                             :(NSString *)about;
 @end
 
 @interface PlayerSettingsController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource,

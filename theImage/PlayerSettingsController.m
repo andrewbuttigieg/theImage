@@ -138,8 +138,8 @@ bool player = false;
                     self.email.text = [dictionary objectForKey:@"Email"];
                     self.position.text = [dictionary objectForKey:@"Position"];
                     
-                    if ([dictionary objectForKey:@"Birthday"] != [NSNull null]){
-                        self.age.text = [dictionary objectForKey:@"Birthday"];
+                    if ([dictionary objectForKey:@"BirthdayFormatted"] != [NSNull null]){
+                        self.age.text = [dictionary objectForKey:@"BirthdayFormatted"];
                     }
                     
                     if ([dictionary objectForKey:@"Gender"] != [NSNull null]) {
@@ -276,7 +276,7 @@ bool player = false;
 UIDatePicker *itsDatePicker;
 - (IBAction) incidentDateValueChanged:(id)sender{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy/MM/DD"];
+    [dateFormatter setDateFormat:@"M/d/yyyy"];
     self.age.text = [dateFormatter stringFromDate:[itsDatePicker date]];
 }
 
@@ -292,9 +292,10 @@ UIDatePicker *itsDatePicker;
         itsRightBarButton.action = @selector(doneAction:);*/
         itsDatePicker = [[UIDatePicker alloc] init];
         
-        if (!self.age.text){
+        if (![self.age.text isEqualToString:@""])
+        {
             NSDateFormatter * Dateformats= [[NSDateFormatter alloc] init];
-            [Dateformats setDateFormat:@"yyyy/MM/DD"]; //ex @"MM/DD/yyyy hh:mm:ss"
+            [Dateformats setDateFormat:@"M/d/yyyy"]; //ex @"MM/DD/yyyy hh:mm:ss"
             NSDate *myDate=[Dateformats dateFromString:self.age.text];
             itsDatePicker.date = myDate;
         }
@@ -466,6 +467,8 @@ UIDatePicker *itsDatePicker;
         NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                     options:0
                                                                       error:&error];
+        
+        [self.delegate addItemViewController:self didSave :self.name.text :self.surname.text :self.about.text];
         NSLog(@"Data Dictionary is : %@", jsonArray);
     }
     
@@ -484,7 +487,10 @@ UIDatePicker *itsDatePicker;
     
     NSString *itemToPassBack = @"xxxxxxxx";
     NSLog(@"returning: %@",itemToPassBack);
-    [self.delegate addItemViewController:self didFinishEnteringItem:image];
+    [self.delegate addItemViewController:self didFinishEnteringItem:image ];
+    
+//    - (void)addItemViewController:(id)controller didFinishEnteringItem:(UIImage *)item :(NSString *)name :(NSString *)lname
+  //  :(NSString *)about;
     
     [self uploadImage:image];
     

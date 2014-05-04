@@ -46,7 +46,7 @@ bool moved = false;
     
     FBLoginView *loginView = [[FBLoginView alloc] init];
     // Align the button in the center horizontally
-    loginView.readPermissions = @[@"basic_info", @"email"];
+    loginView.readPermissions = @[@"user_birthday", @"basic_info", @"email"];
     loginView.delegate = self;
     loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 20);
     [self.scrollView addSubview:loginView];
@@ -81,12 +81,13 @@ bool moved = false;
     
     NSLog(@"%@", user);
    
+    NSLog(@"%@", user[@"birthday"]);
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/reg_player.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPBody:
-     [[NSString stringWithFormat:@"password=%@&email=%@&name=%@&lname=%@&weight=%d&usertype=%d&facebookid=%@&gender=%@",
-                           @"", user[@"email"], user.first_name, user.last_name, 0, 1, user.id, user[@"gender"]]dataUsingEncoding:NSUTF8StringEncoding]];
+     [[NSString stringWithFormat:@"password=%@&email=%@&name=%@&lname=%@&weight=%d&usertype=%d&facebookid=%@&gender=%@&birthday=%@",
+                           @"", user[@"email"], user.first_name, user.last_name, 0, 1, user.id, user[@"gender"], user[@"birthday"]]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     NSError *error = nil; NSURLResponse *response = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];

@@ -613,9 +613,21 @@ float imageHeight = 0;
 
 - (void)addItemViewController:
 (PlayerSettingsController *)controller didFinishEnteringItem: (UIImage *)item
+                             :(NSString *)name :(NSString *)lname :(NSString *)about
 {
     //update the image of the player
     self.playerImage.image = item;
+    self.playerName.text = [[NSString stringWithFormat:@"%@ %@", name, lname ] uppercaseString];
+    self.aboutLabel.text = about;
 }
+
+
+- (void)addItemViewController:
+(PlayerSettingsController *)controller didSave :(NSString *)name :(NSString *)lname :(NSString *)about
+{
+    self.playerName.text = [[NSString stringWithFormat:@"%@ %@", name, lname ] uppercaseString];
+    self.aboutLabel.text = about;
+}
+
 
 @end
