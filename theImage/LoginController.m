@@ -18,6 +18,11 @@
 
 @implementation LoginController
 
+static int messageCounter;
+
++ (int) messageCounter{
+    return messageCounter;
+}
 
 CGSize keyboardSize;
 bool movedHere = false;
@@ -104,50 +109,56 @@ bool movedHere = false;
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
     
+    if (self.messageCounter >0)
+        return;
+    else
+    {
+        self.messageCounter++;
     
-    NSString *facebookPlayerID = user.id;
-    //playerName.text = user.name;
-    
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/login_player_fb.php"]];
-    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"fb=%@", facebookPlayerID]dataUsingEncoding:NSUTF8StringEncoding]];
-    [request setHTTPMethod:@"POST"];
-    
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        NSString *facebookPlayerID = user.id;
+        //playerName.text = user.name;
         
-        if (error) {
-            //[self.delegate fetchingGroupsFailedWithError:error];
-        } else {
-            //[self.delegate receivedGroupsJSON:data];
-            NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
-                                                                        options:0
-                                                                          error:&error];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                for(NSDictionary *dictionary in jsonArray)
-                {
-                    NSLog(@"Data Dictionary is : %@",dictionary);
-                    NSString *returned = [jsonArray[0] objectForKey:@"value"];
-                    int accepted = [[jsonArray[0] objectForKey:@"accepted"] intValue];
-                    
-                    if (accepted == 0){
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problem"
-                                                                        message:[NSString stringWithFormat:@"%@",returned]
-                                                                       delegate:self
-                                                              cancelButtonTitle:@"Ok"
-                                                              otherButtonTitles:nil];
-                        [alert show];
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/login_player_fb.php"]];
+        [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+        [request setHTTPBody:[[NSString stringWithFormat:@"fb=%@", facebookPlayerID]dataUsingEncoding:NSUTF8StringEncoding]];
+        [request setHTTPMethod:@"POST"];
+        
+        
+        [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+            
+            if (error) {
+                //[self.delegate fetchingGroupsFailedWithError:error];
+            } else {
+                //[self.delegate receivedGroupsJSON:data];
+                NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                            options:0
+                                                                              error:&error];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    for(NSDictionary *dictionary in jsonArray)
+                    {
+                        NSLog(@"Data Dictionary is : %@",dictionary);
+                        NSString *returned = [jsonArray[0] objectForKey:@"value"];
+                        int accepted = [[jsonArray[0] objectForKey:@"accepted"] intValue];
+                        
+                        if (accepted == 0){
+                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problem"
+                                                                            message:[NSString stringWithFormat:@"%@",returned]
+                                                                           delegate:self
+                                                                  cancelButtonTitle:@"Ok"
+                                                                  otherButtonTitles:nil];
+                            [alert show];
+                        }
+                        else{    
+                            //logged in by fb
+                            [self GoToPlayer];
+                        }
                     }
-                    else{    
-                        //logged in by fb
-                        [self GoToPlayer];
-                    }
-                }
-            });
-        }
-    }];
-    
+                    [self setMessageCounter:0];
+                });
+            }
+        }];
+    }
 }
 
 // Handle possible errors that can occur during login

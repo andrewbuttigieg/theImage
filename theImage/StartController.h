@@ -15,4 +15,6 @@
 @property (strong, nonatomic) IBOutlet MPMoviePlayerController *moviePlayer;
 @property (strong, nonatomic) IBOutlet UIImageView *back;
 
+@property (nonatomic) int messageCounter;
+
 @end

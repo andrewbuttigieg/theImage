@@ -20,6 +20,7 @@
 - (IBAction)forgotPwd:(id)sender;
 - (BOOL)validateEmail:(NSString *)emailStr;
 
+@property (nonatomic) int messageCounter;
 
 @property (strong, nonatomic) IBOutlet MPMoviePlayerController *moviePlayer;
 @property (strong, nonatomic) IBOutlet UIImageView *back;
