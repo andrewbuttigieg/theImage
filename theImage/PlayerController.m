@@ -372,6 +372,9 @@ static NSString* facebookID;
                                 self.weight.text = [NSString stringWithFormat:@"%.1fkgs", [[theUser valueForKey:@"Weight"] floatValue]];
                                 self.postion.text = [theUser valueForKey:@"Position"];
                                 self.aboutLabel.text = [theUser valueForKey:@"About"];
+                                if ([self.aboutLabel.text length] < 5){
+                                    self.aboutLabel.text = @"This user has not updated their about section yet";
+                                }
                                 
                                 if ([theUser valueForKey:@"Age"] != [NSNull null])
                                     self.age.text = [theUser valueForKey:@"Age"];
@@ -618,15 +621,30 @@ float imageHeight = 0;
     //update the image of the player
     self.playerImage.image = item;
     self.playerName.text = [[NSString stringWithFormat:@"%@ %@", name, lname ] uppercaseString];
-    self.aboutLabel.text = about;
+    if ([about length] < 5){
+        self.aboutLabel.text = @"This user has not updated their about section yet";
+    }
+    else{
+        self.aboutLabel.text = about;
+    }
 }
 
 
 - (void)addItemViewController:
 (PlayerSettingsController *)controller didSave :(NSString *)name :(NSString *)lname :(NSString *)about
+:(NSString *)age :(NSString *)weight :(NSString *)height :(NSString *)position;
 {
     self.playerName.text = [[NSString stringWithFormat:@"%@ %@", name, lname ] uppercaseString];
-    self.aboutLabel.text = about;
+    if ([about length] < 5){
+        self.aboutLabel.text = @"This user has not updated their about section yet";
+    }
+    else{
+        self.aboutLabel.text = about;
+    }
+    self.height.text = height;
+    self.weight.text = weight;
+    self.age.text = age;
+    self.postion.text = position;
 }
 
 

@@ -16,7 +16,8 @@
 - (void)addItemViewController:(id)controller didFinishEnteringItem:(UIImage *)item ;
 
 - (void)addItemViewController:(id)controller didSave :(NSString *)name :(NSString *)lname
-                             :(NSString *)about;
+                             :(NSString *)about :(NSString *)age :(NSString *)weight :(NSString *)height
+                             :(NSString *)position;
 @end
 
 @interface PlayerSettingsController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource,
@@ -25,9 +26,11 @@
 @property (strong, nonatomic) IBOutlet UIPickerView *picker;
 @property (strong, nonatomic) IBOutlet UIPickerView *countryPicker;
 @property (strong, nonatomic) IBOutlet UIPickerView *countryPicker2;
+@property (strong, nonatomic) IBOutlet UIPickerView *positionPicker;
 
 @property (strong, nonatomic) NSMutableArray *genderArray;
 @property (strong, nonatomic) NSMutableArray *countryArray;
+@property (strong, nonatomic) NSMutableArray *positionArray;
 
 @property (strong, nonatomic) IBOutlet UITextField *height;
 @property (strong, nonatomic) IBOutlet UITextField *weight;

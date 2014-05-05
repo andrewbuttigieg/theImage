@@ -89,11 +89,26 @@ bool player = false;
     
     self.genderArray =  [[NSMutableArray alloc]initWithObjects:@"", @"Male",@"Female",@"Hidden" , nil];
     self.countryArray =  [[NSMutableArray alloc]initWithObjects:nil];
+    self.positionArray =[[NSMutableArray alloc]initWithObjects:@"", @"Goalkeeper (GK)",
+    @"Defender left (DL)",
+    @"Defender Right (DR)",
+    @"Defender centre (DC)",
+    @"Midfielder Left (ML)",
+    @"Midfielder Right (MR)",
+    @"Defensive Midfielder Centre (DMC)",
+    @"Midfielder centre (MC)",
+    @"Attacking midfielder centre (AMC)",
+    @"Forward ( FW )",
+    @"Striker (ST)" , nil];
 
-    
+    self.positionPicker= [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 100, 150)];
     self.picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 100, 150)];
     self.countryPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 100, 150)];
     self.countryPicker2 = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 100, 150)];
+
+    [self.positionPicker setDataSource: self];
+    [self.positionPicker setDelegate: self];
+    self.positionPicker.showsSelectionIndicator = YES;
     
     [self.picker setDataSource: self];
     [self.picker setDelegate: self];
@@ -107,6 +122,7 @@ bool player = false;
     [self.countryPicker2 setDelegate: self];
     self.countryPicker2.showsSelectionIndicator = YES;
     //all the pickers are binded to their respective input view
+    self.position.inputView = self.positionPicker;
     self.gender.inputView = self.picker;
     self.lfpCountry.inputView = self.countryPicker;
     self.lfpartCountry.inputView = self.countryPicker2;
@@ -139,7 +155,14 @@ bool player = false;
                     self.position.text = [dictionary objectForKey:@"Position"];
                     
                     if ([dictionary objectForKey:@"BirthdayFormatted"] != [NSNull null]){
-                        self.age.text = [dictionary objectForKey:@"BirthdayFormatted"];
+                        
+                        //check if valid date
+                        NSDateFormatter * Dateformats= [[NSDateFormatter alloc] init];
+                        [Dateformats setDateFormat:@"M/d/yyyy"];
+                        NSDate *myDate=[Dateformats dateFromString:[dictionary objectForKey:@"BirthdayFormatted"]];
+                        if (myDate != nil){
+                            self.age.text = [dictionary objectForKey:@"BirthdayFormatted"];
+                        }
                     }
                     
                     if ([dictionary objectForKey:@"Gender"] != [NSNull null]) {
@@ -297,7 +320,8 @@ UIDatePicker *itsDatePicker;
             NSDateFormatter * Dateformats= [[NSDateFormatter alloc] init];
             [Dateformats setDateFormat:@"M/d/yyyy"]; //ex @"MM/DD/yyyy hh:mm:ss"
             NSDate *myDate=[Dateformats dateFromString:self.age.text];
-            itsDatePicker.date = myDate;
+            if (myDate != nil)
+                itsDatePicker.date = myDate;
         }
         
         itsDatePicker.datePickerMode = UIDatePickerModeDate;
@@ -468,7 +492,25 @@ UIDatePicker *itsDatePicker;
                                                                     options:0
                                                                       error:&error];
         
-        [self.delegate addItemViewController:self didSave :self.name.text :self.surname.text :self.about.text];
+        
+        NSInteger age = 0;
+        if ([self.age.text length] > 1){
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"M/d/yyyy"];
+        NSDate* birthday = [dateFormatter dateFromString:self.age.text];
+        
+        NSDate* now = [NSDate date];
+        NSDateComponents* ageComponents = [[NSCalendar currentCalendar]
+                                           components:NSYearCalendarUnit
+                                           fromDate:birthday
+                                           toDate:now
+                                           options:0];
+            age = [ageComponents year];
+        }
+        
+        [self.delegate addItemViewController:self didSave :self.name.text :self.surname.text :self.about.text
+                                            :(age > 0 ?  [NSString stringWithFormat:@"%d", age] : @"")
+                                            :self.weight.text :self.height.text :self.position.text];
         NSLog(@"Data Dictionary is : %@", jsonArray);
     }
     
@@ -619,6 +661,9 @@ numberOfRowsInComponent:(NSInteger)component
     if([pickerView isEqual: self.picker]){
         return self.genderArray.count;
     }
+    else if([pickerView isEqual: self.positionPicker]){
+        return self.positionArray.count;
+    }
     else if ([pickerView isEqual: self.countryPicker]){
         return [self.countryArray count];
     }
@@ -636,6 +681,14 @@ numberOfRowsInComponent:(NSInteger)component
 {
     if([pickerView isEqual: self.picker]){
         return [self.genderArray objectAtIndex:row];
+    }
+    else if ([pickerView isEqual: self.positionPicker]){
+        if (row < [self.positionArray count]){
+            return [self.positionArray objectAtIndex:row];
+        }
+        else{
+            return NULL;
+        }
     }
     else if ([pickerView isEqual: self.countryPicker]){
         if (row < [self.countryArray count]){
@@ -666,6 +719,10 @@ numberOfRowsInComponent:(NSInteger)component
     if([pickerView isEqual: self.picker]){
         NSString *genderX = self.genderArray[row];
         self.gender.text = genderX;
+    }
+    else if ([pickerView isEqual: self.positionPicker]){
+        NSString *position = self.positionArray[row];
+        self.position.text = position;
     }
     else if ([pickerView isEqual: self.countryPicker]){
         NSString *country = self.countryArray[row];
