@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AMSlideMenuMainViewController.h"
 
+
 @interface MenuController : AMSlideMenuLeftTableViewController
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UILabel *chatCount;

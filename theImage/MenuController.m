@@ -7,11 +7,11 @@
 //
 
 #import "MenuController.h"
+#import "MainVC.h"
 
-@interface MenuController ()
+@interface MenuController() <MainVCDelegate>
 
 @property (strong, nonatomic) UITableView *myTableView;
-
 
 @end
 
@@ -30,6 +30,8 @@
     self.tableView.backgroundView = nil;
     self.tableView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5f];
     [self setFixedStatusBar];
+
+    MainVC.delegate = self;
 }
 
 - (void)setFixedStatusBar
@@ -43,6 +45,17 @@
     UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
     statusBarView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:statusBarView];
+}
+
+#pragma mark - MainVCDelegate
+
+//- (void)MainVCController:(id)controller countUpdate:(int)friendReqCount;
+
+
+
+- (void)MainVCController:(MainVC *)controller countUpdate:(int)friendReqCount
+{
+    self.chatCount.text = [NSString stringWithFormat:@"%d", friendReqCount];
 }
 
 @end

@@ -10,6 +10,14 @@
 #import <CoreLocation/CoreLocation.h>
 #import "AMSlideMenuMainViewController.h"
 
-@interface MainVC : AMSlideMenuMainViewController<CLLocationManagerDelegate, AMSlideMenuDelegate>
+@class MainVC;
 
+@protocol MainVCDelegate <NSObject>
+
+- (void)MainVCController:(id)controller countUpdate:(int)friendReqCount;
+
+@end
+
+@interface MainVC : AMSlideMenuMainViewController<CLLocationManagerDelegate, AMSlideMenuDelegate>
+    @property (nonatomic, weak) id <MainVCDelegate> delegate;
 @end

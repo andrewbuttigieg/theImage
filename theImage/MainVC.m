@@ -27,7 +27,6 @@
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPMethod:@"POST"];
     
-    
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
         if (error) {
@@ -44,6 +43,9 @@
                     
                     NSInteger count = [[dictionary objectForKey:@"ConnectionRequestCount"] integerValue];
                     count = [[dictionary objectForKey:@"UnreadMessageCount"] integerValue];
+                    
+                    [self.delegate MainVCController:self countUpdate :110];
+
                 }
             });
         }
