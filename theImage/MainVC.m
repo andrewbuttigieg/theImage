@@ -20,6 +20,36 @@
     CLGeocoder *geocoder;
     CLPlacemark *placemark;
 
+-(void)leftMenuWillOpen
+{
+    //something
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_me.php"]];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [request setHTTPMethod:@"POST"];
+    
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (error) {
+        } else {
+            //NSError *localError = nil;
+            NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                        options:0
+                                                                          error:&error];
+            NSLog(@"Data Dictionary is : %@", jsonArray);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                for(NSDictionary *dictionary in jsonArray)
+                {
+                    //NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
+                    
+                    NSInteger count = [[dictionary objectForKey:@"ConnectionRequestCount"] integerValue];
+                    count = [[dictionary objectForKey:@"UnreadMessageCount"] integerValue];
+                }
+            });
+        }
+    }];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -34,15 +64,15 @@
     [super viewDidLoad];
     
    // tableView.separatorColor = [UIColor clearColor];
+    self.slideMenuDelegate = self;
     
     [self aTime];
-    [NSTimer scheduledTimerWithTimeInterval:100 target:self selector:@selector(aTime) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(aTime) userInfo:nil repeats:YES];
     
 }
 
 -(void)aTime
 {
-    
     locationManager = [[CLLocationManager alloc] init];
     geocoder = [[CLGeocoder alloc] init];
     

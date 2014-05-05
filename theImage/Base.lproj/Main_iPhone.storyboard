@@ -72,6 +72,13 @@
                                                     <rect key="frame" x="12" y="9" width="26" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kGG-t2-Vf0">
+                                                    <rect key="frame" x="258" y="11" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -210,6 +217,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="chatCount" destination="kGG-t2-Vf0" id="8Gi-gQ-XCJ"/>
                         <outlet property="tableView" destination="Fek-0u-0ER" id="iH0-FZ-g7Q"/>
                         <segue destination="F5V-PD-L6Y" kind="custom" identifier="firstRow" customClass="AMSlideMenuContentSegue" id="xre-fS-qvh"/>
                         <segue destination="PLp-Wi-Xv1" kind="custom" identifier="secondRow" customClass="AMSlideMenuContentSegue" id="C2Z-Se-ldM"/>
@@ -1932,10 +1940,10 @@
     <resources>
         <image name="LogoPlayerCV.png" width="452" height="151"/>
         <image name="MenuLogo.png" width="175" height="42"/>
-        <image name="accept-friend.png" width="41" height="39"/>
+        <image name="accept-friend.png" width="36" height="36"/>
         <image name="chatIcon.png" width="25" height="24"/>
         <image name="chatMenuIcon.png" width="26" height="26"/>
-        <image name="decline-friend.png" width="41" height="39"/>
+        <image name="decline-friend.png" width="36" height="36"/>
         <image name="discoverMenuIcon.png" width="26" height="26"/>
         <image name="done.png" width="284" height="51"/>
         <image name="exploreMenuIcon.png" width="26" height="26"/>

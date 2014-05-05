@@ -425,6 +425,17 @@
 			name = Menu;
 			sourceTree = "<group>";
 		};
+		F20176171917FFCA00392DD5 /* Friend */ = {
+			isa = PBXGroup;
+			children = (
+				F284BFE118DBB30A0002EB81 /* accept-friend.png */,
+				F284BFE218DBB30A0002EB81 /* accept-friend@2x.png */,
+				F284BFE318DBB30A0002EB81 /* decline-friend.png */,
+				F284BFE418DBB30A0002EB81 /* decline-friend@2x.png */,
+			);
+			name = Friend;
+			sourceTree = "<group>";
+		};
 		F226AE6B18D7735A00862048 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -555,25 +566,15 @@
 		F2869A141875716E0086D665 /* image */ = {
 			isa = PBXGroup;
 			children = (
-				F20175E41912FC3C00392DD5 /* Menu */,
-				F20175E01911ADE400392DD5 /* weightIcon.png */,
-				F20175E11911ADE400392DD5 /* weightIcon@2x.png */,
-				F20175DC1911ADD900392DD5 /* heightIcon.png */,
-				F20175DD1911ADD900392DD5 /* heightIcon@2x.png */,
-				F20175D81911A55B00392DD5 /* videoIcon.png */,
-				F20175D91911A55B00392DD5 /* videoIcon@2x.png */,
+				F20176171917FFCA00392DD5 /* Friend */,
 				F20175D41911A4F700392DD5 /* chatIcon.png */,
 				F20175D51911A4F700392DD5 /* chatIcon@2x.png */,
-				F20175D0191056BB00392DD5 /* loginBtn.png */,
-				F20175D1191056BB00392DD5 /* loginBtn@2x.png */,
-				F284BFE118DBB30A0002EB81 /* accept-friend.png */,
-				F284BFE218DBB30A0002EB81 /* accept-friend@2x.png */,
-				F284BFE318DBB30A0002EB81 /* decline-friend.png */,
-				F284BFE418DBB30A0002EB81 /* decline-friend@2x.png */,
 				F20175C8190C209600392DD5 /* done.png */,
 				F20175C9190C209600392DD5 /* done@2x.png */,
 				F284BFEC18DFB4A90002EB81 /* EditPlayer.jpg */,
 				F2869A111874CA400086D665 /* footballApp.jpg */,
+				F20175DC1911ADD900392DD5 /* heightIcon.png */,
+				F20175DD1911ADD900392DD5 /* heightIcon@2x.png */,
 				F20176011913C9FA00392DD5 /* icon.png */,
 				F20176051913CA9E00392DD5 /* icon@2x.png */,
 				F2ABD41B18C4F721003F03E5 /* intropage.png */,
@@ -583,10 +584,13 @@
 				F2ABD41E18C4FFA9003F03E5 /* login-button@2x.png */,
 				F2983D0618CF9A5300E96233 /* login.jpg */,
 				F2983D0818CF9E8800E96233 /* login2.jpg */,
+				F20175D0191056BB00392DD5 /* loginBtn.png */,
+				F20175D1191056BB00392DD5 /* loginBtn@2x.png */,
 				F2869A18187571840086D665 /* logo.png */,
 				F2869A16187571840086D665 /* logo@2x.png */,
 				F2983D0218CF82A300E96233 /* LogoPlayerCV.png */,
 				F2983D0318CF82A400E96233 /* LogoPlayerCV@2x.png */,
+				F20175E41912FC3C00392DD5 /* Menu */,
 				F2869A17187571840086D665 /* player.png */,
 				F2869A15187571840086D665 /* player@2x.png */,
 				F2983D0A18D23BB800E96233 /* profilevisitor.jpg */,
@@ -618,6 +622,10 @@
 				F2ABD42018C4FFA9003F03E5 /* signup-button@2x.png */,
 				F20176131913DD5600392DD5 /* simpleMenuButton.png */,
 				F20176141913DD5600392DD5 /* simpleMenuButton@2x.png */,
+				F20175D81911A55B00392DD5 /* videoIcon.png */,
+				F20175D91911A55B00392DD5 /* videoIcon@2x.png */,
+				F20175E01911ADE400392DD5 /* weightIcon.png */,
+				F20175E11911ADE400392DD5 /* weightIcon@2x.png */,
 			);
 			name = image;
 			sourceTree = "<group>";

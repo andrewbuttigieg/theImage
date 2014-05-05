@@ -10,6 +10,6 @@
 #import <CoreLocation/CoreLocation.h>
 #import "AMSlideMenuMainViewController.h"
 
-@interface MainVC : AMSlideMenuMainViewController<CLLocationManagerDelegate>
+@interface MainVC : AMSlideMenuMainViewController<CLLocationManagerDelegate, AMSlideMenuDelegate>
 
 @end
