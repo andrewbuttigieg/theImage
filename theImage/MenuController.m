@@ -30,10 +30,7 @@
     self.tableView.backgroundView = nil;
     self.tableView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5f];
     [self setFixedStatusBar];
-
-    NSLog(@"%@", self.navigationController.viewControllers );
     
-//    controller.delegate = self;
     MainVC *rootController = (MainVC *)[self.navigationController.viewControllers objectAtIndex: 1];
     rootController.delegate = self;
 }

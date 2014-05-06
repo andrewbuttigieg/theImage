@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *containerMain;
 @property (nonatomic) int chattingToID;
 @property (nonatomic) NSString *name;
+@property (nonatomic) NSString *image;
 
 + (float)top;
 

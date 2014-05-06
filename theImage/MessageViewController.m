@@ -141,6 +141,22 @@ static float top = 0;
     int u = PlayerController.meID;
     self.title = self.name;
     
+    
+    NSURL * imageURL = [NSURL URLWithString:self.image];
+    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+    UIImage * image = [UIImage imageWithData:imageData];
+    UIButton* fakeButton = (UIButton *) [[UIImageView alloc] initWithImage:image];
+    
+    fakeButton.frame = CGRectMake(0,0,35,35);
+    fakeButton.layer.borderColor = [UIColor blueColor].CGColor;
+    fakeButton.layer.borderWidth = 1.0f;
+    fakeButton.layer.cornerRadius = 17.0;
+    
+    UIBarButtonItem *fakeButtonItem = [[UIBarButtonItem alloc] initWithCustomView:fakeButton];
+
+    
+    self.navigationItem.rightBarButtonItem = fakeButtonItem;
+
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
         if (error) {
@@ -154,6 +170,7 @@ static float top = 0;
                 
                 for(NSDictionary *dictionary in jsonArray)
                 {
+                    NSLog(@"%@", dictionary);
                     NSString *text = [dictionary objectForKey:@"Text"];
                     
                     if ( [[dictionary objectForKey:@"FromUserID"] intValue] !=  u){

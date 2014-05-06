@@ -45,6 +45,7 @@
     int idx=indexPath.row;
     NSString *o = [self.userIDForTable objectAtIndex:idx];
     NSString *name = [self.nameForTable objectAtIndex:idx];
+    NSString *image = [self.imageForTable objectAtIndex:idx];
     self.textForTable = self.textForTable;
     
     
@@ -55,6 +56,7 @@
     MessageViewController * controller = (MessageViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
     controller.chattingToID = [o intValue];
     controller.name = name;
+    controller.image = image;
 //    controller.playerID = tappedView.tag;
     [self.navigationController pushViewController:controller animated:YES];
 }
