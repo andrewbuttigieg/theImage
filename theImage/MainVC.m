@@ -41,10 +41,11 @@
                 {
                     //NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
                     
-                    NSInteger count = [[dictionary objectForKey:@"ConnectionRequestCount"] integerValue];
-                    count = [[dictionary objectForKey:@"UnreadMessageCount"] integerValue];
+                    NSInteger requestCount = [[dictionary objectForKey:@"ConnectionRequestCount"] integerValue];
                     
-                    [self.delegate MainVCController:self countUpdate :110];
+                    NSInteger friendCount = [[dictionary objectForKey:@"UnreadMessageCount"] integerValue];
+                    
+                    [self.delegate MainVCController:self countUpdate :friendCount :requestCount];
 
                 }
             });

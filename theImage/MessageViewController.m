@@ -410,7 +410,7 @@ static float top = 0;
 - (UIScrollView *)textView {
     if (!_textView) {
         CGRect frame = CGRectMake(0.0f,
-                                  20.0f,
+                                  0.0f,
                                   kInitialViewFrame.size.width,
                                   kInitialViewFrame.size.height - 20.0f);
         _textView = [[UIScrollView alloc] initWithFrame:frame];

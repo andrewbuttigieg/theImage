@@ -31,7 +31,11 @@
     self.tableView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5f];
     [self setFixedStatusBar];
 
-    MainVC.delegate = self;
+    NSLog(@"%@", self.navigationController.viewControllers );
+    
+//    controller.delegate = self;
+    MainVC *rootController = (MainVC *)[self.navigationController.viewControllers objectAtIndex: 1];
+    rootController.delegate = self;
 }
 
 - (void)setFixedStatusBar
@@ -49,13 +53,40 @@
 
 #pragma mark - MainVCDelegate
 
-//- (void)MainVCController:(id)controller countUpdate:(int)friendReqCount;
 
-
-
-- (void)MainVCController:(MainVC *)controller countUpdate:(int)friendReqCount
+- (void)MainVCController:(MainVC *)controller countUpdate:(int)chatCount :(int)requestCount
 {
-    self.chatCount.text = [NSString stringWithFormat:@"%d", friendReqCount];
+    self.chatCount.text = [NSString stringWithFormat:@"%d", chatCount];
+    [self.chatCount sizeToFit];
+    
+    CGRect frame = self.chatCount.frame;
+    
+    frame.size.width = frame.size.width + 10;
+    frame.size.height = frame.size.height + 10;
+    
+    self.chatCount.frame = frame;
+    self.chatCount.layer.cornerRadius = 7.0;
+    if (chatCount > 0)
+        self.chatCount.hidden = FALSE;
+    else
+        self.chatCount.hidden = TRUE;
+    
+    
+    self.reqCount.text = [NSString stringWithFormat:@"%d", requestCount];
+    [self.reqCount sizeToFit];
+    
+    frame = self.reqCount.frame;
+    
+    frame.size.width = frame.size.width + 10;
+    frame.size.height = frame.size.height + 10;
+    
+    self.reqCount.frame = frame;
+    self.reqCount.layer.cornerRadius = 7.0;
+    if (requestCount > 0)
+        self.reqCount.hidden = FALSE;
+    else
+        self.reqCount.hidden = TRUE;
+
 }
 
 @end

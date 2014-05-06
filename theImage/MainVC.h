@@ -14,7 +14,7 @@
 
 @protocol MainVCDelegate <NSObject>
 
-- (void)MainVCController:(id)controller countUpdate:(int)friendReqCount;
+- (void)MainVCController:(id)controller countUpdate:(int)chatCount :(int)requestCount;
 
 @end
 
