@@ -85,11 +85,29 @@
 
     
     cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.imageForTable objectAtIndex: [indexPath row]]]]];
-    
     cell.personImage.layer.cornerRadius = 28.0;
     cell.personImage.layer.masksToBounds = YES;
     cell.personImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
     cell.personImage.layer.borderWidth = 0.3;
+    
+    int unreadCount = [[self.unreadForTable objectAtIndex: [indexPath row]] integerValue];
+    if (unreadCount > 0) {
+        cell.unreadCount.text = [NSString stringWithFormat:@"%d", unreadCount];
+        cell.unreadCount.hidden = FALSE;
+        
+        [cell.unreadCount sizeToFit];
+        
+        CGRect frame = cell.unreadCount.frame;
+        
+        frame.size.width = frame.size.width + 10;
+        frame.size.height = frame.size.height + 10;
+        
+        cell.unreadCount.frame = frame;
+        cell.unreadCount.layer.cornerRadius = 7.0;
+    }
+    else{
+        cell.unreadCount.hidden = TRUE;
+    }
     
     NSString *type = [self.userTypeForTable objectAtIndex: [indexPath row]];
     if ([type isEqual: @"1"])
@@ -136,7 +154,8 @@
     self.userTypeForTable = [[NSMutableArray alloc]
                              initWithObjects:nil];
     
-    
+    self.unreadForTable = [[NSMutableArray alloc]
+                      initWithObjects:nil];
     
     //UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
     //self.myData = [NSMutableArray arrayWithCapacity:1];
@@ -165,7 +184,7 @@
                     
                     [self.nameForTable addObject:[dictionary objectForKey:@"Firstname"]];
                     [self.imageForTable addObject:[dictionary objectForKey:@"PhotoURL"]];
-                    
+                    [self.unreadForTable addObject:[dictionary objectForKey:@"UnreadCount"]];
                     
                     
                     

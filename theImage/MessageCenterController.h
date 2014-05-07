@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSMutableArray *userTypeForTable;
 @property (nonatomic, strong) NSMutableArray *userIDForTable;
 @property (nonatomic, strong) NSMutableArray *locationForTable;
+@property (nonatomic, strong) NSMutableArray *unreadForTable;
 @property (strong, nonatomic) IBOutlet UIView *myData;
 
 @end

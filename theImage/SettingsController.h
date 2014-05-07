@@ -10,5 +10,6 @@
 
 @interface SettingsController : UIViewController
 @property (strong, nonatomic) IBOutlet UISwitch *useLocalizationSwitch;
+- (IBAction)localizationClick:(id)sender;
 
 @end

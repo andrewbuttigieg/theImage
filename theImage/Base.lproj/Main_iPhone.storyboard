@@ -624,9 +624,17 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ida-zO-pv7">
-                                            <rect key="frame" x="70" y="29" width="138" height="21"/>
+                                            <rect key="frame" x="70" y="29" width="195" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8mP-a6-K27">
+                                            <rect key="frame" x="262" y="29" width="38" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.18039216101169586" green="0.7450980544090271" blue="0.015686275437474251" alpha="1" colorSpace="deviceRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -637,6 +645,7 @@
                                     <outlet property="name" destination="Qhe-3e-yhO" id="Rrx-WU-Omg"/>
                                     <outlet property="personImage" destination="udJ-vz-s9h" id="4nW-WA-RA3"/>
                                     <outlet property="type" destination="Ida-zO-pv7" id="gBk-gY-qbB"/>
+                                    <outlet property="unreadCount" destination="8mP-a6-K27" id="VV4-bG-qdH"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1801,6 +1810,9 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="pwK-lr-9hF">
                                 <rect key="frame" x="251" y="92" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="localizationClick:" destination="99Z-c2-2qL" eventType="valueChanged" id="8zy-Ft-UV0"/>
+                                </connections>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JOE-nh-AsW">
                                 <rect key="frame" x="20" y="133" width="221" height="30"/>

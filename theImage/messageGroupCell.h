@@ -13,5 +13,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *date;
 @property (nonatomic, strong) IBOutlet UILabel *message;
 @property (strong, nonatomic) IBOutlet UILabel *type;
+@property (strong, nonatomic) IBOutlet UILabel *unreadCount;
 @property (nonatomic, strong) IBOutlet UIImageView *personImage;
 @end
