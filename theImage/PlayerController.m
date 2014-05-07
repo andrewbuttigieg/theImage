@@ -39,6 +39,11 @@ static NSString* facebookID;
     return useLocalisation;
 }
 
++ (void)setUseLocalisation:(bool) value{
+    useLocalisation = value;
+}
+
+
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

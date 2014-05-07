@@ -10,6 +10,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "StartController.h"
 #import "LogMeIn.h"
+#import "PlayerController.h"
 
 @interface MainVC ()
 
@@ -76,12 +77,14 @@
 
 -(void)aTime
 {
-    locationManager = [[CLLocationManager alloc] init];
-    geocoder = [[CLGeocoder alloc] init];
+    if (PlayerController.useLocalisation){
+        locationManager = [[CLLocationManager alloc] init];
+        geocoder = [[CLGeocoder alloc] init];
     
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [locationManager startUpdatingLocation];
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        [locationManager startUpdatingLocation];
+    }
 }
 
 - (void)didReceiveMemoryWarning

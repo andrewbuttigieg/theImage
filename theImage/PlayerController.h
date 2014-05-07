@@ -15,7 +15,7 @@
 @property (nonatomic) int playerID;
 @property (nonatomic) int meID;
 @property (nonatomic) NSString * facebookID;
-@property (nonatomic) bool useLocalisation;
+@property (nonatomic, assign) bool useLocalisation;
 
 @property (strong, nonatomic) IBOutlet UILabel *name;
 @property (strong, nonatomic) IBOutlet UILabel *weight;
@@ -44,6 +44,7 @@
 
 
 + (bool)useLocalisation;
++(void)setUseLocalisation:(bool) value;
 + (int)playerID;
 + (int)meID;
 + (NSString *)facebookID;
