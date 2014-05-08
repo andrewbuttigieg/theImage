@@ -44,6 +44,11 @@
 		F201760A1913D15300392DD5 /* MenuLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20176081913D15300392DD5 /* MenuLogo@2x.png */; };
 		F20176151913DD5600392DD5 /* simpleMenuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F20176131913DD5600392DD5 /* simpleMenuButton.png */; };
 		F20176161913DD5600392DD5 /* simpleMenuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20176141913DD5600392DD5 /* simpleMenuButton@2x.png */; };
+		F208C51E191AD88F002E036F /* reloadIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F208C51C191AD88F002E036F /* reloadIcon.png */; };
+		F208C51F191AD88F002E036F /* reloadIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F208C51D191AD88F002E036F /* reloadIcon@2x.png */; };
+		F208C530191BF631002E036F /* default-4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F208C52D191BF631002E036F /* default-4@2x.png */; };
+		F208C531191BF631002E036F /* default-5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F208C52E191BF631002E036F /* default-5@2x.png */; };
+		F208C532191BF631002E036F /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = F208C52F191BF631002E036F /* default.png */; };
 		F22781B41903D9880016C3F1 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781B31903D9880016C3F1 /* SettingsController.m */; };
 		F22781B7190400570016C3F1 /* ChangePasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781B6190400570016C3F1 /* ChangePasswordController.m */; };
 		F22781BF19059B030016C3F1 /* NearYouController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781BE19059B030016C3F1 /* NearYouController.m */; };
@@ -220,6 +225,11 @@
 		F20176081913D15300392DD5 /* MenuLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuLogo@2x.png"; sourceTree = "<group>"; };
 		F20176131913DD5600392DD5 /* simpleMenuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = simpleMenuButton.png; sourceTree = "<group>"; };
 		F20176141913DD5600392DD5 /* simpleMenuButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "simpleMenuButton@2x.png"; sourceTree = "<group>"; };
+		F208C51C191AD88F002E036F /* reloadIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reloadIcon.png; sourceTree = "<group>"; };
+		F208C51D191AD88F002E036F /* reloadIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reloadIcon@2x.png"; sourceTree = "<group>"; };
+		F208C52D191BF631002E036F /* default-4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-4@2x.png"; sourceTree = "<group>"; };
+		F208C52E191BF631002E036F /* default-5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-5@2x.png"; sourceTree = "<group>"; };
+		F208C52F191BF631002E036F /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		F22781B21903D9880016C3F1 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		F22781B31903D9880016C3F1 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		F22781B5190400560016C3F1 /* ChangePasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordController.h; sourceTree = "<group>"; };
@@ -436,6 +446,16 @@
 			name = Friend;
 			sourceTree = "<group>";
 		};
+		F208C528191BF4FF002E036F /* SplashImage */ = {
+			isa = PBXGroup;
+			children = (
+				F208C52D191BF631002E036F /* default-4@2x.png */,
+				F208C52E191BF631002E036F /* default-5@2x.png */,
+				F208C52F191BF631002E036F /* default.png */,
+			);
+			name = SplashImage;
+			sourceTree = "<group>";
+		};
 		F226AE6B18D7735A00862048 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -566,13 +586,14 @@
 		F2869A141875716E0086D665 /* image */ = {
 			isa = PBXGroup;
 			children = (
-				F20176171917FFCA00392DD5 /* Friend */,
+				F208C528191BF4FF002E036F /* SplashImage */,
 				F20175D41911A4F700392DD5 /* chatIcon.png */,
 				F20175D51911A4F700392DD5 /* chatIcon@2x.png */,
 				F20175C8190C209600392DD5 /* done.png */,
 				F20175C9190C209600392DD5 /* done@2x.png */,
 				F284BFEC18DFB4A90002EB81 /* EditPlayer.jpg */,
 				F2869A111874CA400086D665 /* footballApp.jpg */,
+				F20176171917FFCA00392DD5 /* Friend */,
 				F20175DC1911ADD900392DD5 /* heightIcon.png */,
 				F20175DD1911ADD900392DD5 /* heightIcon@2x.png */,
 				F20176011913C9FA00392DD5 /* icon.png */,
@@ -594,6 +615,8 @@
 				F2869A17187571840086D665 /* player.png */,
 				F2869A15187571840086D665 /* player@2x.png */,
 				F2983D0A18D23BB800E96233 /* profilevisitor.jpg */,
+				F208C51C191AD88F002E036F /* reloadIcon.png */,
+				F208C51D191AD88F002E036F /* reloadIcon@2x.png */,
 				F28C2A9318E744D00047DA75 /* setting-about.png */,
 				F28C2A9418E744D00047DA75 /* setting-about@2x.png */,
 				F28C2A9518E744D00047DA75 /* setting-box.png */,
@@ -888,17 +911,21 @@
 				F2B9E1E7189D7E060044DE04 /* UIActivityIndicatorView+AFNetworking.m in Resources */,
 				F2869A121874CA400086D665 /* footballApp.jpg in Resources */,
 				F20176001912FCC400392DD5 /* settingsMenuIcon@2x.png in Resources */,
+				F208C531191BF631002E036F /* default-5@2x.png in Resources */,
 				F2B9E1D6189D7E060044DE04 /* AFURLSessionManager.h in Resources */,
+				F208C530191BF631002E036F /* default-4@2x.png in Resources */,
 				F2905ECA18D7F4FB007F16D1 /* simpleMenuButton.png in Resources */,
 				F28C2AAD18E744D00047DA75 /* setting-height@2x.png in Resources */,
 				F2B9E1E8189D7E060044DE04 /* UIAlertView+AFNetworking.h in Resources */,
 				F28C2AB018E744D00047DA75 /* setting-login@2x.png in Resources */,
 				F20175D61911A4F700392DD5 /* chatIcon.png in Resources */,
 				F20175F71912FCC400392DD5 /* exploreMenuIcon.png in Resources */,
+				F208C51E191AD88F002E036F /* reloadIcon.png in Resources */,
 				F28C2AAC18E744D00047DA75 /* setting-height-2.png in Resources */,
 				F2B9E1EF189D7E060044DE04 /* UIProgressView+AFNetworking.h in Resources */,
 				F28C2AA718E744D00047DA75 /* setting-box.png in Resources */,
 				F2B9E1D5189D7E060044DE04 /* AFHTTPSessionManager.m in Resources */,
+				F208C51F191AD88F002E036F /* reloadIcon@2x.png in Resources */,
 				F20175FE1912FCC400392DD5 /* profileMenuIcon@2x.png in Resources */,
 				F2B9E1D7189D7E060044DE04 /* AFURLSessionManager.m in Resources */,
 				F2869A19187571840086D665 /* player@2x.png in Resources */,
@@ -961,6 +988,7 @@
 				F201760A1913D15300392DD5 /* MenuLogo@2x.png in Resources */,
 				F28699E41874C06C0086D665 /* InfoPlist.strings in Resources */,
 				F2905ECB18D7F4FB007F16D1 /* simpleMenuButton@2x.png in Resources */,
+				F208C532191BF631002E036F /* default.png in Resources */,
 				F28C2AB318E744D00047DA75 /* setting-position.png in Resources */,
 				F2983D0518CF82A400E96233 /* LogoPlayerCV@2x.png in Resources */,
 				F20176091913D15300392DD5 /* MenuLogo.png in Resources */,
@@ -1194,7 +1222,6 @@
 			baseConfigurationReference = 02F02D2711384F7B99AED951 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/andrewbuttigieg/Documents/FacebookSDK,
@@ -1212,6 +1239,7 @@
 					/Users/andrewbuttigieg/Documents/FacebookSDK/FacebookSDK.framework/Versions/A,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1221,7 +1249,6 @@
 			baseConfigurationReference = 02F02D2711384F7B99AED951 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/andrewbuttigieg/Documents/FacebookSDK,
@@ -1238,6 +1265,7 @@
 					/Users/andrewbuttigieg/Documents/FacebookSDK/FacebookSDK.framework/Versions/A,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -32,6 +32,9 @@
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *player;
 
+- (IBAction)reloadExplore:(id)sender;
+
+
 + (int)findPlayerID;
 
 @end

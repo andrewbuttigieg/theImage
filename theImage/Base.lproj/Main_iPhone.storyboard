@@ -62,7 +62,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chats" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5pa-le-jOm">
-                                                    <rect key="frame" x="53" y="11" width="288" height="21"/>
+                                                    <rect key="frame" x="50" y="11" width="288" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.8980392814" green="0.89019614459999996" blue="0.89019614459999996" alpha="1" colorSpace="deviceRGB"/>
@@ -73,7 +73,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kGG-t2-Vf0">
-                                                    <rect key="frame" x="176" y="9" width="42" height="21"/>
+                                                    <rect key="frame" x="200" y="10" width="42" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.88627457618713379" green="0.070588238537311554" blue="0.16078431904315948" alpha="1" colorSpace="deviceRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -92,7 +92,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explore" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2FZ-09-gSM">
-                                                    <rect key="frame" x="46" y="11" width="290" height="21"/>
+                                                    <rect key="frame" x="50" y="11" width="290" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.8980392814" green="0.89019614459999996" blue="0.89019614459999996" alpha="1" colorSpace="deviceRGB"/>
@@ -121,7 +121,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VND-It-rYh">
-                                                    <rect key="frame" x="176" y="6" width="42" height="21"/>
+                                                    <rect key="frame" x="200" y="10" width="42" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.88627457620000005" green="0.070588238540000001" blue="0.16078431900000001" alpha="1" colorSpace="deviceRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1182,7 +1182,13 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Discover" id="FKf-3V-dSQ"/>
+                    <navigationItem key="navigationItem" title="Discover" id="FKf-3V-dSQ">
+                        <barButtonItem key="rightBarButtonItem" image="reloadIcon.png" id="Gbd-ob-ZEj">
+                            <connections>
+                                <action selector="reloadExplore:" destination="aRb-J5-Rrh" id="g41-sE-LWO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
@@ -1978,6 +1984,7 @@
         <image name="notificationsMenuIcon.png" width="26" height="26"/>
         <image name="player.png" width="320" height="321"/>
         <image name="profileMenuIcon.png" width="26" height="26"/>
+        <image name="reloadIcon.png" width="26" height="27"/>
         <image name="setting-about.png" width="320" height="90"/>
         <image name="setting-box.png" width="640" height="87"/>
         <image name="setting-gender.png" width="320" height="44"/>

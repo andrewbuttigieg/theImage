@@ -16,6 +16,10 @@
 
 @implementation FindPlayerController
 
+- (IBAction)reloadExplore:(id)sender {
+    [self findPeople:findPlayerID];
+}
+
 static int findPlayerID = 0;
 
 + (int) findPlayerID{
