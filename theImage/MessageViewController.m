@@ -108,6 +108,20 @@ static float top = 0;
     return cell;
 }*/
 
+- (IBAction)goToPlayer:(id)sender
+{
+    NSString * storyboardName = @"Main_iPhone";
+    NSString * viewControllerID = @"PlayerController";
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    PlayerController * controller = (PlayerController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+    controller.playerID = self.chattingToID;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (IBAction)toggleKeyboard:(id)sender {
+    NSLog(@"Entering toggleKeyboard()...");
+}
+
 - (void)loadView {
     top = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -145,15 +159,22 @@ static float top = 0;
     NSURL * imageURL = [NSURL URLWithString:self.image];
     NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
     UIImage * image = [UIImage imageWithData:imageData];
-    UIButton* fakeButton = (UIButton *) [[UIImageView alloc] initWithImage:image];
+    UIButton* fakeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [fakeButton setImage:image forState:UIControlStateNormal];
+    fakeButton.frame = CGRectMake(0, 0, 30, 30);
     
-    fakeButton.frame = CGRectMake(0,0,35,35);
-    fakeButton.layer.borderColor = [UIColor blueColor].CGColor;
-    fakeButton.layer.borderWidth = 1.0f;
-    fakeButton.layer.cornerRadius = 17.0;
+    /*fakeButton.layer.borderColor = [UIColor blueColor].CGColor;*/
+/*    fakeButton.layer.borderWidth = 1.0f;
+    fakeButton.layer.cornerRadius = 17.0;*/
+    //[fakeButton addTarget:self action:@selector(goToPlayer:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [fakeButton addTarget:self action:@selector(goToPlayer:) forControlEvents:UIControlEventTouchUpInside];
+//    [customButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+
+    
     
     UIBarButtonItem *fakeButtonItem = [[UIBarButtonItem alloc] initWithCustomView:fakeButton];
-
+    
     
     self.navigationItem.rightBarButtonItem = fakeButtonItem;
 

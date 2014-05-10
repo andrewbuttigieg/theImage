@@ -15,7 +15,7 @@
 @property (nonatomic) int chattingToID;
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *image;
-
+- (IBAction)toggleKeyboard:(id)sender;
 + (float)top;
 
 @end
