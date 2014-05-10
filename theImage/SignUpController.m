@@ -20,6 +20,7 @@
 
 CGSize keyboardSize;
 bool moved = false;
+static id<FBGraphUser> facebookUser;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -75,19 +76,18 @@ bool moved = false;
 	// Do any additional setup after loading the view.
 }
 
-// This method will be called when the user information has been fetched
-- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
-                            user:(id<FBGraphUser>)user {
-    
-    NSLog(@"%@", user);
-   
-    NSLog(@"%@", user[@"birthday"]);
+- (void)signupFacebook:(int)userType{
+    NSLog(@"%@", facebookUser);
+    NSLog(@"%@", facebookUser[@"birthday"]);
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/reg_player.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    
+    //userType
+    
     [request setHTTPBody:
      [[NSString stringWithFormat:@"password=%@&email=%@&name=%@&lname=%@&weight=%d&usertype=%d&facebookid=%@&gender=%@&birthday=%@",
-                           @"", user[@"email"], user.first_name, user.last_name, 0, 1, user.id, user[@"gender"], user[@"birthday"]]dataUsingEncoding:NSUTF8StringEncoding]];
+       @"", facebookUser[@"email"], facebookUser.first_name, facebookUser.last_name, 0, userType, facebookUser.id, facebookUser[@"gender"], facebookUser[@"birthday"]]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     NSError *error = nil; NSURLResponse *response = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -122,7 +122,7 @@ bool moved = false;
                     
                     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/login_player_fb.php"]];
                     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-                    [request setHTTPBody:[[NSString stringWithFormat:@"fb=%@", user.id]dataUsingEncoding:NSUTF8StringEncoding]];
+                    [request setHTTPBody:[[NSString stringWithFormat:@"fb=%@", facebookUser.id]dataUsingEncoding:NSUTF8StringEncoding]];
                     [request setHTTPMethod:@"POST"];
                     
                     
@@ -150,7 +150,7 @@ bool moved = false;
                                                                               otherButtonTitles:nil];
                                         [alert show];
                                     }
-                                    else{    
+                                    else{
                                         //logged in by fb
                                         [self GoToPlayer];
                                     }
@@ -162,6 +162,53 @@ bool moved = false;
             });
         }
     }
+}
+
+- (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (popup.tag) {
+        case 1: {
+            switch (buttonIndex) {
+                case 0:
+                    //player
+                    [self signupFacebook:1];
+                    break;
+                case 1:
+                    //scout
+                    [self signupFacebook:2];
+                    break;
+                case 2:
+                    //agent
+                    [self signupFacebook:3];
+                    break;
+                case 3:
+                    //coach
+                    [self signupFacebook:4];
+                    break;
+                default:
+                    break;
+            }
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+
+// This method will be called when the user information has been fetched
+- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
+                            user:(id<FBGraphUser>)user {
+    
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"What type of user are you?:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
+                            @"Player",
+                            @"Scout",
+                            @"Agent",
+                            @"Coach",
+                            nil];
+    popup.tag = 1;
+    [popup showInView:[UIApplication sharedApplication].keyWindow];
+    
+    facebookUser = user;
 }
 
 - (void)viewDidUnload{
