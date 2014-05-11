@@ -377,6 +377,10 @@ static NSString* facebookID;
                                 self.weight.text = [NSString stringWithFormat:@"%.1fkgs", [[theUser valueForKey:@"Weight"] floatValue]];
                                 self.postion.text = [theUser valueForKey:@"Position"];
                                 
+                                if ([self.postion.text isEqualToString:@"0"]){
+                                    self.postion.text = @"This user has not choosen their playing position";
+                                }
+                                
                                 if (
                                     [theUser valueForKey:@"About"] != [NSNull null] &&
                                     [theUser valueForKey:@"About"] != nil){
