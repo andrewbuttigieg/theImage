@@ -79,7 +79,7 @@ bool movedHere = false;
     
     FBLoginView *loginView = [[FBLoginView alloc] init];
     // Align the button in the center horizontally
-    loginView.readPermissions = @[@"basic_info", @"email", @"user_likes"];
+    loginView.readPermissions = @[@"user_birthday", @"basic_info", @"email", @"public_profile", @"user_friends", @"user_photos"];
     loginView.delegate = self;
     loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 100);
     [self.scrollViewLogin addSubview:loginView];

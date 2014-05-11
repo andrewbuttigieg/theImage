@@ -38,7 +38,7 @@ static id<FBGraphUser> facebookUser;
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"signup-background.jpg"]]];
     
-    self.userTypeArray =  [[NSMutableArray alloc]initWithObjects:@"Player",@"Scout	",@"Agent" , nil];
+    self.userTypeArray =  [[NSMutableArray alloc]initWithObjects:@"Player",@"Scout",@"Agent", @"Coach" , nil];
     self.picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 100, 150)];
     [self.picker setDataSource: self];
     [self.picker setDelegate: self];
@@ -47,7 +47,7 @@ static id<FBGraphUser> facebookUser;
     
     FBLoginView *loginView = [[FBLoginView alloc] init];
     // Align the button in the center horizontally
-    loginView.readPermissions = @[@"user_birthday", @"basic_info", @"email"];
+    loginView.readPermissions = @[@"user_birthday", @"basic_info", @"email", @"public_profile", @"user_friends", @"user_photos"];
     loginView.delegate = self;
     loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 20);
     [self.scrollView addSubview:loginView];
@@ -86,8 +86,8 @@ static id<FBGraphUser> facebookUser;
     //userType
     
     [request setHTTPBody:
-     [[NSString stringWithFormat:@"password=%@&email=%@&name=%@&lname=%@&weight=%d&usertype=%d&facebookid=%@&gender=%@&birthday=%@",
-       @"", facebookUser[@"email"], facebookUser.first_name, facebookUser.last_name, 0, userType, facebookUser.id, facebookUser[@"gender"], facebookUser[@"birthday"]]dataUsingEncoding:NSUTF8StringEncoding]];
+     [[NSString stringWithFormat:@"password=%@&email=%@&name=%@&lname=%@&weight=%d&usertype=%d&facebookid=%@&gender=%@&birthday=%@&photoURL=%@&username=%@",
+       @"", facebookUser[@"email"], facebookUser.first_name, facebookUser.last_name, 0, userType, facebookUser.id, facebookUser[@"gender"], facebookUser[@"birthday"], @"photo", facebookUser[@"username"]]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     NSError *error = nil; NSURLResponse *response = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -199,7 +199,9 @@ static id<FBGraphUser> facebookUser;
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
     
-    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"What type of user are you?:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
+    facebookUser = user;
+    
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"What type of user are you?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
                             @"Player",
                             @"Scout",
                             @"Agent",
@@ -207,8 +209,6 @@ static id<FBGraphUser> facebookUser;
                             nil];
     popup.tag = 1;
     [popup showInView:[UIApplication sharedApplication].keyWindow];
-    
-    facebookUser = user;
 }
 
 - (void)viewDidUnload{
@@ -249,10 +249,12 @@ static id<FBGraphUser> facebookUser;
     {
         return YES;
     }
+    else if (
+             [self.activeTextField isEqual:self.weight]){
+            return NO;
+    }
     
-    
-    
-    return NO;
+    return YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -287,12 +289,11 @@ static id<FBGraphUser> facebookUser;
     // Dispose of any resources that can be recreated.
 }
 
--(void)GoToPlayer{
+-(void)GoToPlayer{    
     NSString * storyboardName = @"Main_iPhone";
     NSString * viewControllerID = @"Main";
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
     MainVC * controller = (MainVC *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
-    
     [self.navigationController pushViewController:controller animated:YES];
 }
 

@@ -63,8 +63,10 @@ bool loggedIn = false;
 {
     [super viewDidLoad];
     
+    loggedIn = false;
+    
     FBLoginView *loginView = [[FBLoginView alloc] init];
-    loginView.readPermissions = @[@"basic_info", @"email", @"user_likes"];
+    loginView.readPermissions = @[@"user_birthday", @"basic_info", @"email", @"public_profile", @"user_friends", @"user_photos"];
     loginView.delegate = self;
     loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 100);
     loginView.hidden = true;

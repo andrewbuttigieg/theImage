@@ -376,8 +376,18 @@ static NSString* facebookID;
                                 self.height.text = [NSString stringWithFormat:@"%.1fcm", [[theUser valueForKey:@"Height"] floatValue]];
                                 self.weight.text = [NSString stringWithFormat:@"%.1fkgs", [[theUser valueForKey:@"Weight"] floatValue]];
                                 self.postion.text = [theUser valueForKey:@"Position"];
-                                self.aboutLabel.text = [theUser valueForKey:@"About"];
-                                if ([self.aboutLabel.text length] < 5){
+                                
+                                if (
+                                    [theUser valueForKey:@"About"] != [NSNull null] &&
+                                    [theUser valueForKey:@"About"] != nil){
+                                    self.aboutLabel.text = [theUser valueForKey:@"About"];
+                                }
+                                else if ([self.aboutLabel.text length] < 5)
+                                {
+                                    self.aboutLabel.text = @"This user has not updated their about section yet";
+                                }
+                                else
+                                {
                                     self.aboutLabel.text = @"This user has not updated their about section yet";
                                 }
                                 
