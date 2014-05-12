@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsController : UIViewController
+@interface SettingsController : UITableViewController
 @property (strong, nonatomic) IBOutlet UISwitch *useLocalizationSwitch;
 - (IBAction)localizationClick:(id)sender;
 

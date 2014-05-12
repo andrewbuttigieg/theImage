@@ -148,7 +148,12 @@ bool player = false;
                 {
                     //NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
 
-                    self.about.text = [dictionary objectForKey:@"About"] ;
+                    if (
+                        [dictionary objectForKey:@"About"] != [NSNull null] &&
+                        [dictionary objectForKey:@"About"] != nil
+                        ){
+                        self.about.text = [dictionary objectForKey:@"About"];
+                    }
                     self.height.text = [dictionary objectForKey:@"Height"];
                     self.weight.text = [dictionary objectForKey:@"Weight"];
                     self.email.text = [dictionary objectForKey:@"Email"];
