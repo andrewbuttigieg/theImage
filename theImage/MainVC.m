@@ -115,6 +115,7 @@
         case 5:
             identifier = @"fifthRow";
             break;
+            /*
         case 6:
             if ([LogMeIn logout]){
                 
@@ -131,11 +132,11 @@
                 
                 [self.navigationController pushViewController:controller animated:YES];
             }
-            break;
-        case 7:
+            break;*/
+        case 6:
             identifier = @"sixthRow";
             break;
-        case 8:
+        case 7:
             identifier = @"allVideoRow";
             break;
     }

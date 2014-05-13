@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsController : UITableViewController
+@interface SettingsController : UITableViewController<UIActionSheetDelegate>
 @property (strong, nonatomic) IBOutlet UISwitch *useLocalizationSwitch;
 - (IBAction)localizationClick:(id)sender;
+
+- (IBAction)logOut:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIButton *deleteUser;
 
 @end

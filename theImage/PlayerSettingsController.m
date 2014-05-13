@@ -127,6 +127,7 @@ bool player = false;
     self.lfpCountry.inputView = self.countryPicker;
     self.lfpartCountry.inputView = self.countryPicker2;
     
+
     [self lookingForPlayerAlign];
     
     request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_me.php"]];
