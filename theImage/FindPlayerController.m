@@ -20,6 +20,11 @@
     [self findPeople:findPlayerID];
 }
 
+- (IBAction)findCoach:(id)sender {
+    findPlayerID = 4;
+    [self findPeople:findPlayerID];
+}
+
 static int findPlayerID = 0;
 
 + (int) findPlayerID{
@@ -102,11 +107,7 @@ static int findPlayerID = 0;
                 
                 for(NSDictionary *dictionary in jsonArray)
                 {
-                    NSLog(@"Data Dictionary is : %@",dictionary);
                     NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
-                    NSLog(@"%@", imageURL);
-                    
-                    
                     UIImage *image;
                     
                     if ([imageURL length] > 5){

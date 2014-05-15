@@ -34,6 +34,7 @@
 
 - (IBAction)reloadExplore:(id)sender;
 
+- (IBAction)findCoach:(id)sender;
 
 + (int)findPlayerID;
 

@@ -1549,7 +1549,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </scrollView>
                     <toolbarItems>
-                        <barButtonItem title="All" id="gYI-e3-Xy8"/>
                         <barButtonItem title="Players" id="rQi-JC-gr4">
                             <connections>
                                 <action selector="findPlayer:" destination="aRb-J5-Rrh" id="LRg-3d-394"/>
@@ -1563,6 +1562,11 @@
                         <barButtonItem title="Scouts" id="Mwa-hb-kw5">
                             <connections>
                                 <action selector="findScout:" destination="aRb-J5-Rrh" id="8uf-Tk-G3F"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Coaches" id="BQ7-sc-fqv">
+                            <connections>
+                                <action selector="findCoach:" destination="aRb-J5-Rrh" id="kmr-Ra-gk7"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>

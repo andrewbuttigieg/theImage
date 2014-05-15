@@ -21,7 +21,7 @@ CGRect const kInitialViewFrame = { 0.0f, 0.0f, 320.0f, 480.0f };
 
 @implementation MessageViewController
 
-NSDate * lastMessage = nil;
+NSDate *lastMessage = nil;
 static float top = 0;
 + (float) top{
     return top;
@@ -342,6 +342,67 @@ static float top = 0;
 
 - (void)appendTextToTextView:(NSString *)text :(bool)MeOwner :(NSDate *)MessageSent{
     dispatch_async(dispatch_get_main_queue(), ^{
+        
+        
+        
+        
+        
+        //get the date time in the iphone timezone
+        NSString *dateString = [NSString stringWithFormat:@"%@", MessageSent];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        //Special Locale for fixed dateStrings
+        NSLocale *locale = [[NSLocale alloc]initWithLocaleIdentifier:@"en_US_POSIX"];
+        [formatter setLocale:locale];
+        //Assuming the dateString is in GMT+00:00
+        //formatter by default would be set to local timezone
+        NSTimeZone *timeZone = [NSTimeZone timeZoneWithAbbreviation:@"MDT"];
+        [formatter setTimeZone:timeZone];
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        NSDate *date = [formatter dateFromString:dateString];
+        //After forming the date set local time zone to formatter
+        NSTimeZone *localTimeZone = [NSTimeZone localTimeZone];
+        [formatter setTimeZone:localTimeZone];
+        NSString *newTimeZoneDateString = [formatter stringFromDate:date];
+
+        if (lastMessage == NULL || date == NULL){
+            UITextView *textViewDate = [[UITextView alloc] initWithFrame:CGRectMake(10.0f, top, 300.0f, 20.0f)];
+            textViewDate.text = newTimeZoneDateString;
+            textViewDate.textAlignment = NSTextAlignmentCenter;
+            textViewDate.editable = false;
+            textViewDate.scrollEnabled = false;
+            [self.textView addSubview:textViewDate];
+            //where to put the text
+            top = top + 25;
+        }
+        else{
+            NSCalendar* calendar = [NSCalendar currentCalendar];
+            NSDateComponents* lastMessageDateTime = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:lastMessage]; // Get necessary date components
+            
+            NSDateComponents* currentMessageDateTime = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date]; // Get necessary date components
+            
+            if ([lastMessageDateTime year] == [currentMessageDateTime year] &&
+                [lastMessageDateTime month] == [currentMessageDateTime month] &&
+                [lastMessageDateTime day] == [currentMessageDateTime day] &&
+                [lastMessageDateTime hour] - 1 < [currentMessageDateTime hour]
+                ){
+                //today
+                
+            }
+            else{
+                UITextView *textViewDate = [[UITextView alloc] initWithFrame:CGRectMake(10.0f, top, 300.0f, 20.0f)];
+                textViewDate.text = newTimeZoneDateString;
+                textViewDate.textAlignment = NSTextAlignmentCenter;
+                textViewDate.editable = false;
+                textViewDate.scrollEnabled = false;
+                [self.textView addSubview:textViewDate];
+                //where to put the
+                top = top + 25;
+            }
+        }
+        //for the next message
+        lastMessage = date;
+
+        
         UIView *bubbleView = [[UIView alloc] initWithFrame:CGRectMake(80.0f, 90.0f, 220.0f, 40.0f)];
         
         
@@ -383,32 +444,7 @@ static float top = 0;
         //put the bubble in the right place
         bubbleView.frame=CGRectMake(left, top, textViewInner.frame.size.width + 20, textViewInner.frame.size.height + 10);
         
-        //get the date time in the iphone timezone
-        NSString *dateString = [NSString stringWithFormat:@"%@", MessageSent];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        //Special Locale for fixed dateStrings
-        NSLocale *locale = [[NSLocale alloc]initWithLocaleIdentifier:@"en_US_POSIX"];
-        [formatter setLocale:locale];
-        //Assuming the dateString is in GMT+00:00
-        //formatter by default would be set to local timezone
-        NSTimeZone *timeZone = [NSTimeZone timeZoneWithAbbreviation:@"MDT"];
-        [formatter setTimeZone:timeZone];
-        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        NSDate *date = [formatter dateFromString:dateString];
-        //After forming the date set local time zone to formatter
-        NSTimeZone *localTimeZone = [NSTimeZone localTimeZone];
-        [formatter setTimeZone:localTimeZone];
-        NSString *newTimeZoneDateString = [formatter stringFromDate:date];
-        NSLog(@"%@",newTimeZoneDateString);
-        
-        UITextView *textViewDate = [[UITextView alloc] initWithFrame:CGRectMake(10.0f, top - 25.0f, 300.0f, 20.0f)];
-        textViewDate.text = newTimeZoneDateString;
-        textViewDate.textAlignment = NSTextAlignmentCenter;
-        [self.textView addSubview:textViewDate];
-        
-        
-        //where to put the text
-        top = top + textViewInner.frame.size.height + 30;
+        top = top + textViewInner.frame.size.height + 15;
         [self.textView addSubview:bubbleView];
         
         

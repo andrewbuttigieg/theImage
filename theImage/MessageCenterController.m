@@ -84,7 +84,11 @@
                       objectAtIndex: [indexPath row]];
 
     
-    cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.imageForTable objectAtIndex: [indexPath row]]]]];
+    if ([self isValidUrl : [self.imageForTable objectAtIndex: [indexPath row]]])
+        cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.imageForTable objectAtIndex: [indexPath row]]]]];
+    else
+        cell.personImage.image = [UIImage imageNamed:@"player.png"];
+    
     cell.personImage.layer.cornerRadius = 28.0;
     cell.personImage.layer.masksToBounds = YES;
     cell.personImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -133,6 +137,10 @@
     return cell;
 }
 
+- (BOOL)isValidUrl:(NSString *)urlString{
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    return [NSURLConnection canHandleRequest:request];
+}
 
 -(void)load{
     
@@ -185,8 +193,6 @@
                     [self.nameForTable addObject:[dictionary objectForKey:@"Firstname"]];
                     [self.imageForTable addObject:[dictionary objectForKey:@"PhotoURL"]];
                     [self.unreadForTable addObject:[dictionary objectForKey:@"UnreadCount"]];
-                    
-                    
                     
                     //get the date time in the iphone timezone
                     NSString *dateString = [dictionary objectForKey:@"SentDateTime"];

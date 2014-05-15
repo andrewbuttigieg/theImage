@@ -62,7 +62,7 @@
     frame.size.height = frame.size.height + 10;
     
     self.chatCount.frame = frame;
-    self.chatCount.layer.cornerRadius = 7.0;
+    self.chatCount.layer.cornerRadius = 10.0;
     if (chatCount > 0)
         self.chatCount.hidden = FALSE;
     else
@@ -78,7 +78,7 @@
     frame.size.height = frame.size.height + 10;
     
     self.reqCount.frame = frame;
-    self.reqCount.layer.cornerRadius = 7.0;
+    self.reqCount.layer.cornerRadius = 10.0;
     if (requestCount > 0)
         self.reqCount.hidden = FALSE;
     else
