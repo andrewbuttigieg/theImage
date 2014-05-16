@@ -9,7 +9,9 @@
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "ViewController.h"
+#import "LogMeIn.h"
 #import "LoginController.h"
+#import "StartController.h"
 
 @interface AppDelegate ()
 
@@ -83,6 +85,45 @@ bool isAppResumingFromBackground = NO;
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     isAppResumingFromBackground = YES;
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/is_logged_in.php/"]];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [request setHTTPMethod:@"POST"];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (error) {
+            
+        } else {
+            NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                        options:0
+                                                                          error:&error];
+            for(NSDictionary *dictionary in jsonArray)
+            {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([[dictionary objectForKey:@"accepted"] intValue] == 1){
+                        //logged in
+                    }
+                    else{
+                        //logged out
+                        if ([LogMeIn logout]){
+                            
+                            if (FBSession.activeSession.isOpen)
+                            {
+                                [FBSession.activeSession closeAndClearTokenInformation];
+                            }
+                            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
+                            StartController * startController = (StartController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"StartController"];
+                            
+                            //set the root controller to it
+                            self.window.rootViewController = startController;
+                        }
+                    }
+                });
+            }
+        }
+    }];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
