@@ -342,11 +342,6 @@ static float top = 0;
 
 - (void)appendTextToTextView:(NSString *)text :(bool)MeOwner :(NSDate *)MessageSent{
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-        
-        
-        
-        
         //get the date time in the iphone timezone
         NSString *dateString = [NSString stringWithFormat:@"%@", MessageSent];
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
@@ -372,7 +367,7 @@ static float top = 0;
             textViewDate.scrollEnabled = false;
             [self.textView addSubview:textViewDate];
             //where to put the text
-            top = top + 25;
+            top = top + 15;
         }
         else{
             NSCalendar* calendar = [NSCalendar currentCalendar];
@@ -380,6 +375,35 @@ static float top = 0;
             
             NSDateComponents* currentMessageDateTime = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date]; // Get necessary date components
             
+            NSString *time;
+            if ([lastMessageDateTime year] == [currentMessageDateTime year] &&
+                [lastMessageDateTime month] == [currentMessageDateTime month] &&
+                [lastMessageDateTime day] == [currentMessageDateTime day]
+                ){
+                //today
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"HH:mm"];
+                time = [dateFormatter stringFromDate:date];
+            }
+            else if([lastMessageDateTime year] == [currentMessageDateTime year] &&
+                    [lastMessageDateTime month] == [currentMessageDateTime month] &&
+                    [lastMessageDateTime day] - 1 == [currentMessageDateTime day])
+            {
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"HH:mm"];
+                NSString *hour = [dateFormatter stringFromDate:date];
+                //yesterday
+                time = @"Yesterday";
+                time = [NSString stringWithFormat:@"%@, %@", time, hour];
+            }
+            else
+            {
+                //another day
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"yyyy/MM/dd HH:mm"];
+                time = [dateFormatter stringFromDate:date];
+            }
+            //decide whether to show the time or not
             if ([lastMessageDateTime year] == [currentMessageDateTime year] &&
                 [lastMessageDateTime month] == [currentMessageDateTime month] &&
                 [lastMessageDateTime day] == [currentMessageDateTime day] &&
@@ -390,7 +414,7 @@ static float top = 0;
             }
             else{
                 UITextView *textViewDate = [[UITextView alloc] initWithFrame:CGRectMake(10.0f, top, 300.0f, 20.0f)];
-                textViewDate.text = newTimeZoneDateString;
+                textViewDate.text = time;
                 textViewDate.textAlignment = NSTextAlignmentCenter;
                 textViewDate.editable = false;
                 textViewDate.scrollEnabled = false;
@@ -444,7 +468,7 @@ static float top = 0;
         //put the bubble in the right place
         bubbleView.frame=CGRectMake(left, top, textViewInner.frame.size.width + 20, textViewInner.frame.size.height + 10);
         
-        top = top + textViewInner.frame.size.height + 15;
+        top = top + textViewInner.frame.size.height + 12;
         [self.textView addSubview:bubbleView];
         
         
@@ -452,7 +476,7 @@ static float top = 0;
         if ((top + 45) > xtop){
             //set the scroll of the view
             self.textView.contentSize = CGSizeMake(320, top);
-            CGPoint bottomOffset = CGPointMake(0, (top + 45) - xtop);
+            CGPoint bottomOffset = CGPointMake(0, (top + 15) - xtop);
             [self.textView setContentOffset:bottomOffset animated:YES];
         }
     });

@@ -25,6 +25,11 @@
     return self;
 }
 
+- (BOOL)isValidUrl:(NSString *)urlString{
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    return [NSURLConnection canHandleRequest:request];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
@@ -166,8 +171,10 @@
     cell.country.text = [self.locationForFR
                       objectAtIndex: [indexPath row]];
 
-    
-    cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.imageForFR objectAtIndex: [indexPath row]]]]];
+    if ([self isValidUrl : [self.imageForFR objectAtIndex: [indexPath row]]])
+        cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.imageForFR objectAtIndex: [indexPath row]]]]];
+    else
+        cell.personImage.image = [UIImage imageNamed:@"player.png"];
     
     cell.personImage.layer.cornerRadius = 28.0;
     cell.personImage.layer.masksToBounds = YES;
@@ -187,11 +194,11 @@
     {
         type = @"Agent";
     }
-    /*
-     else if ([type isEqual: @"4"])
-     {
-     type = @"";
-     }*/
+    else if ([type isEqual: @"4"])
+    {
+        type = @"Coach";
+    }
+    
     cell.type.text = type;
     cell.message.text = [self.textForFR objectAtIndex: [indexPath row]];
     

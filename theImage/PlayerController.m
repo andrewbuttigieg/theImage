@@ -338,19 +338,15 @@ static NSString* facebookID;
                         NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:0
                                                                                       error:&error];
+
                         for(NSDictionary *dictionary in jsonArray)
                         {
                             //NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
                             NSLog(@"%@", dictionary);
                             
-                            NSDictionary *playerD = [dictionary valueForKey:@"Players"];
+                            /*NSDictionary *playerD = [dictionary valueForKey:@"Players"];
                             NSDictionary *scoutD = [dictionary valueForKey:@"Scouts"];
-                            NSDictionary *agentD = [dictionary valueForKey:@"Agents"];
-                            
-                            int playerCount = [[dictionary valueForKey:@"PlayersCount"] intValue];
-                            int scoutCount = [[dictionary valueForKey:@"ScoutsCount"] intValue];
-                            int agentCount = [[dictionary valueForKey:@"AgentsCount"] intValue];
-                            
+                            NSDictionary *agentD = [dictionary valueForKey:@"Agents"];*/
                             
                             NSDictionary *theUserD = [dictionary valueForKey:@"User"];
                             NSArray *theUser = [theUserD valueForKey:@"0"];
@@ -405,9 +401,6 @@ static NSString* facebookID;
                                 else
                                     self.age.text = @"";
                                 
-                                NSLog(@"%@", [theUser valueForKey:@"Age"]);
-                                
-                                NSLog(@"%@", self.age.text);
                                 
 //                                [theUser valueForKey:@"Birthday"];
                                 
@@ -484,7 +477,7 @@ static NSString* facebookID;
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 
                                 int newY = 0;
-                                for (int i = 0; i < 3; i++){
+                                for (int i = 0; i < 4; i++){
                                     
                                     int y;
                                     int x = 0;
@@ -505,64 +498,72 @@ static NSString* facebookID;
                                     //                                                 alpha:1.0f].CGColor;
                                     [secondScroll.layer addSublayer:bottomBorder];
                                     
-                                    NSDictionary *temp;
+                                    /*NSDictionary *temp;
                                     if (i == 0)
                                         temp = playerD;
                                     if (i == 1)
                                         temp = scoutD;
                                     if (i == 2)
-                                        temp = agentD;
-                                    
-                                    for (id key in temp)
+                                        temp = agentD;*/
+                                    int playerCount = 0;
+                                    int scoutCount = 0;
+                                    int agentCount = 0;
+                                    int coachCount = 0;
+                                    for (id key in [dictionary valueForKey:@"Friends"])
                                     {
                                         NSDictionary *anObject;
                                         
-                                        anObject = [temp objectForKey:key];
+                                        anObject = [[dictionary valueForKey:@"Friends"] objectForKey:key];
                                         
-                                        //[secondScroll release];
-                                        //[self.scrollview setContentSize:CGSizeMake(320, self.scrollview.contentSize.height+110)];
+                                        if ([[anObject objectForKey:@"UserType"] intValue] == (i + 1)){
                                         
-                                        NSString *imageURL = [anObject objectForKey:@"PhotoURL"];
-                                        //NSLog(@"%@", imageURL);
-                                        imageURL = [imageURL stringByReplacingOccurrencesOfString:@".com/"
-                                                                                 withString:@".com/[120]-"];
-                                        
-                                        UIImage *image;
-                                        if ([imageURL length] > 5){
-                                            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                                            if (i == 0)
+                                                ++playerCount;
+                                            else if (i == 1)
+                                                ++scoutCount;
+                                            else if (i == 2)
+                                                ++agentCount;
+                                            else if (i == 3)
+                                                ++coachCount;
+                                            //[secondScroll release];
+                                            //[self.scrollview setContentSize:CGSizeMake(320, self.scrollview.contentSize.height+110)];
+                                            
+                                            NSString *imageURL = [anObject objectForKey:@"PhotoURL"];
+                                            imageURL = [imageURL stringByReplacingOccurrencesOfString:@".com/"
+                                                                                     withString:@".com/[120]-"];
+                                            
+                                            UIImage *image;
+                                            if ([imageURL length] > 5){
+                                                image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                                            }
+                                            else{
+                                                //default image
+                                                image = [UIImage imageNamed:@"player.png"];
+                                            }
+                                            UIImageView *iv = [[UIImageView alloc] initWithImage:image];
+                                            iv.layer.cornerRadius = 30.0;
+                                            iv.layer.masksToBounds = YES;
+                                            iv.layer.borderColor = [UIColor lightGrayColor].CGColor;
+                                            iv.layer.borderWidth = 0.3;
+                                            iv.frame=CGRectMake(total * 70 + 10, 45, 60,60);
+                                            
+                                            iv.tag = [[anObject objectForKey:@"UserID"] intValue];
+                                            UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
+                                            [iv addGestureRecognizer:singleTap];
+                                            [iv setMultipleTouchEnabled:YES];
+                                            [iv setUserInteractionEnabled:YES];
+                                            
+                                            UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(total * 70 + 10, 100, 60,30)];
+                                            //if (i == 0)
+                                                lb.textColor = [UIColor colorWithRed:(92.0f/255.0f) green:(92.0f/255.0f) blue:(92.0f/255.0f) alpha:1];
+                                            lb.text = [anObject objectForKey:@"Firstname"];
+                                            lb.textAlignment = NSTextAlignmentCenter;
+                                            
+                                            
+                                            [secondScroll addSubview:iv];
+                                            [secondScroll addSubview:lb];
+                                            ++total;
                                         }
-                                        else{
-                                            //default image
-                                            image = [UIImage imageNamed:@"player.png"];
-                                        }
-                                        UIImageView *iv = [[UIImageView alloc] initWithImage:image];
-                                        iv.layer.cornerRadius = 30.0;
-                                        iv.layer.masksToBounds = YES;
-                                        iv.layer.borderColor = [UIColor lightGrayColor].CGColor;
-                                        iv.layer.borderWidth = 0.3;
-                                        iv.frame=CGRectMake(total * 70 + 10, 45, 60,60);
-                                        
-                                        iv.tag = [[anObject objectForKey:@"UserID"] intValue];
-                                        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
-                                        [iv addGestureRecognizer:singleTap];
-                                        [iv setMultipleTouchEnabled:YES];
-                                        [iv setUserInteractionEnabled:YES];
-                                        
-                                        UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(total * 70 + 10, 100, 60,30)];
-                                        //if (i == 0)
-                                            lb.textColor = [UIColor colorWithRed:(92.0f/255.0f) green:(92.0f/255.0f) blue:(92.0f/255.0f) alpha:1];
-                                        /*
-                                        else if (i == 1)
-                                            lb.textColor = [UIColor colorWithRed:(225.0f/255.0f) green:(144.0f/255.0f) blue:(2.0f/255.0f) alpha:1];
-                                        else if (i == 2)
-                                            lb.textColor = [UIColor colorWithRed:(0.0f/255.0f) green:(158.0f/255.0f) blue:(219.0f/255.0f) alpha:1];*/
-                                        lb.text = [anObject objectForKey:@"Firstname"];
-                                        lb.textAlignment = NSTextAlignmentCenter;
-                                        
-                                        
-                                        [secondScroll addSubview:iv];
-                                        [secondScroll addSubview:lb];
-                                        ++total;
                                     }
                                     
                                     if (total > 0){
@@ -579,6 +580,8 @@ static NSString* facebookID;
                                             lb.text = [NSString stringWithFormat:@"Scout Connections (%d)", scoutCount];
                                         else if (i == 2)
                                             lb.text = [NSString stringWithFormat:@"Agent Connections (%d)", agentCount];
+                                        else if (i == 3)
+                                            lb.text = [NSString stringWithFormat:@"Coach Connections (%d)", coachCount];
                                         [lb sizeToFit];
                                         
                                         lb.textAlignment = NSTextAlignmentLeft;
