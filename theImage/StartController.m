@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 PlayerCV. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "StartController.h"
 #import "KeychainItemWrapper.h"
 #import "JNKeychain.h"
@@ -38,8 +39,14 @@ bool loggedIn = false;
     return self;
 }
 
+
 - (void) viewWillAppear:(BOOL)animated
 {
+//    self.delegate.currentView = @"Start";
+
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    appDelegate.currentView = @"start";
+    
     [self.moviePlayer play];
     [super viewWillAppear:animated];
     //self.navigationController.toolbarHidden = YES;
@@ -52,6 +59,8 @@ bool loggedIn = false;
     [super viewWillDisappear:animated];
     //self.navigationController.toolbarHidden = NO;
     [self.navigationController setNavigationBarHidden:NO];
+    [super viewWillDisappear:animated];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"CurrentViewController" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:self, @"lastViewController", nil]];
 }
 
 - (void)applicationDidBecomeActive:(NSNotification *) notification

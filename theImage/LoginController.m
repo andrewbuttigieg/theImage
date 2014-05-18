@@ -38,6 +38,9 @@ bool movedHere = false;
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    
+    
+//    [self.delegate.  @"Start"]
     [self.moviePlayer play];
     [super viewWillAppear:animated];
 }
@@ -56,6 +59,8 @@ bool movedHere = false;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"Login";
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationDidBecomeActive:)

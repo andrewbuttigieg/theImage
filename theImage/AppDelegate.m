@@ -13,38 +13,32 @@
 #import "LoginController.h"
 #import "StartController.h"
 
-@interface AppDelegate ()
-
+@interface AppDelegate (){
+    id lastViewController;
+}
 @end
 
 @implementation AppDelegate
+@synthesize currentView;
 
 bool isAppResumingFromBackground = NO;
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [FBLoginView class];
-    // Override point for customization after application launch.
     
-
-  /*
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    self.menuViewController = [[TWTMenuViewController alloc] initWithNibName:nil bundle:nil];
-    self.mainViewController = [[ViewController alloc] initWithNibName:nil bundle:nil];
-    self.sideMenuViewController = [[TWTSideMenuViewController alloc] initWithMenuViewController:self.menuViewController mainViewController:[[UINavigationController alloc] initWithRootViewController:self.mainViewController]];
-    self.sideMenuViewController.shadowColor = [UIColor blackColor];
-    self.sideMenuViewController.edgeOffset = (UIOffset) { .horizontal = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 18.0f : 0.0f };
-    self.sideMenuViewController.zoomScale = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 0.5634f : 0.85f;
-    self.sideMenuViewController.delegate = self;
-    
-    self.window.rootViewController = self.sideMenuViewController;
-*/
     self.window.backgroundColor = [UIColor whiteColor];
     
     return YES;
-//- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 }
+
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+}
+
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     
@@ -75,55 +69,58 @@ bool isAppResumingFromBackground = NO;
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+    
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     isAppResumingFromBackground = YES;
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/is_logged_in.php/"]];
-    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPMethod:@"POST"];
+   /* UIViewController *vc = [[[UIApplication sharedApplication] keyWindow] rootViewController];
     
-    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    NSLog(@"%@", vc.title);
+    */
+    //if (![vc.title isEqualToString:@"start"] && ![vc.title isEqualToString:@"Login"] && ![vc.title isEqualToString:@"Signup"]){
+    if (![currentView isEqualToString:@"start"]){
+    
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/is_logged_in.php/"]];
+        [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+        [request setHTTPMethod:@"POST"];
         
-        if (error) {
+        [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
             
-        } else {
-            NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
-                                                                        options:0
-                                                                          error:&error];
-            for(NSDictionary *dictionary in jsonArray)
-            {
+            if (error) {
                 
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if ([[dictionary objectForKey:@"accepted"] intValue] == 1){
-                        //logged in
-                    }
-                    else{
-                        //logged out
-                        if ([LogMeIn logout]){
-                            
-                            if (FBSession.activeSession.isOpen)
-                            {
-                                [FBSession.activeSession closeAndClearTokenInformation];
-                            }
-                            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
-                            StartController * startController = (StartController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"StartController"];
-                            
-                            //set the root controller to it
-                            self.window.rootViewController = startController;
+            } else {
+                NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                            options:0
+                                                                              error:&error];
+                for(NSDictionary *dictionary in jsonArray)
+                {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if ([[dictionary objectForKey:@"accepted"] intValue] == 1){
+                            //logged in
                         }
-                    }
-                });
+                        else{
+                            //logged out
+                            if ([LogMeIn logout]){
+                                
+                                if (FBSession.activeSession.isOpen)
+                                {
+                                    [FBSession.activeSession closeAndClearTokenInformation];
+                                }
+                                UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
+                                StartController * startController = (StartController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"StartController"];
+                                
+                                //set the root controller to it
+                                self.window.rootViewController = startController;
+                            }
+                        }
+                    });
+                }
             }
-        }
-    }];
+        }];
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

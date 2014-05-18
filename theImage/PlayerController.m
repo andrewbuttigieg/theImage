@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 PlayerCV. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "PlayerController.h"
 #import "ViewController.h"
 #import "MessageViewController.h"
@@ -43,9 +44,6 @@ static NSString* facebookID;
     useLocalisation = value;
 }
 
-
-
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -53,6 +51,13 @@ static NSString* facebookID;
         // Custom initialization
     }
     return self;
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+   
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    appDelegate.currentView = @"player";
 }
 
 - (void)singleTapGestureCaptured:(UITapGestureRecognizer *)gesture

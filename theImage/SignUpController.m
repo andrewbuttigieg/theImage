@@ -35,7 +35,7 @@ static id<FBGraphUser> facebookUser;
 {
     [super viewDidLoad];
     
-    
+    self.title = @"Sign Up";
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"signup-background.jpg"]]];
     
     self.userTypeArray =  [[NSMutableArray alloc]initWithObjects:@"Player",@"Scout",@"Agent", @"Coach" , nil];
