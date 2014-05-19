@@ -296,10 +296,6 @@ static NSString* facebookID;
                 
                 self.facebookID = [dictionary objectForKey:@"FacebookID"];
                 facebookID = [dictionary objectForKey:@"FacebookID"];
-                
-                /*if ([imageURL length] > 5){
-                 self.toUpload.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
-                 }*/
 
                 int p = (int)self.playerID;
                 int p2 = self.meID;
@@ -325,29 +321,18 @@ static NSString* facebookID;
                 [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
                 [request setHTTPBody:[[NSString stringWithFormat:@"u=%d", p]dataUsingEncoding:NSUTF8StringEncoding]];
                 [request setHTTPMethod:@"POST"];
-                //NSError *error = nil; NSURLResponse *response = nil;
-                //    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
                 
                 [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                     
                     if (error) {
                         //[self.delegate fetchingGroupsFailedWithError:error];
                     } else {
-                        //[self.delegate receivedGroupsJSON:data];
-                        //NSError *localError = nil;
                         NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:0
                                                                                       error:&error];
 
                         for(NSDictionary *dictionary in jsonArray)
                         {
-                            //NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
-                            NSLog(@"%@", dictionary);
-                            
-                            /*NSDictionary *playerD = [dictionary valueForKey:@"Players"];
-                            NSDictionary *scoutD = [dictionary valueForKey:@"Scouts"];
-                            NSDictionary *agentD = [dictionary valueForKey:@"Agents"];*/
-                            
                             NSDictionary *theUserD = [dictionary valueForKey:@"User"];
                             NSArray *theUser = [theUserD valueForKey:@"0"];
                             
@@ -383,6 +368,25 @@ static NSString* facebookID;
                                 }
                                 
                                 if (
+                                    [theUser valueForKey:@"UserType"] != [NSNull null] &&
+                                    [theUser valueForKey:@"UserType"] != nil){
+                                    
+                                    if ([[theUser valueForKey:@"UserType"] isEqualToString:@"1"]) {
+                                        self.userType.text = @"Player";
+                                    }
+                                    else if ([[theUser valueForKey:@"UserType"] isEqualToString:@"2"]) {
+                                        self.userType.text = @"Scout";
+                                    }
+                                    else if ([[theUser valueForKey:@"UserType"] isEqualToString:@"3"]) {
+                                        self.userType.text = @"Agent";
+                                    }
+                                    else if ([[theUser valueForKey:@"UserType"] isEqualToString:@"4"]) {
+                                        self.userType.text = @"Coach";
+                                    }
+                                    self.userType.hidden = false;
+                                }
+                                
+                                if (
                                     [theUser valueForKey:@"About"] != [NSNull null] &&
                                     [theUser valueForKey:@"About"] != nil){
                                     self.aboutLabel.text = [theUser valueForKey:@"About"];
@@ -400,9 +404,6 @@ static NSString* facebookID;
                                     self.age.text = [theUser valueForKey:@"Age"];
                                 else
                                     self.age.text = @"";
-                                
-                                
-//                                [theUser valueForKey:@"Birthday"];
                                 
                                 self.aboutLabel.numberOfLines = 0;
                                 [self.aboutLabel sizeToFit];

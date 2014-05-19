@@ -805,9 +805,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F28699D51874C06C0086D665 /* theImage */ = {
+		F28699D51874C06C0086D665 /* Player CV */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F2869A0B1874C06C0086D665 /* Build configuration list for PBXNativeTarget "theImage" */;
+			buildConfigurationList = F2869A0B1874C06C0086D665 /* Build configuration list for PBXNativeTarget "Player CV" */;
 			buildPhases = (
 				D9A86C9C820D498A87D16302 /* Check Pods Manifest.lock */,
 				F28699D21874C06C0086D665 /* Sources */,
@@ -819,7 +819,7 @@
 			);
 			dependencies = (
 			);
-			name = theImage;
+			name = "Player CV";
 			productName = theImage;
 			productReference = F28699D61874C06C0086D665 /* theImage.app */;
 			productType = "com.apple.product-type.application";
@@ -856,7 +856,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F28699D11874C06C0086D665 /* Build configuration list for PBXProject "theImage" */;
+			buildConfigurationList = F28699D11874C06C0086D665 /* Build configuration list for PBXProject "Player CV" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -870,7 +870,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F28699D51874C06C0086D665 /* theImage */,
+				F28699D51874C06C0086D665 /* Player CV */,
 				F28699F91874C06C0086D665 /* theImageTests */,
 			);
 		};
@@ -1102,7 +1102,7 @@
 /* Begin PBXTargetDependency section */
 		F2869A001874C06C0086D665 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F28699D51874C06C0086D665 /* theImage */;
+			target = F28699D51874C06C0086D665 /* Player CV */;
 			targetProxy = F28699FF1874C06C0086D665 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1315,7 +1315,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F28699D11874C06C0086D665 /* Build configuration list for PBXProject "theImage" */ = {
+		F28699D11874C06C0086D665 /* Build configuration list for PBXProject "Player CV" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F2869A091874C06C0086D665 /* Debug */,
@@ -1324,7 +1324,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F2869A0B1874C06C0086D665 /* Build configuration list for PBXNativeTarget "theImage" */ = {
+		F2869A0B1874C06C0086D665 /* Build configuration list for PBXNativeTarget "Player CV" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F2869A0C1874C06C0086D665 /* Debug */,

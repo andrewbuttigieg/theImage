@@ -42,6 +42,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *weightIcon;
 @property (strong, nonatomic) IBOutlet UILabel *age;
 
+@property (strong, nonatomic) IBOutlet UILabel *userType;
+@property (strong, nonatomic) IBOutlet UILabel *location;
 
 + (bool)useLocalisation;
 +(void)setUseLocalisation:(bool) value;

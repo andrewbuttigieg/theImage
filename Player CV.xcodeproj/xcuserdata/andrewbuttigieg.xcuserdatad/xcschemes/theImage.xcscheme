@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F28699D51874C06C0086D665"
                BuildableName = "theImage.app"
-               BlueprintName = "theImage"
-               ReferencedContainer = "container:theImage.xcodeproj">
+               BlueprintName = "Player CV"
+               ReferencedContainer = "container:Player CV.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "F28699F91874C06C0086D665"
                BuildableName = "theImageTests.xctest"
                BlueprintName = "theImageTests"
-               ReferencedContainer = "container:theImage.xcodeproj">
+               ReferencedContainer = "container:Player CV.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F28699D51874C06C0086D665"
             BuildableName = "theImage.app"
-            BlueprintName = "theImage"
-            ReferencedContainer = "container:theImage.xcodeproj">
+            BlueprintName = "Player CV"
+            ReferencedContainer = "container:Player CV.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F28699D51874C06C0086D665"
             BuildableName = "theImage.app"
-            BlueprintName = "theImage"
-            ReferencedContainer = "container:theImage.xcodeproj">
+            BlueprintName = "Player CV"
+            ReferencedContainer = "container:Player CV.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F28699D51874C06C0086D665"
             BuildableName = "theImage.app"
-            BlueprintName = "theImage"
-            ReferencedContainer = "container:theImage.xcodeproj">
+            BlueprintName = "Player CV"
+            ReferencedContainer = "container:Player CV.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
