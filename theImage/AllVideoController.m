@@ -28,6 +28,27 @@ static UIRefreshControl *refreshControl;
     return self;
 }
 
+- (BOOL)isValidUrl:(NSString *)urlString{
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    return [NSURLConnection canHandleRequest:request];
+}
+
+- (void)singleTapGestureCaptured:(UITapGestureRecognizer *)gesture
+{
+    UIView *tappedView = [gesture.view hitTest:[gesture locationInView:gesture.view] withEvent:nil];
+    //    NSLog(@"Touch event on view: %@",[tappedView class]);
+    //    NSLog([NSString stringWithFormat:@"%d", tappedView.tag]);
+    
+    
+    /////////
+    NSString * storyboardName = @"Main_iPhone";
+    NSString * viewControllerID = @"PlayerController";
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    PlayerController * controller = (PlayerController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+    controller.playerID = tappedView.tag;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 -(void)load{
     //int me = ViewController.playerID;
     
@@ -62,12 +83,39 @@ static UIRefreshControl *refreshControl;
                     [self.userIDForTable addObject:[dictionary objectForKey:@"UserID"]];*/
                     
 
-                        
+                    NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
+                    imageURL = [imageURL stringByReplacingOccurrencesOfString:@".com/"
+                                                                   withString:@".com/[120]-"];
+                    UIImage *image;
+                    if ([self isValidUrl : imageURL] ){
+                        image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                    }
+                    else{
+                        //default image
+                        image = [UIImage imageNamed:@"player.png"];
+                    }
+                    UIImageView *iv = [[UIImageView alloc] initWithImage:image];
+                    iv.layer.cornerRadius = 30.0;
+                    iv.layer.masksToBounds = YES;
+                    iv.layer.borderColor = [UIColor lightGrayColor].CGColor;
+                    iv.layer.borderWidth = 0.3;
+                    iv.frame=CGRectMake(10, top + 10, 60,60);
+                    iv.tag = [[dictionary objectForKey:@"UserID"] intValue];
+                    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
+                    [iv addGestureRecognizer:singleTap];
+                    [iv setMultipleTouchEnabled:YES];
+                    [iv setUserInteractionEnabled:YES];
+
+                    
+                    top += 80.0;
+                    //dispatch_sync(dispatch_get_main_queue(), ^{
+                    [self.scrollview addSubview:iv];
+                    
                         /* NSString *newHTML = @"<html>\
                          <style>body{padding:0;margin:0;}</style>\
                          <iframe width=\"300\" height=\"200\" src=\"http://www.youtube.com/embed/zL0CCsdS1cE?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>\
                          </html>";*/
-                        
+                    
                         //NSString *newHTML = [NSString stringWithFormat:@"<html>\
                         <style>body{padding:0;margin:0;background-color:red}</style>\
                         <iframe width=\"300\" height=\"200\" src=\"%@\" frameborder=\"0\" allowfullscreen></iframe>\
@@ -86,6 +134,8 @@ static UIRefreshControl *refreshControl;
                         NSURL *url = [NSURL URLWithString:theURL];
                         NSURLRequest *req = [NSURLRequest requestWithURL:url];
                         UIWebView *bubbleView = [[UIWebView alloc] initWithFrame:webFrame];
+                        bubbleView.scrollView.scrollEnabled = NO;
+                        bubbleView.scrollView.bounces = NO;
                         bubbleView.backgroundColor = [UIColor blackColor];
                         bubbleView.frame=CGRectMake(0, top, 320, 200);
                         [bubbleView loadRequest:req];
@@ -98,7 +148,7 @@ static UIRefreshControl *refreshControl;
                         button.frame = CGRectMake(10.0, top + 200, 160.0, 40.0);*/
                         
                         //where to put the view
-                        top += 220.0;
+                        top += 200.0;
                         //dispatch_sync(dispatch_get_main_queue(), ^{
                             [self.scrollview addSubview:bubbleView];
                         //[self.scrollview addSubview:button];

@@ -253,7 +253,7 @@
 		F284BFE318DBB30A0002EB81 /* decline-friend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "decline-friend.png"; sourceTree = "<group>"; };
 		F284BFE418DBB30A0002EB81 /* decline-friend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "decline-friend@2x.png"; sourceTree = "<group>"; };
 		F284BFEC18DFB4A90002EB81 /* EditPlayer.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = EditPlayer.jpg; sourceTree = "<group>"; };
-		F28699D61874C06C0086D665 /* theImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F28699D61874C06C0086D665 /* Player CV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Player CV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F28699D91874C06C0086D665 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F28699DB1874C06C0086D665 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		F28699DD1874C06C0086D665 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -484,7 +484,7 @@
 		F28699D71874C06C0086D665 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F28699D61874C06C0086D665 /* theImage.app */,
+				F28699D61874C06C0086D665 /* Player CV.app */,
 				F28699FA1874C06C0086D665 /* theImageTests.xctest */,
 			);
 			name = Products;
@@ -821,7 +821,7 @@
 			);
 			name = "Player CV";
 			productName = theImage;
-			productReference = F28699D61874C06C0086D665 /* theImage.app */;
+			productReference = F28699D61874C06C0086D665 /* Player CV.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F28699F91874C06C0086D665 /* theImageTests */ = {

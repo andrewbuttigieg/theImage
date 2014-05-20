@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F28699D51874C06C0086D665"
-               BuildableName = "theImage.app"
+               BuildableName = "Player CV.app"
                BlueprintName = "Player CV"
                ReferencedContainer = "container:Player CV.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F28699D51874C06C0086D665"
-            BuildableName = "theImage.app"
+            BuildableName = "Player CV.app"
             BlueprintName = "Player CV"
             ReferencedContainer = "container:Player CV.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F28699D51874C06C0086D665"
-            BuildableName = "theImage.app"
+            BuildableName = "Player CV.app"
             BlueprintName = "Player CV"
             ReferencedContainer = "container:Player CV.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F28699D51874C06C0086D665"
-            BuildableName = "theImage.app"
+            BuildableName = "Player CV.app"
             BlueprintName = "Player CV"
             ReferencedContainer = "container:Player CV.xcodeproj">
          </BuildableReference>

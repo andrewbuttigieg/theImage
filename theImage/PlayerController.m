@@ -63,10 +63,6 @@ static NSString* facebookID;
 - (void)singleTapGestureCaptured:(UITapGestureRecognizer *)gesture
 {
     UIView *tappedView = [gesture.view hitTest:[gesture locationInView:gesture.view] withEvent:nil];
-    //    NSLog(@"Touch event on view: %@",[tappedView class]);
-    //    NSLog([NSString stringWithFormat:@"%d", tappedView.tag]);
-    
-    
     /////////
     NSString * storyboardName = @"Main_iPhone";
     NSString * viewControllerID = @"PlayerController";
@@ -387,6 +383,14 @@ static NSString* facebookID;
                                 }
                                 
                                 if (
+                                    [theUser valueForKey:@"Country"] != [NSNull null] &&
+                                    [theUser valueForKey:@"Country"] != nil){
+                                    
+                                    self.location.text = [theUser valueForKey:@"Country"];
+                                    self.location.hidden = false;
+                                }
+                                
+                                if (
                                     [theUser valueForKey:@"About"] != [NSNull null] &&
                                     [theUser valueForKey:@"About"] != nil){
                                     self.aboutLabel.text = [theUser valueForKey:@"About"];
@@ -489,107 +493,111 @@ static NSString* facebookID;
                                     //make default..
                                     self.scrollview.contentSize = CGSizeMake(320, y);
                                     
-                                    UIScrollView *secondScroll=[[UIScrollView alloc]initWithFrame:CGRectMake(x, y, 320, 150)];
+                                    if ([dictionary valueForKey:@"Friends"] != [NSNull null] &&
+                                        [dictionary valueForKey:@"Friends"] != nil){
                                     
-                                    CALayer *bottomBorder = [CALayer layer];
-                                    
-                                    //bottomBorder.frame = CGRectMake(0.0f, 0.0f, secondScroll.frame.size.width, 1.0f);
-                                    
-                                    //bottomBorder.backgroundColor = [UIColor colorWithWhite:0.8f
-                                    //                                                 alpha:1.0f].CGColor;
-                                    [secondScroll.layer addSublayer:bottomBorder];
-                                    
-                                    /*NSDictionary *temp;
-                                    if (i == 0)
-                                        temp = playerD;
-                                    if (i == 1)
-                                        temp = scoutD;
-                                    if (i == 2)
-                                        temp = agentD;*/
-                                    int playerCount = 0;
-                                    int scoutCount = 0;
-                                    int agentCount = 0;
-                                    int coachCount = 0;
-                                    for (id key in [dictionary valueForKey:@"Friends"])
-                                    {
-                                        NSDictionary *anObject;
+                                        UIScrollView *secondScroll=[[UIScrollView alloc]initWithFrame:CGRectMake(x, y, 320, 150)];
                                         
-                                        anObject = [[dictionary valueForKey:@"Friends"] objectForKey:key];
+                                        CALayer *bottomBorder = [CALayer layer];
                                         
-                                        if ([[anObject objectForKey:@"UserType"] intValue] == (i + 1)){
+                                        //bottomBorder.frame = CGRectMake(0.0f, 0.0f, secondScroll.frame.size.width, 1.0f);
                                         
-                                            if (i == 0)
-                                                ++playerCount;
-                                            else if (i == 1)
-                                                ++scoutCount;
-                                            else if (i == 2)
-                                                ++agentCount;
-                                            else if (i == 3)
-                                                ++coachCount;
-                                            //[secondScroll release];
-                                            //[self.scrollview setContentSize:CGSizeMake(320, self.scrollview.contentSize.height+110)];
-                                            
-                                            NSString *imageURL = [anObject objectForKey:@"PhotoURL"];
-                                            imageURL = [imageURL stringByReplacingOccurrencesOfString:@".com/"
-                                                                                     withString:@".com/[120]-"];
-                                            
-                                            UIImage *image;
-                                            if ([imageURL length] > 5){
-                                                image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
-                                            }
-                                            else{
-                                                //default image
-                                                image = [UIImage imageNamed:@"player.png"];
-                                            }
-                                            UIImageView *iv = [[UIImageView alloc] initWithImage:image];
-                                            iv.layer.cornerRadius = 30.0;
-                                            iv.layer.masksToBounds = YES;
-                                            iv.layer.borderColor = [UIColor lightGrayColor].CGColor;
-                                            iv.layer.borderWidth = 0.3;
-                                            iv.frame=CGRectMake(total * 70 + 10, 45, 60,60);
-                                            
-                                            iv.tag = [[anObject objectForKey:@"UserID"] intValue];
-                                            UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
-                                            [iv addGestureRecognizer:singleTap];
-                                            [iv setMultipleTouchEnabled:YES];
-                                            [iv setUserInteractionEnabled:YES];
-                                            
-                                            UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(total * 70 + 10, 100, 60,30)];
-                                            //if (i == 0)
-                                                lb.textColor = [UIColor colorWithRed:(92.0f/255.0f) green:(92.0f/255.0f) blue:(92.0f/255.0f) alpha:1];
-                                            lb.text = [anObject objectForKey:@"Firstname"];
-                                            lb.textAlignment = NSTextAlignmentCenter;
-                                            
-                                            
-                                            [secondScroll addSubview:iv];
-                                            [secondScroll addSubview:lb];
-                                            ++total;
-                                        }
-                                    }
-                                    
-                                    if (total > 0){
-                                        newY += 150;
-                                        [secondScroll setContentSize:CGSizeMake(total * 70 + 10, 60)];
+                                        //bottomBorder.backgroundColor = [UIColor colorWithWhite:0.8f
+                                        //                                                 alpha:1.0f].CGColor;
+                                        [secondScroll.layer addSublayer:bottomBorder];
                                         
-                                        UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 60,30)];
-                                        lb.textColor = [UIColor colorWithRed:(180.0f/255.0f) green:(180.0f/255.0f) blue:(180.0f/255.0f) alpha:1];
-                                        
-                                        [lb setFont:[UIFont systemFontOfSize:15]];
+                                        /*NSDictionary *temp;
                                         if (i == 0)
-                                            lb.text = [NSString stringWithFormat:@"Player Connections (%d)", playerCount];
-                                        else if (i == 1)
-                                            lb.text = [NSString stringWithFormat:@"Scout Connections (%d)", scoutCount];
-                                        else if (i == 2)
-                                            lb.text = [NSString stringWithFormat:@"Agent Connections (%d)", agentCount];
-                                        else if (i == 3)
-                                            lb.text = [NSString stringWithFormat:@"Coach Connections (%d)", coachCount];
-                                        [lb sizeToFit];
+                                            temp = playerD;
+                                        if (i == 1)
+                                            temp = scoutD;
+                                        if (i == 2)
+                                            temp = agentD;*/
+                                        int playerCount = 0;
+                                        int scoutCount = 0;
+                                        int agentCount = 0;
+                                        int coachCount = 0;
+                                        for (id key in [dictionary valueForKey:@"Friends"])
+                                        {
+                                            NSDictionary *anObject;
+                                            
+                                            anObject = [[dictionary valueForKey:@"Friends"] objectForKey:key];
+                                            
+                                            if ([[anObject objectForKey:@"UserType"] intValue] == (i + 1)){
+                                            
+                                                if (i == 0)
+                                                    ++playerCount;
+                                                else if (i == 1)
+                                                    ++scoutCount;
+                                                else if (i == 2)
+                                                    ++agentCount;
+                                                else if (i == 3)
+                                                    ++coachCount;
+                                                //[secondScroll release];
+                                                //[self.scrollview setContentSize:CGSizeMake(320, self.scrollview.contentSize.height+110)];
+                                                
+                                                NSString *imageURL = [anObject objectForKey:@"PhotoURL"];
+                                                imageURL = [imageURL stringByReplacingOccurrencesOfString:@".com/"
+                                                                                         withString:@".com/[120]-"];
+                                                
+                                                UIImage *image;
+                                                if ([imageURL length] > 5){
+                                                    image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                                                }
+                                                else{
+                                                    //default image
+                                                    image = [UIImage imageNamed:@"player.png"];
+                                                }
+                                                UIImageView *iv = [[UIImageView alloc] initWithImage:image];
+                                                iv.layer.cornerRadius = 30.0;
+                                                iv.layer.masksToBounds = YES;
+                                                iv.layer.borderColor = [UIColor lightGrayColor].CGColor;
+                                                iv.layer.borderWidth = 0.3;
+                                                iv.frame=CGRectMake(total * 70 + 10, 45, 60,60);
+                                                
+                                                iv.tag = [[anObject objectForKey:@"UserID"] intValue];
+                                                UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
+                                                [iv addGestureRecognizer:singleTap];
+                                                [iv setMultipleTouchEnabled:YES];
+                                                [iv setUserInteractionEnabled:YES];
+                                                
+                                                UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(total * 70 + 10, 100, 60,30)];
+                                                //if (i == 0)
+                                                    lb.textColor = [UIColor colorWithRed:(92.0f/255.0f) green:(92.0f/255.0f) blue:(92.0f/255.0f) alpha:1];
+                                                lb.text = [anObject objectForKey:@"Firstname"];
+                                                lb.textAlignment = NSTextAlignmentCenter;
+                                                
+                                                
+                                                [secondScroll addSubview:iv];
+                                                [secondScroll addSubview:lb];
+                                                ++total;
+                                            }
+                                        }
                                         
-                                        lb.textAlignment = NSTextAlignmentLeft;
-                                        [secondScroll addSubview:lb];
-                                        [self.scrollview addSubview:secondScroll];
-                                        
-                                        self.scrollview.contentSize = CGSizeMake(320, y + secondScroll.frame.size.height);
+                                        if (total > 0){
+                                            newY += 150;
+                                            [secondScroll setContentSize:CGSizeMake(total * 70 + 10, 60)];
+                                            
+                                            UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 60,30)];
+                                            lb.textColor = [UIColor colorWithRed:(180.0f/255.0f) green:(180.0f/255.0f) blue:(180.0f/255.0f) alpha:1];
+                                            
+                                            [lb setFont:[UIFont systemFontOfSize:15]];
+                                            if (i == 0)
+                                                lb.text = [NSString stringWithFormat:@"Player Connections (%d)", playerCount];
+                                            else if (i == 1)
+                                                lb.text = [NSString stringWithFormat:@"Scout Connections (%d)", scoutCount];
+                                            else if (i == 2)
+                                                lb.text = [NSString stringWithFormat:@"Agent Connections (%d)", agentCount];
+                                            else if (i == 3)
+                                                lb.text = [NSString stringWithFormat:@"Coach Connections (%d)", coachCount];
+                                            [lb sizeToFit];
+                                            
+                                            lb.textAlignment = NSTextAlignmentLeft;
+                                            [secondScroll addSubview:lb];
+                                            [self.scrollview addSubview:secondScroll];
+                                            
+                                            self.scrollview.contentSize = CGSizeMake(320, y + secondScroll.frame.size.height);
+                                        }
                                     }
                                 }
                             });
