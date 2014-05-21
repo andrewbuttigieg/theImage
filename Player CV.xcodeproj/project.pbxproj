@@ -55,6 +55,7 @@
 		F22781C21905B4CD0016C3F1 /* nearYouCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781C11905B4CD0016C3F1 /* nearYouCell.m */; };
 		F22781C519099DDC0016C3F1 /* AllVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781C419099DDC0016C3F1 /* AllVideoController.m */; };
 		F2401BB418F99584002E5E2C /* VideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2401BB318F99584002E5E2C /* VideoController.m */; };
+		F2410E49192D4DF7004658BD /* MENU-Open@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F2410E48192D4DF7004658BD /* MENU-Open@2x.jpg */; };
 		F243B76C1879D13A001BABC8 /* ViewControllerDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = F243B76B1879D13A001BABC8 /* ViewControllerDetail.m */; };
 		F284BFDA18DB7E810002EB81 /* FriendRequestsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F284BFD918DB7E810002EB81 /* FriendRequestsController.m */; };
 		F284BFE018DB9FA10002EB81 /* friendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F284BFDF18DB9FA10002EB81 /* friendCell.m */; };
@@ -242,6 +243,7 @@
 		F22781C419099DDC0016C3F1 /* AllVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllVideoController.m; sourceTree = "<group>"; };
 		F2401BB218F99584002E5E2C /* VideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoController.h; sourceTree = "<group>"; };
 		F2401BB318F99584002E5E2C /* VideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoController.m; sourceTree = "<group>"; };
+		F2410E48192D4DF7004658BD /* MENU-Open@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MENU-Open@2x.jpg"; sourceTree = "<group>"; };
 		F243B76A1879D13A001BABC8 /* ViewControllerDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDetail.h; sourceTree = "<group>"; };
 		F243B76B1879D13A001BABC8 /* ViewControllerDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerDetail.m; sourceTree = "<group>"; };
 		F284BFD818DB7E810002EB81 /* FriendRequestsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequestsController.h; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 		F20175E41912FC3C00392DD5 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				F2410E48192D4DF7004658BD /* MENU-Open@2x.jpg */,
 				F20175E51912FCC400392DD5 /* chatMenuIcon.png */,
 				F20175E61912FCC400392DD5 /* chatMenuIcon@2x.png */,
 				F20175E71912FCC400392DD5 /* discoverMenuIcon.png */,
@@ -988,6 +991,7 @@
 				F201760A1913D15300392DD5 /* MenuLogo@2x.png in Resources */,
 				F28699E41874C06C0086D665 /* InfoPlist.strings in Resources */,
 				F2905ECB18D7F4FB007F16D1 /* simpleMenuButton@2x.png in Resources */,
+				F2410E49192D4DF7004658BD /* MENU-Open@2x.jpg in Resources */,
 				F208C532191BF631002E036F /* default.png in Resources */,
 				F28C2AB318E744D00047DA75 /* setting-position.png in Resources */,
 				F2983D0518CF82A400E96233 /* LogoPlayerCV@2x.png in Resources */,

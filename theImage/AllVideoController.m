@@ -167,11 +167,11 @@ static UIRefreshControl *refreshControl;
     int j = 0;
     for (i = 1; i < self.scrollview.subviews.count; i++){
         UIScrollView * temp = (UIScrollView *)self.scrollview.subviews[i];
-        if (temp.subviews.count == 3){
+        if (temp.subviews.count >= 2){
             UIImageView * iv = (UIImageView *)temp.subviews[0];
             int y = scrollView.contentOffset.y - (j++ * 200) + 64;
             if (y > 0){
-                iv.frame = CGRectMake(0, 80 - y, 320, 320);
+                iv.frame = CGRectMake(0, 0 - y, 320, 320);
             }
         }
     }

@@ -33,6 +33,11 @@
     
     MainVC *rootController = (MainVC *)[self.navigationController.viewControllers objectAtIndex: self.navigationController.viewControllers.count - 1];
     rootController.delegate = self;
+    
+    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MENU-Open.jpg"]];
+    [tempImageView setFrame:self.tableView.frame];
+    
+    self.tableView.backgroundView = tempImageView;
 }
 
 - (void)setFixedStatusBar
