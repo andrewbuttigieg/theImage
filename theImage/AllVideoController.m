@@ -8,6 +8,7 @@
 
 #import "AllVideoController.h"
 #import "PlayerController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface AllVideoController ()
 
@@ -49,10 +50,138 @@ static UIRefreshControl *refreshControl;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+- (UIImage*) blur:(UIImage*)theImage
+{
+    // ***********If you need re-orienting (e.g. trying to blur a photo taken from the device camera front facing camera in portrait mode)
+    // theImage = [self reOrientIfNeeded:theImage];
+    
+    // create our blurred image
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CIImage *inputImage = [CIImage imageWithCGImage:theImage.CGImage];
+    
+    // setting up Gaussian Blur (we could use one of many filters offered by Core Image)
+    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [filter setValue:inputImage forKey:kCIInputImageKey];
+    [filter setValue:[NSNumber numberWithFloat:15.0f] forKey:@"inputRadius"];
+    CIImage *result = [filter valueForKey:kCIOutputImageKey];
+    
+    // CIGaussianBlur has a tendency to shrink the image a little,
+    // this ensures it matches up exactly to the bounds of our original image
+    CGImageRef cgImage = [context createCGImage:result fromRect:[inputImage extent]];
+    
+    UIImage *returnImage = [UIImage imageWithCGImage:cgImage];//create a UIImage for this function to "return" so that ARC can manage the memory of the blur... ARC can't manage CGImageRefs so we need to release it before this function "returns" and ends.
+    CGImageRelease(cgImage);//release CGImageRef because ARC doesn't manage this on its own.
+    
+    return returnImage;
+    
+    // *************** if you need scaling
+    // return [[self class] scaleIfNeeded:cgImage];
+}
+
+
++(UIImage*) scaleIfNeeded:(CGImageRef)cgimg {
+    bool isRetina = [[[UIDevice currentDevice] systemVersion] intValue] >= 4 && [[UIScreen mainScreen] scale] == 2.0;
+    if (isRetina) {
+        return [UIImage imageWithCGImage:cgimg scale:2.0 orientation:UIImageOrientationUp];
+    } else {
+        return [UIImage imageWithCGImage:cgimg];
+    }
+}
+
+- (UIImage*) reOrientIfNeeded:(UIImage*)theImage{
+    
+    if (theImage.imageOrientation != UIImageOrientationUp) {
+        
+        CGAffineTransform reOrient = CGAffineTransformIdentity;
+        switch (theImage.imageOrientation) {
+            case UIImageOrientationDown:
+            case UIImageOrientationDownMirrored:
+                reOrient = CGAffineTransformTranslate(reOrient, theImage.size.width, theImage.size.height);
+                reOrient = CGAffineTransformRotate(reOrient, M_PI);
+                break;
+            case UIImageOrientationLeft:
+            case UIImageOrientationLeftMirrored:
+                reOrient = CGAffineTransformTranslate(reOrient, theImage.size.width, 0);
+                reOrient = CGAffineTransformRotate(reOrient, M_PI_2);
+                break;
+            case UIImageOrientationRight:
+            case UIImageOrientationRightMirrored:
+                reOrient = CGAffineTransformTranslate(reOrient, 0, theImage.size.height);
+                reOrient = CGAffineTransformRotate(reOrient, -M_PI_2);
+                break;
+            case UIImageOrientationUp:
+            case UIImageOrientationUpMirrored:
+                break;
+        }
+        
+        switch (theImage.imageOrientation) {
+            case UIImageOrientationUpMirrored:
+            case UIImageOrientationDownMirrored:
+                reOrient = CGAffineTransformTranslate(reOrient, theImage.size.width, 0);
+                reOrient = CGAffineTransformScale(reOrient, -1, 1);
+                break;
+            case UIImageOrientationLeftMirrored:
+            case UIImageOrientationRightMirrored:
+                reOrient = CGAffineTransformTranslate(reOrient, theImage.size.height, 0);
+                reOrient = CGAffineTransformScale(reOrient, -1, 1);
+                break;
+            case UIImageOrientationUp:
+            case UIImageOrientationDown:
+            case UIImageOrientationLeft:
+            case UIImageOrientationRight:
+                break;
+        }
+        
+        CGContextRef myContext = CGBitmapContextCreate(NULL, theImage.size.width, theImage.size.height, CGImageGetBitsPerComponent(theImage.CGImage), 0, CGImageGetColorSpace(theImage.CGImage), CGImageGetBitmapInfo(theImage.CGImage));
+        
+        CGContextConcatCTM(myContext, reOrient);
+        
+        switch (theImage.imageOrientation) {
+            case UIImageOrientationLeft:
+            case UIImageOrientationLeftMirrored:
+            case UIImageOrientationRight:
+            case UIImageOrientationRightMirrored:
+                CGContextDrawImage(myContext, CGRectMake(0,0,theImage.size.height,theImage.size.width), theImage.CGImage);
+                break;
+                
+            default:
+                CGContextDrawImage(myContext, CGRectMake(0,0,theImage.size.width,theImage.size.height), theImage.CGImage);
+                break;
+        }
+        
+        CGImageRef CGImg = CGBitmapContextCreateImage(myContext);
+        theImage = [UIImage imageWithCGImage:CGImg];
+        
+        CGImageRelease(CGImg);
+        CGContextRelease(myContext);
+    }
+    
+    return theImage;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+//    CGFloat y = -scrollView.contentOffset.y;
+ //   CGPointMake(self.view.center.x, self.view.center.y);
+    int i = 0;
+    int j = 0;
+    for (i = 1; i < self.scrollview.subviews.count; i++){
+        UIScrollView * temp = (UIScrollView *)self.scrollview.subviews[i];
+        if (temp.subviews.count == 3){
+            UIImageView * iv = (UIImageView *)temp.subviews[0];
+            int y = scrollView.contentOffset.y - (j++ * 200) + 64;
+            if (y > 0){
+                iv.frame = CGRectMake(0, 80 - y, 320, 320);
+            }
+        }
+    }
+}
+
 -(void)load{
     //int me = ViewController.playerID;
     
     top = 0.0;
+    self.scrollview.delegate = self;
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_all_videos.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
@@ -99,17 +228,37 @@ static UIRefreshControl *refreshControl;
                     iv.layer.masksToBounds = YES;
                     iv.layer.borderColor = [UIColor lightGrayColor].CGColor;
                     iv.layer.borderWidth = 0.3;
-                    iv.frame=CGRectMake(10, top + 10, 60,60);
+                    iv.frame=CGRectMake(10, 10, 60,60);
                     iv.tag = [[dictionary objectForKey:@"UserID"] intValue];
                     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
                     [iv addGestureRecognizer:singleTap];
                     [iv setMultipleTouchEnabled:YES];
                     [iv setUserInteractionEnabled:YES];
 
+                    UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(90, 30, 60, 30)];
+                    lb.textColor = [UIColor colorWithRed:(1.0f) green:(1.0f) blue:(1.0f) alpha:1];
                     
+                    [lb setFont:[UIFont systemFontOfSize:17]];
+                    lb.text = [NSString stringWithFormat:@"%@ %@",
+                               [dictionary objectForKey:@"Firstname"],
+                               [dictionary objectForKey:@"Lastname"]];
+                    [lb sizeToFit];
+                    lb.textAlignment = NSTextAlignmentLeft;
+                    
+                    UIImageView *iv2 = [[UIImageView alloc] initWithImage:[self blur:image]];
+                    iv2.frame=CGRectMake(0, 0, 320, 320);
+                    
+                    UIScrollView *secondScroll=[[UIScrollView alloc]initWithFrame:CGRectMake(0, top, 320, 80)];
+                    
+                    //  secondScroll.backgroundColor = [UIColor colorWithPatternImage:[self blur:image]];
+                    //secondScroll.backgroundColor = [UIColor colorWithPatternImage:image];
+                    
+                    [secondScroll addSubview:iv2];
+                    [secondScroll addSubview:lb];
+                    [secondScroll addSubview:iv];
                     top += 80.0;
                     //dispatch_sync(dispatch_get_main_queue(), ^{
-                    [self.scrollview addSubview:iv];
+                    [self.scrollview addSubview:secondScroll];
                     
                         /* NSString *newHTML = @"<html>\
                          <style>body{padding:0;margin:0;}</style>\
