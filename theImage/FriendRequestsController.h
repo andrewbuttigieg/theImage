@@ -19,5 +19,6 @@
 @property (nonatomic, strong) NSMutableArray *userIDForFR;
 @property (nonatomic, strong) NSMutableArray *locationForFR;
 @property (strong, nonatomic) IBOutlet UIImageView *accept;
+@property (strong, nonatomic) IBOutlet UITableView *theTable;
 
 @end

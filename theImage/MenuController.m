@@ -27,17 +27,25 @@
     {
         self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
     }
-    self.tableView.backgroundView = nil;
-    self.tableView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5f];
+/*    self.tableView.backgroundView = nil;
+    self.tableView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5f];*/
     [self setFixedStatusBar];
     
     MainVC *rootController = (MainVC *)[self.navigationController.viewControllers objectAtIndex: self.navigationController.viewControllers.count - 1];
     rootController.delegate = self;
     
-    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MENU-Open.jpg"]];
-    [tempImageView setFrame:self.tableView.frame];
+    //UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"player.png"]];
+    //self.theTable.backgroundColor = background;
+   
     
-    self.tableView.backgroundView = tempImageView;
+    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MENU-Open.jpg"]];
+    
+    //UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"player.png"]];
+    [tempImageView setFrame:self.tableView.frame];
+    self.theTable.backgroundView = tempImageView;
+    
+    
+    //self.tableView.hidden = true;
 }
 
 - (void)setFixedStatusBar

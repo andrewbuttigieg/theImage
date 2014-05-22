@@ -240,7 +240,7 @@
                                                                         options:0
                                                                           error:&error];
             dispatch_async(dispatch_get_main_queue(), ^{
-                
+                int count = 0;
                 for(NSDictionary *dictionary in jsonArray)
                 {
                     NSLog(@"%@", dictionary);
@@ -255,7 +255,24 @@
                     }
                     else
                          [self.locationForFR addObject:[dictionary objectForKey:@"Country"]];
+                    
+                    count++;
                 }
+                
+                if (count <= 0){
+                    
+                    self.tableView.separatorColor = [UIColor clearColor];
+                    self.theTable.separatorColor = [UIColor clearColor];
+                    
+                    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MENU-Open.jpg"]];
+                    
+                    // Add image view on top of table view
+                    [self.theTable addSubview:tempImageView];
+
+                    [tempImageView setFrame:self.tableView.frame];
+                    self.theTable.backgroundView = tempImageView;
+                }
+                
                 [self.tableView reloadData];
                 [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
             });
