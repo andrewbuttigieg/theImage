@@ -637,6 +637,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Messages" id="d5U-6h-J2q"/>
+                    <connections>
+                        <outlet property="theTable" destination="EqS-xd-2IG" id="IRi-Lk-6b3"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TaZ-oa-csC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -19,5 +19,6 @@
 @property (nonatomic, strong) NSMutableArray *locationForTable;
 @property (nonatomic, strong) NSMutableArray *unreadForTable;
 @property (strong, nonatomic) IBOutlet UIView *myData;
+@property (strong, nonatomic) IBOutlet UITableView *theTable;
 
 @end

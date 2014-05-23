@@ -57,6 +57,7 @@
 		F2401BB418F99584002E5E2C /* VideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2401BB318F99584002E5E2C /* VideoController.m */; };
 		F2410E49192D4DF7004658BD /* MENU-Open@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F2410E48192D4DF7004658BD /* MENU-Open@2x.jpg */; };
 		F2410E4B192E95EC004658BD /* MENU-Open.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F2410E4A192E95EC004658BD /* MENU-Open.jpg */; };
+		F2410E4E192FED66004658BD /* ImageEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = F2410E4D192FED66004658BD /* ImageEffect.m */; };
 		F243B76C1879D13A001BABC8 /* ViewControllerDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = F243B76B1879D13A001BABC8 /* ViewControllerDetail.m */; };
 		F284BFDA18DB7E810002EB81 /* FriendRequestsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F284BFD918DB7E810002EB81 /* FriendRequestsController.m */; };
 		F284BFE018DB9FA10002EB81 /* friendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F284BFDF18DB9FA10002EB81 /* friendCell.m */; };
@@ -246,6 +247,8 @@
 		F2401BB318F99584002E5E2C /* VideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoController.m; sourceTree = "<group>"; };
 		F2410E48192D4DF7004658BD /* MENU-Open@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MENU-Open@2x.jpg"; sourceTree = "<group>"; };
 		F2410E4A192E95EC004658BD /* MENU-Open.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MENU-Open.jpg"; sourceTree = "<group>"; };
+		F2410E4C192FED66004658BD /* ImageEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageEffect.h; sourceTree = "<group>"; };
+		F2410E4D192FED66004658BD /* ImageEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageEffect.m; sourceTree = "<group>"; };
 		F243B76A1879D13A001BABC8 /* ViewControllerDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDetail.h; sourceTree = "<group>"; };
 		F243B76B1879D13A001BABC8 /* ViewControllerDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerDetail.m; sourceTree = "<group>"; };
 		F284BFD818DB7E810002EB81 /* FriendRequestsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequestsController.h; sourceTree = "<group>"; };
@@ -471,6 +474,8 @@
 				F294A8F318CCE99B0012D000 /* LogMeIn.m */,
 				F2ABD43618C6EF27003F03E5 /* JNKeychain.h */,
 				F2ABD43718C6EF27003F03E5 /* JNKeychain.m */,
+				F2410E4C192FED66004658BD /* ImageEffect.h */,
+				F2410E4D192FED66004658BD /* ImageEffect.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1079,6 +1084,7 @@
 				F2A00E04187DCE7A00CB0D3F /* FindPlayerController.m in Sources */,
 				F22781BF19059B030016C3F1 /* NearYouController.m in Sources */,
 				F2905EBF18D7D5CE007F16D1 /* MainVC.m in Sources */,
+				F2410E4E192FED66004658BD /* ImageEffect.m in Sources */,
 				F2ABD43218C6C610003F03E5 /* StartController.m in Sources */,
 				F2ABD41A18BC72BE003F03E5 /* MessageViewController.m in Sources */,
 				F28699E61874C06C0086D665 /* main.m in Sources */,

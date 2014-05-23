@@ -185,6 +185,7 @@
                                                                         options:0
                                                                           error:&error];
             dispatch_async(dispatch_get_main_queue(), ^{
+                int count = 0;
                 for(NSDictionary *dictionary in jsonArray)
                 {
                     /*                    NSLog(@"Data Dictionary is : %@",dictionary);
@@ -252,12 +253,33 @@
                     }
                     
                     //[self.dateForTable addObject:[dictionary objectForKey:@"SentDateTime"]];
-                    
-                    
-                    
                     [self.textForTable addObject:[dictionary objectForKey:@"Text"]];
                     [self.userTypeForTable addObject:[dictionary objectForKey:@"UserType"]];
                     [self.userIDForTable addObject:[dictionary objectForKey:@"UserID"]];
+                    
+                    count++;
+                }
+                if (count <= 0){
+                    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+                    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MENU-Open.jpg"]];
+                    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(200,200, 320, 430)];
+                    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(200, 200, 450, 430)];
+                    label.textColor = [UIColor whiteColor];
+                    label.text = @"You have no chats";
+                    label.textAlignment = NSTextAlignmentCenter;
+                    [view addSubview:label];
+                    self.tableView.tableHeaderView = label;
+                    // Add image view on top of table view
+                    [self.theTable addSubview:tempImageView];
+                    [tempImageView setFrame:self.tableView.frame];
+                    self.theTable.backgroundView = tempImageView;
+                    self.theTable.alwaysBounceVertical = NO;
+                }
+                else{
+                    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+                    self.tableView.tableHeaderView = nil;
+                    self.theTable.backgroundView = Nil;
+                    self.theTable.alwaysBounceVertical = YES;
                 }
                 [self.tableView reloadData];
                 [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];

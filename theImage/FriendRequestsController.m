@@ -8,7 +8,7 @@
 
 #import "FriendRequestsController.h"
 #import "friendCell.h"
-
+#import "ImageEffect.h"
 
 @interface FriendRequestsController ()
 
@@ -260,17 +260,29 @@
                 }
                 
                 if (count <= 0){
+                    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
                     
-                    self.tableView.separatorColor = [UIColor clearColor];
-                    self.theTable.separatorColor = [UIColor clearColor];
+                    UIImage * image = [UIImage imageNamed:@"MENU-Open.jpg"];
                     
-                    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MENU-Open.jpg"]];
-                    
+                    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[ImageEffect blur:image]];
+                    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(200,200, 320, 430)];
+                    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(200, 200, 450, 430)];
+                    label.textColor = [UIColor whiteColor];
+                    label.text = @"You have no pending requests";
+                    label.textAlignment = NSTextAlignmentCenter;
+                    [view addSubview:label];
+                    self.tableView.tableHeaderView = label;
                     // Add image view on top of table view
                     [self.theTable addSubview:tempImageView];
-
                     [tempImageView setFrame:self.tableView.frame];
                     self.theTable.backgroundView = tempImageView;
+                    self.theTable.alwaysBounceVertical = NO;
+                }
+                else{
+                    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+                    self.tableView.tableHeaderView = nil;
+                    self.theTable.backgroundView = Nil;
+                    self.theTable.alwaysBounceVertical = YES;
                 }
                 
                 [self.tableView reloadData];
