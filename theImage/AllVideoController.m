@@ -55,13 +55,13 @@ static UIRefreshControl *refreshControl;
 //    CGFloat y = -scrollView.contentOffset.y;
  //   CGPointMake(self.view.center.x, self.view.center.y);
     int i = 0;
-    int j = 0;
+    int j = -1;
     for (i = 1; i < self.scrollview.subviews.count; i++){
         UIScrollView * temp = (UIScrollView *)self.scrollview.subviews[i];
         if (temp.subviews.count >= 2){
             UIImageView * iv = (UIImageView *)temp.subviews[0];
-            int y = scrollView.contentOffset.y - (j++ * 200) + 64;
-            if (y > 0 && y < 320){
+            int y = scrollView.contentOffset.y - (j++ * (200 + 80)) + 64;
+            if (y > 0 && y < (320 - 80)){
                 iv.frame = CGRectMake(0, 0 - y, 320, 320);
             }
         }
