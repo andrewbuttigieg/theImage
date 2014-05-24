@@ -8,6 +8,7 @@
 
 #import "VideoController.h"
 #import "PlayerController.h"
+#import "ImageEffect.h"
 
 @interface VideoController ()
 
@@ -150,8 +151,22 @@ static float top = 0;
                         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                         [button addTarget:self action:@selector(deleteVideo:) forControlEvents:UIControlEventTouchUpInside];
                         button.tag = [[dictionary objectForKey:@"VideoID"] intValue];
-                        [button setTitle:@"Delete" forState:UIControlStateNormal];
-                        button.frame = CGRectMake(10.0, top + 200, 160.0, 40.0);
+                        [button setTitle:@"Remove video?" forState:UIControlStateNormal];
+                        button.frame = CGRectMake(2.0, top + 190, 160.0, 40.0);
+                        
+                        //get the player image
+                        NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
+                        UIImage * image;
+                        if ([imageURL length] > 5){
+                            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                            
+                        }
+                        else{
+                            //default image
+                            image = [UIImage imageNamed:@"player.png"];
+                        }
+                        
+                        self.scrollview.backgroundColor = [UIColor colorWithPatternImage:[ImageEffect blur:image]];
                         
                         //where to put the view
                         top += 240;

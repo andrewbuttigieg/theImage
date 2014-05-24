@@ -8,7 +8,7 @@
 
 #import "FriendRequestsController.h"
 #import "friendCell.h"
-#import "ImageEffect.h"
+#import "FindPlayerController.h"
 
 @interface FriendRequestsController ()
 
@@ -40,6 +40,17 @@
 {
     // Return the number of rows in the section.
     return [self.dateForFR count];
+}
+
+- (void)exploreNow:(id)sender{
+    //
+    NSString * storyboardName = @"Main_iPhone";
+    NSString * viewControllerID = @"FindPlayerController";
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    FindPlayerController * controller = (FindPlayerController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+    //controller.chattingToID = [o intValue];
+    //controller.name = name;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)tableView: (UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath {
@@ -92,6 +103,7 @@
                                                 [self.userTypeForFR removeObjectAtIndex:sender.tag];
                                                 [self.userIDForFR removeObjectAtIndex:sender.tag];
                                                 [self.tableView reloadData];
+                                                [self.theTable reloadData];
                                             });
                                        }
                                    }
@@ -134,6 +146,7 @@
                                                [self.userTypeForFR removeObjectAtIndex:sender.tag];
                                                [self.userIDForFR removeObjectAtIndex:sender.tag];
                                                [self.tableView reloadData];
+                                               [self.theTable reloadData];
                                            });
                                        }
                                    }
@@ -262,30 +275,48 @@
                 if (count <= 0){
                     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
                     
-                    UIImage * image = [UIImage imageNamed:@"MENU-Open.jpg"];
+                    UIImage * image = [UIImage imageNamed:@"ConnectionRequests.png"];
                     
-                    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[ImageEffect blur:image]];
-                    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(200,200, 320, 430)];
+                    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:image];
+                    tempImageView.contentMode = UIViewContentModeCenter;
+                    
                     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(200, 200, 450, 430)];
                     label.textColor = [UIColor whiteColor];
                     label.text = @"You have no pending requests";
-                    label.textAlignment = NSTextAlignmentCenter;
-                    [view addSubview:label];
-                    self.tableView.tableHeaderView = label;
+                    label.textAlignment = NSTextAlignmentCenter; 
+  
+                    CGRect bounds =  CGRectMake(402.0, 200, 460.0, 440.0);
+                    // Create a view and add it to the window.
+                    UIView* theview = [[UIView alloc] initWithFrame: bounds];
+
+                    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                    [button addTarget:self action:@selector(exploreNow:) forControlEvents:UIControlEventTouchUpInside];
+                    [button setTitle:@"Explore now" forState:UIControlStateNormal];
+                    button.frame = CGRectMake(70, 200, 180.0, 40.0);
+                    button.backgroundColor = [UIColor colorWithRed:(0.0f/255.0f) green:(173.0f/255.0f) blue:(239.0f/255.0f) alpha:1];
+                    button.layer.cornerRadius = 3.0;
+                                        
+                    [theview addSubview:button];
+                    self.tableView.tableHeaderView = theview;
                     // Add image view on top of table view
                     [self.theTable addSubview:tempImageView];
                     [tempImageView setFrame:self.tableView.frame];
                     self.theTable.backgroundView = tempImageView;
                     self.theTable.alwaysBounceVertical = NO;
+                    self.tableView.alwaysBounceVertical = NO;
+                    self.theTable.scrollEnabled = NO;
                 }
                 else{
                     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
                     self.tableView.tableHeaderView = nil;
                     self.theTable.backgroundView = Nil;
                     self.theTable.alwaysBounceVertical = YES;
+                    self.tableView.alwaysBounceVertical = YES;
+                    self.theTable.scrollEnabled = YES;
                 }
                 
                 [self.tableView reloadData];
+                [self.theTable reloadData];
                 [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
             });
         }
