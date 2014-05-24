@@ -89,8 +89,8 @@
                                                                                                  error:&error];
                                    for(NSDictionary *dictionary in jsonArray)
                                    {
-                                       NSString *accepted = [jsonArray[0] objectForKey:@"accepted"];
-                                       if ([accepted  isEqual: @"1"]){
+                                       int accepted = [[jsonArray[0] objectForKey:@"accepted"] intValue];
+                                       if (accepted == 1){
                                            dispatch_async(dispatch_get_main_queue(), ^{
                                                 [self.dateForFR removeObjectAtIndex:sender.tag];
                                                 [self.imageForFR removeObjectAtIndex:sender.tag];
@@ -132,8 +132,8 @@
                                                                                                  error:&error];
                                    for(NSDictionary *dictionary in jsonArray)
                                    {
-                                       NSString *accepted = [jsonArray[0] objectForKey:@"accepted"];
-                                       if ([accepted  isEqual: @"1"]){
+                                       int accepted = [[jsonArray[0] objectForKey:@"accepted"] intValue];
+                                       if (accepted == 1){
                                            dispatch_async(dispatch_get_main_queue(), ^{
                                                [self.dateForFR removeObjectAtIndex:sender.tag];
                                                [self.imageForFR removeObjectAtIndex:sender.tag];
