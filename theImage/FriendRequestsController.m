@@ -9,6 +9,7 @@
 #import "FriendRequestsController.h"
 #import "friendCell.h"
 #import "FindPlayerController.h"
+#import "ValidURL.h"
 
 @interface FriendRequestsController ()
 
@@ -23,11 +24,6 @@
         // Custom initialization
     }
     return self;
-}
-
-- (BOOL)isValidUrl:(NSString *)urlString{
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-    return [NSURLConnection canHandleRequest:request];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -184,7 +180,7 @@
     cell.country.text = [self.locationForFR
                       objectAtIndex: [indexPath row]];
 
-    if ([self isValidUrl : [self.imageForFR objectAtIndex: [indexPath row]]])
+    if ([ValidURL isValidUrl : [self.imageForFR objectAtIndex: [indexPath row]]])
         cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.imageForFR objectAtIndex: [indexPath row]]]]];
     else
         cell.personImage.image = [UIImage imageNamed:@"player.png"];

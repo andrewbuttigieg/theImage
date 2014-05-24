@@ -12,6 +12,7 @@
 #import "MessageViewController.h"
 #import "VideoController.h"
 #import "PlayerSettingsController.h"
+#import "ValidURL.h"
 
 @interface PlayerController ()<PlayerImageDelegate>
 
@@ -467,13 +468,24 @@ static NSString* facebookID;
                                 NSString *imageURL = [theUser valueForKey:@"PhotoURL"];
                                 
                                 
-                                if ([imageURL length] > 5){
-                                    self.playerImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
-                                    
+                                if ([ValidURL isValidUrl :imageURL]){
+                                        self.playerImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
                                 }
                                 else{
                                     //default image
                                     self.playerImage.image = [UIImage imageNamed:@"player.png"];
+                                }
+                                if ([ValidURL isValidUrl :[theUser valueForKey:@"Photo2"]]){
+                                    self.pageView.numberOfPages = 2;
+                                }
+                                if ([ValidURL isValidUrl :[theUser valueForKey:@"Photo3"]]){
+                                    self.pageView.numberOfPages = 3;
+                                }
+                                if ([ValidURL isValidUrl :[theUser valueForKey:@"Photo4"]]){
+                                    self.pageView.numberOfPages = 4;
+                                }
+                                if ([ValidURL isValidUrl :[theUser valueForKey:@"Photo5"]]){
+                                    self.pageView.numberOfPages = 5;
                                 }
                             });
                             
@@ -541,8 +553,7 @@ static NSString* facebookID;
                                                                                          withString:@".com/[120]-"];
                                                 
                                                 UIImage *image;
-                                                if ([imageURL length] > 5){
-                                                    image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                                                if ([ValidURL isValidUrl :imageURL]){                                                    image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
                                                 }
                                                 else{
                                                     //default image
@@ -651,18 +662,11 @@ float imageHeight = 0;
 #pragma mark - PlayerImageDelegate
 
 - (void)addItemViewController:
-(PlayerSettingsController *)controller didFinishEnteringItem: (UIImage *)item
-                             :(NSString *)name :(NSString *)lname :(NSString *)about
+
+(PlayerSettingsController *)controller didFinishEnteringItem:(UIImage *)item
 {
     //update the image of the player
     self.playerImage.image = item;
-    self.playerName.text = [[NSString stringWithFormat:@"%@ %@", name, lname ] uppercaseString];
-    if ([about length] < 5){
-        self.aboutLabel.text = @"This user has not updated their about section yet";
-    }
-    else{
-        self.aboutLabel.text = about;
-    }
 }
 
 

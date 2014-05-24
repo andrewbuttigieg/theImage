@@ -12,6 +12,7 @@
 #import <AFNetworking/AFURLResponseSerialization.h>
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import "PlayerController.h"
+#import "ValidURL.h"
 
 
 @class PlayerSettingsController;
@@ -22,6 +23,9 @@
 CGSize keyboardSize;
 bool movedAlready = false;
 bool player = false;
+//1, 2, 3, 4, 5 -> what image in the list to upload
+static int updateImage = 1;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -230,11 +234,26 @@ bool player = false;
                         }
                     }
                     NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
-                    if ([imageURL length] > 5){
+                    if ([ValidURL isValidUrl:imageURL]){
                         [self.toUpload setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
                         
                     }
-                    
+                    imageURL = [dictionary objectForKey:@"Photo2"];
+                    if ([ValidURL isValidUrl:imageURL]){
+                        [self.image2Outlet setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
+                    }
+                    imageURL = [dictionary objectForKey:@"Photo3"];
+                    if ([ValidURL isValidUrl:imageURL]){
+                        [self.image3Outlet setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
+                    }
+                    imageURL = [dictionary objectForKey:@"Photo4"];
+                    if ([ValidURL isValidUrl:imageURL]){
+                        [self.image4Outlet setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
+                    }
+                    imageURL = [dictionary objectForKey:@"Photo5"];
+                    if ([ValidURL isValidUrl:imageURL]){
+                        [self.image5Outlet setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
+                    }
                     [self lookingForPlayerAlign];
                 }
             });
@@ -444,7 +463,13 @@ UIDatePicker *itsDatePicker;
 -(void) uploadImage:(UIImage*)image {
     NSData *imageData = UIImageJPEGRepresentation(image, 0.2);     //change Image to NSData
     NSString *baseurl = @"http://newfootballers.com/upload_image.php";
-    NSDictionary *parameters = @{@"t": @"Profile photo", @"n": @"Profile photo"};
+    NSDictionary *parameters;
+    
+    if (updateImage == 1)
+        parameters = @{@"t": @"Profile photo", @"n": @"Profile photo"};
+    else
+        parameters = @{@"t": [NSString stringWithFormat:@"%d",updateImage],
+                       @"n": [NSString stringWithFormat:@"%d",updateImage]};
     
     // 1. Create `AFHTTPRequestSerializer` which will create your request.
     AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
@@ -530,8 +555,26 @@ UIDatePicker *itsDatePicker;
     //show the image view with the picked image
     [picker dismissModalViewControllerAnimated:YES];
 //    self.toUpload.image = image;
+    switch (updateImage) {
+        case 1:
+            [self.toUpload setBackgroundImage:image forState:UIControlStateNormal];
+            break;
+        case 2:
+            [self.image2Outlet setBackgroundImage:image forState:UIControlStateNormal];
+            break;
+        case 3:
+            [self.image3Outlet setBackgroundImage:image forState:UIControlStateNormal];
+            break;
+        case 4:
+            [self.image4Outlet setBackgroundImage:image forState:UIControlStateNormal];
+            break;
+        case 5:
+            [self.image5Outlet setBackgroundImage:image forState:UIControlStateNormal];
+            break;
+        default:
+            break;
+    }
     
-    [self.toUpload setBackgroundImage:image forState:UIControlStateNormal];
     
     NSString *itemToPassBack = @"xxxxxxxx";
     NSLog(@"returning: %@",itemToPassBack);
@@ -652,6 +695,54 @@ UIDatePicker *itsDatePicker;
 - (IBAction)genderClick:(id)sender {
 }
 
+
+
+- (IBAction)lookingForPartner:(id)sender {
+    [self lookingForPlayerAlign];
+}
+- (IBAction)changePwdClick:(id)sender {
+}
+- (IBAction)image2:(id)sender {
+    updateImage = 2;
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
+    imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentModalViewController:imagePickerController animated:YES];
+}
+
+- (IBAction)image3:(id)sender {
+    updateImage = 3;
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
+    imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentModalViewController:imagePickerController animated:YES];
+}
+
+- (IBAction)image4:(id)sender {
+    updateImage = 4;
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
+    imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentModalViewController:imagePickerController animated:YES];
+}
+
+- (IBAction)image5:(id)sender {
+    updateImage = 5;
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
+    imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentModalViewController:imagePickerController animated:YES];
+}
+
+
 #pragma mark -
 #pragma mark PickerView DataSource
 
@@ -744,9 +835,4 @@ numberOfRowsInComponent:(NSInteger)component
 }
 
 
-- (IBAction)lookingForPartner:(id)sender {
-    [self lookingForPlayerAlign];
-}
-- (IBAction)changePwdClick:(id)sender {
-}
 @end

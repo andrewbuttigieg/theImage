@@ -44,6 +44,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *userType;
 @property (strong, nonatomic) IBOutlet UILabel *location;
+@property (strong, nonatomic) IBOutlet UIPageControl *pageView;
 
 + (bool)useLocalisation;
 +(void)setUseLocalisation:(bool) value;

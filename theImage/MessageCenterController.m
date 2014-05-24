@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "messageGroupCell.h"
 #import "MessageViewController.h"
+#import "ValidURL.h"
 
 @interface MessageCenterController ()
 
@@ -83,8 +84,7 @@
     cell.date.text = [self.dateForTable
                       objectAtIndex: [indexPath row]];
 
-    
-    if ([self isValidUrl : [self.imageForTable objectAtIndex: [indexPath row]]])
+    if ([ValidURL isValidUrl : [self.imageForTable objectAtIndex: [indexPath row]]])
         cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.imageForTable objectAtIndex: [indexPath row]]]]];
     else
         cell.personImage.image = [UIImage imageNamed:@"player.png"];
@@ -135,11 +135,6 @@
     cell.message.text = [self.textForTable objectAtIndex: [indexPath row]];
     
     return cell;
-}
-
-- (BOOL)isValidUrl:(NSString *)urlString{
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-    return [NSURLConnection canHandleRequest:request];
 }
 
 -(void)load{

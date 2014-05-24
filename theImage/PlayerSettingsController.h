@@ -87,6 +87,14 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *changePwd;
 
+- (IBAction)image2:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *image2Outlet;
+- (IBAction)image3:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *image3Outlet;
+- (IBAction)image4:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *image4Outlet;
+- (IBAction)image5:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *image5Outlet;
 
 @property (nonatomic, weak) id <PlayerImageDelegate> delegate;
 
