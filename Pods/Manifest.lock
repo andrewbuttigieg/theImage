@@ -1,38 +1,37 @@
 PODS:
-  - AFNetworking (2.0.0):
+  - AFNetworking (2.2.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
     - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.0.0):
+  - AFNetworking/NSURLConnection (2.2.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.0.0):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.0.0)
-  - AFNetworking/Security (2.0.0)
-  - AFNetworking/Serialization (2.0.0)
-  - AFNetworking/UIKit (2.0.0):
+  - AFNetworking/NSURLSession (2.2.4):
     - AFNetworking/NSURLConnection
-  - AMSlideMenu (1.5.2)
+  - AFNetworking/Reachability (2.2.4)
+  - AFNetworking/Security (2.2.4)
+  - AFNetworking/Serialization (2.2.4)
+  - AFNetworking/UIKit (2.2.4):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - AMSlideMenu (1.5.3)
   - PHFComposeBarView (2.0.1):
     - PHFDelegateChain (~> 1.0)
   - PHFDelegateChain (1.0.1)
 
 DEPENDENCIES:
-  - AFNetworking (= 2.0)
+  - AFNetworking (~> 2.0)
   - AMSlideMenu (~> 1.5.2)
-  - PHFComposeBarView (~> 2.0.1)
+  - PHFComposeBarView (~> 2.0.0)
 
 SPEC CHECKSUMS:
-  AFNetworking: 3fa983b1beaba69566a3374612511e2a6e3fe845
-  AMSlideMenu: 8c67f7362de5bc4ad568116b0f12a641c201d620
-  PHFComposeBarView: 9c9cff294c865550606ad873c5bd51d046fedadf
-  PHFDelegateChain: 2c80836ba0c1b2ca4b5e6d3fa241343465e0eb70
+  AFNetworking: ab63e259fe91eef4519b371ef0a4955af0e73e64
+  AMSlideMenu: ab0c9313c74eac61e360d2a714d2d8202f6de916
+  PHFComposeBarView: 0fa52137ecb23725d219dc90cf77c4c95aa29d05
+  PHFDelegateChain: f4d5a2847960b3dd16fc2f2196833f3a66704745
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.33.1
