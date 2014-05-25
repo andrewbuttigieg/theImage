@@ -12,6 +12,8 @@
 @interface PlayerController : UIViewController<UIActionSheetDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
 /*<FindPlayerControllerDelegate>*/
 
+@property (nonatomic, strong) NSMutableArray *pageImages;
+
 @property (nonatomic) int playerID;
 @property (nonatomic) int meID;
 @property (nonatomic) NSString * facebookID;
@@ -45,6 +47,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *userType;
 @property (strong, nonatomic) IBOutlet UILabel *location;
 @property (strong, nonatomic) IBOutlet UIPageControl *pageView;
+- (IBAction)changeScreen:(id)sender;
+- (void)changeImage:(int)currentPage;
 
 + (bool)useLocalisation;
 +(void)setUseLocalisation:(bool) value;

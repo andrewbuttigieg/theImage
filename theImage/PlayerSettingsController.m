@@ -442,7 +442,7 @@ UIDatePicker *itsDatePicker;
     return nil;
 }
 
-- (NSString *)extesionnForImageData:(NSData *)data {
+- (NSString *)extensionForImageData:(NSData *)data {
     uint8_t c;
     [data getBytes:&c length:1];
     
@@ -481,7 +481,7 @@ UIDatePicker *itsDatePicker;
                      constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                          [formData appendPartWithFileData:imageData
                                                      name:@"attachment"
-                                                 fileName:[NSString stringWithFormat:@"%d-profile.%@", PlayerController.meID, [self extesionnForImageData:imageData]]
+                                                 fileName:[NSString stringWithFormat:@"%d-profile.%@", PlayerController.meID, [self extensionForImageData:imageData]]
                                                  mimeType:
                           [self contentTypeForImageData:imageData]];
                      }];

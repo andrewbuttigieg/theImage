@@ -289,6 +289,7 @@
                     [button addTarget:self action:@selector(exploreNow:) forControlEvents:UIControlEventTouchUpInside];
                     [button setTitle:@"Explore now" forState:UIControlStateNormal];
                     button.frame = CGRectMake(70, 200, 180.0, 40.0);
+                    button.titleLabel.textColor = [UIColor whiteColor];
                     button.backgroundColor = [UIColor colorWithRed:(0.0f/255.0f) green:(173.0f/255.0f) blue:(239.0f/255.0f) alpha:1];
                     button.layer.cornerRadius = 3.0;
                                         

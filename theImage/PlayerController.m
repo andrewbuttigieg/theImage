@@ -22,9 +22,31 @@
 
 static int playerID = 0;
 static int meID = 0;
+
+- (void)changeImage:(int)currentPage{
+    
+    
+    if (
+        self.pageImages.count > currentPage &&
+        [ValidURL isValidUrl :self.pageImages[currentPage]]){
+        self.playerImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.pageImages[currentPage]]]];
+    }
+    else{
+        //default image
+        self.playerImage.image = [UIImage imageNamed:@"player.png"];
+    }
+}
+
+- (IBAction)changeScreen:(id)sender
+{
+    [self changeImage: [self.pageView currentPage]];
+}
+
 bool useLocalisation = true;
 
 static NSString* facebookID;
+static NSString* name;
+static NSString* image;
 
 + (int) playerID{
     return playerID;
@@ -136,7 +158,8 @@ static NSString* facebookID;
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
     MessageViewController * controller = (MessageViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
     controller.chattingToID = (int)self.playerID;
-    controller.name = @"name";
+    controller.name = name;
+    controller.image = image;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -257,10 +280,24 @@ static NSString* facebookID;
                            }];
 }
 
+//swipe to the next image if there is one
+- (void)swipe:(UISwipeGestureRecognizer *)swipeRecogniser
+{
+    if ([swipeRecogniser direction] == UISwipeGestureRecognizerDirectionLeft)
+    {
+        self.pageView.currentPage +=1;
+    }
+    else if ([swipeRecogniser direction] == UISwipeGestureRecognizerDirectionRight)
+    {
+        self.pageView.currentPage -=1;
+    }
+    [self changeImage: [self.pageView currentPage]];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     
     NSString *empty = [NSString stringWithFormat:@""];
     self.name.text = empty;
@@ -293,7 +330,7 @@ static NSString* facebookID;
                 
                 self.facebookID = [dictionary objectForKey:@"FacebookID"];
                 facebookID = [dictionary objectForKey:@"FacebookID"];
-
+                
                 int p = (int)self.playerID;
                 int p2 = self.meID;
 
@@ -335,6 +372,55 @@ static NSString* facebookID;
                             
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 
+                                //get the player image
+                                NSString *imageURL = [theUser valueForKey:@"PhotoURL"];
+                                
+                                self.pageImages = [[NSMutableArray alloc] init];
+                                
+                                int pageCount = 1;
+                                if ([ValidURL isValidUrl :imageURL]){
+                                    [self.pageImages addObject:imageURL];
+                                    self.playerImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                                    image = imageURL;
+                                }
+                                else{
+                                    //default image
+                                    [self.pageImages addObject:[NSNull null]];
+                                    self.playerImage.image = [UIImage imageNamed:@"player.png"];
+                                    image = @"player.png";
+                                }
+                                
+                                [self.playerImage setUserInteractionEnabled:YES];
+                                UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+                                swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+                                [self.playerImage addGestureRecognizer:swipeLeft];
+                                
+                                UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+                                swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+                                [self.playerImage addGestureRecognizer:swipeRight];
+                                
+                                imageURL = [theUser valueForKey:@"Photo2"];
+                                if ([ValidURL isValidUrl :imageURL]){
+                                    [self.pageImages addObject:[theUser valueForKey:@"Photo2"]];
+                                    pageCount = 2;
+                                }
+                                if ([ValidURL isValidUrl :[theUser valueForKey:@"Photo3"]]){
+                                    [self.pageImages addObject:[theUser valueForKey:@"Photo3"]];
+                                    pageCount = 3;
+                                }
+                                if ([ValidURL isValidUrl :[theUser valueForKey:@"Photo4"]]){
+                                    [self.pageImages addObject:[theUser valueForKey:@"Photo4"]];
+                                    pageCount = 4;
+                                }
+                                if ([ValidURL isValidUrl :[theUser valueForKey:@"Photo5"]]){
+                                    [self.pageImages addObject:[theUser valueForKey:@"Photo5"]];
+                                    pageCount = 5;
+                                }
+                                
+                                //set the right amount of balls for images
+                                self.pageView.numberOfPages = pageCount;
+                                self.pageView.currentPage = 0;
+                                
                                 self.playingWhere.hidden = false;
                                 self.heightIcon.hidden = false;
                                 self.weightIcon.hidden = false;
@@ -347,6 +433,8 @@ static NSString* facebookID;
                                 }
                                 //get the player information
                                 self.playerName.text = [[NSString stringWithFormat:@"%@ %@", [theUser valueForKey:@"Firstname"], [theUser valueForKey:@"Lastname"] ] uppercaseString];
+                                
+                                name = [theUser valueForKey:@"Firstname"];
                                 
                                 [self.playerName sizeToFit];
                                 
@@ -463,30 +551,6 @@ static NSString* facebookID;
                                     }
                                 }
                                 
-                                
-                                //get the player image
-                                NSString *imageURL = [theUser valueForKey:@"PhotoURL"];
-                                
-                                
-                                if ([ValidURL isValidUrl :imageURL]){
-                                        self.playerImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
-                                }
-                                else{
-                                    //default image
-                                    self.playerImage.image = [UIImage imageNamed:@"player.png"];
-                                }
-                                if ([ValidURL isValidUrl :[theUser valueForKey:@"Photo2"]]){
-                                    self.pageView.numberOfPages = 2;
-                                }
-                                if ([ValidURL isValidUrl :[theUser valueForKey:@"Photo3"]]){
-                                    self.pageView.numberOfPages = 3;
-                                }
-                                if ([ValidURL isValidUrl :[theUser valueForKey:@"Photo4"]]){
-                                    self.pageView.numberOfPages = 4;
-                                }
-                                if ([ValidURL isValidUrl :[theUser valueForKey:@"Photo5"]]){
-                                    self.pageView.numberOfPages = 5;
-                                }
                             });
                             
                             
@@ -545,8 +609,6 @@ static NSString* facebookID;
                                                     ++agentCount;
                                                 else if (i == 3)
                                                     ++coachCount;
-                                                //[secondScroll release];
-                                                //[self.scrollview setContentSize:CGSizeMake(320, self.scrollview.contentSize.height+110)];
                                                 
                                                 NSString *imageURL = [anObject objectForKey:@"PhotoURL"];
                                                 imageURL = [imageURL stringByReplacingOccurrencesOfString:@".com/"

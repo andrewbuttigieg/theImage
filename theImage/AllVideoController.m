@@ -93,16 +93,6 @@ static UIRefreshControl *refreshControl;
                 
                 for(NSDictionary *dictionary in jsonArray)
                 {
-                    
-                    /*[self.nameForTable addObject:[dictionary objectForKey:@"Firstname"]];
-                    [self.imageForTable addObject:[dictionary objectForKey:@"PhotoURL"]];
-                    
-                    
-                    [self.textForTable addObject:[dictionary objectForKey:@"Text"]];
-                    [self.userTypeForTable addObject:[dictionary objectForKey:@"UserType"]];
-                    [self.userIDForTable addObject:[dictionary objectForKey:@"UserID"]];*/
-                    
-
                     NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
                     imageURL = [imageURL stringByReplacingOccurrencesOfString:@".com/"
                                                                    withString:@".com/[120]-"];

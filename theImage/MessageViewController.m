@@ -156,10 +156,17 @@ static float top = 0;
     int u = PlayerController.meID;
     self.title = self.name;
     
-    
-    NSURL * imageURL = [NSURL URLWithString:self.image];
-    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-    UIImage * image = [UIImage imageWithData:imageData];
+
+    UIImage * image;
+    if ([self.image isEqual:@"player.png"])
+    {
+        image = [UIImage imageNamed:@"player.png"];
+    }
+    else{
+        NSURL * imageURL = [NSURL URLWithString:self.image];
+        NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+        image = [UIImage imageWithData:imageData];
+    }
     UIButton* fakeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [fakeButton setImage:image forState:UIControlStateNormal];
     fakeButton.frame = CGRectMake(0, 0, 30, 30);

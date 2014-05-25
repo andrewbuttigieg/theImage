@@ -79,7 +79,8 @@ static float top = 0;
     [self.scrollview setScrollEnabled:YES];
     
     if (self.playerID == PlayerController.meID){
-        self.addVideo.hidden = false;    
+        self.addVideo.hidden = false;
+        top = 60;
     }
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_videos.php/"]];
@@ -146,14 +147,23 @@ static float top = 0;
                         UIWebView *bubbleView = [[UIWebView alloc] initWithFrame:webFrame];
                         bubbleView.backgroundColor = [UIColor blackColor];
                         bubbleView.frame=CGRectMake(0, top, 320, 200);
+                        bubbleView.scrollView.scrollEnabled = NO;
+                        bubbleView.scrollView.bounces = NO;
                         [bubbleView loadRequest:req];
-                        //delete button
-                        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-                        [button addTarget:self action:@selector(deleteVideo:) forControlEvents:UIControlEventTouchUpInside];
-                        button.tag = [[dictionary objectForKey:@"VideoID"] intValue];
-                        [button setTitle:@"Remove video?" forState:UIControlStateNormal];
-                        button.frame = CGRectMake(2.0, top + 190, 160.0, 40.0);
                         
+                        //delete button
+                        if (self.playerID == PlayerController.meID){
+                            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                            [button addTarget:self action:@selector(deleteVideo:) forControlEvents:UIControlEventTouchUpInside];
+                            button.tag = [[dictionary objectForKey:@"VideoID"] intValue];
+                            [button setTitle:@"Remove video?" forState:UIControlStateNormal];
+                            button.frame = CGRectMake(-28.0, top + 195, 200.0, 40.0);
+                            [self.scrollview addSubview:button];
+                            top += 40;
+                        }
+                        else{
+                            top += 20;
+                        }
                         //get the player image
                         NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
                         UIImage * image;
@@ -169,9 +179,8 @@ static float top = 0;
                         self.scrollview.backgroundColor = [UIColor colorWithPatternImage:[ImageEffect blur:image]];
                         
                         //where to put the view
-                        top += 240;
+                        top += 200;
                         [self.scrollview addSubview:bubbleView];
-                        [self.scrollview addSubview:button];
                         
                         //set the scroll of the view
                         self.scrollview.contentSize = CGSizeMake(320, top);
