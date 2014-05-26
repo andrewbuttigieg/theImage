@@ -24,12 +24,16 @@ static int playerID = 0;
 static int meID = 0;
 
 - (void)changeImage:(int)currentPage{
-    
-    
     if (
-        self.pageImages.count > currentPage &&
-        [ValidURL isValidUrl :self.pageImages[currentPage]]){
-        self.playerImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.pageImages[currentPage]]]];
+        self.pageImages.count > currentPage){
+        
+        if ([self.pageImages[currentPage] isKindOfClass:[UIImage class]]){
+            self.playerImage.image = (UIImage *)self.pageImages[currentPage];
+        }
+        else{
+            //[ValidURL isValidUrl :self.pageImages[currentPage]]){
+            self.playerImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.pageImages[currentPage]]]];
+        }
     }
     else{
         //default image
@@ -402,19 +406,19 @@ static NSString* image;
                                 imageURL = [theUser valueForKey:@"Photo2"];
                                 if ([ValidURL isValidUrl :imageURL]){
                                     [self.pageImages addObject:[theUser valueForKey:@"Photo2"]];
-                                    pageCount = 2;
+                                    pageCount++;
                                 }
                                 if ([ValidURL isValidUrl :[theUser valueForKey:@"Photo3"]]){
                                     [self.pageImages addObject:[theUser valueForKey:@"Photo3"]];
-                                    pageCount = 3;
+                                    pageCount++;
                                 }
                                 if ([ValidURL isValidUrl :[theUser valueForKey:@"Photo4"]]){
                                     [self.pageImages addObject:[theUser valueForKey:@"Photo4"]];
-                                    pageCount = 4;
+                                    pageCount++;
                                 }
                                 if ([ValidURL isValidUrl :[theUser valueForKey:@"Photo5"]]){
                                     [self.pageImages addObject:[theUser valueForKey:@"Photo5"]];
-                                    pageCount = 5;
+                                    pageCount++;
                                 }
                                 
                                 //set the right amount of balls for images
@@ -725,10 +729,20 @@ float imageHeight = 0;
 
 - (void)addItemViewController:
 
-(PlayerSettingsController *)controller didFinishEnteringItem:(UIImage *)item
+(PlayerSettingsController *)controller uploadedImage:(UIImage *)item :(int)imagePos
 {
     //update the image of the player
-    self.playerImage.image = item;
+    //self.playerImage.image = item;
+    if (imagePos >= self.pageImages.count){
+        [self.pageImages addObject:item];
+        self.pageView.numberOfPages = self.pageImages.count;
+    }
+    else{
+        self.pageImages[imagePos] = item;
+    }
+    if (imagePos == [self.pageView currentPage]){
+        self.playerImage.image = item;
+    }
 }
 
 

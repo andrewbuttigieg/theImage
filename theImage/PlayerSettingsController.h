@@ -15,7 +15,7 @@
 - (void)playerDetailsViewControllerDidSave:
 (PlayerSettingsController *)controller;*/
 
-- (void)addItemViewController:(id)controller didFinishEnteringItem:(UIImage *)item ;
+- (void)addItemViewController:(id)controller uploadedImage:(UIImage *)item :(int)imagePos;
 
 - (void)addItemViewController:(id)controller didSave :(NSString *)name :(NSString *)lname
                              :(NSString *)about :(NSString *)age :(NSString *)weight :(NSString *)height

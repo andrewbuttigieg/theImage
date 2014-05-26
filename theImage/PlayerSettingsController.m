@@ -542,7 +542,13 @@ UIDatePicker *itsDatePicker;
         [self.delegate addItemViewController:self didSave :self.name.text :self.surname.text :self.about.text
                                             :(age > 0 ?  [NSString stringWithFormat:@"%d", age] : @"")
                                             :self.weight.text :self.height.text :self.position.text];
-        NSLog(@"Data Dictionary is : %@", jsonArray);
+
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
+                                                        message:@"Details saved!"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
     }
     
 }
@@ -578,7 +584,8 @@ UIDatePicker *itsDatePicker;
     
     NSString *itemToPassBack = @"xxxxxxxx";
     NSLog(@"returning: %@",itemToPassBack);
-    [self.delegate addItemViewController:self didFinishEnteringItem:image ];
+    //[self.delegate addItemViewController:self didFinishEnteringItem:image ];
+    [self.delegate addItemViewController:self uploadedImage:image :updateImage - 1];
     
 //    - (void)addItemViewController:(id)controller didFinishEnteringItem:(UIImage *)item :(NSString *)name :(NSString *)lname
   //  :(NSString *)about;
