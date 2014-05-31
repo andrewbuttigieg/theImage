@@ -44,7 +44,6 @@
     [tempImageView setFrame:self.tableView.frame];
     self.theTable.backgroundView = tempImageView;
     
-    
     //self.tableView.hidden = true;
 }
 

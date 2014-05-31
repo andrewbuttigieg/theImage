@@ -118,8 +118,10 @@ static int findPlayerID = 0;
                         image = [UIImage imageNamed:@"player.png"];
                     }
                     UIImageView *iv = [[UIImageView alloc] initWithImage:image];
+                    iv.clipsToBounds = YES;
+                    iv.contentMode = UIViewContentModeScaleAspectFill;
                     //CGRect frame;
-                    iv.frame=CGRectMake(col * 106, row * 106, 104,104);
+                    iv.frame=CGRectMake(col * 106 + 1, row * 106, 104,104);
                     iv.tag = [[dictionary objectForKey:@"UserID"] intValue];
                     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
                     [iv addGestureRecognizer:singleTap];

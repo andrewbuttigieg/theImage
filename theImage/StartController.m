@@ -14,6 +14,7 @@
 #import "PlayerController.h"
 #import "MainVC.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "UIViewController+AMSlideMenu.h"
 
 @interface StartController ()
 
@@ -44,6 +45,8 @@ bool loggedIn = false;
 {
 //    self.delegate.currentView = @"Start";
 
+    [self disableSlidePanGestureForLeftMenu];
+    
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     appDelegate.currentView = @"start";
     
@@ -71,6 +74,8 @@ bool loggedIn = false;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSLog(@"%@", self.navigationController.viewControllers);
     
     loggedIn = false;
     

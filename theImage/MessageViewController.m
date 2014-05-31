@@ -214,7 +214,7 @@ static float top = 0;
         }
     }];
     
-    [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(aTime) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:18 target:self selector:@selector(aTime) userInfo:nil repeats:YES];
 
 }
 
@@ -285,6 +285,14 @@ static float top = 0;
                          [[self container] setFrame:newContainerFrame];
                      }
                      completion:NULL];
+    
+    float xtop = self.textView.frame.size.height;
+    if ((top + 45) > xtop){
+        //set the scroll of the view
+        self.textView.contentSize = CGSizeMake(320, top);
+        CGPoint bottomOffset = CGPointMake(0, (top + 45) - xtop);
+        [self.textView setContentOffset:bottomOffset animated:YES];
+    }
 }
 
 //called when we press send on the keyboard
@@ -374,7 +382,7 @@ static float top = 0;
             textViewDate.scrollEnabled = false;
             [self.textView addSubview:textViewDate];
             //where to put the text
-            top = top + 15;
+            top = top + 25;
         }
         else{
             NSCalendar* calendar = [NSCalendar currentCalendar];
@@ -483,7 +491,7 @@ static float top = 0;
         if ((top + 45) > xtop){
             //set the scroll of the view
             self.textView.contentSize = CGSizeMake(320, top);
-            CGPoint bottomOffset = CGPointMake(0, (top + 15) - xtop);
+            CGPoint bottomOffset = CGPointMake(0, (top + 45) - xtop);
             [self.textView setContentOffset:bottomOffset animated:YES];
         }
     });
@@ -545,7 +553,7 @@ static float top = 0;
         CGRect frame = CGRectMake(0.0f,
                                   0.0f,
                                   kInitialViewFrame.size.width,
-                                  kInitialViewFrame.size.height - 20.0f);
+                                  kInitialViewFrame.size.height);
         _textView = [[UIScrollView alloc] initWithFrame:frame];
         [_textView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
      //   [_textView setEditable:NO];
@@ -553,6 +561,7 @@ static float top = 0;
         [_textView setAlwaysBounceVertical:YES];
      //   [_textView setFont:[UIFont systemFontOfSize:[UIFont labelFontSize]]];
         UIEdgeInsets insets = UIEdgeInsetsMake(0.0f, 0.0f, PHFComposeBarViewInitialHeight, 0.0f);
+        _textView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
         [_textView setContentInset:insets];
         [_textView setScrollIndicatorInsets:insets];
      //   [_textView setText:@"Welcome to the Demo!\n\nThis is just some placeholder text to give you a better feeling of how the compose bar can be used along other components."];

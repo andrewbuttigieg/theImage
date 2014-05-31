@@ -66,13 +66,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
    // tableView.separatorColor = [UIColor clearColor];
     self.slideMenuDelegate = self;
     
     [self aTime];
     [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(aTime) userInfo:nil repeats:YES];
-    
 }
 
 -(void)aTime

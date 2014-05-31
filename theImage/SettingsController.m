@@ -56,10 +56,17 @@
                 
                 NSString * storyboardName = @"Main_iPhone";
                 NSString * viewControllerID = @"StartController";
+                
+                NSLog(@"%@", self.navigationController.viewControllers);
+                
                 UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
                 StartController * controller = (StartController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
                 
-                [self.navigationController pushViewController:controller animated:YES];
+                NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:[self.navigationController viewControllers]];
+                [viewControllers replaceObjectAtIndex:0 withObject:controller];
+                
+                //[self.navigationController pushViewController:controller animated:YES];
+                [self.navigationController setViewControllers:viewControllers animated:YES];
             }
         }
         else if (indexPath.row == 1){
