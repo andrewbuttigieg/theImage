@@ -710,16 +710,14 @@ UIDatePicker *itsDatePicker;
         self.lookingForPlayer.hidden = TRUE;
     }*/
     
-    if (
-            ![PlayerController.facebookID isEqualToString:@""]
-        ){
+    if (![PlayerController.facebookID isEqual: [NSNull null]]){
+         if (![PlayerController.facebookID isEqualToString:@""]){
+             CGRect frame = self.changePwd.frame;
+             int y = self.privateInformationView.frame.origin.y + self.privateInformationView.frame.size.height + 18;
+             frame.origin.y = y;//pass the cordinate which you want
         
-        
-        CGRect frame = self.changePwd.frame;
-        int y = self.privateInformationView.frame.origin.y + self.privateInformationView.frame.size.height + 18;
-        frame.origin.y = y;//pass the cordinate which you want
-        
-        self.changePwd.frame= frame;
+             self.changePwd.frame= frame;
+         }
     }
     
     self.scrollview.contentSize = CGSizeMake(320, self.changePwd.frame.origin.y + self.changePwd.frame.size.height + 10);

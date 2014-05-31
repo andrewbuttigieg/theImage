@@ -25,20 +25,30 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb355198514515820</string>
+				<string>fb197331837139897</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>FacebookAppID</key>
-	<string>355198514515820</string>
+	<string>197331837139897</string>
 	<key>FacebookDisplayName</key>
-	<string>HelloFBSample</string>
+	<string>PlayerCV</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchImages</key>
 	<array>
+		<dict>
+			<key>UILaunchImageMinimumOSVersion</key>
+			<string>7.0</string>
+			<key>UILaunchImageName</key>
+			<string>default-5</string>
+			<key>UILaunchImageOrientation</key>
+			<string>Portrait</string>
+			<key>UILaunchImageSize</key>
+			<string>{320, 568}</string>
+		</dict>
 		<dict>
 			<key>UILaunchImageMinimumOSVersion</key>
 			<string>7.0</string>

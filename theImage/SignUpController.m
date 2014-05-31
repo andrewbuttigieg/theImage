@@ -299,9 +299,11 @@ static id<FBGraphUser> facebookUser;
 
 - (IBAction)Done:(id)sender {
     
+    NSLog(@"%@", self.accountType.text);
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/reg_player.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"password=%@&email=%@&name=%@&lname=%@&weight=%@usertype=%@",
+    [request setHTTPBody:[[NSString stringWithFormat:@"password=%@&email=%@&name=%@&lname=%@&weight=%@&usertype=%@",
                            self.password.text, self.email.text, self.name.text,self.lastName.text, self.weight.text, self.accountType.text]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     NSError *error = nil; NSURLResponse *response = nil;
@@ -310,9 +312,7 @@ static id<FBGraphUser> facebookUser;
         NSLog(@"Error:%@", error.localizedDescription);
     }
     else {
-        //success
-        NSLog(@"%@", data);
-        
+        //success        
         NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                     options:0
                                                                       error:&error];

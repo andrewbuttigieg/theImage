@@ -88,7 +88,6 @@
 		F2869A1B187571840086D665 /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = F2869A17187571840086D665 /* player.png */; };
 		F2869A1C187571840086D665 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F2869A18187571840086D665 /* logo.png */; };
 		F2869A1E1875C7A70086D665 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2869A1D1875C7A70086D665 /* MediaPlayer.framework */; };
-		F287CD2A18A18E6800A196E3 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F287CD2918A18E6800A196E3 /* FacebookSDK.framework */; };
 		F287CD2D18A972C800A196E3 /* MessageCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = F287CD2C18A972C800A196E3 /* MessageCenterController.m */; };
 		F287CD3018AAB79F00A196E3 /* messageGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F287CD2F18AAB79F00A196E3 /* messageGroupCell.m */; };
 		F28863E11930C90000918D0A /* ConnectionRequests@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F28863E01930C90000918D0A /* ConnectionRequests@2x.png */; };
@@ -178,9 +177,9 @@
 		F2B9E1F1189D7E060044DE04 /* UIWebView+AFNetworking.h in Resources */ = {isa = PBXBuildFile; fileRef = F2B9E1C9189D7E060044DE04 /* UIWebView+AFNetworking.h */; };
 		F2B9E1F2189D7E060044DE04 /* UIWebView+AFNetworking.m in Resources */ = {isa = PBXBuildFile; fileRef = F2B9E1CA189D7E060044DE04 /* UIWebView+AFNetworking.m */; };
 		F2C8B63C193156D100FF5E18 /* ValidURL.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C8B63B193156D100FF5E18 /* ValidURL.m */; };
+		F2CF0373193A59BD005677E7 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2CF0372193A59BD005677E7 /* FacebookSDK.framework */; };
 		F2EC5DF0187E042B00D93403 /* PlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2EC5DEF187E042B00D93403 /* PlayerController.m */; };
 		F2EC5DF31883204900D93403 /* PlayerSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2EC5DF21883204900D93403 /* PlayerSettingsController.m */; };
-		F2EC5F2F18833DF200D93403 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2EC5F2E18833DF200D93403 /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -290,7 +289,6 @@
 		F2869A17187571840086D665 /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
 		F2869A18187571840086D665 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		F2869A1D1875C7A70086D665 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		F287CD2918A18E6800A196E3 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		F287CD2B18A972C800A196E3 /* MessageCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCenterController.h; sourceTree = "<group>"; };
 		F287CD2C18A972C800A196E3 /* MessageCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCenterController.m; sourceTree = "<group>"; };
 		F287CD2E18AAB79F00A196E3 /* messageGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = messageGroupCell.h; sourceTree = "<group>"; };
@@ -394,11 +392,11 @@
 		F2B9E1CA189D7E060044DE04 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIWebView+AFNetworking.m"; path = "UIKit+AFNetworking/UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		F2C8B63A193156D100FF5E18 /* ValidURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidURL.h; sourceTree = "<group>"; };
 		F2C8B63B193156D100FF5E18 /* ValidURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidURL.m; sourceTree = "<group>"; };
+		F2CF0372193A59BD005677E7 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		F2EC5DEE187E042B00D93403 /* PlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerController.h; sourceTree = "<group>"; };
 		F2EC5DEF187E042B00D93403 /* PlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerController.m; sourceTree = "<group>"; };
 		F2EC5DF11883204900D93403 /* PlayerSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerSettingsController.h; sourceTree = "<group>"; };
 		F2EC5DF21883204900D93403 /* PlayerSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerSettingsController.m; sourceTree = "<group>"; };
-		F2EC5F2E18833DF200D93403 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -411,9 +409,8 @@
 				F28699DC1874C06C0086D665 /* CoreGraphics.framework in Frameworks */,
 				F28699DE1874C06C0086D665 /* UIKit.framework in Frameworks */,
 				F28699DA1874C06C0086D665 /* Foundation.framework in Frameworks */,
-				F287CD2A18A18E6800A196E3 /* FacebookSDK.framework in Frameworks */,
-				F2EC5F2F18833DF200D93403 /* FacebookSDK.framework in Frameworks */,
 				BB74C52A2CD6406F9F2D713C /* libPods.a in Frameworks */,
+				F2CF0373193A59BD005677E7 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,8 +515,7 @@
 		F28699D81874C06C0086D665 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F287CD2918A18E6800A196E3 /* FacebookSDK.framework */,
-				F2EC5F2E18833DF200D93403 /* FacebookSDK.framework */,
+				F2CF0372193A59BD005677E7 /* FacebookSDK.framework */,
 				F2B17BBE1878C58D003626F3 /* CoreLocation.framework */,
 				F2869A1D1875C7A70086D665 /* MediaPlayer.framework */,
 				F28699D91874C06C0086D665 /* Foundation.framework */,
@@ -1262,7 +1258,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/andrewbuttigieg/Documents/FacebookSDK,
-					/Users/chrismckay/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "theImage/theImage-Prefix.pch";
@@ -1293,7 +1288,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/andrewbuttigieg/Documents/FacebookSDK,
-					/Users/chrismckay/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "theImage/theImage-Prefix.pch";

@@ -128,6 +128,10 @@ bool loggedIn = false;
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
     
+    if (!self.isViewLoaded || !self.view.window) {
+        return;
+    }
+    
     if (self.messageCounter >0 || loggedIn)
         return;
     else

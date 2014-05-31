@@ -114,6 +114,10 @@ bool movedHere = false;
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
     
+    if (!self.isViewLoaded || !self.view.window) {
+        return;
+    }
+    
     if (self.messageCounter >0)
         return;
     else
