@@ -233,26 +233,56 @@ static int updateImage = 1;
                             self.lookingForPartnerButton.on = FALSE;
                         }
                     }
-                    NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
-                    if ([ValidURL isValidUrl:imageURL]){
-                        [self.toUpload setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
+                    NSString *imageURL;
+                    @try{
+                        imageURL = [dictionary objectForKey:@"PhotoURL"];
+                        if ([ValidURL isValidUrl:imageURL]){
+                            [self.toUpload setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
+                            
+                        }
+                    }
+                    @catch (NSException * ex) {
                         
                     }
-                    imageURL = [dictionary objectForKey:@"Photo2"];
-                    if ([ValidURL isValidUrl:imageURL]){
-                        [self.image2Outlet setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
+                    
+                    @try{
+                        imageURL = [dictionary objectForKey:@"Photo2"];
+                        if ([ValidURL isValidUrl:imageURL]){
+                            [self.image2Outlet setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL   URLWithString:imageURL]]] forState:UIControlStateNormal];
+                        }
                     }
+                    @catch (NSException * ex) {
+                        
+                    }
+                    
+                    @try {
                     imageURL = [dictionary objectForKey:@"Photo3"];
-                    if ([ValidURL isValidUrl:imageURL]){
-                        [self.image3Outlet setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
+                        if ([ValidURL isValidUrl:imageURL]){
+                            [self.image3Outlet setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
+                        }
                     }
+                    @catch (NSException * ex) {
+                        
+                    }
+                    
+                    @try{
                     imageURL = [dictionary objectForKey:@"Photo4"];
-                    if ([ValidURL isValidUrl:imageURL]){
-                        [self.image4Outlet setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
+                        if ([ValidURL isValidUrl:imageURL]){
+                            [self.image4Outlet setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
+                        }
                     }
-                    imageURL = [dictionary objectForKey:@"Photo5"];
-                    if ([ValidURL isValidUrl:imageURL]){
-                        [self.image5Outlet setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
+                    @catch (NSException * ex) {
+                        
+                    }
+                    
+                    @try{
+                        imageURL = [dictionary objectForKey:@"Photo5"];
+                        if ([ValidURL isValidUrl:imageURL]){
+                            [self.image5Outlet setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
+                        }
+                    }
+                    @catch (NSException * ex) {
+                        
                     }
                     [self lookingForPlayerAlign];
                 }
