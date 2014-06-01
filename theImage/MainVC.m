@@ -71,7 +71,7 @@
     self.slideMenuDelegate = self;
     
     [self aTime];
-    [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(aTime) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(aTime) userInfo:nil repeats:YES];
 }
 
 -(void)aTime
@@ -133,10 +133,10 @@
             }
             break;*/
         case 6:
-            identifier = @"sixthRow";
+            identifier = @"allVideoRow";
             break;
         case 7:
-            identifier = @"allVideoRow";
+            identifier = @"sixthRow";
             break;
     }
     

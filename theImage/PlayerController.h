@@ -32,6 +32,7 @@
 - (IBAction)playerInteractionClick:(id)sender;
 
 - (IBAction)sendMessage:(id)sender;
+@property (strong, nonatomic) IBOutlet UILabel *aboutTitle;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollview;
 @property (strong, nonatomic) IBOutlet UILabel *aboutLabel;
 @property (strong, nonatomic) IBOutlet UIScrollView *playerConnectionView;

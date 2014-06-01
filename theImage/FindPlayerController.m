@@ -16,6 +16,8 @@
 
 @implementation FindPlayerController
 
+UIActivityIndicatorView *spinner;
+
 - (IBAction)reloadExplore:(id)sender {
     [self findPeople:findPlayerID];
 }
@@ -73,11 +75,15 @@ static int findPlayerID = 0;
 }
 
 - (void)findPeople:(NSInteger) type{
-    //[[self navigationController] setNavigationBarHidden:NO animated:YES];
     
-    //    NSString *urlAsString = [NSString stringWithFormat:@"http://newfootballers.com/get_users.php"];
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake(160, 240);
+    spinner.tag = 12121212;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
     
     [[self.putThemThere subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.putThemThere addSubview:spinner];    
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_users.php"]];
     
@@ -140,11 +146,12 @@ static int findPlayerID = 0;
                     [self.putThemThere addSubview:iv];
                 }
                 
-                self.putThemThere.contentSize = CGSizeMake(320, row * 106);
-                [self.putThemThere setContentSize:(CGSizeMake(320, row * 106))];
+                self.putThemThere.contentSize = CGSizeMake(320, (row + 1) * 106);
+                [self.putThemThere setContentSize:(CGSizeMake(320, (row + 1) * 106))];
             });
             self.putThemThere.userInteractionEnabled=YES;
             [self.putThemThere setScrollEnabled:YES];
+            [spinner stopAnimating];
         }
     }];
 }
@@ -157,6 +164,7 @@ static int findPlayerID = 0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.title = @"Explore";
     findPlayerID = 1; //player...
     [self findPeople:findPlayerID];

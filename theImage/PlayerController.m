@@ -488,15 +488,19 @@ static NSString* deviceToken;
                                     self.location.hidden = false;
                                 }
                                 
+                                self.aboutLabel.hidden = false;
+                                self.aboutTitle.hidden = false;
+                                
                                 if (
                                     [theUser valueForKey:@"About"] != [NSNull null] &&
-                                    [theUser valueForKey:@"About"] != nil){
+                                    [theUser valueForKey:@"About"] != nil &&
+                                    [self.aboutLabel.text length] > 5){
                                     self.aboutLabel.text = [theUser valueForKey:@"About"];
                                 }
-                                else if ([self.aboutLabel.text length] < 5)
+                                /*else if ([self.aboutLabel.text length] < 5)
                                 {
                                     self.aboutLabel.text = @"This user has not updated their about section yet";
-                                }
+                                }*/
                                 else
                                 {
                                     self.aboutLabel.text = @"This user has not updated their about section yet";
@@ -696,21 +700,6 @@ static NSString* deviceToken;
             }
         });
     }
-    
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/update_user_iospushnotificationid.php/"]];
-    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"iospushnotificationid=%@", appDelegate.theDeviceToken]dataUsingEncoding:NSUTF8StringEncoding]];
-    [request setHTTPMethod:@"POST"];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        
-        if (error) {
-            //[self.delegate fetchingGroupsFailedWithError:error];
-        } else {
-        }
-    }];
 }
 
 float imageWidth = 0;
@@ -719,11 +708,11 @@ float imageHeight = 0;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
     CGFloat y = -scrollView.contentOffset.y;
-    if (y > 64) {
+    if (y > 64 && y < 120) {
         self.playerImage.frame = CGRectMake(0, scrollView.contentOffset.y + 64, 320 + y - 64, 320 + y - 64);
         self.playerImage.center = CGPointMake(self.view.center.x, self.playerImage.center.y);
     }
-    else{
+    else if (y < 64){
         CGRect frame = self.playerImage.frame;
         frame.size.width = 320;
         frame.size.height = 320;

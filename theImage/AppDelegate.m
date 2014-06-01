@@ -43,7 +43,8 @@ bool isAppResumingFromBackground = NO;
                      stringWithFormat:@"Device Token=%@",deviceToken];
     
     theDeviceToken = str;
-    /*NSLog(@"%@", str);
+    
+    NSLog(@"%@", str);
     
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didRegisterForRemoteNotificationsWithDeviceToken"
                                                    message: str
@@ -52,7 +53,7 @@ bool isAppResumingFromBackground = NO;
                                          otherButtonTitles:nil];
     
     
-    [alert show];*/
+    [alert show];
     
 }
 
@@ -75,17 +76,27 @@ bool isAppResumingFromBackground = NO;
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
-    for (id key in userInfo) {
-        NSLog(@"key: %@, value: %@", key, [userInfo objectForKey:key]);
-        
+    @try {
+        for (id key in userInfo) {
+            NSLog(@"key: %@, value: %@", key, [userInfo objectForKey:key]);
+            
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didReceiveRemoteNotification"
+                                                           message: [userInfo objectForKey:key]
+                                                          delegate: self
+                                                 cancelButtonTitle: @"OK"
+                                                 otherButtonTitles:nil];
+            [alert show];
+        }
+    }
+    
+    @catch (NSException *exception) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didReceiveRemoteNotification"
-                                                       message: [userInfo objectForKey:key]
+                                                       message: @"An error has occured"
                                                       delegate: self
                                              cancelButtonTitle: @"OK"
                                              otherButtonTitles:nil];
         [alert show];
     }
-    
 }
 
 //----------
