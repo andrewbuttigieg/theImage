@@ -51,12 +51,17 @@ bool useLocalisation = true;
 static NSString* facebookID;
 static NSString* name;
 static NSString* image;
+static NSString* deviceToken;
 
 + (int) playerID{
     return playerID;
 }
 + (int) meID{
     return meID;
+}
+
++ (NSString*) deviceToken{
+    return deviceToken;
 }
 
 + (NSString*) facebookID{
@@ -691,6 +696,21 @@ static NSString* image;
             }
         });
     }
+    
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/update_user_iospushnotificationid.php/"]];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [request setHTTPBody:[[NSString stringWithFormat:@"iospushnotificationid=%@", appDelegate.theDeviceToken]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPMethod:@"POST"];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (error) {
+            //[self.delegate fetchingGroupsFailedWithError:error];
+        } else {
+        }
+    }];
 }
 
 float imageWidth = 0;

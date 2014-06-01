@@ -11,9 +11,11 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
      NSString *currentView;
+     NSString *theDeviceToken;
 }
 
 @property (nonatomic) NSString * currentView;
+@property (nonatomic) NSString * theDeviceToken;
 @property (strong, nonatomic) UIWindow *window;
 
 @end

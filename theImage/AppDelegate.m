@@ -20,15 +20,90 @@
 
 @implementation AppDelegate
 @synthesize currentView;
+@synthesize theDeviceToken;
 
 bool isAppResumingFromBackground = NO;
 
+//----------
+
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
+    
+    NSLog(@"Registering for push notifications...");
+    [[UIApplication sharedApplication]
+     registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeAlert |
+      UIRemoteNotificationTypeBadge |
+      UIRemoteNotificationTypeSound)];
+    
+}
+
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    NSString *str = [NSString
+                     stringWithFormat:@"Device Token=%@",deviceToken];
+    
+    theDeviceToken = str;
+    /*NSLog(@"%@", str);
+    
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didRegisterForRemoteNotificationsWithDeviceToken"
+                                                   message: str
+                                                  delegate: self
+                                         cancelButtonTitle: @"OK"
+                                         otherButtonTitles:nil];
+    
+    
+    [alert show];*/
+    
+}
+
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
+    
+    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
+    NSLog(@"%@", str);
+    
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didFailToRegisterForRemoteNotificationsWithError"
+                                                   message: str
+                                                  delegate: self
+                                         cancelButtonTitle: @"OK"
+                                         otherButtonTitles:nil];
+    
+    
+    [alert show];
+
+    
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    for (id key in userInfo) {
+        NSLog(@"key: %@, value: %@", key, [userInfo objectForKey:key]);
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didReceiveRemoteNotification"
+                                                       message: [userInfo objectForKey:key]
+                                                      delegate: self
+                                             cancelButtonTitle: @"OK"
+                                             otherButtonTitles:nil];
+        [alert show];
+    }
+    
+}
+
+//----------
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [FBLoginView class];
     
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    NSLog(@"Registering for push notifications...");
+    [[UIApplication sharedApplication]
+     registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeAlert |
+      UIRemoteNotificationTypeBadge |
+      UIRemoteNotificationTypeSound)];
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
     return YES;
 }
@@ -74,6 +149,8 @@ bool isAppResumingFromBackground = NO;
     
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     isAppResumingFromBackground = YES;
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
    /* UIViewController *vc = [[[UIApplication sharedApplication] keyWindow] rootViewController];
     
@@ -125,6 +202,7 @@ bool isAppResumingFromBackground = NO;
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 

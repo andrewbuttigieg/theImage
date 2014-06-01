@@ -55,4 +55,5 @@
 + (int)playerID;
 + (int)meID;
 + (NSString *)facebookID;
++ (NSString *)deviceToken;
 @end
