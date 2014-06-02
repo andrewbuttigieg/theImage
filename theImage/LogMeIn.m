@@ -77,7 +77,7 @@
                     [JNKeychain saveValue:password forKey:keyPwd];
                     
                     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-                    if (appDelegate.theDeviceToken != nil && [appDelegate.theDeviceToken isEqual: [NSNull null]]){
+                    if (appDelegate.theDeviceToken != nil && ![appDelegate.theDeviceToken isEqual: [NSNull null]]){
                         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/update_user_iospushnotificationid.php/"]];
                         [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
                         [request setHTTPBody:[[NSString stringWithFormat:@"iospushnotificationid=%@", appDelegate.theDeviceToken]dataUsingEncoding:NSUTF8StringEncoding]];

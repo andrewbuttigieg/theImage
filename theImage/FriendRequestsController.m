@@ -185,6 +185,8 @@
     else
         cell.personImage.image = [UIImage imageNamed:@"player.png"];
     
+    cell.personImage.clipsToBounds = YES;
+    cell.personImage.contentMode = UIViewContentModeScaleAspectFill;
     cell.personImage.layer.cornerRadius = 28.0;
     cell.personImage.layer.masksToBounds = YES;
     cell.personImage.layer.borderColor = [UIColor lightGrayColor].CGColor;

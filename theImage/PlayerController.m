@@ -708,17 +708,18 @@ float imageHeight = 0;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
     CGFloat y = -scrollView.contentOffset.y;
-    if (y > 64 && y < 120) {
-        self.playerImage.frame = CGRectMake(0, scrollView.contentOffset.y + 64, 320 + y - 64, 320 + y - 64);
-        self.playerImage.center = CGPointMake(self.view.center.x, self.playerImage.center.y);
-    }
-    else if (y < 64){
+    
+    if (y < 64 && y > 0){
         CGRect frame = self.playerImage.frame;
         frame.size.width = 320;
         frame.size.height = 320;
         self.playerImage.frame = frame;
         self.playerImage.center = CGPointMake(self.view.center.x, self.playerImage.center.y);
         //        self.playerImage.center = CGPointMake(self.view.center.x, self.playerImage.center.y);
+    }
+    else if (y > 64) {
+        self.playerImage.frame = CGRectMake(0, scrollView.contentOffset.y + 64, 320 + y - 64, 320 + y - 64);
+        self.playerImage.center = CGPointMake(self.view.center.x, self.playerImage.center.y);
     }
 }
 
