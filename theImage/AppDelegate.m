@@ -12,6 +12,7 @@
 #import "LogMeIn.h"
 #import "LoginController.h"
 #import "StartController.h"
+#import "MessageViewController.h"
 
 @interface AppDelegate (){
     id lastViewController;
@@ -76,6 +77,39 @@ bool isAppResumingFromBackground = NO;
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
+    
+    NSString *alertValue = [[userInfo valueForKey:@"aps"] valueForKey:@"alert"];
+    int fromValue = [[[userInfo valueForKey:@"aps"] valueForKey:@"from"] intValue];
+    
+   /* UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didReceiveRemoteNotification"
+                                                   message: alertValue
+                                                  delegate: self
+                                         cancelButtonTitle: @"OK"
+                                         otherButtonTitles:nil];
+    [alert show];
+    
+    alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didReceiveRemoteNotification"
+                                      message: [NSString stringWithFormat:@"%d", fromValue]
+                                     delegate: self
+                            cancelButtonTitle: @"OK"
+                            otherButtonTitles:nil];
+    [alert show];*/
+    
+    /////////
+    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+    if (![[navigationController.viewControllers objectAtIndex: navigationController.viewControllers.count - 1] isKindOfClass:[MessageViewController class]]){
+        
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
+        MessageViewController *controller = (MessageViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"MessageViewController"];
+        controller.chattingToID = fromValue;
+        [navigationController pushViewController:controller animated:YES];
+    }
+    
+//    controller.name = name;
+//    controller.image = image;
+    
+    
+    /*
     @try {
         for (id key in userInfo) {
             NSLog(@"key: %@, value: %@", key, [userInfo objectForKey:key]);
@@ -106,13 +140,15 @@ bool isAppResumingFromBackground = NO;
                                                  otherButtonTitles:nil];
             [alert show];
         }
-    }
+    }*/
 }
 
 //----------
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    
     [FBLoginView class];
     
     self.window.backgroundColor = [UIColor whiteColor];

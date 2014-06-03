@@ -58,7 +58,6 @@
     controller.chattingToID = [o intValue];
     controller.name = name;
     controller.image = image;
-//    controller.playerID = tappedView.tag;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
