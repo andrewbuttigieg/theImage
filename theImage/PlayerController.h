@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) NSMutableArray *pageImages;
 
+@property (nonatomic, assign) int messageAPNID;
 @property (nonatomic) int playerID;
 @property (nonatomic) int meID;
 @property (nonatomic) NSString * facebookID;
@@ -52,9 +53,10 @@
 - (void)changeImage:(int)currentPage;
 
 + (bool)useLocalisation;
-+(void)setUseLocalisation:(bool) value;
++ (void)setUseLocalisation:(bool) value;
 + (int)playerID;
 + (int)meID;
++ (int)messageAPNID;
 + (NSString *)facebookID;
 + (NSString *)deviceToken;
 @end

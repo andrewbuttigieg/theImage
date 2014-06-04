@@ -13,6 +13,8 @@
 #import "LoginController.h"
 #import "StartController.h"
 #import "MessageViewController.h"
+#import "MainVC.h"
+#import "PlayerController.h"
 
 @interface AppDelegate (){
     id lastViewController;
@@ -22,6 +24,7 @@
 @implementation AppDelegate
 @synthesize currentView;
 @synthesize theDeviceToken;
+@synthesize messageAPNID;
 
 bool isAppResumingFromBackground = NO;
 
@@ -76,79 +79,48 @@ bool isAppResumingFromBackground = NO;
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    
-    
-    NSString *alertValue = [[userInfo valueForKey:@"aps"] valueForKey:@"alert"];
-    int fromValue = [[[userInfo valueForKey:@"aps"] valueForKey:@"from"] intValue];
-    
-   /* UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didReceiveRemoteNotification"
-                                                   message: alertValue
-                                                  delegate: self
-                                         cancelButtonTitle: @"OK"
-                                         otherButtonTitles:nil];
-    [alert show];
-    
-    alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didReceiveRemoteNotification"
-                                      message: [NSString stringWithFormat:@"%d", fromValue]
-                                     delegate: self
-                            cancelButtonTitle: @"OK"
-                            otherButtonTitles:nil];
-    [alert show];*/
-    
-    /////////
-    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-    if (![[navigationController.viewControllers objectAtIndex: navigationController.viewControllers.count - 1] isKindOfClass:[MessageViewController class]]){
+    UIApplicationState state = [application applicationState];
+    if (state == UIApplicationStateInactive || state == UIApplicationStateBackground) {
+        NSString *alertValue = [[userInfo valueForKey:@"aps"] valueForKey:@"alert"];
+        int fromValue = [[[userInfo valueForKey:@"aps"] valueForKey:@"from"] intValue];
         
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
-        MessageViewController *controller = (MessageViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"MessageViewController"];
-        controller.chattingToID = fromValue;
-        [navigationController pushViewController:controller animated:YES];
-    }
-    
-//    controller.name = name;
-//    controller.image = image;
-    
-    
-    /*
-    @try {
-        for (id key in userInfo) {
-            NSLog(@"key: %@, value: %@", key, [userInfo objectForKey:key]);
-            
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didReceiveRemoteNotification"
-                                                           message: [userInfo objectForKey:key]
-                                                          delegate: self
-                                                 cancelButtonTitle: @"OK"
-                                                 otherButtonTitles:nil];
-            [alert show];
+       /* UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didReceiveRemoteNotification"
+                                                       message: alertValue
+                                                      delegate: self
+                                             cancelButtonTitle: @"OK"
+                                             otherButtonTitles:nil];
+        [alert show];
+        
+        alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didReceiveRemoteNotification"
+                                          message: [NSString stringWithFormat:@"%d", fromValue]
+                                         delegate: self
+                                cancelButtonTitle: @"OK"
+                                otherButtonTitles:nil];
+        [alert show];*/
+        
+        /////////
+        UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController.navigationController;
+        if (![[navigationController.viewControllers objectAtIndex: navigationController.viewControllers.count - 1] isKindOfClass:[MessageViewController class]]){
+            /*
+            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
+            MessageViewController *controller = (MessageViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"MessageViewController"];
+            controller.chattingToID = fromValue;
+            [navigationController pushViewController:controller animated:YES];
+            */
+            NSString * storyboardName = @"Main_iPhone";
+            NSString * viewControllerID = @"Main";
+            UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+            MainVC * controller = (MainVC *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+            messageAPNID = fromValue;
+            self.window.rootViewController = controller;
         }
     }
-    
-    @catch (NSException *exception) {
-        @try {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didReceiveRemoteNotification"
-                                                           message: [NSString stringWithFormat:@"%@", userInfo]
-                                                          delegate: self
-                                                 cancelButtonTitle: @"OK"
-                                                 otherButtonTitles:nil];
-            [alert show];
-        }
-        @catch (NSException *exception) {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didReceiveRemoteNotification"
-                                                           message: @"An error has occured"
-                                                          delegate: self
-                                                 cancelButtonTitle: @"OK"
-                                                 otherButtonTitles:nil];
-            [alert show];
-        }
-    }*/
 }
 
 //----------
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    
     [FBLoginView class];
     
     self.window.backgroundColor = [UIColor whiteColor];

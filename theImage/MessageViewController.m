@@ -22,6 +22,8 @@ CGRect const kInitialViewFrame = { 0.0f, 0.0f, 320.0f, 480.0f };
 @implementation MessageViewController
 
 NSDate *lastMessage = nil;
+NSTimer *mainTimer;
+
 static float top = 0;
 + (float) top{
     return top;
@@ -204,18 +206,25 @@ static float top = 0;
                     
                     
                     if ( [[dictionary objectForKey:@"FromUserID"] intValue] !=  u){
-                        [self appendTextToTextView: text :false: [dictionary objectForKey:@"SentDateTime"] ];
+                        [self appendTextToTextView: text :false: [dictionary objectForKey:@"SentDateTime"]: false ];
                     }
                     else{
-                        [self appendTextToTextView: text :true: [dictionary objectForKey:@"SentDateTime"]];
+                        [self appendTextToTextView: text :true: [dictionary objectForKey:@"SentDateTime"]: false];
                     }
                 }
             });
         }
     }];
     
-    [NSTimer scheduledTimerWithTimeInterval:18 target:self selector:@selector(aTime) userInfo:nil repeats:YES];
+    mainTimer = [NSTimer scheduledTimerWithTimeInterval:18 target:self selector:@selector(aTime) userInfo:nil repeats:YES];
 
+}
+
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [mainTimer invalidate];
+    mainTimer = nil;
 }
 
 -(void)aTime
@@ -244,10 +253,10 @@ static float top = 0;
                     NSString *text = [dictionary objectForKey:@"Text"];
                     
                     if ( [[dictionary objectForKey:@"FromUserID"] intValue] !=  u){
-                        [self appendTextToTextView: text :false :[dictionary objectForKey:@"SentDateTime"]];
+                        [self appendTextToTextView: text :false :[dictionary objectForKey:@"SentDateTime"]: false];
                     }
                     else{
-                        [self appendTextToTextView: text :true :[dictionary objectForKey:@"SentDateTime"]];
+                        [self appendTextToTextView: text :true :[dictionary objectForKey:@"SentDateTime"]: false];
                     }
                 }
             });
@@ -320,7 +329,7 @@ static float top = 0;
     }];
     
     //show the message on screen
-    [self appendTextToTextView: [composeBarView text] :true :[NSDate date]];
+    [self appendTextToTextView: [composeBarView text] :true :[NSDate date]: true];
     //clear the typing area
     [composeBarView setText:@"" animated:YES];
     [composeBarView resignFirstResponder];
@@ -355,27 +364,38 @@ static float top = 0;
     //[self prependTextToTextView:@"Height changed"];
 }
 
-- (void)appendTextToTextView:(NSString *)text :(bool)MeOwner :(NSDate *)MessageSent{
+- (void)appendTextToTextView:(NSString *)text :(bool)MeOwner :(NSDate *)MessageSent :(bool)fromApp{
     dispatch_async(dispatch_get_main_queue(), ^{
-        //get the date time in the iphone timezone
-        NSString *dateString = [NSString stringWithFormat:@"%@", MessageSent];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        //Special Locale for fixed dateStrings
-        NSLocale *locale = [[NSLocale alloc]initWithLocaleIdentifier:@"en_US_POSIX"];
-        [formatter setLocale:locale];
-        //Assuming the dateString is in GMT+00:00
-        //formatter by default would be set to local timezone
-        NSTimeZone *timeZone = [NSTimeZone timeZoneWithAbbreviation:@"MDT"];
-        [formatter setTimeZone:timeZone];
-        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        NSDate *date = [formatter dateFromString:dateString];
-        //After forming the date set local time zone to formatter
-        NSTimeZone *localTimeZone = [NSTimeZone localTimeZone];
-        [formatter setTimeZone:localTimeZone];
-        NSString *newTimeZoneDateString = [formatter stringFromDate:date];
+        NSString *newTimeZoneDateString = @"";
+        NSDate *date;
+        if (!fromApp){
+            //get the date time in the iphone timezone
+            NSString *dateString = [NSString stringWithFormat:@"%@", MessageSent];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+            //Special Locale for fixed dateStrings
+            NSLocale *locale = [[NSLocale alloc]initWithLocaleIdentifier:@"en_US_POSIX"];
+            [formatter setLocale:locale];
+            //Assuming the dateString is in GMT+00:00
+            //formatter by default would be set to local timezone
+            NSTimeZone *timeZone = [NSTimeZone timeZoneWithAbbreviation:@"MDT"];
+            [formatter setTimeZone:timeZone];
+            [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            date = [formatter dateFromString:dateString];
+            //After forming the date set local time zone to formatter
+            NSTimeZone *localTimeZone = [NSTimeZone localTimeZone];
+            [formatter setTimeZone:localTimeZone];
+            newTimeZoneDateString = [formatter stringFromDate:date];
+        }
+        else{
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            
+            date = [[NSDate alloc] init];
+            newTimeZoneDateString = [dateFormat stringFromDate:date];
+        }
 
         if (lastMessage == NULL || date == NULL){
-            UITextView *textViewDate = [[UITextView alloc] initWithFrame:CGRectMake(10.0f, top, 300.0f, 20.0f)];
+            UITextView *textViewDate = [[UITextView alloc] initWithFrame:CGRectMake(5.0f, top, 300.0f, 10.0f)];
             textViewDate.text = newTimeZoneDateString;
             textViewDate.textAlignment = NSTextAlignmentCenter;
             textViewDate.editable = false;
@@ -428,7 +448,7 @@ static float top = 0;
                 
             }
             else{
-                UITextView *textViewDate = [[UITextView alloc] initWithFrame:CGRectMake(10.0f, top, 300.0f, 20.0f)];
+                UITextView *textViewDate = [[UITextView alloc] initWithFrame:CGRectMake(5.0f, top, 300.0f, 10.0f)];
                 textViewDate.text = time;
                 textViewDate.textAlignment = NSTextAlignmentCenter;
                 textViewDate.editable = false;
@@ -446,17 +466,19 @@ static float top = 0;
         
         
         //the text to add to the bubble
-        UITextView *textViewInner = [[UITextView alloc] initWithFrame:CGRectMake(10.0f, 5.0f, 200.0f, 20.0f)];
+        UITextView *textViewInner = [[UITextView alloc] initWithFrame:CGRectMake(5.0f, 2.0f, 200.0f, 20.0f)];
         
         //determine the right color of the message
         if (MeOwner){
             [bubbleView setBackgroundColor:[UIColor colorWithRed:0.31f green:0.74f blue:0.98f alpha:1]];
-            [textViewInner setBackgroundColor:[UIColor colorWithRed:0.31f green:0.74f blue:0.98f alpha:1]];
+//            [textViewInner setBackgroundColor:[UIColor colorWithRed:0.31f green:0.74f blue:0.98f alpha:1]];
+            [textViewInner setBackgroundColor:[UIColor clearColor]];
             [textViewInner setTextColor:[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1]];
         }
         else{
             [bubbleView setBackgroundColor:[UIColor colorWithHue:250.0f/255.0f saturation:2.0f/255.0f brightness:235.0f/255.0f alpha:1]];
-            [textViewInner setBackgroundColor:[UIColor colorWithHue:206.0f/360.0f saturation:0.81f brightness:0.99f alpha:0]];
+            [textViewInner setBackgroundColor:[UIColor clearColor]];
+             //[UIColor colorWithHue:206.0f/360.0f saturation:0.81f brightness:0.99f alpha:0]];
             [textViewInner setTextColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1]];
         }
         
@@ -474,16 +496,16 @@ static float top = 0;
         CGSize screenSize = screenBound.size;
         CGFloat screenWidth = screenSize.width;
         
-        float left = (screenWidth - (textViewInner.frame.size.width + 30));
+        float left = (screenWidth - (textViewInner.frame.size.width + 20));
         
         //left align if other person messaged us
         if (!MeOwner){
             left = 5.0f;
         }
         //put the bubble in the right place
-        bubbleView.frame=CGRectMake(left, top, textViewInner.frame.size.width + 20, textViewInner.frame.size.height + 10);
+        bubbleView.frame=CGRectMake(left, top, textViewInner.frame.size.width + 10, textViewInner.frame.size.height + 5);
         
-        top = top + textViewInner.frame.size.height + 12;
+        top = top + textViewInner.frame.size.height + 8;
         [self.textView addSubview:bubbleView];
         
         

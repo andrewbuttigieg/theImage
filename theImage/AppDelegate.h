@@ -12,10 +12,12 @@
 {
      NSString *currentView;
      NSString *theDeviceToken;
+    int messageAPNID;
 }
 
 @property (nonatomic) NSString * currentView;
 @property (nonatomic) NSString * theDeviceToken;
+@property (nonatomic) int messageAPNID;
 @property (strong, nonatomic) UIWindow *window;
 
 @end

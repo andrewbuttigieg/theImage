@@ -11,6 +11,7 @@
 #import "StartController.h"
 #import "LogMeIn.h"
 #import "PlayerController.h"
+#import "MessageViewController.h"
 
 @interface MainVC ()
 

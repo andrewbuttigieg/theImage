@@ -22,6 +22,7 @@
 
 static int playerID = 0;
 static int meID = 0;
+static int messageAPNID = 0;
 
 - (void)changeImage:(int)currentPage{
     if (
@@ -56,6 +57,11 @@ static NSString* deviceToken;
 + (int) playerID{
     return playerID;
 }
+
++ (int) messageAPNID{
+    return messageAPNID;
+}
+
 + (int) meID{
     return meID;
 }
@@ -307,6 +313,14 @@ static NSString* deviceToken;
 {
     [super viewDidLoad];
     
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if (appDelegate.messageAPNID > 0){
+        NSString * storyboardName = @"Main_iPhone";
+        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+        MessageViewController *controller = (MessageViewController*)[storyboard instantiateViewControllerWithIdentifier: @"MessageViewController"];
+        controller.chattingToID = appDelegate.messageAPNID;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
     
     NSString *empty = [NSString stringWithFormat:@""];
     self.name.text = empty;
@@ -494,7 +508,7 @@ static NSString* deviceToken;
                                 if (
                                     [theUser valueForKey:@"About"] != [NSNull null] &&
                                     [theUser valueForKey:@"About"] != nil &&
-                                    [self.aboutLabel.text length] > 5){
+                                    [[theUser valueForKey:@"About"] length] > 5){
                                     self.aboutLabel.text = [theUser valueForKey:@"About"];
                                 }
                                 /*else if ([self.aboutLabel.text length] < 5)
