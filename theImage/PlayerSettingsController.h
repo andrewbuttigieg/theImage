@@ -37,8 +37,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *height;
 @property (strong, nonatomic) IBOutlet UITextField *weight;
 @property (strong, nonatomic) IBOutlet UITextField *position;
-@property (strong, nonatomic) IBOutlet UITextField *about;
 
+@property (strong, nonatomic) IBOutlet UITextView *about;
 - (IBAction)save_player:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UIButton *toUpload;

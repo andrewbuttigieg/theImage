@@ -38,4 +38,7 @@
 
 + (int)findPlayerID;
 
+- (IBAction)findThePlayer:(id)sender;
+
+
 @end

@@ -1234,13 +1234,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="About" minimumFontSize="17" id="dRZ-Xa-oBc">
-                                <rect key="frame" x="50" y="602" width="250" height="84"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Age" minimumFontSize="17" id="qsu-eu-nd6">
                                 <rect key="frame" x="49" y="388" width="250" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1484,6 +1477,13 @@
                                     <action selector="image5:" destination="Ah5-dz-Yya" eventType="touchUpInside" id="fBl-6y-A3t"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Tg4-MI-Cvb">
+                                <rect key="frame" x="43" y="602" width="266" height="90"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.94117653369903564" green="0.93725496530532837" blue="0.95686280727386475" alpha="1" colorSpace="deviceRGB"/>
                     </scrollView>
@@ -1496,7 +1496,7 @@
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="about" destination="dRZ-Xa-oBc" id="Ph0-MN-kHb"/>
+                        <outlet property="about" destination="Tg4-MI-Cvb" id="0aR-mf-7Mt"/>
                         <outlet property="age" destination="qsu-eu-nd6" id="B8b-38-oh4"/>
                         <outlet property="changePwd" destination="K1o-Un-pjP" id="fUD-Zk-vkt"/>
                         <outlet property="email" destination="DcT-dy-1xT" id="Mmh-7i-gAb"/>
@@ -2616,6 +2616,21 @@
                     <scrollView key="view" clipsSubviews="YES" contentMode="scaleToFill" id="wa1-rX-CKi">
                         <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="x32-LO-Ydc">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Players"/>
+                                    <segment title="Agent"/>
+                                    <segment title="Scouts"/>
+                                    <segment title="Coaches"/>
+                                </segments>
+                                <connections>
+                                    <action selector="findThePlayer:" destination="NUa-ev-nve" eventType="valueChanged" id="oNj-Fi-VFw"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </scrollView>
                     <toolbarItems>

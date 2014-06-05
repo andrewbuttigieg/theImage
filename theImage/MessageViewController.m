@@ -176,19 +176,9 @@ static float top = 0;
     fakeButton.imageView.clipsToBounds = true;
     fakeButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
     fakeButton.imageView.layer.cornerRadius = 15.0;
-    
-    /*fakeButton.layer.borderColor = [UIColor blueColor].CGColor;*/
-/*    fakeButton.layer.borderWidth = 1.0f;
-    fakeButton.layer.cornerRadius = 17.0;*/
-    //[fakeButton addTarget:self action:@selector(goToPlayer:) forControlEvents:UIControlEventTouchUpInside];
-    
     [fakeButton addTarget:self action:@selector(goToPlayer:) forControlEvents:UIControlEventTouchUpInside];
-//    [customButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-
-    
     
     UIBarButtonItem *fakeButtonItem = [[UIBarButtonItem alloc] initWithCustomView:fakeButton];
-    
     
     self.navigationItem.rightBarButtonItem = fakeButtonItem;
 
@@ -229,6 +219,11 @@ static float top = 0;
 {
     [mainTimer invalidate];
     mainTimer = nil;
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    mainTimer = [NSTimer scheduledTimerWithTimeInterval:18 target:self selector:@selector(aTime) userInfo:nil repeats:YES];   
 }
 
 -(void)aTime

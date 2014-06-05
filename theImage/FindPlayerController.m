@@ -29,6 +29,11 @@ UIActivityIndicatorView *spinner;
 
 static int findPlayerID = 0;
 
+- (IBAction)findThePlayer:(id)sender {
+    UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
+    NSLog(@"@%", [segmentedControl titleForSegmentAtIndex: [segmentedControl selectedSegmentIndex]]);
+}
+
 + (int) findPlayerID{
     return findPlayerID;
 }

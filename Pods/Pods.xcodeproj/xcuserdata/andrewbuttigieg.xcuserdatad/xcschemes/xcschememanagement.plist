@@ -4,55 +4,72 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods 2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>Pods-AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>Pods-AMSlideMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>Pods-PHFComposeBarView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>Pods-PHFDelegateChain.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0C769F299D694239A4C98DA4</key>
+		<key>10BA93F8E5EE4E9E99AB3A12</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6E20E1AA74944C7B9BEC1E77</key>
+		<key>56005A5DB91D41D8A1A3189D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CF02CAE4E6A64316B086C7A3</key>
+		<key>B13D563EB47A4F05977111EB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E33D7523BA054AEC83BFDA1F</key>
+		<key>C203062CEF08433784956531</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E7052B4813304860BAF0E06B</key>
+		<key>E102F46665FA4C0E8D1EAFE8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

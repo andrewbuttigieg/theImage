@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "theImage/FindPlayerController.m"
-            timestampString = "423340635.437823"
+            timestampString = "423696989.906211"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "-singleTapGestureCaptured:"
             landmarkType = "5">
          </BreakpointContent>
