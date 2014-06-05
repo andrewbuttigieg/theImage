@@ -81,8 +81,24 @@ bool isAppResumingFromBackground = NO;
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     UIApplicationState state = [application applicationState];
     if (state == UIApplicationStateInactive || state == UIApplicationStateBackground) {
-        NSString *alertValue = [[userInfo valueForKey:@"aps"] valueForKey:@"alert"];
-        int fromValue = [[[userInfo valueForKey:@"aps"] valueForKey:@"from"] intValue];
+        
+        //NSString *alertValue = [[userInfo valueForKey:@"aps"] valueForKey:@"alert"];
+        int fromValue = -1;
+        int connectReq = -1;
+        
+        if ([userInfo valueForKey:@"aps"] != [NSNull null] &&
+            [userInfo valueForKey:@"aps"] != nil &&
+            [[userInfo valueForKey:@"aps"] valueForKey:@"from"] != [NSNull null] &&
+            [[userInfo valueForKey:@"aps"] valueForKey:@"from"] != nil){
+            fromValue = [[[userInfo valueForKey:@"aps"] valueForKey:@"from"] intValue];
+        }
+        
+        if ([userInfo valueForKey:@"aps"] != [NSNull null] &&
+            [userInfo valueForKey:@"aps"] != nil &&
+            [[userInfo valueForKey:@"aps"] valueForKey:@"req"] != [NSNull null] &&
+            [[userInfo valueForKey:@"aps"] valueForKey:@"req"] != nil){
+            connectReq = [[[userInfo valueForKey:@"aps"] valueForKey:@"req"] intValue];
+        }
         
        /* UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didReceiveRemoteNotification"
                                                        message: alertValue
@@ -98,22 +114,40 @@ bool isAppResumingFromBackground = NO;
                                 otherButtonTitles:nil];
         [alert show];*/
         
-        /////////
-        UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController.navigationController;
-        if (![[navigationController.viewControllers objectAtIndex: navigationController.viewControllers.count - 1] isKindOfClass:[MessageViewController class]]){
-            /*
-            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
-            MessageViewController *controller = (MessageViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"MessageViewController"];
-            controller.chattingToID = fromValue;
-            [navigationController pushViewController:controller animated:YES];
-            */
-            NSString * storyboardName = @"Main_iPhone";
-            NSString * viewControllerID = @"Main";
-            UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
-            MainVC * controller = (MainVC *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
-            messageAPNID = fromValue;
-            self.window.rootViewController = controller;
-        }
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/is_logged_in.php/"]];
+        [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+        [request setHTTPMethod:@"POST"];
+        
+        [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+            
+            if (error) {
+                
+            } else {
+                NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                            options:0
+                                                                              error:&error];
+                for(NSDictionary *dictionary in jsonArray)
+                {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if ([[dictionary objectForKey:@"accepted"] intValue] == 1){
+                            //logged in
+                            UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController.navigationController;
+                            if (![[navigationController.viewControllers objectAtIndex: navigationController.viewControllers.count - 1] isKindOfClass:[MessageViewController class]]){
+                                if (fromValue > 0){
+                                    NSString * storyboardName = @"Main_iPhone";
+                                    NSString * viewControllerID = @"Main";
+                                    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+                                    MainVC * controller = (MainVC *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+                                    messageAPNID = fromValue;
+                                    self.window.rootViewController = controller;
+                                }
+                            }
+                        }
+                    }); //dispatch_async
+                }
+            }
+        }]; //req
     }
 }
 

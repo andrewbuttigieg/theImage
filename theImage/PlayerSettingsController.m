@@ -206,6 +206,7 @@ static int updateImage = 1;
                         self.marketLabel.hidden = TRUE;
                     }
                     else{
+                        player = false;
                         //not a player
                         if ([dictionary objectForKey:@"LookingForPlayer"] && ![[dictionary objectForKey:@"LookingForPlayer" ] isKindOfClass:[NSNull class]]){
 

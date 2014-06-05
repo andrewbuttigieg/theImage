@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MessageCenterController : UITableViewController
+@interface MessageCenterController : UITableViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray *dateForTable;
 @property (nonatomic, strong) NSMutableArray *imageForTable;

@@ -173,6 +173,10 @@ static float top = 0;
     [fakeButton setImage:image forState:UIControlStateNormal];
     fakeButton.frame = CGRectMake(0, 0, 30, 30);
     
+    fakeButton.imageView.clipsToBounds = true;
+    fakeButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    fakeButton.imageView.layer.cornerRadius = 15.0;
+    
     /*fakeButton.layer.borderColor = [UIColor blueColor].CGColor;*/
 /*    fakeButton.layer.borderWidth = 1.0f;
     fakeButton.layer.cornerRadius = 17.0;*/
@@ -395,7 +399,7 @@ static float top = 0;
         }
 
         if (lastMessage == NULL || date == NULL){
-            UITextView *textViewDate = [[UITextView alloc] initWithFrame:CGRectMake(5.0f, top, 300.0f, 10.0f)];
+            UITextView *textViewDate = [[UITextView alloc] initWithFrame:CGRectMake(5.0f, top, 300.0f, 20.0f)];
             textViewDate.text = newTimeZoneDateString;
             textViewDate.textAlignment = NSTextAlignmentCenter;
             textViewDate.editable = false;
@@ -448,8 +452,9 @@ static float top = 0;
                 
             }
             else{
-                UITextView *textViewDate = [[UITextView alloc] initWithFrame:CGRectMake(5.0f, top, 300.0f, 10.0f)];
+                UITextView *textViewDate = [[UITextView alloc] initWithFrame:CGRectMake(5.0f, top, 300.0f, 20.0f)];
                 textViewDate.text = time;
+                textViewDate.textColor = [UIColor blackColor];
                 textViewDate.textAlignment = NSTextAlignmentCenter;
                 textViewDate.editable = false;
                 textViewDate.scrollEnabled = false;

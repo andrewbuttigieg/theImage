@@ -77,7 +77,8 @@ static int findPlayerID = 0;
 - (void)findPeople:(NSInteger) type{
     
     spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    spinner.center = CGPointMake(160, 240);
+    spinner.center = CGPointMake(160, 200);
+    spinner.hidesWhenStopped = YES;
     spinner.tag = 12121212;
     [self.view addSubview:spinner];
     [spinner startAnimating];
@@ -148,10 +149,10 @@ static int findPlayerID = 0;
                 
                 self.putThemThere.contentSize = CGSizeMake(320, (row + 1) * 106);
                 [self.putThemThere setContentSize:(CGSizeMake(320, (row + 1) * 106))];
+                [spinner stopAnimating];
             });
             self.putThemThere.userInteractionEnabled=YES;
             [self.putThemThere setScrollEnabled:YES];
-            [spinner stopAnimating];
         }
     }];
 }

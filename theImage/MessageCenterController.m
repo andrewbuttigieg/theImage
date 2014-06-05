@@ -58,9 +58,9 @@
     controller.chattingToID = [o intValue];
     controller.name = name;
     controller.image = image;
+ 
     [self.navigationController pushViewController:controller animated:YES];
 }
-
 
 /*
  This sets the value of the items in the cell
@@ -301,7 +301,7 @@ loads the view - we will get the users messages from the server so that they can
     
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
     [refresh addTarget:self action:@selector(load) forControlEvents:UIControlEventValueChanged];
-    
+
     self.refreshControl = refresh;
     
     [self load];    
@@ -313,5 +313,63 @@ loads the view - we will get the users messages from the server so that they can
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UITableViewDataSource
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        int idx = indexPath.row;
+        NSString *o = [self.userIDForTable objectAtIndex:idx];
+        int chattingToID = [o intValue];
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/delete_message_convo.php/"]];
+        [request setHTTPBody:[[NSString stringWithFormat:@"u=%d", chattingToID]dataUsingEncoding:NSUTF8StringEncoding]];
+        [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+        [request setHTTPMethod:@"POST"];
+        
+        [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+            
+            if (error) {
+                
+            } else {
+                NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                            options:0
+                                                                              error:&error];
+                for(NSDictionary *dictionary in jsonArray)
+                {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if ([[dictionary objectForKey:@"accepted"] intValue] == 1){
+                            //delete
+                            [self.dateForTable removeObjectAtIndex:idx];
+                            [self.imageForTable removeObjectAtIndex:idx];
+                            [self.textForTable removeObjectAtIndex:idx];
+                            [self.nameForTable removeObjectAtIndex:idx];
+                            [self.userTypeForTable removeObjectAtIndex:idx];
+                            [self.userIDForTable removeObjectAtIndex:idx];
+                            [self.locationForTable removeObjectAtIndex:idx];
+                            [self.unreadForTable removeObjectAtIndex:idx];
+                            
+                            [self.tableView reloadData];
+                            [self.theTable reloadData];
+                        }
+                        else{
+
+                        }
+                    });
+                }
+            }
+        }];
+        
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
 
 @end
