@@ -13,11 +13,15 @@
      NSString *currentView;
      NSString *theDeviceToken;
     int messageAPNID;
+    int connectionAPNID;
 }
 
 @property (nonatomic) NSString * currentView;
 @property (nonatomic) NSString * theDeviceToken;
+
 @property (nonatomic) int messageAPNID;
+@property (nonatomic) int connectionAPNID;
+
 @property (strong, nonatomic) UIWindow *window;
 
 @end

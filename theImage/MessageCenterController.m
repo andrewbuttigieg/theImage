@@ -11,6 +11,8 @@
 #import "messageGroupCell.h"
 #import "MessageViewController.h"
 #import "ValidURL.h"
+#import "UIViewController+AMSlideMenu.h"
+#import "AMSlideMenuMainViewController.h"
 
 @interface MessageCenterController ()
 
@@ -56,8 +58,9 @@
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
     MessageViewController * controller = (MessageViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
     controller.chattingToID = [o intValue];
-    controller.name = name;
-    controller.image = image;
+
+    /*    controller.name = name;
+    controller.image = image;*/
  
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -285,17 +288,39 @@
 }
 
 - (void)stopRefresh
-
 {
     [self.refreshControl endRefreshing];
-    
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.mainSlideMenu.panGesture.enabled = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    self.mainSlideMenu.panGesture.enabled = YES;
+}
+
 /*
 loads the view - we will get the users messages from the server so that they can choose which ones to read..
  */
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    //[controller disableSlidePanGestureForRightMenu];
+    //[controller disableSlidePanGestureForLeftMenu];
+    [self disableSlidePanGestureForLeftMenu];
+    
+    
+    self.tableView.delegate = self;
+    self.tableView.userInteractionEnabled=YES;
     
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     

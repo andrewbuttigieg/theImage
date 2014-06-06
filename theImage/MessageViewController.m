@@ -9,6 +9,7 @@
 #import "MessageViewController.h"
 #import "PlayerController.h"
 #import "messageGroupCell.h"
+#import "ValidURL.h"
 
 @interface MessageViewController ()
     @property (readonly, nonatomic) UIView *container;
@@ -53,6 +54,18 @@ static float top = 0;
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillHideNotification
                                                   object:nil];
+}
+
+-(void)tableView:(UITableView*)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView setEditing:YES animated:YES];
+}
+
+
+-(void)tableView:(UITableView*)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView setEditing:NO animated:YES];
+    
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
@@ -155,32 +168,6 @@ static float top = 0;
     [request setHTTPBody:[[NSString stringWithFormat:@"u=%d", self.chattingToID]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     
-    int u = PlayerController.meID;
-    self.title = self.name;
-    
-
-    UIImage * image;
-    if ([self.image isEqual:@"player.png"])
-    {
-        image = [UIImage imageNamed:@"player.png"];
-    }
-    else{
-        NSURL * imageURL = [NSURL URLWithString:self.image];
-        NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-        image = [UIImage imageWithData:imageData];
-    }
-    UIButton* fakeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [fakeButton setImage:image forState:UIControlStateNormal];
-    fakeButton.frame = CGRectMake(0, 0, 30, 30);
-    
-    fakeButton.imageView.clipsToBounds = true;
-    fakeButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    fakeButton.imageView.layer.cornerRadius = 15.0;
-    [fakeButton addTarget:self action:@selector(goToPlayer:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *fakeButtonItem = [[UIBarButtonItem alloc] initWithCustomView:fakeButton];
-    
-    self.navigationItem.rightBarButtonItem = fakeButtonItem;
 
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
@@ -193,8 +180,71 @@ static float top = 0;
                                                                           error:&error];
             dispatch_async(dispatch_get_main_queue(), ^{
                 
+                int u = PlayerController.meID;
+                self.title = self.name;
+                
+                
+                UIImage * image;
+                /*bool imageThere = false;
+                if ([self.image isEqual:@"player.png"] || self.image == Nil)
+                {
+                    image = [UIImage imageNamed:@"player.png"];
+                }
+                else{
+                    NSURL * imageURL = [NSURL URLWithString:self.image];
+                    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+                    image = [UIImage imageWithData:imageData];
+                    imageThere = true;
+                }
+                UIButton* fakeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                [fakeButton setImage:image forState:UIControlStateNormal];
+                fakeButton.frame = CGRectMake(0, 0, 30, 30);
+                fakeButton.imageView.clipsToBounds = true;
+                fakeButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
+                fakeButton.imageView.layer.cornerRadius = 15.0;
+                [fakeButton addTarget:self action:@selector(goToPlayer:) forControlEvents:UIControlEventTouchUpInside];
+                UIBarButtonItem *fakeButtonItem = [[UIBarButtonItem alloc] initWithCustomView:fakeButton];
+                self.navigationItem.rightBarButtonItem = fakeButtonItem;*/
+                
+                int i = 0;
+                
                 for(NSDictionary *dictionary in jsonArray)
                 {
+                    if (i++ == 0){
+                        self.title = [dictionary objectForKey:@"Firstname"];
+                        if ([ValidURL isValidUrl : [dictionary objectForKey:@"PhotoURL"]])
+                        {
+                            NSURL * imageURL = [NSURL URLWithString:[dictionary objectForKey:@"PhotoURL"]];
+                            NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+                            image = [UIImage imageWithData:imageData];
+                            UIButton* fakeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                            [fakeButton setImage:image forState:UIControlStateNormal];
+                            fakeButton.frame = CGRectMake(0, 0, 30, 30);
+                            fakeButton.imageView.clipsToBounds = true;
+                            fakeButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
+                            fakeButton.imageView.layer.cornerRadius = 15.0;
+                            [fakeButton addTarget:self action:@selector(goToPlayer:) forControlEvents:UIControlEventTouchUpInside];
+                            
+                            UIBarButtonItem *fakeButtonItem = [[UIBarButtonItem alloc] initWithCustomView:fakeButton];
+                            
+                            self.navigationItem.rightBarButtonItem = fakeButtonItem;
+
+                        }
+                        else{
+                            image = [UIImage imageNamed:@"player.png"];
+                            UIButton* fakeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                            [fakeButton setImage:image forState:UIControlStateNormal];
+                            fakeButton.frame = CGRectMake(0, 0, 30, 30);
+                            fakeButton.imageView.clipsToBounds = true;
+                            fakeButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
+                            fakeButton.imageView.layer.cornerRadius = 15.0;
+                            [fakeButton addTarget:self action:@selector(goToPlayer:) forControlEvents:UIControlEventTouchUpInside];
+                            
+                            UIBarButtonItem *fakeButtonItem = [[UIBarButtonItem alloc] initWithCustomView:fakeButton];
+                            
+                            self.navigationItem.rightBarButtonItem = fakeButtonItem;
+                        }
+                    }
                     NSLog(@"%@", dictionary);
                     NSString *text = [dictionary objectForKey:@"Text"];
                     

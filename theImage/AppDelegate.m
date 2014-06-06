@@ -25,6 +25,7 @@
 @synthesize currentView;
 @synthesize theDeviceToken;
 @synthesize messageAPNID;
+@synthesize connectionAPNID;
 
 bool isAppResumingFromBackground = NO;
 
@@ -134,6 +135,8 @@ bool isAppResumingFromBackground = NO;
                             //logged in
                             UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController.navigationController;
                             if (![[navigationController.viewControllers objectAtIndex: navigationController.viewControllers.count - 1] isKindOfClass:[MessageViewController class]]){
+                                
+                                //from
                                 if (fromValue > 0){
                                     NSString * storyboardName = @"Main_iPhone";
                                     NSString * viewControllerID = @"Main";
@@ -142,6 +145,20 @@ bool isAppResumingFromBackground = NO;
                                     messageAPNID = fromValue;
                                     self.window.rootViewController = controller;
                                 }
+                                else
+                                    messageAPNID = -1;
+                                
+                                //connection
+                                if (connectReq){
+                                    NSString * storyboardName = @"Main_iPhone";
+                                    NSString * viewControllerID = @"Main";
+                                    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+                                    MainVC * controller = (MainVC *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+                                    connectionAPNID = connectReq;
+                                    self.window.rootViewController = controller;
+                                }
+                                else
+                                    connectionAPNID = -1;
                             }
                         }
                     }); //dispatch_async

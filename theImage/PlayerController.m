@@ -319,7 +319,13 @@ static NSString* deviceToken;
         UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
         MessageViewController *controller = (MessageViewController*)[storyboard instantiateViewControllerWithIdentifier: @"MessageViewController"];
         controller.chattingToID = appDelegate.messageAPNID;
+        appDelegate.messageAPNID = 0;
         [self.navigationController pushViewController:controller animated:YES];
+    }
+    else if (appDelegate.connectionAPNID > 0){
+        self.playerID = appDelegate.connectionAPNID;
+        playerID = appDelegate.connectionAPNID;
+        appDelegate.connectionAPNID = 0;
     }
     
     NSString *empty = [NSString stringWithFormat:@""];

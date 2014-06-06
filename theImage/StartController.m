@@ -45,8 +45,7 @@ bool loggedIn = false;
 {
 //    self.delegate.currentView = @"Start";
 
-    [self disableSlidePanGestureForLeftMenu];
-    
+    self.mainSlideMenu.panGesture.enabled = NO;
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     appDelegate.currentView = @"start";
     
@@ -60,6 +59,7 @@ bool loggedIn = false;
 {
     [self.moviePlayer pause];
     [super viewWillDisappear:animated];
+    self.mainSlideMenu.panGesture.enabled = YES;
     //self.navigationController.toolbarHidden = NO;
     [self.navigationController setNavigationBarHidden:NO];
     [super viewWillDisappear:animated];
@@ -200,6 +200,7 @@ bool loggedIn = false;
     NSString * viewControllerID = @"Main";
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
     MainVC * controller = (MainVC *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+    
     [self.navigationController pushViewController:controller animated:YES];
 }
 
