@@ -11,6 +11,7 @@
 #import "LogMeIn.h"
 #import "MainVC.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "UIViewController+AMSlideMenu.h"
 
 @interface LoginController ()
 
@@ -38,17 +39,16 @@ bool movedHere = false;
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    
-    
-//    [self.delegate.  @"Start"]
-    [self.moviePlayer play];
     [super viewWillAppear:animated];
+    [self.moviePlayer play];
+    self.mainSlideMenu.panGesture.enabled = NO;
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
-    [self.moviePlayer pause];
     [super viewWillDisappear:animated];
+    [self.moviePlayer pause];
+    self.mainSlideMenu.panGesture.enabled = YES;
 }
 
 - (void)applicationDidBecomeActive:(NSNotification *) notification
@@ -84,7 +84,10 @@ bool movedHere = false;
     
     FBLoginView *loginView = [[FBLoginView alloc] init];
     // Align the button in the center horizontally
-    loginView.readPermissions = @[@"user_birthday", @"basic_info", @"email", @"public_profile", @"user_friends", @"user_photos"];
+    //loginView.readPermissions = @[@"user_birthday", @"basic_info", @"email", @"public_profile", @"user_friends", @"user_photos"];
+
+    loginView.readPermissions = @[@"email", @"public_profile", @"user_friends"];
+    
     loginView.delegate = self;
     loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 100);
     [self.scrollViewLogin addSubview:loginView];

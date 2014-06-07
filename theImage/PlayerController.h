@@ -14,7 +14,6 @@
 
 @property (nonatomic, strong) NSMutableArray *pageImages;
 
-@property (nonatomic, assign) int messageAPNID;
 @property (nonatomic) int playerID;
 @property (nonatomic) int meID;
 @property (nonatomic) NSString * facebookID;

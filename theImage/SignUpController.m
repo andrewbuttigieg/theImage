@@ -11,6 +11,7 @@
 #import "JNKeychain.h"
 #import "LogMeIn.h"
 #import "MainVC.h"
+#import "UIViewController+AMSlideMenu.h"
 
 @interface SignUpController ()
 
@@ -31,6 +32,18 @@ static id<FBGraphUser> facebookUser;
     return self;
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.mainSlideMenu.panGesture.enabled = NO;
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.mainSlideMenu.panGesture.enabled = YES;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -47,7 +60,8 @@ static id<FBGraphUser> facebookUser;
     
     FBLoginView *loginView = [[FBLoginView alloc] init];
     // Align the button in the center horizontally
-    loginView.readPermissions = @[@"user_birthday", @"basic_info", @"email", @"public_profile", @"user_friends", @"user_photos"];
+    //loginView.readPermissions = @[@"user_birthday", @"basic_info", @"email", @"public_profile", @"user_friends", @"user_photos"];
+    loginView.readPermissions = @[@"email", @"public_profile", @"user_friends"];
     loginView.delegate = self;
     loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 20);
     [self.scrollView addSubview:loginView];

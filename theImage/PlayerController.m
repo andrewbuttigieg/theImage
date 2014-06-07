@@ -22,7 +22,6 @@
 
 static int playerID = 0;
 static int meID = 0;
-static int messageAPNID = 0;
 
 - (void)changeImage:(int)currentPage{
     if (
@@ -56,10 +55,6 @@ static NSString* deviceToken;
 
 + (int) playerID{
     return playerID;
-}
-
-+ (int) messageAPNID{
-    return messageAPNID;
 }
 
 + (int) meID{
@@ -312,8 +307,9 @@ static NSString* deviceToken;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
     if (appDelegate.messageAPNID > 0){
         NSString * storyboardName = @"Main_iPhone";
         UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];

@@ -112,8 +112,7 @@
                         NSString * storyboardName = @"Main_iPhone";
                         NSString * viewControllerID = @"StartController";
                         UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
-                        StartController * controller = (StartController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
-                        
+                        StartController * controller = (StartController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];                        
                         [self.navigationController pushViewController:controller animated:YES];
                     }
                     break;

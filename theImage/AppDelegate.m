@@ -101,13 +101,13 @@ bool isAppResumingFromBackground = NO;
             connectReq = [[[userInfo valueForKey:@"aps"] valueForKey:@"req"] intValue];
         }
         
-       /* UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didReceiveRemoteNotification"
-                                                       message: alertValue
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - from value"
+                                                       message: [NSString stringWithFormat:@"%d", fromValue]
                                                       delegate: self
                                              cancelButtonTitle: @"OK"
                                              otherButtonTitles:nil];
         [alert show];
-        
+       /*
         alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didReceiveRemoteNotification"
                                           message: [NSString stringWithFormat:@"%d", fromValue]
                                          delegate: self
@@ -136,6 +136,8 @@ bool isAppResumingFromBackground = NO;
                             UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController.navigationController;
                             if (![[navigationController.viewControllers objectAtIndex: navigationController.viewControllers.count - 1] isKindOfClass:[MessageViewController class]]){
                                 
+                                messageAPNID = -1;
+                                connectionAPNID = -1;
                                 //from
                                 if (fromValue > 0){
                                     NSString * storyboardName = @"Main_iPhone";
@@ -145,11 +147,9 @@ bool isAppResumingFromBackground = NO;
                                     messageAPNID = fromValue;
                                     self.window.rootViewController = controller;
                                 }
-                                else
-                                    messageAPNID = -1;
                                 
                                 //connection
-                                if (connectReq){
+                                else if (connectReq > 0){
                                     NSString * storyboardName = @"Main_iPhone";
                                     NSString * viewControllerID = @"Main";
                                     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
@@ -157,8 +157,6 @@ bool isAppResumingFromBackground = NO;
                                     connectionAPNID = connectReq;
                                     self.window.rootViewController = controller;
                                 }
-                                else
-                                    connectionAPNID = -1;
                             }
                         }
                     }); //dispatch_async
@@ -226,7 +224,6 @@ bool isAppResumingFromBackground = NO;
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     isAppResumingFromBackground = YES;
     
