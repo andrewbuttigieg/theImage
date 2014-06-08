@@ -559,7 +559,10 @@ static NSString* deviceToken;
                                     }
                                     
                                     if (!player){
-                                        if ([[theUser valueForKey:@"LookingForPartnership"] intValue] == 1){
+                                        if (
+                                            [theUser valueForKey:@"LookingForPartnership"] != [NSNull null] &&
+                                            [theUser valueForKey:@"LookingForPartnership"] != nil &&
+                                            [[theUser valueForKey:@"LookingForPartnership"] intValue] == 1){
                                             self.offeringAPlayer_Label.hidden = false;
                                             self.offeringAPlayer.hidden = false;
                                             
@@ -576,7 +579,10 @@ static NSString* deviceToken;
                                             self.lookingForPlayer.frame = frame;
                                         }
                                         
-                                        if ([[theUser valueForKey:@"LookingForPlayer"] intValue] == 1){
+                                        if (
+                                            [theUser valueForKey:@"LookingForPlayer"] != [NSNull null] &&
+                                            [theUser valueForKey:@"LookingForPlayer"] != nil &&
+                                            [[theUser valueForKey:@"LookingForPlayer"] intValue] == 1){
                                             self.lookingForPlayer_Labe.hidden = false;
                                             self.lookingForPlayer.hidden = false;
                                             
@@ -593,7 +599,7 @@ static NSString* deviceToken;
                                         else{
                                             //telling the next item where to be
                                             CGRect frame = self.playingWhere.frame;
-                                            frame.origin.y = self.lookingForPlayer.frame.origin.y;
+                                            frame.origin.y = self.lookingForPlayer_Labe.frame.origin.y;
                                             self.playingWhere.frame = frame;
                                             
                                             frame = self.postion.frame;
@@ -643,7 +649,7 @@ static NSString* deviceToken;
                                 if ([theUser valueForKey:@"Position"] != [NSNull null] &&
                                     [theUser valueForKey:@"Position"] != nil &&
                                     [[theUser valueForKey:@"Position"] length] > 0 &&
-                                    ![self.postion.text isEqualToString:@"0"]){
+                                    ![[theUser valueForKey:@"Position"] isEqualToString:@"0"]){
                                     self.postion.text = [theUser valueForKey:@"Position"];
                                 }
                                 else{
@@ -654,13 +660,13 @@ static NSString* deviceToken;
                                         self.playingWhere.hidden = TRUE;
                                         self.postion.hidden = TRUE;
                                         
-                                        frame = self.playingWhere.frame;
-                                        frame.origin.y = self.aboutTitle.frame.origin.y;
-                                        self.playingWhere.frame = frame;
+                                        frame = self.aboutTitle.frame;
+                                        frame.origin.y = self.playingWhere.frame.origin.y;
+                                        self.aboutTitle.frame = frame;
                                         
-                                        frame = self.postion.frame;
-                                        frame.origin.y = self.aboutLabel.frame.origin.y;
-                                        self.postion.frame = frame;
+                                        frame = self.aboutLabel.frame;
+                                        frame.origin.y = self.postion.frame.origin.y;
+                                        self.aboutLabel.frame = frame;
                                     }
                                 }
                                 

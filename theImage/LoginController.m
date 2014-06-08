@@ -118,14 +118,42 @@ bool movedHere = false;
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
     
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problem"
+                                                    message:@"FB1"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Ok"
+                                          otherButtonTitles:nil];
+    [alert show];
+    
     if (!self.isViewLoaded || !self.view.window) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problem"
+                                                        message:@"FB2"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
         return;
     }
     
-    if (self.messageCounter >0)
+    if (self.messageCounter >0){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problem"
+                                                        message:@"FB3"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
         return;
+    }
     else
     {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problem"
+                                                        message:@"FB4"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
+        
         self.messageCounter++;
     
         NSString *facebookPlayerID = user.id;

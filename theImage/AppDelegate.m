@@ -104,12 +104,13 @@ bool isAppResumingFromBackground = NO;
             connectReq = [[[userInfo valueForKey:@"aps"] valueForKey:@"req"] intValue];
         }
         
+        /*
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - from value"
                                                        message: [NSString stringWithFormat:@"%d", fromValue]
                                                       delegate: self
                                              cancelButtonTitle: @"OK"
                                              otherButtonTitles:nil];
-        [alert show];
+        [alert show];*/
        /*
         alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didReceiveRemoteNotification"
                                           message: [NSString stringWithFormat:@"%d", fromValue]
