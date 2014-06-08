@@ -49,6 +49,7 @@ bool movedHere = false;
     [super viewWillDisappear:animated];
     [self.moviePlayer pause];
     self.mainSlideMenu.panGesture.enabled = YES;
+    self.messageCounter = 0;
 }
 
 - (void)applicationDidBecomeActive:(NSNotification *) notification
@@ -341,7 +342,7 @@ bool movedHere = false;
     }
     else{
         UIAlertView *errorAlert = [[UIAlertView alloc]
-                                   initWithTitle:@"Error" message:@"You need to enter a valid email" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                   initWithTitle:@"PlayerCV" message:@"You need to enter a valid email" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [errorAlert show];
     }
 }

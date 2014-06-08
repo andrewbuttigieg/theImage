@@ -12,6 +12,7 @@
 #import "LogMeIn.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "StartController.h"
+#import "AppDelegate.h"
 
 @interface SettingsController ()
 
@@ -65,7 +66,7 @@
                 NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:[self.navigationController viewControllers]];
                 [viewControllers replaceObjectAtIndex:0 withObject:controller];
                 
-                //[self.navigationController pushViewController:controller animated:YES];
+                ////[self.navigationController pushViewController:controller animated:YES];
                 [self.navigationController setViewControllers:viewControllers animated:YES];
             }
         }

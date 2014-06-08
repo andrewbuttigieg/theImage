@@ -556,7 +556,7 @@ static NSString* deviceToken;
                                         //color bar button
                                         [self.playerInteract setTitleTextAttributes:
                                          [NSDictionary dictionaryWithObjectsAndKeys:
-                                          [UIColor greenColor], NSForegroundColorAttributeName,nil]
+                                          [UIColor colorWithRed:0.0f green:0.674f blue:0.933f alpha:1], NSForegroundColorAttributeName,nil]
                                                               forState:UIControlStateNormal];
 
                                         self.message.hidden = FALSE;

@@ -75,8 +75,11 @@ bool isAppResumingFromBackground = NO;
     
     
     [alert show];
+}
 
-    
+- (void)resetAppToFirstController
+{
+    self.window.rootViewController = [[StartController alloc] initWithNibName:nil bundle:nil];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {

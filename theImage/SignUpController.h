@@ -17,12 +17,11 @@
 @property (strong, nonatomic) IBOutlet UITextField *accountType;
 @property (strong, nonatomic) IBOutlet UITextField *name;
 @property (strong, nonatomic) IBOutlet UITextField *lastName;
-@property (strong, nonatomic) IBOutlet UITextField *weight;
 @property (strong, nonatomic) IBOutlet UITextField *email;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UITextField *password;
-
 @property (strong, nonatomic) IBOutlet UITextField *activeTextField;
+@property (nonatomic) int messageCounter;
 
 - (IBAction)Done:(id)sender;
 

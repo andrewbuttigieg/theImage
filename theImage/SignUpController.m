@@ -19,6 +19,12 @@
 
 @implementation SignUpController
 
+static int messageCounter;
+
++ (int) messageCounter{
+    return messageCounter;
+}
+
 CGSize keyboardSize;
 bool moved = false;
 static id<FBGraphUser> facebookUser;
@@ -42,6 +48,7 @@ static id<FBGraphUser> facebookUser;
 {
     [super viewWillDisappear:animated];
     self.mainSlideMenu.panGesture.enabled = YES;
+    self.messageCounter = 0;
 }
 
 - (void)viewDidLoad
@@ -64,6 +71,26 @@ static id<FBGraphUser> facebookUser;
     loginView.readPermissions = @[@"email", @"public_profile", @"user_friends"];
     loginView.delegate = self;
     loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 20);
+    
+    for (id obj in loginView.subviews)
+    {
+        /*if ([obj isKindOfClass:[UIButton class]])
+        {
+            UIButton * loginButton =  obj;
+            UIImage *loginImage = [UIImage imageNamed:@"YourImg.png"];
+            [loginButton setBackgroundImage:loginImage forState:UIControlStateNormal];
+            [loginButton setBackgroundImage:nil forState:UIControlStateSelected];
+            [loginButton setBackgroundImage:nil forState:UIControlStateHighlighted];
+            [loginButton sizeToFit];
+        }*/
+        if ([obj isKindOfClass:[UILabel class]])
+        {
+            UILabel * loginLabel =  obj;
+            loginLabel.text = @"Signup with Facebook";
+        }
+    }
+
+    
     [self.scrollView addSubview:loginView];
     
 //    self.activeTextField = self.password;
@@ -71,7 +98,6 @@ static id<FBGraphUser> facebookUser;
     
     self.name.delegate = self;
     self.lastName.delegate = self;
-    self.weight.delegate = self;
     self.email.delegate = self;
     self.password.delegate = self;
     
@@ -100,8 +126,8 @@ static id<FBGraphUser> facebookUser;
     //userType
     
     [request setHTTPBody:
-     [[NSString stringWithFormat:@"password=%@&email=%@&name=%@&lname=%@&weight=%d&usertype=%d&facebookid=%@&gender=%@&birthday=%@&photoURL=%@&username=%@",
-       @"", facebookUser[@"email"], facebookUser.first_name, facebookUser.last_name, 0, userType, facebookUser.id, facebookUser[@"gender"], facebookUser[@"birthday"], @"photo", facebookUser[@"username"]]dataUsingEncoding:NSUTF8StringEncoding]];
+     [[NSString stringWithFormat:@"password=%@&email=%@&name=%@&lname=%@&usertype=%d&facebookid=%@&gender=%@&birthday=%@&photoURL=%@&username=%@",
+       @"", facebookUser[@"email"], facebookUser.first_name, facebookUser.last_name, userType, facebookUser.id, facebookUser[@"gender"], facebookUser[@"birthday"], @"photo", facebookUser[@"username"]]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     NSError *error = nil; NSURLResponse *response = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -212,17 +238,26 @@ static id<FBGraphUser> facebookUser;
 // This method will be called when the user information has been fetched
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
+    if (!self.isViewLoaded || !self.view.window) {
+        return;
+    }
     
-    facebookUser = user;
-    
-    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"What type of user are you?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
-                            @"Player",
-                            @"Scout",
-                            @"Agent",
-                            @"Coach",
-                            nil];
-    popup.tag = 1;
-    [popup showInView:[UIApplication sharedApplication].keyWindow];
+    if (self.messageCounter >0)
+        return;
+    else
+    {
+        self.messageCounter++;
+        facebookUser = user;
+        
+        UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"What type of user are you?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
+                                @"Player",
+                                @"Scout",
+                                @"Agent",
+                                @"Coach",
+                                nil];
+        popup.tag = 1;
+        [popup showInView:[UIApplication sharedApplication].keyWindow];
+    }
 }
 
 - (void)viewDidUnload{
@@ -256,7 +291,7 @@ static id<FBGraphUser> facebookUser;
     }
     
     // allow digit 0 to 9
-    if (
+    /*if (
         [self.activeTextField isEqual:self.weight] &&
         ([string intValue] || [string isEqualToString:@"0"] || [string isEqualToString:@"."] || [string isEqualToString:@","])
         )
@@ -266,7 +301,7 @@ static id<FBGraphUser> facebookUser;
     else if (
              [self.activeTextField isEqual:self.weight]){
             return NO;
-    }
+    }*/
     
     return YES;
 }
@@ -317,8 +352,8 @@ static id<FBGraphUser> facebookUser;
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/reg_player.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"password=%@&email=%@&name=%@&lname=%@&weight=%@&usertype=%@",
-                           self.password.text, self.email.text, self.name.text,self.lastName.text, self.weight.text, self.accountType.text]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[NSString stringWithFormat:@"password=%@&email=%@&name=%@&lname=%@&usertype=%@",
+                           self.password.text, self.email.text, self.name.text,self.lastName.text, self.accountType.text]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     NSError *error = nil; NSURLResponse *response = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];

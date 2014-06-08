@@ -12,6 +12,7 @@
 #import "LogMeIn.h"
 #import "PlayerController.h"
 #import "MessageViewController.h"
+#import "UIViewController+AMSlideMenu.h"
 
 @interface MainVC ()
 
@@ -22,8 +23,14 @@
     CLGeocoder *geocoder;
     CLPlacemark *placemark;
 
+-(void)leftMenuWillClose
+{
+    self.mainSlideMenu.panGesture.enabled = YES;
+}
+
 -(void)leftMenuWillOpen
 {
+    self.mainSlideMenu.panGesture.enabled = NO;
     //something
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_me.php"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
@@ -34,21 +41,15 @@
         if (error) {
         } else {
             //NSError *localError = nil;
-            NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
-                                                                        options:0
-                                                                          error:&error];
+            NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
             NSLog(@"Data Dictionary is : %@", jsonArray);
             dispatch_async(dispatch_get_main_queue(), ^{
                 for(NSDictionary *dictionary in jsonArray)
                 {
                     //NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
-                    
                     NSInteger requestCount = [[dictionary objectForKey:@"ConnectionRequestCount"] integerValue];
-                    
                     NSInteger friendCount = [[dictionary objectForKey:@"UnreadMessageCount"] integerValue];
-                    
                     [self.delegate MainVCController:self countUpdate :friendCount :requestCount];
-
                 }
             });
         }
