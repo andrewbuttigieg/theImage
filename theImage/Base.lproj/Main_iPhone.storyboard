@@ -73,7 +73,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kGG-t2-Vf0">
-                                                    <rect key="frame" x="200" y="10" width="42" height="20"/>
+                                                    <rect key="frame" x="200" y="11" width="42" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.88627457618713379" green="0.070588238537311554" blue="0.16078431904315948" alpha="1" colorSpace="deviceRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -114,14 +114,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connections" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8Hn-JG-Prg">
-                                                    <rect key="frame" x="50" y="11" width="280" height="21"/>
+                                                    <rect key="frame" x="46" y="8" width="280" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.8980392814" green="0.89019614459999996" blue="0.89019614459999996" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VND-It-rYh">
-                                                    <rect key="frame" x="200" y="10" width="42" height="20"/>
+                                                    <rect key="frame" x="200" y="8" width="42" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.88627457620000005" green="0.070588238540000001" blue="0.16078431900000001" alpha="1" colorSpace="deviceRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1545,7 +1545,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aVz-JW-JOr">
-                                        <rect key="frame" x="22" y="313" width="276" height="43"/>
+                                        <rect key="frame" x="51" y="313" width="218" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="loginBtn.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1674,7 +1674,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cpE-xd-SEn">
-                                <rect key="frame" x="8" y="442" width="297" height="21"/>
+                                <rect key="frame" x="8" y="546" width="297" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="About">
@@ -1688,10 +1688,40 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n1J-L8-T2j">
-                                <rect key="frame" x="8" y="413" width="297" height="21"/>
+                                <rect key="frame" x="8" y="517" width="297" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Playing">
+                                    <fragment content="Playing 3">
+                                        <attributes>
+                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="17" name="HelveticaNeue-Thin"/>
+                                            <font key="NSOriginalFont" size="17" name="HelveticaNeue-Thin"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YMC-n3-wSQ">
+                                <rect key="frame" x="8" y="465" width="297" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Playing 2">
+                                        <attributes>
+                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="17" name="HelveticaNeue-Thin"/>
+                                            <font key="NSOriginalFont" size="17" name="HelveticaNeue-Thin"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fkM-Xr-XJB">
+                                <rect key="frame" x="8" y="410" width="297" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Playing 1">
                                         <attributes>
                                             <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <font key="NSFont" size="17" name="HelveticaNeue-Thin"/>
@@ -1717,10 +1747,40 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lga-QM-KZw">
-                                <rect key="frame" x="8" y="389" width="136" height="21"/>
+                                <rect key="frame" x="8" y="494" width="136" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Playing Position">
+                                        <attributes>
+                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="16" name="HelveticaNeue-Bold"/>
+                                            <font key="NSOriginalFont" size="17" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ndL-oU-b8K">
+                                <rect key="frame" x="8" y="387" width="136" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Offering a Player">
+                                        <attributes>
+                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="16" name="HelveticaNeue-Bold"/>
+                                            <font key="NSOriginalFont" size="17" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="arJ-1f-bon">
+                                <rect key="frame" x="8" y="439" width="272" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Looking for Player">
                                         <attributes>
                                             <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <font key="NSFont" size="16" name="HelveticaNeue-Bold"/>
@@ -1751,7 +1811,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I5k-da-0Uq">
-                                <rect key="frame" x="8" y="466" width="305" height="50"/>
+                                <rect key="frame" x="8" y="570" width="305" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Label">
@@ -1776,7 +1836,7 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="OAm-oS-HL6">
-                                <rect key="frame" x="8" y="536" width="320" height="54"/>
+                                <rect key="frame" x="8" y="628" width="320" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </scrollView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="E4s-HW-cq5">
@@ -1845,8 +1905,12 @@
                         <outlet property="height" destination="alj-xI-BSX" id="vRx-SC-CBK"/>
                         <outlet property="heightIcon" destination="LR3-0x-KOz" id="lWA-oc-FKQ"/>
                         <outlet property="location" destination="3Np-TZ-Df8" id="Czv-iW-7hM"/>
+                        <outlet property="lookingForPlayer" destination="YMC-n3-wSQ" id="7lg-aF-yWs"/>
+                        <outlet property="lookingForPlayer_Labe" destination="arJ-1f-bon" id="Qet-Sx-0Ku"/>
                         <outlet property="message" destination="FDI-Q3-pXV" id="XaY-Oh-laP"/>
                         <outlet property="name" destination="AoK-Jn-gip" id="avl-oZ-nld"/>
+                        <outlet property="offeringAPlayer" destination="fkM-Xr-XJB" id="dux-Vd-Gxp"/>
+                        <outlet property="offeringAPlayer_Label" destination="ndL-oU-b8K" id="zgQ-uT-yG9"/>
                         <outlet property="pageView" destination="yxU-le-oYc" id="5u6-Kw-u1d"/>
                         <outlet property="playerConnectionView" destination="Pb8-Om-bF9" id="sgU-zx-crN"/>
                         <outlet property="playerImage" destination="4Qn-Or-cwm" id="1Ml-Ng-sSR"/>
@@ -2579,6 +2643,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="agent" destination="z1T-pr-wvU" id="GcV-jg-NTP"/>
+                        <outlet property="coach" destination="icf-db-jX7" id="F2b-Di-qnV"/>
                         <outlet property="player" destination="QgJ-gX-70n" id="BIf-tb-JZJ"/>
                         <outlet property="putThemThere" destination="wa1-rX-CKi" id="c0S-kR-kil"/>
                         <outlet property="scout" destination="Fqt-di-eNd" id="TQr-Cq-yFa"/>
@@ -2594,7 +2659,7 @@
         <image name="LogoPlayerCV.png" width="452" height="151"/>
         <image name="MenuLogo.png" width="175" height="42"/>
         <image name="accept-friend.png" width="36" height="36"/>
-        <image name="chatIcon.png" width="25" height="24"/>
+        <image name="chatIcon.png" width="20" height="20"/>
         <image name="chatMenuIcon.png" width="26" height="26"/>
         <image name="decline-friend.png" width="36" height="36"/>
         <image name="discoverMenuIcon.png" width="26" height="26"/>
@@ -2624,7 +2689,7 @@
         <image name="settingsMenuIcon.png" width="26" height="26"/>
         <image name="signup-box.png" width="320" height="220"/>
         <image name="signup-button.png" width="1" height="45"/>
-        <image name="videoIcon.png" width="25" height="24"/>
+        <image name="videoIcon.png" width="24" height="19"/>
         <image name="weightIcon.png" width="21" height="21"/>
     </resources>
     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>

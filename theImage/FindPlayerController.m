@@ -23,6 +23,10 @@ UIActivityIndicatorView *spinner;
 }
 
 - (IBAction)findCoach:(id)sender {
+    self.agent.tintColor = [UIColor blackColor];
+    self.player.tintColor = [UIColor blackColor];
+    self.scout.tintColor = [UIColor blackColor];
+    self.coach.tintColor = [UIColor colorWithRed:0.0f green:0.674f blue:0.933f alpha:1];
     findPlayerID = 4;
     [self findPeople:findPlayerID];
 }
@@ -163,6 +167,10 @@ static int findPlayerID = 0;
 }
 
 - (IBAction)findScout:(id)sender {
+    self.agent.tintColor = [UIColor blackColor];
+    self.player.tintColor = [UIColor blackColor];
+    self.scout.tintColor = [UIColor colorWithRed:0.0f green:0.674f blue:0.933f alpha:1];
+    self.coach.tintColor = [UIColor blackColor];
     findPlayerID = 2;
     [self findPeople:findPlayerID];
 }
@@ -170,7 +178,10 @@ static int findPlayerID = 0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.agent.tintColor = [UIColor blackColor];
+    self.player.tintColor = [UIColor colorWithRed:0.0f green:0.674f blue:0.933f alpha:1];
+    self.scout.tintColor = [UIColor blackColor];
+    self.coach.tintColor = [UIColor blackColor];
     self.title = @"Explore";
     findPlayerID = 1; //player...
     [self findPeople:findPlayerID];
@@ -183,10 +194,18 @@ static int findPlayerID = 0;
 }
 
 - (IBAction)findPlayer:(id)sender {
+    self.agent.tintColor = [UIColor colorWithRed:0.0f green:0.674f blue:0.933f alpha:1];
+    self.player.tintColor = [UIColor blackColor];
+    self.scout.tintColor = [UIColor blackColor];
+    self.coach.tintColor = [UIColor blackColor];
     findPlayerID = 1;
     [self findPeople:findPlayerID];
 }
 - (IBAction)findAgent:(id)sender {
+    self.agent.tintColor = [UIColor colorWithRed:0.0f green:0.674f blue:0.933f alpha:1];
+    self.player.tintColor = [UIColor blackColor];
+    self.scout.tintColor = [UIColor blackColor];
+    self.coach.tintColor = [UIColor blackColor];
     findPlayerID = 3;
     [self findPeople:findPlayerID];
 }

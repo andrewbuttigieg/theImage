@@ -260,14 +260,15 @@
                 }
                 if (count <= 0){
                     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-                    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MENU-Open.jpg"]];
-                    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(200,200, 320, 430)];
+                    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"no-chats.png"]];
+                    tempImageView.contentMode = UIViewContentModeBottom;
+                    /*UIView *view = [[UIView alloc] initWithFrame:CGRectMake(200,200, 320, 430)];
                     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(200, 200, 450, 430)];
                     label.textColor = [UIColor whiteColor];
                     label.text = @"You have no chats";
                     label.textAlignment = NSTextAlignmentCenter;
                     [view addSubview:label];
-                    self.tableView.tableHeaderView = label;
+                    self.tableView.tableHeaderView = label;*/
                     // Add image view on top of table view
                     [self.theTable addSubview:tempImageView];
                     [tempImageView setFrame:self.tableView.frame];

@@ -20,6 +20,8 @@
 
 - (void)findPeople:(NSInteger) type;
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *coach;
+
 - (IBAction)findScout:(id)sender;
     @property IBOutlet UIScrollView *putThemThere;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *scout;

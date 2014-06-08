@@ -109,7 +109,7 @@ static NSString* deviceToken;
     
     if ([self.playerInteract.title isEqualToString:@"Respond"]){
     
-        UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Do you want to be friends:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
+        UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Do you want to be connected:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
                             @"Accept",
                             @"Decline",
                             nil];
@@ -119,6 +119,13 @@ static NSString* deviceToken;
     if ([self.playerInteract.title isEqualToString:@"Connect"]){
         self.playerInteract.enabled = FALSE;
         [self addFriend];
+    }
+    if ([self.playerInteract.title isEqualToString:@"Connected"]){
+        UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Do you want to remove this connection:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
+                                @"Yes",
+                                nil];
+        popup.tag = 2;
+        [popup showInView:[UIApplication sharedApplication].keyWindow];
     }
     if ([self.playerInteract.title isEqualToString:@"Edit"]){
         //edit button
@@ -155,6 +162,48 @@ static NSString* deviceToken;
             }
             break;
         }
+        case 2:{
+            if (buttonIndex == 0) {
+                //"Connect"
+                NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/remove_friend.php"]];
+                [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+                [request setHTTPBody:[[NSString stringWithFormat:@"p2=%d", (int)self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
+                [request setHTTPMethod:@"POST"];
+                [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init]
+                 //returningResponse:&response
+                   completionHandler:^(NSURLResponse *response,
+                                       NSData *data,
+                                       NSError *error) {
+                       
+                       if (error) {
+                           //[self.delegate fetchingGroupsFailedWithError:error];
+                       } else {
+                           NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                                       options:0
+                                                                                         error:&error];
+                           for(NSDictionary *dictionary in jsonArray)
+                           {
+                               //NSLog(@"Data Dictionary is : %@",jsonArray);
+                               NSString *returned = [jsonArray[0] objectForKey:@"value"];
+                               if ([[jsonArray[0] objectForKey:@"accepted"] integerValue] == 1){
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
+                                                                                       message:[NSString stringWithFormat:@"%@",returned]
+                                                                                      delegate:self
+                                                                             cancelButtonTitle:@"Ok"
+                                                                             otherButtonTitles:nil];
+                                       [alert show];
+                                       self.playerInteract.title = @"Connect";
+                                       self.playerInteract.enabled = FALSE;
+                                   });
+                               }
+                           }
+                           
+                       }
+                       
+                   }];
+            }
+        }
         default:
             break;
     }
@@ -162,15 +211,26 @@ static NSString* deviceToken;
 
 
 - (IBAction)sendMessage:(id)sender {
-    /////////
-    NSString * storyboardName = @"Main_iPhone";
-    NSString * viewControllerID = @"MessageViewController";
-    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
-    MessageViewController * controller = (MessageViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
-    controller.chattingToID = (int)self.playerID;
-    controller.name = name;
-    controller.image = image;
-    [self.navigationController pushViewController:controller animated:YES];
+    
+    if (((UIButton *)sender).tag == 2){
+        /////////
+        NSString * storyboardName = @"Main_iPhone";
+        NSString * viewControllerID = @"MessageViewController";
+        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+        MessageViewController * controller = (MessageViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+        controller.chattingToID = (int)self.playerID;
+        controller.name = name;
+        controller.image = image;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
+                                                        message:@"You need to connect with this person to chat first"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (void)addFriend{
@@ -451,11 +511,18 @@ static NSString* deviceToken;
                                 self.weightIcon.hidden = false;
                                 
                                 if ([[theUser valueForKey:@"VideoCount"] intValue] > 0 || p == p2){
-                                    self.videoButton.hidden = FALSE;
+                                    UIImage *buttonImage = [UIImage imageNamed:@"videoIcon.png"];
+                                    [self.videoButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+                                    self.videoButton.tag = 2;
                                 }
                                 else{
-                                    self.videoButton.hidden = TRUE;
+                                    UIImage *buttonImage = [UIImage imageNamed:@"no-videoIcon.png"];
+                                    [self.videoButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+                                    self.videoButton.tag = 1;
                                 }
+                                
+                                self.videoButton.hidden = false;
+                                
                                 //get the player information
                                 self.playerName.text = [[NSString stringWithFormat:@"%@ %@", [theUser valueForKey:@"Firstname"], [theUser valueForKey:@"Lastname"] ] uppercaseString];
                                 
@@ -469,20 +536,17 @@ static NSString* deviceToken;
                                 self.age.frame = frame;
                                 self.age.hidden = false;
                                 
-                                self.height.text = [NSString stringWithFormat:@"%.1fcm", [[theUser valueForKey:@"Height"] floatValue]];
-                                self.weight.text = [NSString stringWithFormat:@"%.1fkgs", [[theUser valueForKey:@"Weight"] floatValue]];
-                                self.postion.text = [theUser valueForKey:@"Position"];
+                                self.height.text = [NSString stringWithFormat:@"%gcm", [[theUser valueForKey:@"Height"] floatValue]];
+                                self.weight.text = [NSString stringWithFormat:@"%gkgs", [[theUser valueForKey:@"Weight"] floatValue]];
                                 
-                                if ([self.postion.text isEqualToString:@"0"]){
-                                    self.postion.text = @"This user has not choosen their playing position";
-                                }
-                                
+                                bool player = false;
                                 if (
                                     [theUser valueForKey:@"UserType"] != [NSNull null] &&
                                     [theUser valueForKey:@"UserType"] != nil){
                                     
                                     if ([[theUser valueForKey:@"UserType"] isEqualToString:@"1"]) {
                                         self.userType.text = @"Player";
+                                        player = TRUE;
                                     }
                                     else if ([[theUser valueForKey:@"UserType"] isEqualToString:@"2"]) {
                                         self.userType.text = @"Scout";
@@ -493,7 +557,111 @@ static NSString* deviceToken;
                                     else if ([[theUser valueForKey:@"UserType"] isEqualToString:@"4"]) {
                                         self.userType.text = @"Coach";
                                     }
+                                    
+                                    if (!player){
+                                        if ([[theUser valueForKey:@"LookingForPartnership"] intValue] == 1){
+                                            self.offeringAPlayer_Label.hidden = false;
+                                            self.offeringAPlayer.hidden = false;
+                                            
+                                            self.offeringAPlayer.text = [theUser valueForKey:@"PartnerCountry"];
+                                        }
+                                        else{
+                                            //hide it
+                                            CGRect frame = self.lookingForPlayer_Labe.frame;
+                                            frame.origin.y = self.offeringAPlayer_Label.frame.origin.y;
+                                            self.lookingForPlayer_Labe.frame = frame;
+                                            
+                                            frame = self.lookingForPlayer.frame;
+                                            frame.origin.y = self.offeringAPlayer.frame.origin.y;
+                                            self.lookingForPlayer.frame = frame;
+                                        }
+                                        
+                                        if ([[theUser valueForKey:@"LookingForPlayer"] intValue] == 1){
+                                            self.lookingForPlayer_Labe.hidden = false;
+                                            self.lookingForPlayer.hidden = false;
+                                            
+                                            self.lookingForPlayer.text =
+                                                [NSString stringWithFormat:@"%@ to play in %@"
+                                                 , [theUser valueForKey:@"LFPPosition"]
+                                                 , [theUser valueForKey:@"LFPCountry"]];
+                                            
+                                            //telling the next item where to be
+                                            CGRect frame = self.playingWhere.frame;
+                                            frame.origin.y = self.lookingForPlayer.frame.origin.y + 25;
+                                            self.playingWhere.frame = frame;
+                                        }
+                                        else{
+                                            //telling the next item where to be
+                                            CGRect frame = self.playingWhere.frame;
+                                            frame.origin.y = self.lookingForPlayer.frame.origin.y;
+                                            self.playingWhere.frame = frame;
+                                            
+                                            frame = self.postion.frame;
+                                            frame.origin.y = self.playingWhere.frame.origin.y + 25;
+                                            self.postion.frame = frame;
+                                        }
+                                        
+                                        CGRect frame = self.postion.frame;
+                                        frame.origin.y = self.playingWhere.frame.origin.y + 25;
+                                        self.postion.frame = frame;
+                                        
+                                        frame = self.aboutTitle.frame;
+                                        frame.origin.y = self.postion.frame.origin.y + 25;
+                                        self.aboutTitle.frame = frame;
+                                        
+                                        frame = self.aboutLabel.frame;
+                                        frame.origin.y = self.aboutTitle.frame.origin.y + 25;
+                                        self.aboutLabel.frame = frame;
+                                    }
+                                    else{
+                                        self.lookingForPlayer.hidden = TRUE;
+                                        self.lookingForPlayer_Labe.hidden = TRUE;
+                                        self.offeringAPlayer.hidden = TRUE;
+                                        self.offeringAPlayer_Label.hidden = TRUE;
+                                        
+                                        //hide it
+                                        CGRect frame = self.playingWhere.frame;
+                                        frame.origin.y = self.offeringAPlayer_Label.frame.origin.y;
+                                        self.playingWhere.frame = frame;
+                                        
+                                        frame = self.postion.frame;
+                                        frame.origin.y = self.offeringAPlayer.frame.origin.y;
+                                        self.postion.frame = frame;
+                                        
+                                        frame = self.aboutTitle.frame;
+                                        frame.origin.y = self.postion.frame.origin.y + 25;
+                                        self.aboutTitle.frame = frame;
+                                        
+                                        frame = self.aboutLabel.frame;
+                                        frame.origin.y = self.aboutTitle.frame.origin.y + 25;
+                                        self.aboutLabel.frame = frame;
+                                    }
+                                    
                                     self.userType.hidden = false;
+                                }
+                                
+                                if ([theUser valueForKey:@"Position"] != [NSNull null] &&
+                                    [theUser valueForKey:@"Position"] != nil &&
+                                    [[theUser valueForKey:@"Position"] length] > 0 &&
+                                    ![self.postion.text isEqualToString:@"0"]){
+                                    self.postion.text = [theUser valueForKey:@"Position"];
+                                }
+                                else{
+                                    if (player){
+                                        self.postion.text = @"This user has not choosen their playing position";
+                                    }
+                                    else{
+                                        self.playingWhere.hidden = TRUE;
+                                        self.postion.hidden = TRUE;
+                                        
+                                        frame = self.playingWhere.frame;
+                                        frame.origin.y = self.aboutTitle.frame.origin.y;
+                                        self.playingWhere.frame = frame;
+                                        
+                                        frame = self.postion.frame;
+                                        frame.origin.y = self.aboutLabel.frame.origin.y;
+                                        self.postion.frame = frame;
+                                    }
                                 }
                                 
                                 if (
@@ -551,7 +719,7 @@ static NSString* deviceToken;
                                     
                                     if (accepted ==1){
                                         //you are a friend
-                                        self.playerInteract.enabled = FALSE;
+                                        self.playerInteract.enabled = TRUE;
                                         self.playerInteract.title = @"Connected";
                                         //color bar button
                                         [self.playerInteract setTitleTextAttributes:
@@ -559,11 +727,19 @@ static NSString* deviceToken;
                                           [UIColor colorWithRed:0.0f green:0.674f blue:0.933f alpha:1], NSForegroundColorAttributeName,nil]
                                                               forState:UIControlStateNormal];
 
+                                        UIImage *buttonImage = [UIImage imageNamed:@"chatIcon.png"];
+                                        [self.message setBackgroundImage:buttonImage forState:UIControlStateNormal];
+                                        self.message.tag = 2;
                                         self.message.hidden = FALSE;
                                     }
                                     else{
                                         //you are not friend yet
+                                        UIImage *buttonImage = [UIImage imageNamed:@"no-chatIcon.png"];
+                                        [self.message setBackgroundImage:buttonImage forState:UIControlStateNormal];
+                                        self.message.tag = 1;
+                                        self.message.hidden = FALSE;
                                     }
+                                    
                                     if (accepted == 0 && youPending != 1){
                                         //
                                         self.playerInteract.enabled = FALSE;
@@ -740,15 +916,27 @@ float imageHeight = 0;
 }
 
 - (IBAction)videoClick:(id)sender {
-    NSString * storyboardName = @"Main_iPhone";
-    NSString * viewControllerID = @"VideoController";
-    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
-    VideoController * controller = (VideoController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
-    //controller.chattingToID = [o intValue];
-    //controller.name = name;
-    controller.playerID = self.playerID;
-    [self.navigationController pushViewController:controller animated:YES];
-
+    
+    
+    if (((UIButton *)sender).tag == 2){
+        /////////
+        NSString * storyboardName = @"Main_iPhone";
+        NSString * viewControllerID = @"VideoController";
+        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+        VideoController * controller = (VideoController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+        //controller.chattingToID = [o intValue];
+        //controller.name = name;
+        controller.playerID = self.playerID;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
+                                                        message:@"This person does not have videos yet"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 #pragma mark - PlayerImageDelegate

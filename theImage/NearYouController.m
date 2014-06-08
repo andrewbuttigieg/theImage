@@ -113,27 +113,25 @@
     return cell;
 }
 
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+-(void)load{
+    
 	// Do any additional setup after loading the view.
     
     
     self.nameForNear  = [[NSMutableArray alloc]
-                       initWithObjects:nil];
+                         initWithObjects:nil];
     
     self.imageForNear =[[NSMutableArray alloc]
-                      initWithObjects:nil];
+                        initWithObjects:nil];
     
     self.userIDForNear =[[NSMutableArray alloc]
-                       initWithObjects:nil];
+                         initWithObjects:nil];
     
     self.userTypeForNear =[[NSMutableArray alloc]
-                         initWithObjects:nil];
+                           initWithObjects:nil];
     
     self.locationForNear =[[NSMutableArray alloc]
-                         initWithObjects:nil];
+                           initWithObjects:nil];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_near_me.php"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
@@ -151,18 +149,19 @@
                                                                         options:0
                                                                           error:&error];
             dispatch_async(dispatch_get_main_queue(), ^{
-
-                                    NSLog(@"%@", jsonArray);
+                
+                NSLog(@"%@", jsonArray);
+                int count = 0;
                 for(NSDictionary *dictionary in jsonArray)
                 {
-
+                    
                     NSDictionary *theUserD = [dictionary valueForKey:@"User"];
                     for (id key in theUserD)
                     {
                         NSDictionary *anObject;
                         
                         anObject = [theUserD objectForKey:key];
-                    
+                        
                         [self.nameForNear addObject:[anObject objectForKey:@"Firstname"]];
                         [self.imageForNear addObject:[anObject objectForKey:@"PhotoURL"]];
                         //[self.textForNear addObject:[dictionary objectForKey:@"Text"]];
@@ -178,18 +177,53 @@
                         CLLocation *location2 = [[CLLocation alloc] initWithLatitude:lat2 longitude:long2];
                         
                         //if (![dictionary objectForKey:@"Country"] || [[dictionary objectForKey:@"Country" ] isKindOfClass:[NSNull class]]){
-                            [self.locationForNear addObject:[NSString stringWithFormat:@"%d metres away",
-                                                             (int)[location1 distanceFromLocation:location2]]];
-                        //}
-                        //else
-                        //    [self.locationForNear addObject:[dictionary objectForKey:@"Country"]];
+                        [self.locationForNear addObject:[NSString stringWithFormat:@"%d metres away",
+                                                         (int)[location1 distanceFromLocation:location2]]];
+                        count++;
                     }
                 }
+                
+                if (count <= 0){
+                    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+                    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"No-One-in-your-area.png"]];
+                    tempImageView.contentMode = UIViewContentModeBottom;
+                    // Add image view on top of table view
+                    [self.tableView addSubview:tempImageView];
+                    [tempImageView setFrame:self.tableView.frame];
+                    self.tableView.backgroundView = tempImageView;
+                    self.tableView.alwaysBounceVertical = NO;
+                }
+                else{
+                    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+                    self.tableView.tableHeaderView = nil;
+                    self.tableView.backgroundView = Nil;
+                    self.tableView.alwaysBounceVertical = YES;
+                }
+                
                 [self.tableView reloadData];
-//                [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+                [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
             });
         }
     }];
+}
+
+- (void)stopRefresh
+{
+    [self.refreshControl endRefreshing];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    [refresh addTarget:self action:@selector(load) forControlEvents:UIControlEventValueChanged];
+    
+    self.refreshControl = refresh;
+    
+    [self load];
 }
 
 - (void)didReceiveMemoryWarning

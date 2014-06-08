@@ -40,6 +40,11 @@
 - (IBAction)videoClick:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *videoButton;
 
+@property (strong, nonatomic) IBOutlet UILabel *offeringAPlayer;
+@property (strong, nonatomic) IBOutlet UILabel *offeringAPlayer_Label;
+@property (strong, nonatomic) IBOutlet UILabel *lookingForPlayer;
+@property (strong, nonatomic) IBOutlet UILabel *lookingForPlayer_Labe;
+
 @property (strong, nonatomic) IBOutlet UILabel *playingWhere;
 @property (strong, nonatomic) IBOutlet UIImageView *heightIcon;
 @property (strong, nonatomic) IBOutlet UIImageView *weightIcon;
@@ -55,7 +60,6 @@
 + (void)setUseLocalisation:(bool) value;
 + (int)playerID;
 + (int)meID;
-+ (int)messageAPNID;
 + (NSString *)facebookID;
 + (NSString *)deviceToken;
 @end

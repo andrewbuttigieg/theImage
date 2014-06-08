@@ -273,7 +273,7 @@
                 if (count <= 0){
                     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
                     
-                    UIImage * image = [UIImage imageNamed:@"ConnectionRequests.png"];
+                    UIImage * image = [UIImage imageNamed:@"NoConnections.png"];
                     
                     UIImageView *tempImageView = [[UIImageView alloc] initWithImage:image];
                     tempImageView.contentMode = UIViewContentModeCenter;
@@ -290,7 +290,7 @@
                     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                     [button addTarget:self action:@selector(exploreNow:) forControlEvents:UIControlEventTouchUpInside];
                     [button setTitle:@"Explore Now" forState:UIControlStateNormal];
-                    button.frame = CGRectMake(70, 200, 180.0, 40.0);
+                    button.frame = CGRectMake(70, 350, 180.0, 40.0);
                     button.titleLabel.textColor = [UIColor whiteColor];
                     [button setTitleColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0] forState:UIControlStateNormal];
 
