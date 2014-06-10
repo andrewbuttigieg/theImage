@@ -10,5 +10,5 @@
 
 @interface AllVideoController : UIViewController<UIScrollViewDelegate>
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollview;
-
+- (NSString *)extractYoutubeID:(NSString *)youtubeURL;
 @end

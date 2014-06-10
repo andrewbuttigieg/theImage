@@ -45,7 +45,7 @@
 		F208C51E191AD88F002E036F /* reloadIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F208C51C191AD88F002E036F /* reloadIcon.png */; };
 		F208C51F191AD88F002E036F /* reloadIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F208C51D191AD88F002E036F /* reloadIcon@2x.png */; };
 		F208C530191BF631002E036F /* default-4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F208C52D191BF631002E036F /* default-4@2x.png */; };
-		F208C531191BF631002E036F /* default-5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F208C52E191BF631002E036F /* default-5@2x.png */; };
+		F208C531191BF631002E036F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F208C52E191BF631002E036F /* Default-568h@2x.png */; };
 		F208C532191BF631002E036F /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = F208C52F191BF631002E036F /* default.png */; };
 		F20D6E7D194455EA00E37A47 /* signup-box.png in Resources */ = {isa = PBXBuildFile; fileRef = F20D6E7B194455EA00E37A47 /* signup-box.png */; };
 		F20D6E7E194455EA00E37A47 /* signup-box@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20D6E7C194455EA00E37A47 /* signup-box@2x.png */; };
@@ -249,7 +249,7 @@
 		F208C51C191AD88F002E036F /* reloadIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reloadIcon.png; sourceTree = "<group>"; };
 		F208C51D191AD88F002E036F /* reloadIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reloadIcon@2x.png"; sourceTree = "<group>"; };
 		F208C52D191BF631002E036F /* default-4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-4@2x.png"; sourceTree = "<group>"; };
-		F208C52E191BF631002E036F /* default-5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-5@2x.png"; sourceTree = "<group>"; };
+		F208C52E191BF631002E036F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F208C52F191BF631002E036F /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		F20D6E7B194455EA00E37A47 /* signup-box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-box.png"; sourceTree = "<group>"; };
 		F20D6E7C194455EA00E37A47 /* signup-box@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signup-box@2x.png"; sourceTree = "<group>"; };
@@ -501,7 +501,7 @@
 			isa = PBXGroup;
 			children = (
 				F208C52D191BF631002E036F /* default-4@2x.png */,
-				F208C52E191BF631002E036F /* default-5@2x.png */,
+				F208C52E191BF631002E036F /* Default-568h@2x.png */,
 				F208C52F191BF631002E036F /* default.png */,
 			);
 			name = SplashImage;
@@ -1023,7 +1023,7 @@
 				F20D6E9619449AAA00E37A47 /* chatIcon@2x.png in Resources */,
 				F20D6E8B1944740A00E37A47 /* player@2x.png in Resources */,
 				F28863E51930ED3F00918D0A /* ConnectionsMenuIcon@2x.png in Resources */,
-				F208C531191BF631002E036F /* default-5@2x.png in Resources */,
+				F208C531191BF631002E036F /* Default-568h@2x.png in Resources */,
 				F2B9E1D6189D7E060044DE04 /* AFURLSessionManager.h in Resources */,
 				F208C530191BF631002E036F /* default-4@2x.png in Resources */,
 				F2905ECA18D7F4FB007F16D1 /* simpleMenuButton.png in Resources */,

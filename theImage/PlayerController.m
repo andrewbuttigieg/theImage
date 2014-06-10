@@ -13,6 +13,7 @@
 #import "VideoController.h"
 #import "PlayerSettingsController.h"
 #import "ValidURL.h"
+#import "UIViewController+AMSlideMenu.h"
 
 @interface PlayerController ()<PlayerImageDelegate>
 
@@ -43,7 +44,7 @@ static int meID = 0;
 
 - (IBAction)changeScreen:(id)sender
 {
-    [self changeImage: [self.pageView currentPage]];
+    [self changeImage: (int)[self.pageView currentPage]];
 }
 
 bool useLocalisation = true;
@@ -86,9 +87,19 @@ static NSString* deviceToken;
     return self;
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"touched");
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+    self.mainSlideMenu.panGesture.minimumNumberOfTouches = 1;
+}
+
 - (void) viewWillAppear:(BOOL)animated
 {
-   
+    if (self.pageView.numberOfPages > 1){
+        self.mainSlideMenu.panGesture.minimumNumberOfTouches = 2;
+    }
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     appDelegate.currentView = @"player";
 }
@@ -361,7 +372,7 @@ static NSString* deviceToken;
     {
         self.pageView.currentPage -=1;
     }
-    [self changeImage: [self.pageView currentPage]];
+    [self changeImage: (int)[self.pageView currentPage]];
 }
 
 - (void)viewDidLoad
@@ -502,9 +513,20 @@ static NSString* deviceToken;
                                     pageCount++;
                                 }
                                 
+                                /*
+                                if (pageCount > 1)
+                                    self.mainSlideMenu.panGesture.enabled = NO;
+                                else
+                                    self.mainSlideMenu.panGesture.enabled = YES;
+                                 */
+                                
                                 //set the right amount of balls for images
                                 self.pageView.numberOfPages = pageCount;
                                 self.pageView.currentPage = 0;
+                                
+                                if (self.pageView.numberOfPages > 1){
+                                    self.mainSlideMenu.panGesture.minimumNumberOfTouches = 2;
+                                }
                                 
                                 self.playingWhere.hidden = false;
                                 self.heightIcon.hidden = false;

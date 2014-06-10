@@ -45,10 +45,10 @@
 
 - (void)tableView: (UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath {
     
-    int idx=indexPath.row;
+    int idx = (int)indexPath.row;
     NSString *o = [self.userIDForTable objectAtIndex:idx];
-    NSString *name = [self.nameForTable objectAtIndex:idx];
-    NSString *image = [self.imageForTable objectAtIndex:idx];
+   /* NSString *name = [self.nameForTable objectAtIndex:idx];
+    NSString *image = [self.imageForTable objectAtIndex:idx];*/
     self.textForTable = self.textForTable;
     
     
@@ -98,7 +98,7 @@
     cell.personImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
     cell.personImage.layer.borderWidth = 0.3;
     
-    int unreadCount = [[self.unreadForTable objectAtIndex: [indexPath row]] integerValue];
+    int unreadCount = (int)[[self.unreadForTable objectAtIndex: [indexPath row]] integerValue];
     if (unreadCount > 0) {
         cell.unreadCount.text = [NSString stringWithFormat:@"%d", unreadCount];
         cell.unreadCount.hidden = FALSE;
@@ -296,15 +296,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    self.mainSlideMenu.panGesture.enabled = NO;
+    self.mainSlideMenu.panGesture.minimumNumberOfTouches = 2;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
-    self.mainSlideMenu.panGesture.enabled = YES;
+    self.mainSlideMenu.panGesture.minimumNumberOfTouches = 1;
 }
 
 /*
@@ -349,7 +347,7 @@ loads the view - we will get the users messages from the server so that they can
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        int idx = indexPath.row;
+        int idx = (int)indexPath.row;
         NSString *o = [self.userIDForTable objectAtIndex:idx];
         int chattingToID = [o intValue];
         

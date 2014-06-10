@@ -14,5 +14,7 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollview;
 
 - (IBAction)addVideoButton:(id)sender;
+- (NSString *)extractYoutubeID:(NSString *)youtubeURL;
+
 @property (strong, nonatomic) IBOutlet UITextField *addVideoLink;
 @end

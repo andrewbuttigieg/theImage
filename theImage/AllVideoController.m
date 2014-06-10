@@ -68,6 +68,22 @@ static UIRefreshControl *refreshControl;
     }
 }
 
+// extractYoutubeID
+- (NSString *)extractYoutubeID:(NSString *)youtubeURL
+{
+    //NSLog(@"youtube  %@",youtubeURL);
+    NSError *error = NULL;
+    NSString *regexString = @"(?<=v(=|/))([-a-zA-Z0-9_]+)|(?<=youtu.be/)([-a-zA-Z0-9_]+)";
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString options:NSRegularExpressionCaseInsensitive error:&error];
+    NSRange rangeOfFirstMatch = [regex rangeOfFirstMatchInString:youtubeURL options:0 range:NSMakeRange(0, [youtubeURL length])];
+    if(!NSEqualRanges(rangeOfFirstMatch, NSMakeRange(NSNotFound, 0)))
+    {
+        NSString *substringForFirstMatch = [youtubeURL substringWithRange:rangeOfFirstMatch];
+        return substringForFirstMatch;
+    }
+    return nil;
+}
+
 -(void)load{
     //int me = ViewController.playerID;
     
@@ -160,7 +176,9 @@ static UIRefreshControl *refreshControl;
                         //NSString *newStr = [[dictionary objectForKey:@"URL"] substringFromIndex:tempIndex];
                         NSString *theURL = [dictionary objectForKey:@"URL"];
                         theURL = [theURL stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"];
-                        
+                        theURL = [self extractYoutubeID:theURL];
+                        theURL = [NSString stringWithFormat:@"http://www.youtube.com/embed/%@", theURL];
+                    
                         //the video
                         NSURL *url = [NSURL URLWithString:theURL];
                         NSURLRequest *req = [NSURLRequest requestWithURL:url];

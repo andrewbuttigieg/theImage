@@ -544,15 +544,15 @@ UIDatePicker *itsDatePicker;
                            ]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     NSError *error = nil; NSURLResponse *response = nil;
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    //NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (error) {
         NSLog(@"Error:%@", error.localizedDescription);
     }
     else {
         //success
-        NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
-                                                                    options:0
-                                                                      error:&error];
+        //NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+        //                                                            options:0
+        //                                                              error:&error];
         
         
         NSInteger age = 0;

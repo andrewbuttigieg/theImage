@@ -98,7 +98,7 @@ static int findPlayerID = 0;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_users.php"]];
     
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"&u=%d", type]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[NSString stringWithFormat:@"&u=%d", (int)type]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     //dont get me
     
