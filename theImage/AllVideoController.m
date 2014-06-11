@@ -83,7 +83,7 @@ static UIRefreshControl *refreshControl;
     }
     return nil;
 }
-
+	
 -(void)load{
     //int me = ViewController.playerID;
     
@@ -140,7 +140,7 @@ static UIRefreshControl *refreshControl;
                     [iv setMultipleTouchEnabled:YES];
                     [iv setUserInteractionEnabled:YES];
 
-                    UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(90, 30, 60, 30)];
+                    UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(90, 10, 60, 30)];
                     lb.textColor = [UIColor colorWithRed:(1.0f) green:(1.0f) blue:(1.0f) alpha:1];
                     
                     [lb setFont:[UIFont systemFontOfSize:17]];
@@ -161,6 +161,25 @@ static UIRefreshControl *refreshControl;
                     [secondScroll addSubview:iv2];
                     [secondScroll addSubview:backdrop];
                     [secondScroll addSubview:lb];
+                    
+                    /////
+                    lb = [[UILabel alloc] initWithFrame:CGRectMake(90, 30, 60, 30)];
+                    lb.textColor = [UIColor colorWithRed:(1.0f) green:(1.0f) blue:(1.0f) alpha:1];
+                    [lb setFont:[UIFont systemFontOfSize:13]];
+                    lb.text = [dictionary objectForKey:@"Position"];
+                    [lb sizeToFit];
+                    lb.textAlignment = NSTextAlignmentLeft;
+                    [secondScroll addSubview:lb];
+                    /////
+                    lb = [[UILabel alloc] initWithFrame:CGRectMake(90, 53, 60, 30)];
+                    lb.textColor = [UIColor colorWithRed:(1.0f) green:(1.0f) blue:(1.0f) alpha:1];
+                    [lb setFont:[UIFont systemFontOfSize:13]];
+                    lb.text = [dictionary objectForKey:@"Country"];
+                    [lb sizeToFit];
+                    lb.textAlignment = NSTextAlignmentLeft;
+                    [secondScroll addSubview:lb];
+                    /////
+                    
                     [secondScroll addSubview:iv];
                     top += 80.0;
                     //dispatch_sync(dispatch_get_main_queue(), ^{

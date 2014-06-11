@@ -112,7 +112,6 @@ static float top = 0;
                                                                         options:0
                                                                           error:&error];
             
-
             UIView *backdrop=[[UIView alloc]initWithFrame:CGRectMake(0, 46, 320, 15000)];
             backdrop.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.8f];
             [self.scrollview addSubview:backdrop];
@@ -162,7 +161,7 @@ static float top = 0;
                             [button setTitle:@"Remove video?" forState:UIControlStateNormal];
                             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 
-                            button.frame = CGRectMake(-28.0, top + 175, 180.0, 40.0);
+                            button.frame = CGRectMake(-25.0, top + 175, 180.0, 40.0);
                             [self.scrollview addSubview:button];
                             top += 40;
                         }

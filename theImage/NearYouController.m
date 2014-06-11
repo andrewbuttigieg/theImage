@@ -67,6 +67,10 @@
         cell = [[nearYouCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    if (self.nameForNear.count == 0 || self.locationForNear.count == 0){
+        return Nil;
+    }
+    
     // Configure the cell...
     cell.name.text = [self.nameForNear objectAtIndex: [indexPath row]];
     cell.distance.text = [self.locationForNear objectAtIndex: [indexPath row]];
@@ -105,24 +109,7 @@
 }
 
 -(void)load{
-    
-	// Do any additional setup after loading the view.
-    
-    
-    self.nameForNear  = [[NSMutableArray alloc]
-                         initWithObjects:nil];
-    
-    self.imageForNear =[[NSMutableArray alloc]
-                        initWithObjects:nil];
-    
-    self.userIDForNear =[[NSMutableArray alloc]
-                         initWithObjects:nil];
-    
-    self.userTypeForNear =[[NSMutableArray alloc]
-                           initWithObjects:nil];
-    
-    self.locationForNear =[[NSMutableArray alloc]
-                           initWithObjects:nil];
+
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_near_me.php"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
@@ -135,6 +122,20 @@
         if (error) {
             //[self.delegate fetchingGroupsFailedWithError:error];
         } else {
+            self.nameForNear  = [[NSMutableArray alloc]
+                                 initWithObjects:nil];
+            
+            self.imageForNear =[[NSMutableArray alloc]
+                                initWithObjects:nil];
+            
+            self.userIDForNear =[[NSMutableArray alloc]
+                                 initWithObjects:nil];
+            
+            self.userTypeForNear =[[NSMutableArray alloc]
+                                   initWithObjects:nil];
+            
+            self.locationForNear =[[NSMutableArray alloc]
+                                   initWithObjects:nil];
             //[self.delegate receivedGroupsJSON:data];
             NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                         options:0
@@ -191,7 +192,7 @@
                 }
                 
                 [self.tableView reloadData];
-                [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
+                [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:1];
             });
         }
     }];
@@ -205,6 +206,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.nameForNear  = [[NSMutableArray alloc]
+                         initWithObjects:nil];
+    
+    self.imageForNear =[[NSMutableArray alloc]
+                        initWithObjects:nil];
+    
+    self.userIDForNear =[[NSMutableArray alloc]
+                         initWithObjects:nil];
+    
+    self.userTypeForNear =[[NSMutableArray alloc]
+                           initWithObjects:nil];
+    
+    self.locationForNear =[[NSMutableArray alloc]
+                           initWithObjects:nil];
     
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     

@@ -114,7 +114,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connections" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8Hn-JG-Prg">
-                                                    <rect key="frame" x="46" y="8" width="280" height="21"/>
+                                                    <rect key="frame" x="50" y="11" width="290" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.8980392814" green="0.89019614459999996" blue="0.89019614459999996" alpha="1" colorSpace="deviceRGB"/>
@@ -471,6 +471,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="yVz-0j-5xq">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signup-box.png" id="gfU-a3-4F1">
                                 <rect key="frame" x="0.0" y="107" width="320" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -543,6 +547,7 @@
                     <navigationItem key="navigationItem" id="Z8c-fK-UM7"/>
                     <connections>
                         <outlet property="accountType" destination="9LZ-Yj-gXd" id="2tR-6K-0Xy"/>
+                        <outlet property="back" destination="yVz-0j-5xq" id="U0h-Ql-jTx"/>
                         <outlet property="email" destination="onU-lr-Jdr" id="Ygu-Ro-eGh"/>
                         <outlet property="lastName" destination="Q3S-s3-rnj" id="mqa-Zd-OJC"/>
                         <outlet property="name" destination="nYb-Os-5g3" id="Nvv-0l-zna"/>

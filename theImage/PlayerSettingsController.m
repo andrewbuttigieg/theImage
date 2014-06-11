@@ -544,7 +544,7 @@ UIDatePicker *itsDatePicker;
                            ]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     NSError *error = nil; NSURLResponse *response = nil;
-    //NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (error) {
         NSLog(@"Error:%@", error.localizedDescription);
     }
@@ -553,35 +553,44 @@ UIDatePicker *itsDatePicker;
         //NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
         //                                                            options:0
         //                                                              error:&error];
-        
-        
-        NSInteger age = 0;
-        if ([self.age.text length] > 1){
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"M/d/yyyy"];
-        NSDate* birthday = [dateFormatter dateFromString:self.age.text];
-        
-        NSDate* now = [NSDate date];
-        NSDateComponents* ageComponents = [[NSCalendar currentCalendar]
-                                           components:NSYearCalendarUnit
-                                           fromDate:birthday
-                                           toDate:now
-                                           options:0];
-            age = [ageComponents year];
+        NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                    options:0
+                                                                      error:&error];
+            for(NSDictionary *dictionary in jsonArray)
+            {
+                NSLog(@"Data Dictionary is : %@",dictionary);
+                NSString *returned = [jsonArray[0] objectForKey:@"value"];
+                int accepted = [[jsonArray[0] objectForKey:@"accepted"] intValue];
+                
+                if (accepted){
+                    NSInteger age = 0;
+                    if ([self.age.text length] > 1){
+                        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                        [dateFormatter setDateFormat:@"M/d/yyyy"];
+                        NSDate* birthday = [dateFormatter dateFromString:self.age.text];
+                        
+                        NSDate* now = [NSDate date];
+                        NSDateComponents* ageComponents = [[NSCalendar currentCalendar]
+                                                           components:NSYearCalendarUnit
+                                                           fromDate:birthday
+                                                           toDate:now
+                                                           options:0];
+                        age = [ageComponents year];
+                    }
+                    
+                    [self.delegate addItemViewController:self didSave :self.name.text :self.surname.text :self.about.text
+                                                        :(age > 0 ?  [NSString stringWithFormat:@"%d", age] : @"")
+                                                        :self.weight.text :self.height.text :self.position.text];
+                    
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
+                                                                    message:returned //@"Details saved!"
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"Ok"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                }
+            }
         }
-        
-        [self.delegate addItemViewController:self didSave :self.name.text :self.surname.text :self.about.text
-                                            :(age > 0 ?  [NSString stringWithFormat:@"%d", age] : @"")
-                                            :self.weight.text :self.height.text :self.position.text];
-
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
-                                                        message:@"Details saved!"
-                                                       delegate:self
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil];
-        [alert show];
-    }
-    
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker

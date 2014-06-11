@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 #import <FacebookSDK/FacebookSDK.h>
 
 @interface SignUpController : UIViewController<UIActionSheetDelegate, FBLoginViewDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
+@property (strong, nonatomic) IBOutlet MPMoviePlayerController *moviePlayer;
 @property (strong, nonatomic) IBOutlet UIPickerView *picker;
 @property (strong, nonatomic) NSMutableArray *userTypeArray;
 
@@ -23,6 +25,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *activeTextField;
 @property (nonatomic) int messageCounter;
 
+@property (strong, nonatomic) IBOutlet UIImageView *back;
 - (IBAction)Done:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UIView *backgroundview;

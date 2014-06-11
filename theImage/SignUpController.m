@@ -38,15 +38,22 @@ static id<FBGraphUser> facebookUser;
     return self;
 }
 
+- (void)applicationDidBecomeActive:(NSNotification *) notification
+{
+    [self.moviePlayer play];
+}
+
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.moviePlayer play];
     self.mainSlideMenu.panGesture.enabled = NO;
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [self.moviePlayer pause];
     self.mainSlideMenu.panGesture.enabled = YES;
     self.messageCounter = 0;
 }
@@ -64,6 +71,17 @@ static id<FBGraphUser> facebookUser;
     [self.picker setDelegate: self];
     self.picker.showsSelectionIndicator = YES;
     self.accountType.inputView = self.picker;
+    
+    NSString*thePath=[[NSBundle mainBundle] pathForResource:@"intro" ofType:@"mp4"];
+    NSURL*theurl=[NSURL fileURLWithPath:thePath];
+    
+    self.moviePlayer=[[MPMoviePlayerController alloc] initWithContentURL:theurl];
+    self.moviePlayer.controlStyle = MPMovieControlStyleNone;
+    [self.moviePlayer.view setFrame:CGRectMake(0, 0, 320, (1138 / 2))];
+    [self.moviePlayer prepareToPlay];
+    [self.moviePlayer setRepeatMode:YES];
+    [self.moviePlayer setShouldAutoplay:NO];
+    [self.back addSubview:self.moviePlayer.view];
     
     FBLoginView *loginView = [[FBLoginView alloc] init];
     // Align the button in the center horizontally
@@ -263,6 +281,8 @@ static id<FBGraphUser> facebookUser;
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.activeTextField = textField;
+    
+    [self.moviePlayer pause];
     
     if (moved ){
         CGRect aRect = self.view.frame;
