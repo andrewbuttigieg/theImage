@@ -51,7 +51,6 @@ static int findPlayerID = 0;
     return self;
 }
 
-
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

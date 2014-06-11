@@ -60,7 +60,7 @@ static UIRefreshControl *refreshControl;
         UIScrollView * temp = (UIScrollView *)self.scrollview.subviews[i];
         if (temp.subviews.count >= 2){
             UIImageView * iv = (UIImageView *)temp.subviews[0];
-            int y = scrollView.contentOffset.y - (j++ * (200 + 80)) + 64;
+            int y = scrollView.contentOffset.y - (j++ * (180 + 80)) + 64;
             if (y > 0 && y < (320 - 80)){
                 iv.frame = CGRectMake(0, 0 - y, 320, 320);
             }
@@ -89,6 +89,14 @@ static UIRefreshControl *refreshControl;
     
     top = 0.0;
     self.scrollview.delegate = self;
+    
+    for (UIView* view in self.scrollview.subviews)
+    {
+        if ([view isKindOfClass:[UIScrollView class]] || [view isKindOfClass:[UIWebView class]])
+        {
+            [view removeFromSuperview];
+        }
+    }
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_all_videos.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
@@ -145,66 +153,40 @@ static UIRefreshControl *refreshControl;
                     
                     UIImageView *iv2 = [[UIImageView alloc] initWithImage:[ImageEffect blur:image]];
                     iv2.frame=CGRectMake(0, 0, 320, 320);
-                    
                     UIScrollView *secondScroll=[[UIScrollView alloc]initWithFrame:CGRectMake(0, top, 320, 80)];
                     
-                    //  secondScroll.backgroundColor = [UIColor colorWithPatternImage:[self blur:image]];
-                    //secondScroll.backgroundColor = [UIColor colorWithPatternImage:image];
-                    
+                    UIView *backdrop=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 320)];
+                    backdrop.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.8f];
+
                     [secondScroll addSubview:iv2];
+                    [secondScroll addSubview:backdrop];
                     [secondScroll addSubview:lb];
                     [secondScroll addSubview:iv];
                     top += 80.0;
                     //dispatch_sync(dispatch_get_main_queue(), ^{
                     [self.scrollview addSubview:secondScroll];
                     
-                        /* NSString *newHTML = @"<html>\
-                         <style>body{padding:0;margin:0;}</style>\
-                         <iframe width=\"300\" height=\"200\" src=\"http://www.youtube.com/embed/zL0CCsdS1cE?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>\
-                         </html>";*/
+                    CGRect webFrame = CGRectMake(00.0, 0.0, 320.0, 180);
+                    NSString *theURL = [dictionary objectForKey:@"URL"];
+                    theURL = [self extractYoutubeID:theURL];
+                    theURL = [NSString stringWithFormat:@"http://www.youtube.com/embed/%@", theURL];
+                
+                    //the video
+                    NSURL *url = [NSURL URLWithString:theURL];
+                    NSURLRequest *req = [NSURLRequest requestWithURL:url];
+                    UIWebView *bubbleView = [[UIWebView alloc] initWithFrame:webFrame];
+                    bubbleView.scrollView.scrollEnabled = NO;
+                    bubbleView.scrollView.bounces = NO;
+                    bubbleView.backgroundColor = [UIColor blackColor];
+                    bubbleView.frame=CGRectMake(0, top, 320, 180);
+                    [bubbleView loadRequest:req];
                     
-                        //NSString *newHTML = [NSString stringWithFormat:@"<html>\
-                        <style>body{padding:0;margin:0;background-color:red}</style>\
-                        <iframe width=\"300\" height=\"200\" src=\"%@\" frameborder=\"0\" allowfullscreen></iframe>\
-                        </html>", [dictionary objectForKey:@"URL"]];
-                        //http://www.youtube.com/embed/zL0CCsdS1cE?autoplay=1
-                        
-                        //[self.webView loadHTMLString:newHTML baseURL:nil];
-                        
-                        CGRect webFrame = CGRectMake(00.0, 0.0, 320.0, 200.0);
-                        //int tempIndex = (int)([[dictionary objectForKey:@"URL"] rangeOfString:@"/" options:NSBackwardsSearch].location);
-                        //NSString *newStr = [[dictionary objectForKey:@"URL"] substringFromIndex:tempIndex];
-                        NSString *theURL = [dictionary objectForKey:@"URL"];
-                        theURL = [theURL stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"];
-                        theURL = [self extractYoutubeID:theURL];
-                        theURL = [NSString stringWithFormat:@"http://www.youtube.com/embed/%@", theURL];
+                    //where to put the view
+                    top += 180.0;
+                    [self.scrollview addSubview:bubbleView];
                     
-                        //the video
-                        NSURL *url = [NSURL URLWithString:theURL];
-                        NSURLRequest *req = [NSURLRequest requestWithURL:url];
-                        UIWebView *bubbleView = [[UIWebView alloc] initWithFrame:webFrame];
-                        bubbleView.scrollView.scrollEnabled = NO;
-                        bubbleView.scrollView.bounces = NO;
-                        bubbleView.backgroundColor = [UIColor blackColor];
-                        bubbleView.frame=CGRectMake(0, top, 320, 200);
-                        [bubbleView loadRequest:req];
-                        //delete button
-                    
-                        /*UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-                        [button addTarget:self action:@selector(deleteVideo:) forControlEvents:UIControlEventTouchUpInside];
-                        button.tag = [[dictionary objectForKey:@"VideoID"] intValue];
-                        [button setTitle:@"Delete" forState:UIControlStateNormal];
-                        button.frame = CGRectMake(10.0, top + 200, 160.0, 40.0);*/
-                        
-                        //where to put the view
-                        top += 200.0;
-                        //dispatch_sync(dispatch_get_main_queue(), ^{
-                            [self.scrollview addSubview:bubbleView];
-                        //[self.scrollview addSubview:button];
-                        
-                            //set the scroll of the view
-                            self.scrollview.contentSize = CGSizeMake(320, top);
-                        //});
+                    //set the scroll of the view
+                    self.scrollview.contentSize = CGSizeMake(320, top);
                 }
 //                [self. reloadData];
                 [refreshControl endRefreshing];
@@ -222,7 +204,7 @@ static UIRefreshControl *refreshControl;
     
     self.title = @"Videos";
     
-    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Discover and be discovered"];
     [refreshControl addTarget:self action:@selector(load) forControlEvents:UIControlEventValueChanged];
     [self.scrollview addSubview:refreshControl];
     

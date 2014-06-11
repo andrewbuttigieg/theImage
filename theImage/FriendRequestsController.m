@@ -338,7 +338,7 @@
     
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     
-    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Discover and be discovered"];
     [refresh addTarget:self action:@selector(load) forControlEvents:UIControlEventValueChanged];
     
     self.refreshControl = refresh;

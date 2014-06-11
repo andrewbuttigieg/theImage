@@ -94,15 +94,15 @@ static int updateImage = 1;
     self.genderArray =  [[NSMutableArray alloc]initWithObjects:@"", @"Male",@"Female",@"Hidden" , nil];
     self.countryArray =  [[NSMutableArray alloc]initWithObjects:nil];
     self.positionArray =[[NSMutableArray alloc]initWithObjects:@"", @"Goalkeeper (GK)",
-    @"Defender left (DL)",
+    @"Defender Left (DL)",
     @"Defender Right (DR)",
-    @"Defender centre (DC)",
+    @"Defender Centre (DC)",
     @"Midfielder Left (ML)",
     @"Midfielder Right (MR)",
     @"Defensive Midfielder Centre (DMC)",
-    @"Midfielder centre (MC)",
-    @"Attacking midfielder centre (AMC)",
-    @"Forward ( FW )",
+    @"Midfielder Centre (MC)",
+    @"Attacking Midfielder Centre (AMC)",
+    @"Forward (FW)",
     @"Striker (ST)" , nil];
 
     self.positionPicker= [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 100, 150)];
@@ -627,6 +627,7 @@ UIDatePicker *itsDatePicker;
 }
 
 - (IBAction)findImage:(id)sender {
+    updateImage = 1;
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
     imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;

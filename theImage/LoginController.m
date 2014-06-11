@@ -90,7 +90,7 @@ bool movedHere = false;
     loginView.readPermissions = @[@"email", @"public_profile", @"user_friends"];
     
     loginView.delegate = self;
-    loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 100);
+    loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 20);
     [self.scrollViewLogin addSubview:loginView];
     
     self.scrollViewLogin.contentSize = CGSizeMake(320, 480);

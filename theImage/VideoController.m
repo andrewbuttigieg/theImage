@@ -71,7 +71,6 @@ static float top = 0;
 // extractYoutubeID
 - (NSString *)extractYoutubeID:(NSString *)youtubeURL
 {
-    //NSLog(@"youtube  %@",youtubeURL);
     NSError *error = NULL;
     NSString *regexString = @"(?<=v(=|/))([-a-zA-Z0-9_]+)|(?<=youtu.be/)([-a-zA-Z0-9_]+)";
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString options:NSRegularExpressionCaseInsensitive error:&error];
@@ -103,8 +102,6 @@ static float top = 0;
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPBody:[[NSString stringWithFormat:@"userid=%d", self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
-    //NSError *error = nil; NSURLResponse *response = nil;
-    //    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
@@ -114,6 +111,15 @@ static float top = 0;
             NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                         options:0
                                                                           error:&error];
+            
+
+            UIView *backdrop=[[UIView alloc]initWithFrame:CGRectMake(0, 46, 320, 15000)];
+            backdrop.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.8f];
+            [self.scrollview addSubview:backdrop];
+            
+            //set the scroll of the view
+            self.scrollview.contentSize = CGSizeMake(320, top);
+            
             for(NSDictionary *dictionary in jsonArray)
             {
                 if ([dictionary objectForKey:@"accepted"])
@@ -128,35 +134,12 @@ static float top = 0;
                     [alert show];
                 }
                 else{
-                   /* UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV"
-                                                                   message: [dictionary objectForKey:@"Comment"]
-                                                                  delegate: self
-                                                         cancelButtonTitle:@"Ok"
-                                                         otherButtonTitles:nil];
-                    
-                    
-                    [alert show];*/
                     dispatch_sync(dispatch_get_main_queue(), ^{
-
-                       /* NSString *newHTML = @"<html>\
-                        <style>body{padding:0;margin:0;}</style>\
-                        <iframe width=\"300\" height=\"200\" src=\"http://www.youtube.com/embed/zL0CCsdS1cE?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>\
-                        </html>";*/
+                        CGRect webFrame = CGRectMake(00.0, 0.0, 320.0, 180.0);
                         
-                        //NSString *newHTML = [NSString stringWithFormat:@"<html>\
-                                             <style>body{padding:0;margin:0;background-color:red}</style>\
-                                             <iframe width=\"300\" height=\"200\" src=\"%@\" frameborder=\"0\" allowfullscreen></iframe>\
-                                             </html>", [dictionary objectForKey:@"URL"]];
-                        //http://www.youtube.com/embed/zL0CCsdS1cE?autoplay=1
-                        
-                        //[self.webView loadHTMLString:newHTML baseURL:nil];
-                        
-                        CGRect webFrame = CGRectMake(00.0, 0.0, 320.0, 200.0);
-                        //int tempIndex = (int)([[dictionary objectForKey:@"URL"] rangeOfString:@"/" options:NSBackwardsSearch].location);
-                        //NSString *newStr = [[dictionary objectForKey:@"URL"] substringFromIndex:tempIndex];
                         NSString *theURL = [dictionary objectForKey:@"URL"];
                         self.title = [NSString stringWithFormat:@"Videos from %@" ,[dictionary objectForKey:@"Firstname"]];
-                        theURL = [theURL stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"];
+                        //theURL = [theURL stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"];
 
                         theURL = [self extractYoutubeID:theURL];
                         theURL = [NSString stringWithFormat:@"http://www.youtube.com/embed/%@", theURL];
@@ -166,7 +149,7 @@ static float top = 0;
                         NSURLRequest *req = [NSURLRequest requestWithURL:url];
                         UIWebView *bubbleView = [[UIWebView alloc] initWithFrame:webFrame];
                         bubbleView.backgroundColor = [UIColor blackColor];
-                        bubbleView.frame=CGRectMake(0, top, 320, 200);
+                        bubbleView.frame=CGRectMake(0, top, 320, 180);
                         bubbleView.scrollView.scrollEnabled = NO;
                         bubbleView.scrollView.bounces = NO;
                         [bubbleView loadRequest:req];
@@ -177,7 +160,9 @@ static float top = 0;
                             [button addTarget:self action:@selector(deleteVideo:) forControlEvents:UIControlEventTouchUpInside];
                             button.tag = [[dictionary objectForKey:@"VideoID"] intValue];
                             [button setTitle:@"Remove video?" forState:UIControlStateNormal];
-                            button.frame = CGRectMake(-28.0, top + 195, 200.0, 40.0);
+                            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+
+                            button.frame = CGRectMake(-28.0, top + 175, 180.0, 40.0);
                             [self.scrollview addSubview:button];
                             top += 40;
                         }
@@ -199,7 +184,8 @@ static float top = 0;
                         self.scrollview.backgroundColor = [UIColor colorWithPatternImage:[ImageEffect blur:image]];
                         
                         //where to put the view
-                        top += 200;
+                        top += 180;
+                        [self.scrollview addSubview:bubbleView];
                         [self.scrollview addSubview:bubbleView];
                         
                         //set the scroll of the view
@@ -209,7 +195,6 @@ static float top = 0;
             }
         }
     }];
-
 	// Do any additional setup after loading the view.
 }
 
@@ -227,7 +212,7 @@ static float top = 0;
 - (IBAction)addVideoButton:(id)sender {
     if ([self isValidUrl:self.addVideoLink.text]){
         NSString *theURL = self.addVideoLink.text;
-        theURL = [[theURL stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"] lowercaseString];
+        //theURL = [[theURL stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"] lowercaseString];
         
         if ([[theURL lowercaseString] rangeOfString:@"vimeo"].location != NSNotFound){
             //vimeo video
@@ -240,8 +225,6 @@ static float top = 0;
         [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
         [request setHTTPBody:[[NSString stringWithFormat:@"url=%@&comment=%@", theURL, @"-"]dataUsingEncoding:NSUTF8StringEncoding]];
         [request setHTTPMethod:@"POST"];
-        //NSError *error = nil; NSURLResponse *response = nil;
-        //    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
         [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
             

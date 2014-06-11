@@ -58,7 +58,7 @@ static id<FBGraphUser> facebookUser;
     self.title = @"Sign Up";
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"signup-background.jpg"]]];
     
-    self.userTypeArray =  [[NSMutableArray alloc]initWithObjects:@"Player",@"Scout",@"Agent", @"Coach" , nil];
+    self.userTypeArray =  [[NSMutableArray alloc]initWithObjects:@"", @"Player",@"Scout",@"Agent", @"Coach" , nil];
     self.picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 100, 150)];
     [self.picker setDataSource: self];
     [self.picker setDelegate: self];
@@ -74,15 +74,6 @@ static id<FBGraphUser> facebookUser;
     
     for (id obj in loginView.subviews)
     {
-        /*if ([obj isKindOfClass:[UIButton class]])
-        {
-            UIButton * loginButton =  obj;
-            UIImage *loginImage = [UIImage imageNamed:@"YourImg.png"];
-            [loginButton setBackgroundImage:loginImage forState:UIControlStateNormal];
-            [loginButton setBackgroundImage:nil forState:UIControlStateSelected];
-            [loginButton setBackgroundImage:nil forState:UIControlStateHighlighted];
-            [loginButton sizeToFit];
-        }*/
         if ([obj isKindOfClass:[UILabel class]])
         {
             UILabel * loginLabel =  obj;
@@ -323,7 +314,7 @@ static id<FBGraphUser> facebookUser;
     aRect.size.height -= keyboardSize.height;
     CGRect rect = [[UIApplication sharedApplication] statusBarFrame];
     CGPoint xxx = self.activeTextField.frame.origin;
-    xxx.y += self.navigationController.navigationBar.frame.size.height + rect.size.height;
+    xxx.y += self.navigationController.navigationBar.frame.size.height + rect.size.height + self.activeTextField.frame.size.height;
     
     if (!CGRectContainsPoint(aRect, xxx) ) {
         CGPoint scrollPoint = CGPointMake(0.0, self.activeTextField.frame.origin.y - (keyboardSize.height-35));

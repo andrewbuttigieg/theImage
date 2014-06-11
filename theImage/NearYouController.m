@@ -62,23 +62,14 @@
 {
     static NSString *CellIdentifier = @"nearYouCell";
     
-    nearYouCell * cell = [tableView
-                        dequeueReusableCellWithIdentifier:CellIdentifier];
+    nearYouCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[nearYouCell alloc]
-                initWithStyle:UITableViewCellStyleDefault
-                reuseIdentifier:CellIdentifier];
+        cell = [[nearYouCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
-    cell.name.text = [self.nameForNear
-                      objectAtIndex: [indexPath row]];
-    cell.distance.text = [self.locationForNear
-                         objectAtIndex: [indexPath row]];
-    
-    /*
-    cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.imageForNear objectAtIndex: [indexPath row]]]]];
-    */
+    cell.name.text = [self.nameForNear objectAtIndex: [indexPath row]];
+    cell.distance.text = [self.locationForNear objectAtIndex: [indexPath row]];
     
     if ([self isValidUrl : [self.imageForNear objectAtIndex: [indexPath row]]])
         cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.imageForNear objectAtIndex: [indexPath row]]]]];
@@ -164,7 +155,6 @@
                         
                         [self.nameForNear addObject:[anObject objectForKey:@"Firstname"]];
                         [self.imageForNear addObject:[anObject objectForKey:@"PhotoURL"]];
-                        //[self.textForNear addObject:[dictionary objectForKey:@"Text"]];
                         [self.userTypeForNear addObject:[anObject objectForKey:@"UserType"]];
                         [self.userIDForNear addObject:[anObject objectForKey:@"UserID"]];
                         
@@ -218,7 +208,7 @@
     
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     
-    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Discover and be discovered"];
     [refresh addTarget:self action:@selector(load) forControlEvents:UIControlEventValueChanged];
     
     self.refreshControl = refresh;

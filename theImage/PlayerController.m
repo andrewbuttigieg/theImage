@@ -581,6 +581,12 @@ static NSString* deviceToken;
                                     }
                                     
                                     if (!player){
+                                        
+                                        self.heightIcon.hidden = TRUE;
+                                        self.weightIcon.hidden = TRUE;
+                                        self.height.hidden = TRUE;
+                                        self.weight.hidden = TRUE;
+                                        
                                         if (
                                             [theUser valueForKey:@"LookingForPartnership"] != [NSNull null] &&
                                             [theUser valueForKey:@"LookingForPartnership"] != nil &&
@@ -668,28 +674,28 @@ static NSString* deviceToken;
                                     self.userType.hidden = false;
                                 }
                                 
-                                if ([theUser valueForKey:@"Position"] != [NSNull null] &&
-                                    [theUser valueForKey:@"Position"] != nil &&
-                                    [[theUser valueForKey:@"Position"] length] > 0 &&
-                                    ![[theUser valueForKey:@"Position"] isEqualToString:@"0"]){
-                                    self.postion.text = [theUser valueForKey:@"Position"];
-                                }
-                                else{
-                                    if (player){
-                                        self.postion.text = @"This user has not choosen their playing position";
+                                if (player){
+                                    if ([theUser valueForKey:@"Position"] != [NSNull null] &&
+                                        [theUser valueForKey:@"Position"] != nil &&
+                                        [[theUser valueForKey:@"Position"] length] > 0 &&
+                                        ![[theUser valueForKey:@"Position"] isEqualToString:@"0"]){
+                                        self.postion.text = [theUser valueForKey:@"Position"];
                                     }
                                     else{
-                                        self.playingWhere.hidden = TRUE;
-                                        self.postion.hidden = TRUE;
-                                        
-                                        frame = self.aboutTitle.frame;
-                                        frame.origin.y = self.playingWhere.frame.origin.y;
-                                        self.aboutTitle.frame = frame;
-                                        
-                                        frame = self.aboutLabel.frame;
-                                        frame.origin.y = self.postion.frame.origin.y;
-                                        self.aboutLabel.frame = frame;
+                                        self.postion.text = @"This user has not choosen their playing position";
                                     }
+                                }
+                                else{
+                                    self.playingWhere.hidden = TRUE;
+                                    self.postion.hidden = TRUE;
+                                    
+                                    frame = self.aboutTitle.frame;
+                                    frame.origin.y = self.playingWhere.frame.origin.y;
+                                    self.aboutTitle.frame = frame;
+                                    
+                                    frame = self.aboutLabel.frame;
+                                    frame.origin.y = self.postion.frame.origin.y;
+                                    self.aboutLabel.frame = frame;
                                 }
                                 
                                 if (
@@ -984,6 +990,13 @@ float imageHeight = 0;
     }
     if (imagePos == [self.pageView currentPage]){
         self.playerImage.image = item;
+    }
+    
+    if (self.pageView.numberOfPages > 1){
+        self.mainSlideMenu.panGesture.minimumNumberOfTouches = 2;
+    }
+    else{
+        self.mainSlideMenu.panGesture.minimumNumberOfTouches = 1;
     }
 }
 
