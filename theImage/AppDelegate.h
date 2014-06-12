@@ -14,6 +14,7 @@
      NSString *theDeviceToken;
     int messageAPNID;
     int connectionAPNID;
+    bool fullScreenVideoIsPlaying;
 }
 
 @property (nonatomic) NSString * currentView;
@@ -21,6 +22,7 @@
 
 @property (nonatomic) int messageAPNID;
 @property (nonatomic) int connectionAPNID;
+@property (nonatomic) bool fullScreenVideoIsPlaying;
 
 @property (strong, nonatomic) UIWindow *window;
 

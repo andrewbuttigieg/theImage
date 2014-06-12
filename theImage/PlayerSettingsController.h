@@ -19,7 +19,9 @@
 
 - (void)addItemViewController:(id)controller didSave :(NSString *)name :(NSString *)lname
                              :(NSString *)about :(NSString *)age :(NSString *)weight :(NSString *)height
-                             :(NSString *)position;
+                             :(NSString *)position :(BOOL)lookingForPlayer
+                             :(NSString *)lfpCountry :(NSString *)lfpPosition
+                             :(BOOL)lookingForPartner :(NSString *)lfpartCountry;
 @end
 
 @interface PlayerSettingsController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource,

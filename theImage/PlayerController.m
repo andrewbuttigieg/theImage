@@ -23,6 +23,7 @@
 
 static int playerID = 0;
 static int meID = 0;
+static bool player = false;
 
 - (void)changeImage:(int)currentPage{
     if (
@@ -378,6 +379,8 @@ static NSString* deviceToken;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    player = false;
 
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
@@ -561,7 +564,7 @@ static NSString* deviceToken;
                                 self.height.text = [NSString stringWithFormat:@"%gcm", [[theUser valueForKey:@"Height"] floatValue]];
                                 self.weight.text = [NSString stringWithFormat:@"%gkgs", [[theUser valueForKey:@"Weight"] floatValue]];
                                 
-                                bool player = false;
+                                self.userType.hidden = false;
                                 if (
                                     [theUser valueForKey:@"UserType"] != [NSNull null] &&
                                     [theUser valueForKey:@"UserType"] != nil){
@@ -579,124 +582,16 @@ static NSString* deviceToken;
                                     else if ([[theUser valueForKey:@"UserType"] isEqualToString:@"4"]) {
                                         self.userType.text = @"Coach";
                                     }
-                                    
-                                    if (!player){
-                                        
-                                        self.heightIcon.hidden = TRUE;
-                                        self.weightIcon.hidden = TRUE;
-                                        self.height.hidden = TRUE;
-                                        self.weight.hidden = TRUE;
-                                        
-                                        if (
-                                            [theUser valueForKey:@"LookingForPartnership"] != [NSNull null] &&
-                                            [theUser valueForKey:@"LookingForPartnership"] != nil &&
-                                            [[theUser valueForKey:@"LookingForPartnership"] intValue] == 1){
-                                            self.offeringAPlayer_Label.hidden = false;
-                                            self.offeringAPlayer.hidden = false;
-                                            
-                                            self.offeringAPlayer.text = [theUser valueForKey:@"PartnerCountry"];
-                                        }
-                                        else{
-                                            //hide it
-                                            CGRect frame = self.lookingForPlayer_Labe.frame;
-                                            frame.origin.y = self.offeringAPlayer_Label.frame.origin.y;
-                                            self.lookingForPlayer_Labe.frame = frame;
-                                            
-                                            frame = self.lookingForPlayer.frame;
-                                            frame.origin.y = self.offeringAPlayer.frame.origin.y;
-                                            self.lookingForPlayer.frame = frame;
-                                        }
-                                        
-                                        if (
-                                            [theUser valueForKey:@"LookingForPlayer"] != [NSNull null] &&
-                                            [theUser valueForKey:@"LookingForPlayer"] != nil &&
-                                            [[theUser valueForKey:@"LookingForPlayer"] intValue] == 1){
-                                            self.lookingForPlayer_Labe.hidden = false;
-                                            self.lookingForPlayer.hidden = false;
-                                            
-                                            self.lookingForPlayer.text =
-                                                [NSString stringWithFormat:@"%@ to play in %@"
-                                                 , [theUser valueForKey:@"LFPPosition"]
-                                                 , [theUser valueForKey:@"LFPCountry"]];
-                                            
-                                            //telling the next item where to be
-                                            CGRect frame = self.playingWhere.frame;
-                                            frame.origin.y = self.lookingForPlayer.frame.origin.y + 25;
-                                            self.playingWhere.frame = frame;
-                                        }
-                                        else{
-                                            //telling the next item where to be
-                                            CGRect frame = self.playingWhere.frame;
-                                            frame.origin.y = self.lookingForPlayer_Labe.frame.origin.y;
-                                            self.playingWhere.frame = frame;
-                                            
-                                            frame = self.postion.frame;
-                                            frame.origin.y = self.playingWhere.frame.origin.y + 25;
-                                            self.postion.frame = frame;
-                                        }
-                                        
-                                        CGRect frame = self.postion.frame;
-                                        frame.origin.y = self.playingWhere.frame.origin.y + 25;
-                                        self.postion.frame = frame;
-                                        
-                                        frame = self.aboutTitle.frame;
-                                        frame.origin.y = self.postion.frame.origin.y + 25;
-                                        self.aboutTitle.frame = frame;
-                                        
-                                        frame = self.aboutLabel.frame;
-                                        frame.origin.y = self.aboutTitle.frame.origin.y + 25;
-                                        self.aboutLabel.frame = frame;
-                                    }
-                                    else{
-                                        self.lookingForPlayer.hidden = TRUE;
-                                        self.lookingForPlayer_Labe.hidden = TRUE;
-                                        self.offeringAPlayer.hidden = TRUE;
-                                        self.offeringAPlayer_Label.hidden = TRUE;
-                                        
-                                        //hide it
-                                        CGRect frame = self.playingWhere.frame;
-                                        frame.origin.y = self.offeringAPlayer_Label.frame.origin.y;
-                                        self.playingWhere.frame = frame;
-                                        
-                                        frame = self.postion.frame;
-                                        frame.origin.y = self.offeringAPlayer.frame.origin.y;
-                                        self.postion.frame = frame;
-                                        
-                                        frame = self.aboutTitle.frame;
-                                        frame.origin.y = self.postion.frame.origin.y + 25;
-                                        self.aboutTitle.frame = frame;
-                                        
-                                        frame = self.aboutLabel.frame;
-                                        frame.origin.y = self.aboutTitle.frame.origin.y + 25;
-                                        self.aboutLabel.frame = frame;
-                                    }
-                                    
-                                    self.userType.hidden = false;
                                 }
-                                
-                                if (player){
-                                    if ([theUser valueForKey:@"Position"] != [NSNull null] &&
+                                   /* if ([theUser valueForKey:@"Position"] != [NSNull null] &&
                                         [theUser valueForKey:@"Position"] != nil &&
                                         [[theUser valueForKey:@"Position"] length] > 0 &&
                                         ![[theUser valueForKey:@"Position"] isEqualToString:@"0"]){
-                                        self.postion.text = [theUser valueForKey:@"Position"];
+                                        self.postion.text = ;
                                     }
                                     else{
                                         self.postion.text = @"This user has not choosen their playing position";
-                                    }
-                                }
-                                else{
-                                    self.playingWhere.hidden = TRUE;
-                                    self.postion.hidden = TRUE;
-                                    
-                                    frame = self.aboutTitle.frame;
-                                    frame.origin.y = self.playingWhere.frame.origin.y;
-                                    self.aboutTitle.frame = frame;
-                                    
-                                    frame = self.aboutLabel.frame;
-                                    frame.origin.y = self.postion.frame.origin.y;
-                                    self.aboutLabel.frame = frame;
-                                }
+                                    }*/
                                 
                                 if (
                                     [theUser valueForKey:@"Country"] != [NSNull null] &&
@@ -814,20 +709,8 @@ static NSString* deviceToken;
                                         UIScrollView *secondScroll=[[UIScrollView alloc]initWithFrame:CGRectMake(x, y, 320, 150)];
                                         
                                         CALayer *bottomBorder = [CALayer layer];
-                                        
-                                        //bottomBorder.frame = CGRectMake(0.0f, 0.0f, secondScroll.frame.size.width, 1.0f);
-                                        
-                                        //bottomBorder.backgroundColor = [UIColor colorWithWhite:0.8f
-                                        //                                                 alpha:1.0f].CGColor;
+
                                         [secondScroll.layer addSublayer:bottomBorder];
-                                        
-                                        /*NSDictionary *temp;
-                                        if (i == 0)
-                                            temp = playerD;
-                                        if (i == 1)
-                                            temp = scoutD;
-                                        if (i == 2)
-                                            temp = agentD;*/
                                         int playerCount = 0;
                                         int scoutCount = 0;
                                         int agentCount = 0;
@@ -912,6 +795,29 @@ static NSString* deviceToken;
                                         }
                                     }
                                 }
+                                bool lookingForPartner = false;
+                                if (
+                                    [theUser valueForKey:@"LookingForPartnership"] != [NSNull null] &&
+                                    [theUser valueForKey:@"LookingForPartnership"] != nil &&
+                                    [[theUser valueForKey:@"LookingForPartnership"] intValue] == 1){
+                                    lookingForPartner = true;
+                                }
+                                
+                                bool lookingForPlayer = false;
+                                if (
+                                    [theUser valueForKey:@"LookingForPlayer"] != [NSNull null] &&
+                                    [theUser valueForKey:@"LookingForPlayer"] != nil &&
+                                    [[theUser valueForKey:@"LookingForPlayer"] intValue] == 1){
+                                    lookingForPlayer = true;
+                                }
+                                
+                                
+                                [self fixDisplay:[theUser valueForKey:@"Position"]
+                                                :lookingForPlayer
+                                                :[theUser valueForKey:@"LFPCountry"]
+                                                :[theUser valueForKey:@"LFPPosition"]
+                                                :lookingForPartner
+                                                :[theUser valueForKey:@"PartnerCountry"]];
                             });
                         }
                     }
@@ -1000,11 +906,166 @@ float imageHeight = 0;
     }
 }
 
+- (void)fixDisplay:(NSString *)position
+           :(BOOL)lookingForPlayer :(NSString *)lfpCountry :(NSString *)lfpPosition :(BOOL)lookingForPartner
+           :(NSString *)lfpartCountry;
+{
+    if (!player){
+        
+        self.heightIcon.hidden = TRUE;
+        self.weightIcon.hidden = TRUE;
+        self.height.hidden = TRUE;
+        self.weight.hidden = TRUE;
+        
+        if (
+            ![lfpartCountry isEqual:[NSNull null]] &&
+            lfpartCountry != nil &&
+            [lfpartCountry length] > 0 &&
+            lookingForPartner)
+        {
+            self.offeringAPlayer_Label.hidden = false;
+            self.offeringAPlayer.hidden = false;
+            self.offeringAPlayer.text = lfpartCountry;
+            
+            CGRect frame = self.lookingForPlayer_Labe.frame;
+            frame.origin.y = self.offeringAPlayer.frame.origin.y + 25;
+            self.lookingForPlayer_Labe.frame = frame;
+            
+            frame = self.lookingForPlayer.frame;
+            frame.origin.y = self.lookingForPlayer_Labe.frame.origin.y + 25;
+            self.lookingForPlayer.frame = frame;
+        }
+        else{
+            self.offeringAPlayer_Label.hidden = true;
+            self.offeringAPlayer.hidden = true;
+            //hide it
+            CGRect frame = self.lookingForPlayer_Labe.frame;
+            frame.origin.y = self.offeringAPlayer_Label.frame.origin.y;
+            self.lookingForPlayer_Labe.frame = frame;
+            
+            frame = self.lookingForPlayer.frame;
+            frame.origin.y = self.offeringAPlayer.frame.origin.y;
+            self.lookingForPlayer.frame = frame;
+        }
+        
+        if (
+            ![lfpartCountry isEqual:[NSNull null]] &&
+            lfpartCountry != nil &&
+            [lfpartCountry length] > 0 &&
+            ![lfpPosition isEqual:[NSNull null]] &&
+            lfpPosition != nil &&
+            [lfpPosition length] > 0 &&
+            lookingForPlayer){
+            
+            self.lookingForPlayer_Labe.hidden = false;
+            self.lookingForPlayer.hidden = false;
+            self.lookingForPlayer.text = [NSString stringWithFormat:@"%@ to play in %@", lfpPosition, lfpCountry];
+            
+            //telling the next item where to be
+            CGRect frame = self.playingWhere.frame;
+            frame.origin.y = self.lookingForPlayer.frame.origin.y + 25;
+            self.playingWhere.frame = frame;
+        }
+        else{
+            
+            self.lookingForPlayer_Labe.hidden = true;
+            self.lookingForPlayer.hidden = true;
+            
+            //telling the next item where to be
+            CGRect frame = self.playingWhere.frame;
+            frame.origin.y = self.lookingForPlayer_Labe.frame.origin.y;
+            self.playingWhere.frame = frame;
+            
+            frame = self.postion.frame;
+            frame.origin.y = self.playingWhere.frame.origin.y + 25;
+            self.postion.frame = frame;
+        }
+        
+        CGRect frame = self.postion.frame;
+        frame.origin.y = self.playingWhere.frame.origin.y + 25;
+        self.postion.frame = frame;
+        
+        frame = self.aboutTitle.frame;
+        frame.origin.y = self.postion.frame.origin.y + 25;
+        self.aboutTitle.frame = frame;
+        
+        frame = self.aboutLabel.frame;
+        frame.origin.y = self.aboutTitle.frame.origin.y + 25;
+        self.aboutLabel.frame = frame;
+    }
+    else{
+        self.lookingForPlayer.hidden = TRUE;
+        self.lookingForPlayer_Labe.hidden = TRUE;
+        self.offeringAPlayer.hidden = TRUE;
+        self.offeringAPlayer_Label.hidden = TRUE;
+        
+        //hide it
+        CGRect frame = self.playingWhere.frame;
+        frame.origin.y = self.offeringAPlayer_Label.frame.origin.y;
+        self.playingWhere.frame = frame;
+        
+        frame = self.postion.frame;
+        frame.origin.y = self.offeringAPlayer.frame.origin.y;
+        self.postion.frame = frame;
+        
+        frame = self.aboutTitle.frame;
+        frame.origin.y = self.postion.frame.origin.y + 25;
+        self.aboutTitle.frame = frame;
+        
+        frame = self.aboutLabel.frame;
+        frame.origin.y = self.aboutTitle.frame.origin.y + 25;
+        self.aboutLabel.frame = frame;
+    }
+    
+    if (player){
+        if (![position isEqual:[NSNull null]] &&
+            position != nil &&
+            [position length] > 0 &&
+            ![position isEqualToString:@"0"]){
+            self.postion.text = position;
+        }
+        else{
+            self.postion.text = @"This user has not choosen their playing position";
+        }
+    }
+    else{
+        self.playingWhere.hidden = TRUE;
+        self.postion.hidden = TRUE;
+        
+        CGRect frame = self.aboutTitle.frame;
+        frame.origin.y = self.playingWhere.frame.origin.y;
+        self.aboutTitle.frame = frame;
+        
+        frame = self.aboutLabel.frame;
+        frame.origin.y = self.postion.frame.origin.y;
+        self.aboutLabel.frame = frame;
+    }
+    
+    int newY = self.aboutLabel.frame.origin.y + self.aboutLabel.frame.size.height + 10;
+    
+    for (UIView* view in self.scrollview.subviews)
+    {
+        if ([view isKindOfClass:[UIScrollView class]] || [view isKindOfClass:[UIWebView class]])
+        {
+            CGRect frame = view.frame;
+            frame.origin.y = newY;
+            view.frame = frame;
+            newY += 150;
+            self.scrollview.contentSize = CGSizeMake(320, newY);
+        }
+    }
+    
+}
 
 - (void)addItemViewController:
 (PlayerSettingsController *)controller didSave :(NSString *)name :(NSString *)lname :(NSString *)about
-:(NSString *)age :(NSString *)weight :(NSString *)height :(NSString *)position;
+:(NSString *)age :(NSString *)weight :(NSString *)height :(NSString *)position
+:(BOOL)lookingForPlayer :(NSString *)lfpCountry :(NSString *)lfpPosition :(BOOL)lookingForPartner
+:(NSString *)lfpartCountry;
 {
+    
+    [self fixDisplay:position :lookingForPlayer :lfpCountry :lfpPosition :lookingForPartner :lfpCountry];
+    
     self.playerName.text = [[NSString stringWithFormat:@"%@ %@", name, lname ] uppercaseString];
     if ([about length] < 5){
         self.aboutLabel.text = @"This user has not updated their about section yet";
@@ -1015,7 +1076,6 @@ float imageHeight = 0;
     self.height.text = height;
     self.weight.text = weight;
     self.age.text = age;
-    self.postion.text = position;
 }
 
 

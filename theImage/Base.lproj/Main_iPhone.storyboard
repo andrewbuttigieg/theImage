@@ -1647,6 +1647,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="agent" destination="uyy-10-Bhg" id="3If-ii-86B"/>
+                        <outlet property="coach" destination="BQ7-sc-fqv" id="LDq-g4-iT0"/>
                         <outlet property="player" destination="rQi-JC-gr4" id="Ri9-td-q1a"/>
                         <outlet property="putThemThere" destination="lZi-qB-r8N" id="f3j-IU-MFI"/>
                         <outlet property="scout" destination="Mwa-hb-kw5" id="5zL-ce-3ZP"/>
@@ -1826,10 +1827,6 @@
                                     <action selector="sendMessage:" destination="iMm-Ef-769" eventType="touchUpInside" id="PKW-DI-OhY"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="OAm-oS-HL6">
-                                <rect key="frame" x="8" y="628" width="320" height="54"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </scrollView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="E4s-HW-cq5">
                                 <rect key="frame" x="275" y="282" width="25" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2481,7 +2478,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SmH-uv-xsh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3355" y="3494"/>
+            <point key="canvasLocation" x="4278" y="3762"/>
         </scene>
         <!--View Controller - Privacy Policy-->
         <scene sceneID="tPz-as-Qev">

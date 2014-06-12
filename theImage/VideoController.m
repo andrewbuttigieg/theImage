@@ -9,6 +9,7 @@
 #import "VideoController.h"
 #import "PlayerController.h"
 #import "ImageEffect.h"
+#import "AppDelegate.h"
 
 @interface VideoController ()
 
@@ -83,8 +84,31 @@ static float top = 0;
     return nil;
 }
 
+
+-(void) youTubeStarted:(NSNotification*) notif {
+    AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    appDelegate.fullScreenVideoIsPlaying = YES;
+}
+-(void) youTubeFinished:(NSNotification*) notif {
+    AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    appDelegate.fullScreenVideoIsPlaying = NO;
+}
+
+-(BOOL) shouldAutorotate {
+    return NO;
+}
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
+}
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+    return UIInterfaceOrientationPortrait;
+}
+
 - (void)viewDidLoad
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(youTubeStarted:) name:@"UIMoviePlayerControllerDidEnterFullscreenNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(youTubeFinished:) name:@"UIMoviePlayerControllerWillExitFullscreenNotification" object:nil];
+    
     [super viewDidLoad];
     
     top = 0;

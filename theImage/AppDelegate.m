@@ -26,6 +26,7 @@
 @synthesize theDeviceToken;
 @synthesize messageAPNID;
 @synthesize connectionAPNID;
+@synthesize fullScreenVideoIsPlaying;
 
 bool isAppResumingFromBackground = NO;
 
@@ -64,17 +65,29 @@ bool isAppResumingFromBackground = NO;
 
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
     
-    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
-    NSLog(@"%@", str);
-    
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didFailToRegisterForRemoteNotificationsWithError"
-                                                   message: str
-                                                  delegate: self
-                                         cancelButtonTitle: @"OK"
-                                         otherButtonTitles:nil];
-    
-    
-    [alert show];
+    if (err.code != 3010){
+        NSString *str = [NSString stringWithFormat: @"Error: %@", err];
+        NSLog(@"%@", str);
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV - didFailToRegisterForRemoteNotificationsWithError"
+                                                       message: str
+                                                      delegate: self
+                                             cancelButtonTitle: @"OK"
+                                             otherButtonTitles:nil];
+        
+        
+        [alert show];
+    }
+}
+
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+    NSUInteger orientations = UIInterfaceOrientationMaskPortrait;
+    if (self.fullScreenVideoIsPlaying) {
+        return UIInterfaceOrientationMaskAllButUpsideDown;
+    }
+    else {
+        return UIInterfaceOrientationMaskPortrait;
+    }
 }
 
 - (void)resetAppToFirstController
