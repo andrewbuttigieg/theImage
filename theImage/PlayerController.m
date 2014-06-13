@@ -200,6 +200,7 @@ static NSString* deviceToken;
                                if ([[jsonArray[0] objectForKey:@"accepted"] integerValue] == 1){
                                    dispatch_async(dispatch_get_main_queue(), ^{
                                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
+                                               
                                                                                        message:[NSString stringWithFormat:@"%@",returned]
                                                                                       delegate:self
                                                                              cancelButtonTitle:@"Ok"
@@ -949,9 +950,9 @@ float imageHeight = 0;
         }
         
         if (
-            ![lfpartCountry isEqual:[NSNull null]] &&
-            lfpartCountry != nil &&
-            [lfpartCountry length] > 0 &&
+            ![lfpCountry isEqual:[NSNull null]] &&
+            lfpCountry != nil &&
+            [lfpCountry length] > 0 &&
             ![lfpPosition isEqual:[NSNull null]] &&
             lfpPosition != nil &&
             [lfpPosition length] > 0 &&
@@ -1042,6 +1043,8 @@ float imageHeight = 0;
     }
     
     int newY = self.aboutLabel.frame.origin.y + self.aboutLabel.frame.size.height + 10;
+    
+    self.scrollview.contentSize = CGSizeMake(320, newY);
     
     for (UIView* view in self.scrollview.subviews)
     {

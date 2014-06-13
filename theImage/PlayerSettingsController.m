@@ -39,11 +39,9 @@ static int updateImage = 1;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     //self.delegate = self;
     
     self.title = @"Edit Profile";
-    
     self.scrollview.userInteractionEnabled=YES;
     [self.scrollview setScrollEnabled:YES];
     
@@ -207,6 +205,11 @@ static int updateImage = 1;
                     }
                     else{
                         player = false;
+                        self.playerOnlyView.hidden = true;
+                        CGRect aRect = self.aboutView.frame;
+                        aRect.origin.y = self.playerOnlyView.frame.origin.y;
+                        self.aboutView.frame = aRect;
+                        
                         //not a player
                         if ([dictionary objectForKey:@"LookingForPlayer"] && ![[dictionary objectForKey:@"LookingForPlayer" ] isKindOfClass:[NSNull class]]){
 
@@ -648,6 +651,20 @@ UIDatePicker *itsDatePicker;
 
 - (void) lookingForPlayerAlign {
     
+    if (!player){
+        CGRect frame = self.marketLabel.frame;
+        frame.origin.y = self.aboutView.frame.origin.y + self.aboutView.frame.size.height + 10;
+        self.marketLabel.frame = frame;
+        
+        frame = self.lookingForPlayerSwitch.frame;
+        frame.origin.y = self.marketLabel.frame.origin.y + self.marketLabel.frame.size.height + 10;
+        self.lookingForPlayerSwitch.frame = frame;
+        
+        frame = self.lookingForPlayer.frame;
+        frame.origin.y = self.lookingForPlayerSwitch.frame.origin.y + self.lookingForPlayerSwitch.frame.size.height;
+        self.lookingForPlayer.frame = frame;
+    }
+    
     if (self.lookingForPlayerButton.on){
         CGRect frame = self.lookingForPartnerSwitch.frame;
         frame.origin.y = self.lookingForPlayer.frame.origin.y +
@@ -696,7 +713,7 @@ UIDatePicker *itsDatePicker;
     
     if (player){
         CGRect frame = self.privateInformationView.frame;
-        int y = self.about.frame.origin.y + self.about.frame.size.height + 18;
+        int y = self.aboutView.frame.origin.y + self.aboutView.frame.size.height + 18;
         frame.origin.y = y;//pass the cordinate which you want
         
         self.privateInformationView.frame= frame;
@@ -722,17 +739,28 @@ UIDatePicker *itsDatePicker;
         self.lookingForPlayer.hidden = TRUE;
     }*/
     
+    bool fbaccount = false;
     if (![PlayerController.facebookID isEqual: [NSNull null]]){
-         if (![PlayerController.facebookID isEqualToString:@""]){
-             CGRect frame = self.changePwd.frame;
-             int y = self.privateInformationView.frame.origin.y + self.privateInformationView.frame.size.height + 18;
-             frame.origin.y = y;//pass the cordinate which you want
-        
-             self.changePwd.frame= frame;
+         if (![PlayerController.facebookID isEqualToString:@""] &&
+             [PlayerController.facebookID length] > 5){
+             
+             NSLog(@"%@", PlayerController.facebookID);
+             fbaccount = true;
          }
     }
     
-    self.scrollview.contentSize = CGSizeMake(320, self.changePwd.frame.origin.y + self.changePwd.frame.size.height + 10);
+    if (!fbaccount){
+        CGRect frame = self.changePwd.frame;
+        int y = self.privateInformationView.frame.origin.y + self.privateInformationView.frame.size.height + 18;
+        frame.origin.y = y;//pass the cordinate which you want
+        
+        self.changePwd.frame= frame;
+        self.scrollview.contentSize = CGSizeMake(320, self.changePwd.frame.origin.y + self.changePwd.frame.size.height + 10);
+    }
+    else{
+        self.changePwd.hidden = true;
+        self.scrollview.contentSize = CGSizeMake(320, self.privateInformationView.frame.origin.y + self.privateInformationView.frame.size.height + 10);
+    }
 }
 
 - (IBAction)lookingForPlayer:(id)sender {
