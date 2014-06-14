@@ -25,7 +25,7 @@
 @end
 
 @interface PlayerSettingsController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource,
-    UITextFieldDelegate, UIImagePickerControllerDelegate>
+    UITextFieldDelegate, UIImagePickerControllerDelegate, UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *playerOnlyView;
 @property (strong, nonatomic) IBOutlet UIView *aboutView;
 
@@ -33,6 +33,7 @@
 @property (strong, nonatomic) IBOutlet UIPickerView *countryPicker;
 @property (strong, nonatomic) IBOutlet UIPickerView *countryPicker2;
 @property (strong, nonatomic) IBOutlet UIPickerView *positionPicker;
+@property (strong, nonatomic) IBOutlet UIPickerView *positionPicker2;
 
 @property (strong, nonatomic) NSMutableArray *genderArray;
 @property (strong, nonatomic) NSMutableArray *countryArray;

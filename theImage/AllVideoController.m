@@ -112,7 +112,7 @@ static UIRefreshControl *refreshControl;
             [view removeFromSuperview];
         }
     }
-    for (int i = current; i < current + 5 && i < self.position.count; i++){
+    for (int i = current; i < current + 10 && i < self.position.count; i++){
         
         NSString *imageURL = self.image[i]; // [dictionary objectForKey:@"PhotoURL"];
         imageURL = [imageURL stringByReplacingOccurrencesOfString:@".com/"
@@ -200,21 +200,24 @@ static UIRefreshControl *refreshControl;
         [self.scrollview addSubview:bubbleView];
     }
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button addTarget:self action:@selector(doWorkContainer:) forControlEvents:UIControlEventTouchUpInside];
-    [button setTitle:@"More" forState:UIControlStateNormal];
-    button.frame = CGRectMake(70, top + 10, 180.0, 40.0);
-    button.titleLabel.textColor = [UIColor whiteColor];
-    [button setTitleColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0] forState:UIControlStateNormal];
-    
-    button.backgroundColor = [UIColor colorWithRed:(0.0f/255.0f) green:(173.0f/255.0f) blue:(239.0f/255.0f) alpha:1];
-    button.layer.cornerRadius = 3.0;
-    [self.scrollview addSubview:button];
+    current += 10;
+
+    if (current > self.position.count){
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [button addTarget:self action:@selector(doWorkContainer:) forControlEvents:UIControlEventTouchUpInside];
+        [button setTitle:@"More" forState:UIControlStateNormal];
+        button.frame = CGRectMake(70, top + 10, 180.0, 40.0);
+        button.titleLabel.textColor = [UIColor whiteColor];
+        [button setTitleColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0] forState:UIControlStateNormal];
+        
+        button.backgroundColor = [UIColor colorWithRed:(0.0f/255.0f) green:(173.0f/255.0f) blue:(239.0f/255.0f) alpha:1];
+        button.layer.cornerRadius = 3.0;
+        [self.scrollview addSubview:button];
+    }
     
     //set the scroll of the view
     self.scrollview.contentSize = CGSizeMake(320, top + 60);
     
-    current += 5;
 }
 
 -(void)load{

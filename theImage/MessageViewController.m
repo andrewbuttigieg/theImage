@@ -269,6 +269,7 @@ static float top = 0;
 {
     [mainTimer invalidate];
     mainTimer = nil;
+    [self.view endEditing:YES];
 }
 
 - (void) viewWillAppear:(BOOL)animated

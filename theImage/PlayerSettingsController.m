@@ -78,20 +78,40 @@ static int updateImage = 1;
             NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                         options:0
                                                                           error:&error];
-//            NSLog(@"Data Dictionary is : %@", jsonArray);
+            [self.countryArray addObject:@""];
             for(NSDictionary *dictionary in jsonArray)
             {
-                //NSLog(@"%@", [dictionary objectForKey:@"Country"]);
                 [self.countryArray addObject:[dictionary objectForKey:@"Country"]];
             }
-            //[self.countryArray addObject:nil];
         }
     }];
                            
     
     self.genderArray =  [[NSMutableArray alloc]initWithObjects:@"", @"Male",@"Female",@"Hidden" , nil];
     self.countryArray =  [[NSMutableArray alloc]initWithObjects:nil];
-    self.positionArray =[[NSMutableArray alloc]initWithObjects:@"", @"Goalkeeper (GK)",
+    
+    request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_playing_position.php"]];
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [request setHTTPMethod:@"POST"];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (error) {
+        } else {
+            //NSError *localError = nil;
+            NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                        options:0
+                                                                          error:&error];
+            [self.positionArray addObject:@""];
+            for(NSDictionary *dictionary in jsonArray)
+            {
+                [self.positionArray addObject:[dictionary objectForKey:@"Text"]];
+            }
+        }
+    }];
+    self.positionArray =  [[NSMutableArray alloc]initWithObjects:nil];
+    
+   /* self.positionArray =[[NSMutableArray alloc]initWithObjects:@"", @"Goalkeeper (GK)",
     @"Defender Left (DL)",
     @"Defender Right (DR)",
     @"Defender Centre (DC)",
@@ -101,9 +121,10 @@ static int updateImage = 1;
     @"Midfielder Centre (MC)",
     @"Attacking Midfielder Centre (AMC)",
     @"Forward (FW)",
-    @"Striker (ST)" , nil];
+    @"Striker (ST)" , nil];*/
 
     self.positionPicker= [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 100, 150)];
+    self.positionPicker2= [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 100, 150)];
     self.picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 100, 150)];
     self.countryPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 100, 150)];
     self.countryPicker2 = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, 100, 150)];
@@ -111,6 +132,10 @@ static int updateImage = 1;
     [self.positionPicker setDataSource: self];
     [self.positionPicker setDelegate: self];
     self.positionPicker.showsSelectionIndicator = YES;
+    
+    [self.positionPicker2 setDataSource: self];
+    [self.positionPicker2 setDelegate: self];
+    self.positionPicker2.showsSelectionIndicator = YES;
     
     [self.picker setDataSource: self];
     [self.picker setDelegate: self];
@@ -126,6 +151,7 @@ static int updateImage = 1;
     //all the pickers are binded to their respective input view
     self.position.inputView = self.positionPicker;
     self.gender.inputView = self.picker;
+    self.lfpPosition.inputView = self.positionPicker2;
     self.lfpCountry.inputView = self.countryPicker;
     self.lfpartCountry.inputView = self.countryPicker2;
     
@@ -157,10 +183,30 @@ static int updateImage = 1;
                         ){
                         self.about.text = [dictionary objectForKey:@"About"];
                     }
-                    self.height.text = [dictionary objectForKey:@"Height"];
-                    self.weight.text = [dictionary objectForKey:@"Weight"];
+                    
+                    if ([[dictionary objectForKey:@"Height"] floatValue] > 1){
+                        self.height.text = [dictionary objectForKey:@"Height"];
+                    }
+                    else{
+                        self.height.text = @"";
+                    }
+                    if ([[dictionary objectForKey:@"Weight"] floatValue] > 1){
+                        self.weight.text = [dictionary objectForKey:@"Weight"];
+                    }
+                    else{
+                        self.weight.text = @"";
+                    }
                     self.email.text = [dictionary objectForKey:@"Email"];
-                    self.position.text = [dictionary objectForKey:@"Position"];
+                    
+                    if ([[dictionary objectForKey:@"Position"] isEqual:[NSNull null]] ||
+                        [dictionary objectForKey:@"Position"] != nil ||
+                        [[dictionary objectForKey:@"Position"] isEqualToString:@"0"] ||
+                        [[dictionary objectForKey:@"Position"] isEqualToString:@""]) {
+                        self.position.text = @"";
+                    }
+                    else{
+                        self.position.text = [dictionary objectForKey:@"Position"];
+                    }
                     
                     if ([dictionary objectForKey:@"BirthdayFormatted"] != [NSNull null]){
                         
@@ -391,6 +437,9 @@ UIDatePicker *itsDatePicker;
 
     
     float topY = 0;
+    /**
+     need to do in keyboardWasShown -anything in a view
+     **/
     if ([textField isEqual: self.lfpPosition] || [textField isEqual: self.lfpCountry]){
         topY = self.lookingForPlayer.frame.origin.y;
     }
@@ -401,6 +450,12 @@ UIDatePicker *itsDatePicker;
     
     if ([textField isEqual:self.email] || [textField isEqual:self.phone]){
         topY = self.privateInformationView.frame.origin.y;
+    }
+    
+    if ([self.activePlayerTextField isEqual:self.position] ||
+        [self.activePlayerTextField isEqual:self.height] ||
+        [self.activePlayerTextField isEqual:self.weight]){
+        topY = self.playerOnlyView.frame.origin.y;
     }
     
     if (movedAlready){
@@ -434,6 +489,12 @@ UIDatePicker *itsDatePicker;
     }
     if ([self.activePlayerTextField isEqual:self.email] || [self.activePlayerTextField isEqual:self.phone]){
         topY = self.privateInformationView.frame.origin.y;
+    }
+    
+    if ([self.activePlayerTextField isEqual:self.position] ||
+        [self.activePlayerTextField isEqual:self.height] ||
+        [self.activePlayerTextField isEqual:self.weight]){
+        topY = self.playerOnlyView.frame.origin.y;
     }
 
     CGRect aRect = self.view.frame;
@@ -539,8 +600,10 @@ UIDatePicker *itsDatePicker;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/update_user.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPBody:[[NSString stringWithFormat:@"h=%@&w=%@&a=%@&p=%@&u=1&name=%@&surname=%@&phone=%@&email=%@&lookingForPlayer=%@&lfpCountry=%@&lfpPosition=%@&lookingForPartnership=%@&partnerCountry=%@&age=%@&gender=%@",
-                           self.height.text, self.weight.text, self.about.text,self.position.text, self.name.text, self.surname.text,self.phone.text, self.email.text,
-                           self.lookingForPlayerButton.on ? @"1" : @"0",
+                           [self.height.text isEqualToString:@""] ? @"0":self.height.text,
+                           [self.weight.text isEqualToString:@""] ? @"0":self.weight.text,
+                           self.about.text, self.position.text, self.name.text, self.surname.text,self.phone.text,
+                           self.email.text, self.lookingForPlayerButton.on ? @"1" : @"0",
                            self.lfpCountry.text, self.lfpPosition.text,
                            self.lookingForPartnerButton.on ? @"1" : @"0",
                            self.lfpartCountry.text, self.age.text, self.gender.text
@@ -836,6 +899,9 @@ numberOfRowsInComponent:(NSInteger)component
     else if([pickerView isEqual: self.positionPicker]){
         return self.positionArray.count;
     }
+    else if([pickerView isEqual: self.positionPicker2]){
+        return self.positionArray.count;
+    }
     else if ([pickerView isEqual: self.countryPicker]){
         return [self.countryArray count];
     }
@@ -855,6 +921,14 @@ numberOfRowsInComponent:(NSInteger)component
         return [self.genderArray objectAtIndex:row];
     }
     else if ([pickerView isEqual: self.positionPicker]){
+        if (row < [self.positionArray count]){
+            return [self.positionArray objectAtIndex:row];
+        }
+        else{
+            return NULL;
+        }
+    }
+    else if ([pickerView isEqual: self.positionPicker2]){
         if (row < [self.positionArray count]){
             return [self.positionArray objectAtIndex:row];
         }
@@ -895,6 +969,10 @@ numberOfRowsInComponent:(NSInteger)component
     else if ([pickerView isEqual: self.positionPicker]){
         NSString *position = self.positionArray[row];
         self.position.text = position;
+    }
+    else if ([pickerView isEqual: self.positionPicker2]){
+        NSString *position = self.positionArray[row];
+        self.lfpPosition.text = position;
     }
     else if ([pickerView isEqual: self.countryPicker]){
         NSString *country = self.countryArray[row];

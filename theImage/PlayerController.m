@@ -207,7 +207,13 @@ static NSString* deviceToken;
                                                                              otherButtonTitles:nil];
                                        [alert show];
                                        self.playerInteract.title = @"Connect";
-                                       self.playerInteract.enabled = FALSE;
+                                       //color bar button
+                                       [self.playerInteract setTitleTextAttributes:
+                                        [NSDictionary dictionaryWithObjectsAndKeys:
+                                         [UIColor colorWithRed:0.0f green:0.674f blue:0.933f alpha:1], NSForegroundColorAttributeName,nil]
+                                                                          forState:UIControlStateNormal];
+
+                                       self.playerInteract.enabled = true;
                                    });
                                }
                            }
@@ -353,8 +359,14 @@ static NSString* deviceToken;
                                                                                  cancelButtonTitle:@"Ok"
                                                                                  otherButtonTitles:nil];
                                            [alert show];
-                                           self.playerInteract.title = @"Friend";
-                                           self.playerInteract.enabled = FALSE;
+                                           //you are a friend
+                                           self.playerInteract.enabled = TRUE;
+                                           self.playerInteract.title = @"Connected";
+                                           //color bar button
+                                           [self.playerInteract setTitleTextAttributes:
+                                            [NSDictionary dictionaryWithObjectsAndKeys:
+                                             [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1], NSForegroundColorAttributeName,nil]
+                                                                              forState:UIControlStateNormal];
                                        });
                                    }
                                    
@@ -517,13 +529,6 @@ static NSString* deviceToken;
                                     pageCount++;
                                 }
                                 
-                                /*
-                                if (pageCount > 1)
-                                    self.mainSlideMenu.panGesture.enabled = NO;
-                                else
-                                    self.mainSlideMenu.panGesture.enabled = YES;
-                                 */
-                                
                                 //set the right amount of balls for images
                                 self.pageView.numberOfPages = pageCount;
                                 self.pageView.currentPage = 0;
@@ -547,7 +552,7 @@ static NSString* deviceToken;
                                     self.videoButton.tag = 1;
                                 }
                                 
-                                self.videoButton.hidden = false;
+                                //self.videoButton.hidden = false;
                                 
                                 //get the player information
                                 self.playerName.text = [[NSString stringWithFormat:@"%@ %@", [theUser valueForKey:@"Firstname"], [theUser valueForKey:@"Lastname"] ] uppercaseString];
@@ -562,8 +567,21 @@ static NSString* deviceToken;
                                 self.age.frame = frame;
                                 self.age.hidden = false;
                                 
-                                self.height.text = [NSString stringWithFormat:@"%gcm", [[theUser valueForKey:@"Height"] floatValue]];
-                                self.weight.text = [NSString stringWithFormat:@"%gkgs", [[theUser valueForKey:@"Weight"] floatValue]];
+                                if ([[theUser valueForKey:@"Height"] floatValue] > 0){
+                                    //have height
+                                    self.height.text = [NSString stringWithFormat:@"%gcm", [[theUser valueForKey:@"Height"] floatValue]];
+                                }
+                                else{
+                                    self.height.text = @"N/A";
+                                }
+                                
+                                if ([[theUser valueForKey:@"Weight"] floatValue] > 0){
+                                    //have weight
+                                    self.weight.text = [NSString stringWithFormat:@"%gkgs", [[theUser valueForKey:@"Weight"] floatValue]];
+                                }
+                                else{
+                                    self.weight.text = @"N/A";
+                                }
                                 
                                 self.userType.hidden = false;
                                 if (
@@ -644,6 +662,11 @@ static NSString* deviceToken;
                                     }
                                     else{
                                         self.playerInteract.title = @"Connect";
+                                        //color bar button
+                                        [self.playerInteract setTitleTextAttributes:
+                                         [NSDictionary dictionaryWithObjectsAndKeys:
+                                          [UIColor colorWithRed:0.0f green:0.674f blue:0.933f alpha:1], NSForegroundColorAttributeName,nil]
+                                                                           forState:UIControlStateNormal];
                                         self.playerInteract.enabled = TRUE;
                                     }
                                     
@@ -654,7 +677,7 @@ static NSString* deviceToken;
                                         //color bar button
                                         [self.playerInteract setTitleTextAttributes:
                                          [NSDictionary dictionaryWithObjectsAndKeys:
-                                          [UIColor colorWithRed:0.0f green:0.674f blue:0.933f alpha:1], NSForegroundColorAttributeName,nil]
+                                          [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1], NSForegroundColorAttributeName,nil]
                                                               forState:UIControlStateNormal];
 
                                         UIImage *buttonImage = [UIImage imageNamed:@"chatIcon.png"];
@@ -810,8 +833,7 @@ static NSString* deviceToken;
                                     [theUser valueForKey:@"LookingForPlayer"] != nil &&
                                     [[theUser valueForKey:@"LookingForPlayer"] intValue] == 1){
                                     lookingForPlayer = true;
-                                }
-                                
+                                }                                
                                 
                                 [self fixDisplay:[theUser valueForKey:@"Position"]
                                                 :lookingForPlayer
@@ -917,6 +939,7 @@ float imageHeight = 0;
         self.weightIcon.hidden = TRUE;
         self.height.hidden = TRUE;
         self.weight.hidden = TRUE;
+        self.videoButton.hidden = TRUE;
         
         if (
             ![lfpartCountry isEqual:[NSNull null]] &&
@@ -999,6 +1022,7 @@ float imageHeight = 0;
         self.lookingForPlayer_Labe.hidden = TRUE;
         self.offeringAPlayer.hidden = TRUE;
         self.offeringAPlayer_Label.hidden = TRUE;
+        self.videoButton.hidden = false;
         
         //hide it
         CGRect frame = self.playingWhere.frame;
@@ -1076,8 +1100,27 @@ float imageHeight = 0;
     else{
         self.aboutLabel.text = about;
     }
-    self.height.text = height;
-    self.weight.text = weight;
+    
+    if (
+        ![height isEqual:[NSNull null]] && height != nil &&
+        ![height isEqualToString:@"0"] && ![height isEqualToString:@""]){
+        //have height
+        self.height.text = [NSString stringWithFormat:@"%gkgs", [height floatValue]];
+    }
+    else{
+        self.height.text = @"N/A";
+    }
+    
+    if (
+        ![weight isEqual:[NSNull null]] && weight != nil &&
+        ![weight isEqualToString:@"0"] && ![weight isEqualToString:@""]){
+        //have height
+        self.weight.text = [NSString stringWithFormat:@"%gkgs", [weight floatValue]];
+    }
+    else{
+        self.weight.text = @"N/A";
+    }
+    
     self.age.text = age;
 }
 

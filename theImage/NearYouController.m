@@ -108,9 +108,7 @@
     return cell;
 }
 
--(void)load{
-
-    
+-(void)load{    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_near_me.php"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPMethod:@"POST"];
@@ -154,7 +152,7 @@
                         
                         anObject = [theUserD objectForKey:key];
                         
-                        [self.nameForNear addObject:[anObject objectForKey:@"Firstname"]];
+                        [self.nameForNear addObject:[NSString stringWithFormat:@"%@ %@",  [anObject objectForKey:@"Firstname"], [anObject objectForKey:@"Lastname"]]];
                         [self.imageForNear addObject:[anObject objectForKey:@"PhotoURL"]];
                         [self.userTypeForNear addObject:[anObject objectForKey:@"UserType"]];
                         [self.userIDForNear addObject:[anObject objectForKey:@"UserID"]];

@@ -19,6 +19,7 @@
 
 
 static float top = 0;
+static float heightToRemove = 0;
 + (float) top{
     return top;
 }
@@ -62,9 +63,39 @@ static float top = 0;
                                                              cancelButtonTitle:@"Ok"
                                                              otherButtonTitles:nil];
                        [alert show];
+                       
+                       top -= heightToRemove;
+                       bool removed = false;
+                       //remove the video
+                       for (UIView* view in self.scrollview.subviews)
+                       {
+                           if (([view isKindOfClass:[UIScrollView class]]
+                               || [view isKindOfClass:[UIWebView class]]
+                               || [view isKindOfClass:[UIButton class]])
+                               && view.tag == (int)button.tag)
+                           {
+                               [view removeFromSuperview];
+                               removed = TRUE;
+                           }
+                           if (removed){
+                               CGRect frame = view.frame;
+                               frame.origin.y = frame.origin.y - heightToRemove;
+                               view.frame = frame;
+                           }
+                       }
+                       
+                       //set the scrollview content size
+                       for (UIView* view in self.scrollview.subviews)
+                       {
+                           if (([view isKindOfClass:[UIScrollView class]]
+                                || [view isKindOfClass:[UIWebView class]]
+                                || [view isKindOfClass:[UIButton class]]))
+                           {
+                               self.scrollview.contentSize = CGSizeMake(320, view.frame.origin.y + view.frame.size.height + 60);
+                           }
+                       }
                    });
-               }
-               
+               }   
            }
        }];
 }
@@ -158,40 +189,6 @@ static float top = 0;
                 }
                 else{
                     dispatch_sync(dispatch_get_main_queue(), ^{
-                        CGRect webFrame = CGRectMake(00.0, 0.0, 320.0, 180.0);
-                        
-                        NSString *theURL = [dictionary objectForKey:@"URL"];
-                        self.title = [NSString stringWithFormat:@"Videos from %@" ,[dictionary objectForKey:@"Firstname"]];
-                        //theURL = [theURL stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"];
-
-                        theURL = [self extractYoutubeID:theURL];
-                        theURL = [NSString stringWithFormat:@"http://www.youtube.com/embed/%@", theURL];
-                        
-                        //the video
-                        NSURL *url = [NSURL URLWithString:theURL];
-                        NSURLRequest *req = [NSURLRequest requestWithURL:url];
-                        UIWebView *bubbleView = [[UIWebView alloc] initWithFrame:webFrame];
-                        bubbleView.backgroundColor = [UIColor blackColor];
-                        bubbleView.frame=CGRectMake(0, top, 320, 180);
-                        bubbleView.scrollView.scrollEnabled = NO;
-                        bubbleView.scrollView.bounces = NO;
-                        [bubbleView loadRequest:req];
-                        
-                        //delete button
-                        if (self.playerID == PlayerController.meID){
-                            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-                            [button addTarget:self action:@selector(deleteVideo:) forControlEvents:UIControlEventTouchUpInside];
-                            button.tag = [[dictionary objectForKey:@"VideoID"] intValue];
-                            [button setTitle:@"Remove video?" forState:UIControlStateNormal];
-                            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-
-                            button.frame = CGRectMake(-25.0, top + 175, 180.0, 40.0);
-                            [self.scrollview addSubview:button];
-                            top += 40;
-                        }
-                        else{
-                            top += 20;
-                        }
                         //get the player image
                         NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
                         UIImage * image;
@@ -205,20 +202,69 @@ static float top = 0;
                         }
                         
                         self.scrollview.backgroundColor = [UIColor colorWithPatternImage:[ImageEffect blur:image]];
+                        self.title = [NSString stringWithFormat:@"Videos from %@" , [dictionary objectForKey:@"Firstname"]];
                         
-                        //where to put the view
-                        top += 180;
-                        [self.scrollview addSubview:bubbleView];
-                        [self.scrollview addSubview:bubbleView];
-                        
-                        //set the scroll of the view
-                        self.scrollview.contentSize = CGSizeMake(320, top);
+                        [self addVideo:[dictionary objectForKey:@"URL"] :[[dictionary objectForKey:@"VideoID"] intValue]];
                     });
                 }
             }
         }
     }];
 	// Do any additional setup after loading the view.
+}
+
+#define contains(str1, str2) ([str1 rangeOfString: str2 ].location != NSNotFound)
+
+
+- (void)addVideo:(NSString *)URL :(int)VideoID
+{
+    heightToRemove = 0;
+    CGRect webFrame = CGRectMake(00.0, 0.0, 320.0, 180.0);
+    
+    NSString *theURL = URL;
+    //theURL = [theURL stringByReplacingOccurrencesOfString:@"watch?v=" withString:@"embed/"];
+    if (contains([theURL lowercaseString], @"youtu"))
+    {
+        theURL = [self extractYoutubeID:theURL];
+        theURL = [NSString stringWithFormat:@"http://www.youtube.com/embed/%@", theURL];
+    }
+    
+    //the video
+    NSURL *url = [NSURL URLWithString:theURL];
+    NSURLRequest *req = [NSURLRequest requestWithURL:url];
+    UIWebView *bubbleView = [[UIWebView alloc] initWithFrame:webFrame];
+    bubbleView.backgroundColor = [UIColor blackColor];
+    bubbleView.frame=CGRectMake(0, top, 320, 180);
+    bubbleView.scrollView.scrollEnabled = NO;
+    bubbleView.tag = VideoID;
+    bubbleView.scrollView.bounces = NO;
+    [bubbleView loadRequest:req];
+    
+    //delete button
+    if (self.playerID == PlayerController.meID){
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [button addTarget:self action:@selector(deleteVideo:) forControlEvents:UIControlEventTouchUpInside];
+        button.tag = VideoID;
+        [button setTitle:@"Remove video?" forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        button.frame = CGRectMake(-25.0, top + 175, 180.0, 40.0);
+        [self.scrollview addSubview:button];
+        top += 40;
+        heightToRemove += 40;
+    }
+    else{
+        top += 20;
+        heightToRemove += 20;
+    }
+    
+    //where to put the view
+    top += 180;
+    heightToRemove += 180;
+    [self.scrollview addSubview:bubbleView];
+    
+    //set the scroll of the view
+    self.scrollview.contentSize = CGSizeMake(320, top);
 }
 
 - (void)didReceiveMemoryWarning
@@ -269,8 +315,10 @@ static float top = 0;
                                                          cancelButtonTitle:@"OK"
                                                          otherButtonTitles:nil];
                     
-                    
                             [alert show];
+                            int videoID = [[dictionary objectForKey:@"VideoID"] intValue];
+                            [self addVideo:theURL :videoID];
+                            [self.view endEditing:YES];
                         }
                         else{
                             UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"PlayerCV"

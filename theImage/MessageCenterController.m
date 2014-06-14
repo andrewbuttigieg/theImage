@@ -130,11 +130,11 @@
     {
         type = @"Agent";
     }
-    /*
     else if ([type isEqual: @"4"])
     {
-        type = @"";
-    }*/
+        type = @"Coach";
+    }
+    
     cell.type.text = type;
     cell.message.text = [self.textForTable objectAtIndex: [indexPath row]];
     

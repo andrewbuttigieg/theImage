@@ -30,6 +30,9 @@
 
 -(void)leftMenuWillOpen
 {
+    
+    [self.view endEditing:YES];
+    
     self.mainSlideMenu.panGesture.enabled = NO;
     //something
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_me.php"]];
