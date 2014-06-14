@@ -8,7 +8,6 @@
 
 #import "LogMeIn.h"
 #import "JNKeychain.h"
-#import "ViewController.h"
 #import "AppDelegate.h"
 
 @interface LogMeIn ()
@@ -61,7 +60,7 @@
             
             //dispatch_async(dispatch_get_main_queue(), ^{
                 if (accepted == 0){
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problem"
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
                                                                     message:[NSString stringWithFormat:@"%@",returned]
                                                                    delegate:self
                                                           cancelButtonTitle:@"Ok"

@@ -162,7 +162,6 @@ static int updateImage = 1;
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPMethod:@"POST"];
     
-    
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
         if (error) {
@@ -287,8 +286,13 @@ static int updateImage = 1;
                     @try{
                         imageURL = [dictionary objectForKey:@"PhotoURL"];
                         if ([ValidURL isValidUrl:imageURL]){
-                            [self.toUpload setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
+                            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+
+                            [self.toUpload setBackgroundImage:image forState:UIControlStateNormal];
                             
+                            for(UIView *view in self.toUpload.subviews) {
+                                view.contentMode = UIViewContentModeScaleAspectFill;
+                            }
                         }
                     }
                     @catch (NSException * ex) {
@@ -299,6 +303,9 @@ static int updateImage = 1;
                         imageURL = [dictionary objectForKey:@"Photo2"];
                         if ([ValidURL isValidUrl:imageURL]){
                             [self.image2Outlet setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL   URLWithString:imageURL]]] forState:UIControlStateNormal];
+                            for(UIView *view in self.image2Outlet.subviews) {
+                                view.contentMode = UIViewContentModeScaleAspectFill;
+                            }
                         }
                     }
                     @catch (NSException * ex) {
@@ -309,6 +316,9 @@ static int updateImage = 1;
                     imageURL = [dictionary objectForKey:@"Photo3"];
                         if ([ValidURL isValidUrl:imageURL]){
                             [self.image3Outlet setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
+                            for(UIView *view in self.image3Outlet.subviews) {
+                                view.contentMode = UIViewContentModeScaleAspectFill;
+                            }
                         }
                     }
                     @catch (NSException * ex) {
@@ -319,6 +329,9 @@ static int updateImage = 1;
                     imageURL = [dictionary objectForKey:@"Photo4"];
                         if ([ValidURL isValidUrl:imageURL]){
                             [self.image4Outlet setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
+                            for(UIView *view in self.image4Outlet.subviews) {
+                                view.contentMode = UIViewContentModeScaleAspectFill;
+                            }
                         }
                     }
                     @catch (NSException * ex) {
@@ -329,6 +342,9 @@ static int updateImage = 1;
                         imageURL = [dictionary objectForKey:@"Photo5"];
                         if ([ValidURL isValidUrl:imageURL]){
                             [self.image5Outlet setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]] forState:UIControlStateNormal];
+                            for(UIView *view in self.image5Outlet.subviews) {
+                                view.contentMode = UIViewContentModeScaleAspectFill;
+                            }
                         }
                     }
                     @catch (NSException * ex) {
@@ -671,18 +687,33 @@ UIDatePicker *itsDatePicker;
     switch (updateImage) {
         case 1:
             [self.toUpload setBackgroundImage:image forState:UIControlStateNormal];
+            for(UIView *view in self.toUpload.subviews) {
+                view.contentMode = UIViewContentModeScaleAspectFill;
+            }
             break;
         case 2:
             [self.image2Outlet setBackgroundImage:image forState:UIControlStateNormal];
+            for(UIView *view in self.image2Outlet.subviews) {
+                view.contentMode = UIViewContentModeScaleAspectFill;
+            }
             break;
         case 3:
             [self.image3Outlet setBackgroundImage:image forState:UIControlStateNormal];
+            for(UIView *view in self.image3Outlet.subviews) {
+                view.contentMode = UIViewContentModeScaleAspectFill;
+            }
             break;
         case 4:
             [self.image4Outlet setBackgroundImage:image forState:UIControlStateNormal];
+            for(UIView *view in self.image4Outlet.subviews) {
+                view.contentMode = UIViewContentModeScaleAspectFill;
+            }
             break;
         case 5:
             [self.image5Outlet setBackgroundImage:image forState:UIControlStateNormal];
+            for(UIView *view in self.image5Outlet.subviews) {
+                view.contentMode = UIViewContentModeScaleAspectFill;
+            }
             break;
         default:
             break;
@@ -709,7 +740,8 @@ UIDatePicker *itsDatePicker;
     imagePickerController.delegate = self;
     imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
     
-    [self presentModalViewController:imagePickerController animated:YES];
+//    [self presentModalViewController:imagePickerController animated:YES];
+    [self presentViewController:imagePickerController animated:YES completion:nil];
 }
 
 - (void) lookingForPlayerAlign {
@@ -847,7 +879,8 @@ UIDatePicker *itsDatePicker;
     imagePickerController.delegate = self;
     imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
     
-    [self presentModalViewController:imagePickerController animated:YES];
+    //[self presentModalViewController:imagePickerController animated:YES];
+    [self presentViewController:imagePickerController animated:YES completion:nil];
 }
 
 - (IBAction)image3:(id)sender {
@@ -857,7 +890,8 @@ UIDatePicker *itsDatePicker;
     imagePickerController.delegate = self;
     imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
     
-    [self presentModalViewController:imagePickerController animated:YES];
+    //[self presentModalViewController:imagePickerController animated:YES];
+    [self presentViewController:imagePickerController animated:YES completion:nil];
 }
 
 - (IBAction)image4:(id)sender {
@@ -867,7 +901,8 @@ UIDatePicker *itsDatePicker;
     imagePickerController.delegate = self;
     imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
     
-    [self presentModalViewController:imagePickerController animated:YES];
+    //[self presentModalViewController:imagePickerController animated:YES];
+    [self presentViewController:imagePickerController animated:YES completion:nil];
 }
 
 - (IBAction)image5:(id)sender {
@@ -877,7 +912,8 @@ UIDatePicker *itsDatePicker;
     imagePickerController.delegate = self;
     imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
     
-    [self presentModalViewController:imagePickerController animated:YES];
+    //[self presentModalViewController:imagePickerController animated:YES];
+    [self presentViewController:imagePickerController animated:YES completion:nil];
 }
 
 

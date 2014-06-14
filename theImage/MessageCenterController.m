@@ -7,7 +7,6 @@
 //
 
 #import "MessageCenterController.h"
-#import "ViewController.h"
 #import "messageGroupCell.h"
 #import "MessageViewController.h"
 #import "ValidURL.h"
@@ -86,8 +85,17 @@
     cell.date.text = [self.dateForTable
                       objectAtIndex: [indexPath row]];
 
-    if ([ValidURL isValidUrl : [self.imageForTable objectAtIndex: [indexPath row]]])
-        cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.imageForTable objectAtIndex: [indexPath row]]]]];
+    if ([ValidURL isValidUrl : [self.imageForTable objectAtIndex: [indexPath row]]]){
+        
+        NSString *imageURL = [self.imageForTable objectAtIndex: [indexPath row]];
+        imageURL = [imageURL stringByReplacingOccurrencesOfString:@".com/"
+                                                       withString:@".com/[120]-"];
+        
+        cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:
+                                                                                       imageURL]]];
+        
+       // cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.imageForTable objectAtIndex: [indexPath row]]]]];
+    }
     else
         cell.personImage.image = [UIImage imageNamed:@"player.png"];
     

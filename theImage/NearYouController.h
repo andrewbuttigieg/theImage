@@ -16,5 +16,6 @@
 @property (nonatomic, strong) NSMutableArray *userTypeForNear;
 @property (nonatomic, strong) NSMutableArray *userIDForNear;
 @property (nonatomic, strong) NSMutableArray *locationForNear;
+@property (nonatomic, strong) NSMutableArray *acceptedConnection;
 
 @end

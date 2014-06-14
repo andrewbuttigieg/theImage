@@ -276,12 +276,13 @@
                     UIImage * image = [UIImage imageNamed:@"NoConnections.png"];
                     
                     UIImageView *tempImageView = [[UIImageView alloc] initWithImage:image];
-                    tempImageView.contentMode = UIViewContentModeCenter;
+                    //tempImageView.contentMode = UIViewContentModeCenter;
                     
+                    /*
                     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(200, 200, 450, 430)];
                     label.textColor = [UIColor whiteColor];
                     label.text = @"You have no pending requests";
-                    label.textAlignment = NSTextAlignmentCenter; 
+                    label.textAlignment = NSTextAlignmentCenter; */
   
                     CGRect bounds =  CGRectMake(402.0, 200, 460.0, 440.0);
                     // Create a view and add it to the window.

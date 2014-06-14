@@ -161,7 +161,13 @@ static UIRefreshControl *refreshControl;
         lb = [[UILabel alloc] initWithFrame:CGRectMake(90, 30, 60, 30)];
         lb.textColor = [UIColor colorWithRed:(1.0f) green:(1.0f) blue:(1.0f) alpha:1];
         [lb setFont:[UIFont systemFontOfSize:13]];
-        lb.text = self.position[i];
+        
+        if (self.position[i] != [NSNull null] &&
+            self.position[i] != nil &&
+            [self.position[i] length] > 0 &&
+            ![self.position[i] isEqualToString:@"0"]){
+            lb.text = self.position[i];
+        }
         [lb sizeToFit];
         lb.textAlignment = NSTextAlignmentLeft;
         [secondScroll addSubview:lb];
@@ -202,7 +208,7 @@ static UIRefreshControl *refreshControl;
     
     current += 10;
 
-    if (current > self.position.count){
+    if (current < self.position.count){
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [button addTarget:self action:@selector(doWorkContainer:) forControlEvents:UIControlEventTouchUpInside];
         [button setTitle:@"More" forState:UIControlStateNormal];

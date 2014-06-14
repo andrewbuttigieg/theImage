@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VideoController : UIViewController
+@interface VideoController : UIViewController<UIActionSheetDelegate>
     @property (nonatomic) int playerID;
     @property (strong, nonatomic) IBOutlet UIView *addVideo;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollview;

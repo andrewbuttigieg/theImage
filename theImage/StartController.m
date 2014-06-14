@@ -172,7 +172,7 @@ bool loggedIn = false;
                         
                         if (accepted == 0){
                             loggedIn = false;
-                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problem"
+                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
                                                                             message:[NSString stringWithFormat:@"%@",returned]
                                                                            delegate:self
                                                                   cancelButtonTitle:@"Ok"
@@ -180,6 +180,23 @@ bool loggedIn = false;
                             [alert show];
                         }
                         else{
+                            
+                            AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+                            if (appDelegate.theDeviceToken != nil && ![appDelegate.theDeviceToken isEqual: [NSNull null]]){
+                                NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/update_user_iospushnotificationid.php/"]];
+                                [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+                                [request setHTTPBody:[[NSString stringWithFormat:@"iospushnotificationid=%@", appDelegate.theDeviceToken]dataUsingEncoding:NSUTF8StringEncoding]];
+                                [request setHTTPMethod:@"POST"];
+                                
+                                [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                    
+                                    if (error) {
+                                        //[self.delegate fetchingGroupsFailedWithError:error];
+                                    } else {
+                                    }
+                                }];
+                            }
+
                             //logged in by fb
                             [self GoToPlayer];
                         }

@@ -25,7 +25,7 @@
 @end
 
 @interface PlayerSettingsController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource,
-    UITextFieldDelegate, UIImagePickerControllerDelegate, UITextViewDelegate>
+    UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIView *playerOnlyView;
 @property (strong, nonatomic) IBOutlet UIView *aboutView;
 

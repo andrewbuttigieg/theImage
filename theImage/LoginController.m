@@ -12,6 +12,7 @@
 #import "MainVC.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "UIViewController+AMSlideMenu.h"
+#import "AppDelegate.h"
 
 @interface LoginController ()
 
@@ -118,42 +119,15 @@ bool movedHere = false;
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problem"
-                                                    message:@"FB1"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Ok"
-                                          otherButtonTitles:nil];
-    [alert show];
-    
     if (!self.isViewLoaded || !self.view.window) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problem"
-                                                        message:@"FB2"
-                                                       delegate:self
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil];
-        [alert show];
         return;
     }
     
     if (self.messageCounter >0){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problem"
-                                                        message:@"FB3"
-                                                       delegate:self
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil];
-        [alert show];
         return;
     }
     else
     {
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problem"
-                                                        message:@"FB4"
-                                                       delegate:self
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil];
-        [alert show];
-        
         self.messageCounter++;
     
         NSString *facebookPlayerID = user.id;
@@ -183,14 +157,32 @@ bool movedHere = false;
                         int accepted = [[jsonArray[0] objectForKey:@"accepted"] intValue];
                         
                         if (accepted == 0){
-                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Problem"
+                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
                                                                             message:[NSString stringWithFormat:@"%@",returned]
                                                                            delegate:self
                                                                   cancelButtonTitle:@"Ok"
                                                                   otherButtonTitles:nil];
                             [alert show];
                         }
-                        else{    
+                        else{
+                            
+                            
+                            AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+                            if (appDelegate.theDeviceToken != nil && ![appDelegate.theDeviceToken isEqual: [NSNull null]]){
+                                NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/update_user_iospushnotificationid.php/"]];
+                                [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+                                [request setHTTPBody:[[NSString stringWithFormat:@"iospushnotificationid=%@", appDelegate.theDeviceToken]dataUsingEncoding:NSUTF8StringEncoding]];
+                                [request setHTTPMethod:@"POST"];
+                                
+                                [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                    
+                                    if (error) {
+                                        //[self.delegate fetchingGroupsFailedWithError:error];
+                                    } else {
+                                    }
+                                }];
+                            }
+
                             //logged in by fb
                             [self GoToPlayer];
                         }

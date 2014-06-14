@@ -78,7 +78,6 @@
 		F2410E49192D4DF7004658BD /* MENU-Open@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F2410E48192D4DF7004658BD /* MENU-Open@2x.jpg */; };
 		F2410E4B192E95EC004658BD /* MENU-Open.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F2410E4A192E95EC004658BD /* MENU-Open.jpg */; };
 		F2410E4E192FED66004658BD /* ImageEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = F2410E4D192FED66004658BD /* ImageEffect.m */; };
-		F243B76C1879D13A001BABC8 /* ViewControllerDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = F243B76B1879D13A001BABC8 /* ViewControllerDetail.m */; };
 		F284BFDA18DB7E810002EB81 /* FriendRequestsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F284BFD918DB7E810002EB81 /* FriendRequestsController.m */; };
 		F284BFE018DB9FA10002EB81 /* friendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F284BFDF18DB9FA10002EB81 /* friendCell.m */; };
 		F284BFE518DBB30A0002EB81 /* accept-friend.png in Resources */ = {isa = PBXBuildFile; fileRef = F284BFE118DBB30A0002EB81 /* accept-friend.png */; };
@@ -94,7 +93,6 @@
 		F28699EA1874C06C0086D665 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F28699E91874C06C0086D665 /* AppDelegate.m */; };
 		F28699ED1874C06C0086D665 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F28699EB1874C06C0086D665 /* Main_iPhone.storyboard */; };
 		F28699F01874C06C0086D665 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F28699EE1874C06C0086D665 /* Main_iPad.storyboard */; };
-		F28699F31874C06C0086D665 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F28699F21874C06C0086D665 /* ViewController.m */; };
 		F28699F51874C06C0086D665 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F28699F41874C06C0086D665 /* Images.xcassets */; };
 		F28699FC1874C06C0086D665 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28699FB1874C06C0086D665 /* XCTest.framework */; };
 		F28699FD1874C06C0086D665 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28699D91874C06C0086D665 /* Foundation.framework */; };
@@ -289,8 +287,6 @@
 		F2410E4A192E95EC004658BD /* MENU-Open.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MENU-Open.jpg"; sourceTree = "<group>"; };
 		F2410E4C192FED66004658BD /* ImageEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageEffect.h; sourceTree = "<group>"; };
 		F2410E4D192FED66004658BD /* ImageEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageEffect.m; sourceTree = "<group>"; };
-		F243B76A1879D13A001BABC8 /* ViewControllerDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDetail.h; sourceTree = "<group>"; };
-		F243B76B1879D13A001BABC8 /* ViewControllerDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerDetail.m; sourceTree = "<group>"; };
 		F284BFD818DB7E810002EB81 /* FriendRequestsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequestsController.h; sourceTree = "<group>"; };
 		F284BFD918DB7E810002EB81 /* FriendRequestsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRequestsController.m; sourceTree = "<group>"; };
 		F284BFDE18DB9FA10002EB81 /* friendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = friendCell.h; sourceTree = "<group>"; };
@@ -312,8 +308,6 @@
 		F28699E91874C06C0086D665 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F28699EC1874C06C0086D665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		F28699EF1874C06C0086D665 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		F28699F11874C06C0086D665 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F28699F21874C06C0086D665 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; usesTabs = 0; };
 		F28699F41874C06C0086D665 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F28699FA1874C06C0086D665 /* theImageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = theImageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F28699FB1874C06C0086D665 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -662,11 +656,7 @@
 				F2EC5DEF187E042B00D93403 /* PlayerController.m */,
 				F2A00E02187DCE7A00CB0D3F /* FindPlayerController.h */,
 				F2A00E03187DCE7A00CB0D3F /* FindPlayerController.m */,
-				F243B76A1879D13A001BABC8 /* ViewControllerDetail.h */,
-				F243B76B1879D13A001BABC8 /* ViewControllerDetail.m */,
 				F28699EE1874C06C0086D665 /* Main_iPad.storyboard */,
-				F28699F11874C06C0086D665 /* ViewController.h */,
-				F28699F21874C06C0086D665 /* ViewController.m */,
 				F28699F41874C06C0086D665 /* Images.xcassets */,
 				F28699E01874C06C0086D665 /* Supporting Files */,
 			);
@@ -1183,7 +1173,6 @@
 				F2ABD43818C6EF27003F03E5 /* JNKeychain.m in Sources */,
 				F2EC5DF31883204900D93403 /* PlayerSettingsController.m in Sources */,
 				F2ABD42B18C68280003F03E5 /* SignUpController.m in Sources */,
-				F28699F31874C06C0086D665 /* ViewController.m in Sources */,
 				F22781C519099DDC0016C3F1 /* AllVideoController.m in Sources */,
 				F28699EA1874C06C0086D665 /* AppDelegate.m in Sources */,
 				F287CD2D18A972C800A196E3 /* MessageCenterController.m in Sources */,
@@ -1205,7 +1194,6 @@
 				F22781B7190400570016C3F1 /* ChangePasswordController.m in Sources */,
 				F2EC5DF0187E042B00D93403 /* PlayerController.m in Sources */,
 				F22781C21905B4CD0016C3F1 /* nearYouCell.m in Sources */,
-				F243B76C1879D13A001BABC8 /* ViewControllerDetail.m in Sources */,
 				F287CD3018AAB79F00A196E3 /* messageGroupCell.m in Sources */,
 				F2905EBC18D7CBD8007F16D1 /* RightController.m in Sources */,
 				F294A8F418CCE99B0012D000 /* LogMeIn.m in Sources */,

@@ -34,8 +34,8 @@ UIActivityIndicatorView *spinner;
 static int findPlayerID = 0;
 
 - (IBAction)findThePlayer:(id)sender {
-    UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
-    NSLog(@"@%", [segmentedControl titleForSegmentAtIndex: [segmentedControl selectedSegmentIndex]]);
+    /*UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
+    NSLog(@"@%", [segmentedControl titleForSegmentAtIndex: [segmentedControl selectedSegmentIndex]]);*/
 }
 
 + (int) findPlayerID{
@@ -102,16 +102,11 @@ static int findPlayerID = 0;
     //dont get me
     
     
-    //    NSURL *url = [[NSURL alloc] initWithString:urlAsString];
-    //NSLog(@"%@", urlAsString);
-    
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
         if (error) {
             //[self.delegate fetchingGroupsFailedWithError:error];
         } else {
-/*            NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&localError];
-            NSMutableArray *groups = [[NSMutableArray alloc] init];*/
             NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                         options:0
                                                                           error:&error];

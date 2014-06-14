@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
-#import "ViewController.h"
 #import "LogMeIn.h"
 #import "LoginController.h"
 #import "StartController.h"
@@ -81,7 +80,6 @@ bool isAppResumingFromBackground = NO;
 }
 
 - (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
-    NSUInteger orientations = UIInterfaceOrientationMaskPortrait;
     if (self.fullScreenVideoIsPlaying) {
         return UIInterfaceOrientationMaskAllButUpsideDown;
     }

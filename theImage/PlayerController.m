@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "PlayerController.h"
-#import "ViewController.h"
 #import "MessageViewController.h"
 #import "VideoController.h"
 #import "PlayerSettingsController.h"
@@ -602,15 +601,6 @@ static NSString* deviceToken;
                                         self.userType.text = @"Coach";
                                     }
                                 }
-                                   /* if ([theUser valueForKey:@"Position"] != [NSNull null] &&
-                                        [theUser valueForKey:@"Position"] != nil &&
-                                        [[theUser valueForKey:@"Position"] length] > 0 &&
-                                        ![[theUser valueForKey:@"Position"] isEqualToString:@"0"]){
-                                        self.postion.text = ;
-                                    }
-                                    else{
-                                        self.postion.text = @"This user has not choosen their playing position";
-                                    }*/
                                 
                                 if (
                                     [theUser valueForKey:@"Country"] != [NSNull null] &&
@@ -1050,7 +1040,7 @@ float imageHeight = 0;
             self.postion.text = position;
         }
         else{
-            self.postion.text = @"This user has not choosen their playing position";
+            self.postion.text = @"This user has not chosen their playing position";
         }
     }
     else{
@@ -1091,7 +1081,7 @@ float imageHeight = 0;
 :(NSString *)lfpartCountry;
 {
     
-    [self fixDisplay:position :lookingForPlayer :lfpCountry :lfpPosition :lookingForPartner :lfpCountry];
+    [self fixDisplay:position :lookingForPlayer :lfpCountry :lfpPosition :lookingForPartner :lfpartCountry];
     
     self.playerName.text = [[NSString stringWithFormat:@"%@ %@", name, lname ] uppercaseString];
     if ([about length] < 5){

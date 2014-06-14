@@ -67,7 +67,7 @@
         cell = [[nearYouCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    if (self.nameForNear.count == 0 || self.locationForNear.count == 0){
+    if (self.nameForNear.count == 0 || self.locationForNear.count == 0 || self.imageForNear.count == 0){
         return Nil;
     }
     
@@ -75,15 +75,30 @@
     cell.name.text = [self.nameForNear objectAtIndex: [indexPath row]];
     cell.distance.text = [self.locationForNear objectAtIndex: [indexPath row]];
     
-    if ([self isValidUrl : [self.imageForNear objectAtIndex: [indexPath row]]])
-        cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.imageForNear objectAtIndex: [indexPath row]]]]];
+    if ([self isValidUrl : [self.imageForNear objectAtIndex: [indexPath row]]]){
+        
+        NSString *imageURL = [self.imageForNear objectAtIndex: [indexPath row]];
+        imageURL = [imageURL stringByReplacingOccurrencesOfString:@".com/"
+                                                       withString:@".com/[120]-"];
+        
+        cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:
+                   imageURL]]];
+    }
     else
         cell.personImage.image = [UIImage imageNamed:@"player.png"];
     
     cell.personImage.layer.cornerRadius = 28.0;
     cell.personImage.layer.masksToBounds = YES;
-    cell.personImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    cell.personImage.layer.borderWidth = 0.3;
+    if ([self.acceptedConnection objectAtIndex: [indexPath row]] != nil &&
+        [self.acceptedConnection objectAtIndex: [indexPath row]] != [NSNull null]){
+        cell.personImage.layer.borderColor = [UIColor colorWithRed:0.0f green:0.674f blue:0.933f alpha:1].CGColor;
+        cell.personImage.layer.borderWidth = 2.0;
+    }
+    else
+    {
+        cell.personImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        cell.personImage.layer.borderWidth = 0.3;
+    }
     
     NSString *type = [self.userTypeForNear objectAtIndex: [indexPath row]];
     if ([type isEqual: @"1"])
@@ -120,20 +135,12 @@
         if (error) {
             //[self.delegate fetchingGroupsFailedWithError:error];
         } else {
-            self.nameForNear  = [[NSMutableArray alloc]
-                                 initWithObjects:nil];
-            
-            self.imageForNear =[[NSMutableArray alloc]
-                                initWithObjects:nil];
-            
-            self.userIDForNear =[[NSMutableArray alloc]
-                                 initWithObjects:nil];
-            
-            self.userTypeForNear =[[NSMutableArray alloc]
-                                   initWithObjects:nil];
-            
-            self.locationForNear =[[NSMutableArray alloc]
-                                   initWithObjects:nil];
+            self.nameForNear  = [[NSMutableArray alloc] initWithObjects:nil];
+            self.imageForNear = [[NSMutableArray alloc] initWithObjects:nil];
+            self.userIDForNear = [[NSMutableArray alloc] initWithObjects:nil];
+            self.userTypeForNear = [[NSMutableArray alloc] initWithObjects:nil];
+            self.locationForNear = [[NSMutableArray alloc] initWithObjects:nil];
+            self.acceptedConnection = [[NSMutableArray alloc] initWithObjects:nil];
             //[self.delegate receivedGroupsJSON:data];
             NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                         options:0
@@ -156,6 +163,7 @@
                         [self.imageForNear addObject:[anObject objectForKey:@"PhotoURL"]];
                         [self.userTypeForNear addObject:[anObject objectForKey:@"UserType"]];
                         [self.userIDForNear addObject:[anObject objectForKey:@"UserID"]];
+                        [self.acceptedConnection addObject:[anObject objectForKey:@"AcceptedConnection"]];
                         
                         float long1 = [[anObject objectForKey:@"long1"] floatValue];
                         float long2 = [[anObject objectForKey:@"long2"] floatValue];
@@ -204,20 +212,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.nameForNear  = [[NSMutableArray alloc]
-                         initWithObjects:nil];
-    
-    self.imageForNear =[[NSMutableArray alloc]
-                        initWithObjects:nil];
-    
-    self.userIDForNear =[[NSMutableArray alloc]
-                         initWithObjects:nil];
-    
-    self.userTypeForNear =[[NSMutableArray alloc]
-                           initWithObjects:nil];
-    
-    self.locationForNear =[[NSMutableArray alloc]
-                           initWithObjects:nil];
+    self.nameForNear  = [[NSMutableArray alloc] initWithObjects:nil];
+    self.imageForNear = [[NSMutableArray alloc] initWithObjects:nil];
+    self.userIDForNear = [[NSMutableArray alloc] initWithObjects:nil];
+    self.userTypeForNear = [[NSMutableArray alloc] initWithObjects:nil];
+    self.locationForNear = [[NSMutableArray alloc] initWithObjects:nil];
+    self.acceptedConnection = [[NSMutableArray alloc] initWithObjects:nil];
     
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     

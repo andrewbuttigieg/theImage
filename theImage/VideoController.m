@@ -33,71 +33,85 @@ static float heightToRemove = 0;
     return self;
 }
 
+- (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0)
+    {
+        
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/delete_video.php/"]];
+            [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+            [request setHTTPBody:[[NSString stringWithFormat:@"videoid=%d", (int)popup.tag]dataUsingEncoding:NSUTF8StringEncoding]];
+            [request setHTTPMethod:@"POST"];
+            [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init]
+             //returningResponse:&response
+                       completionHandler:^(NSURLResponse *response,
+                                           NSData *data,
+                                           NSError *error) {
+                           
+                           if (error) {
+                               //[self.delegate fetchingGroupsFailedWithError:error];
+                           }
+                           else {
+                               NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                                           options:0
+                                                                                             error:&error];
+                               for(NSDictionary *dictionary in jsonArray)
+                               {
+                                   NSString *returned = [jsonArray[0] objectForKey:@"value"];
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
+                                                                                       message:[NSString stringWithFormat:@"%@",returned]
+                                                                                      delegate:self
+                                                                             cancelButtonTitle:@"Ok"
+                                                                             otherButtonTitles:nil];
+                                       [alert show];
+                                       
+                                       top -= heightToRemove;
+                                       bool removed = false;
+                                       //remove the video
+                                       for (UIView* view in self.scrollview.subviews)
+                                       {
+                                           if (([view isKindOfClass:[UIScrollView class]]
+                                                || [view isKindOfClass:[UIWebView class]]
+                                                || [view isKindOfClass:[UIButton class]])
+                                               && view.tag == (int)popup.tag)
+                                           {
+                                               [view removeFromSuperview];
+                                               removed = TRUE;
+                                           }
+                                           if (removed){
+                                               CGRect frame = view.frame;
+                                               frame.origin.y = frame.origin.y - heightToRemove;
+                                               view.frame = frame;
+                                           }
+                                       }
+                                       
+                                       //set the scrollview content size
+                                       for (UIView* view in self.scrollview.subviews)
+                                       {
+                                           if (([view isKindOfClass:[UIScrollView class]]
+                                                || [view isKindOfClass:[UIWebView class]]
+                                                || [view isKindOfClass:[UIButton class]]))
+                                           {
+                                               self.scrollview.contentSize = CGSizeMake(320, view.frame.origin.y + view.frame.size.height + 60);
+                                           }
+                                       }
+                                   });
+                               }   
+                           }
+                       }];
+        }
+}
+
 - (void)deleteVideo:(id)sender{
-    UIButton *button = (UIButton *)sender;
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/delete_video.php/"]];
-    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"videoid=%d", (int)button.tag]dataUsingEncoding:NSUTF8StringEncoding]];
-    [request setHTTPMethod:@"POST"];
-    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init]
-     //returningResponse:&response
-                           completionHandler:^(NSURLResponse *response,
-                                               NSData *data,
-                                               NSError *error) {
-                               
-           if (error) {
-               //[self.delegate fetchingGroupsFailedWithError:error];
-           }
-           else {
-               NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
-                                                                           options:0
-                                                                             error:&error];
-               for(NSDictionary *dictionary in jsonArray)
-               {
-                   NSString *returned = [jsonArray[0] objectForKey:@"value"];
-                   dispatch_async(dispatch_get_main_queue(), ^{
-                       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
-                                                                       message:[NSString stringWithFormat:@"%@",returned]
-                                                                      delegate:self
-                                                             cancelButtonTitle:@"Ok"
-                                                             otherButtonTitles:nil];
-                       [alert show];
-                       
-                       top -= heightToRemove;
-                       bool removed = false;
-                       //remove the video
-                       for (UIView* view in self.scrollview.subviews)
-                       {
-                           if (([view isKindOfClass:[UIScrollView class]]
-                               || [view isKindOfClass:[UIWebView class]]
-                               || [view isKindOfClass:[UIButton class]])
-                               && view.tag == (int)button.tag)
-                           {
-                               [view removeFromSuperview];
-                               removed = TRUE;
-                           }
-                           if (removed){
-                               CGRect frame = view.frame;
-                               frame.origin.y = frame.origin.y - heightToRemove;
-                               view.frame = frame;
-                           }
-                       }
-                       
-                       //set the scrollview content size
-                       for (UIView* view in self.scrollview.subviews)
-                       {
-                           if (([view isKindOfClass:[UIScrollView class]]
-                                || [view isKindOfClass:[UIWebView class]]
-                                || [view isKindOfClass:[UIButton class]]))
-                           {
-                               self.scrollview.contentSize = CGSizeMake(320, view.frame.origin.y + view.frame.size.height + 60);
-                           }
-                       }
-                   });
-               }   
-           }
-       }];
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Are you sure you want to delete this video:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
+                            @"Yes",
+                            nil];
+    
+    UIButton *button = (UIButton *)sender;
+    popup.tag = (int)button.tag;
+    
+    [popup showInView:[UIApplication sharedApplication].keyWindow];
 }
 
 // extractYoutubeID
