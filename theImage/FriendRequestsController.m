@@ -272,10 +272,9 @@
                 
                 if (count <= 0){
                     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+                    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"No-Connections.png"]];
+                    tempImageView.contentMode = UIViewContentModeBottom;
                     
-                    UIImage * image = [UIImage imageNamed:@"NoConnections.png"];
-                    
-                    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:image];
                     //tempImageView.contentMode = UIViewContentModeCenter;
                     
                     /*
@@ -284,14 +283,14 @@
                     label.text = @"You have no pending requests";
                     label.textAlignment = NSTextAlignmentCenter; */
   
-                    CGRect bounds =  CGRectMake(402.0, 200, 460.0, 440.0);
+                    CGRect bounds =  CGRectMake(0, 0, 320.0, 568.0);
                     // Create a view and add it to the window.
                     UIView* theview = [[UIView alloc] initWithFrame: bounds];
 
                     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                     [button addTarget:self action:@selector(exploreNow:) forControlEvents:UIControlEventTouchUpInside];
                     [button setTitle:@"Explore Now" forState:UIControlStateNormal];
-                    button.frame = CGRectMake(70, 250, 180.0, 40.0);
+                    button.frame = CGRectMake(70, 350, 180.0, 40.0);
                     button.titleLabel.textColor = [UIColor whiteColor];
                     [button setTitleColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0] forState:UIControlStateNormal];
 
@@ -301,6 +300,9 @@
                     [theview addSubview:button];
                     self.tableView.tableHeaderView = theview;
                     // Add image view on top of table view
+                    //[self.theTable addSubview:tempImageView];
+                    
+                    
                     [self.theTable addSubview:tempImageView];
                     [tempImageView setFrame:self.tableView.frame];
                     self.theTable.backgroundView = tempImageView;

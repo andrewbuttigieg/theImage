@@ -536,9 +536,7 @@ static NSString* deviceToken;
                                     self.mainSlideMenu.panGesture.minimumNumberOfTouches = 2;
                                 }
                                 
-                                self.playingWhere.hidden = false;
-                                self.heightIcon.hidden = false;
-                                self.weightIcon.hidden = false;
+                                
                                 
                                 if ([[theUser valueForKey:@"VideoCount"] intValue] > 0 || p == p2){
                                     UIImage *buttonImage = [UIImage imageNamed:@"videoIcon.png"];
@@ -602,6 +600,17 @@ static NSString* deviceToken;
                                     }
                                 }
                                 
+                                if (player){
+                                    self.playingWhere.hidden = false;
+                                    self.heightIcon.hidden = false;
+                                    self.weightIcon.hidden = false;
+                                }
+                                else{
+                                    self.playingWhere.hidden = true;
+                                    self.heightIcon.hidden = true;
+                                    self.weightIcon.hidden = true;
+                                }
+                                
                                 if (
                                     [theUser valueForKey:@"Country"] != [NSNull null] &&
                                     [theUser valueForKey:@"Country"] != nil){
@@ -609,6 +618,8 @@ static NSString* deviceToken;
                                     self.location.text = [theUser valueForKey:@"Country"];
                                     self.location.hidden = false;
                                 }
+                                
+                                
                                 
                                 self.aboutLabel.hidden = false;
                                 self.aboutTitle.hidden = false;
