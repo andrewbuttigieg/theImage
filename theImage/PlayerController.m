@@ -1092,8 +1092,6 @@ float imageHeight = 0;
 :(NSString *)lfpartCountry;
 {
     
-    [self fixDisplay:position :lookingForPlayer :lfpCountry :lfpPosition :lookingForPartner :lfpartCountry];
-    
     self.playerName.text = [[NSString stringWithFormat:@"%@ %@", name, lname ] uppercaseString];
     if ([about length] < 5){
         self.aboutLabel.text = @"This user has not updated their about section yet";
@@ -1101,6 +1099,8 @@ float imageHeight = 0;
     else{
         self.aboutLabel.text = about;
     }
+    
+    [self fixDisplay:position :lookingForPlayer :lfpCountry :lfpPosition :lookingForPartner :lfpartCountry];
     
     if (
         ![height isEqual:[NSNull null]] && height != nil &&
