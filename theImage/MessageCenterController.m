@@ -12,6 +12,7 @@
 #import "ValidURL.h"
 #import "UIViewController+AMSlideMenu.h"
 #import "AMSlideMenuMainViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface MessageCenterController ()
 
@@ -91,8 +92,13 @@
         imageURL = [imageURL stringByReplacingOccurrencesOfString:@".com/"
                                                        withString:@".com/[120]-"];
         
-        cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:
-                                                                                       imageURL]]];
+        
+        [cell.personImage setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"player.png"]];
+        
+//        cell.myLabel.text = [imageNameArray objectAtIndex:indexPath.row];
+        
+        //cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:
+        //                                                                               imageURL]]];
         
        // cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.imageForTable objectAtIndex: [indexPath row]]]]];
     }

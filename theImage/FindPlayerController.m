@@ -9,6 +9,8 @@
 #import "FindPlayerController.h"
 #import "PlayerController.h"
 #import "PlayerController.h"
+#import "UIImageView+AFNetworking.h"
+#import "ValidURL.h"
 
 @interface FindPlayerController ()
 
@@ -120,14 +122,15 @@ static int findPlayerID = 0;
                     NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
                     UIImage *image;
                     
-                    if ([imageURL length] > 5){
-                        image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
-                    }
-                    else{
-                        //default image
-                        image = [UIImage imageNamed:@"player.png"];
-                    }
+                    
+                    //default image
+                    image = [UIImage imageNamed:@"player.png"];
                     UIImageView *iv = [[UIImageView alloc] initWithImage:image];
+                
+                    if ([ValidURL isValidUrl :imageURL]){
+                        [iv setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"player.png"]];
+                    }
+                
                     iv.clipsToBounds = YES;
                     iv.contentMode = UIViewContentModeScaleAspectFill;
                     //CGRect frame;
@@ -191,8 +194,8 @@ static int findPlayerID = 0;
 }
 
 - (IBAction)findPlayer:(id)sender {
-    self.agent.tintColor = [UIColor colorWithRed:0.0f green:0.674f blue:0.933f alpha:1];
-    self.player.tintColor = [UIColor blackColor];
+    self.agent.tintColor = [UIColor blackColor];
+    self.player.tintColor = [UIColor colorWithRed:0.0f green:0.674f blue:0.933f alpha:1];
     self.scout.tintColor = [UIColor blackColor];
     self.coach.tintColor = [UIColor blackColor];
     findPlayerID = 1;

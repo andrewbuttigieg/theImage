@@ -10,6 +10,7 @@
 #import "PlayerController.h"
 #import "nearYouCell.h"
 #import <CoreLocation/CoreLocation.h>
+#import "UIImageView+AFNetworking.h"
 
 @interface NearYouController ()
 
@@ -81,8 +82,7 @@
         imageURL = [imageURL stringByReplacingOccurrencesOfString:@".com/"
                                                        withString:@".com/[120]-"];
         
-        cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:
-                   imageURL]]];
+        [cell.personImage setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"player.png"]];
     }
     else
         cell.personImage.image = [UIImage imageNamed:@"player.png"];

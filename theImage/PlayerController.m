@@ -13,6 +13,7 @@
 #import "PlayerSettingsController.h"
 #import "ValidURL.h"
 #import "UIViewController+AMSlideMenu.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface PlayerController ()<PlayerImageDelegate>
 
@@ -762,13 +763,17 @@ static NSString* deviceToken;
                                                                                          withString:@".com/[120]-"];
                                                 
                                                 UIImage *image;
-                                                if ([ValidURL isValidUrl :imageURL]){                                                    image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
-                                                }
-                                                else{
-                                                    //default image
-                                                    image = [UIImage imageNamed:@"player.png"];
-                                                }
+                                                
+                                                //default image
+                                                image = [UIImage imageNamed:@"player.png"];
+                                                
+                                                
                                                 UIImageView *iv = [[UIImageView alloc] initWithImage:image];
+                                                
+                                                if ([ValidURL isValidUrl :imageURL]){
+                                                    [iv setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"player.png"]];
+                                                }
+                                                
                                                 iv.layer.cornerRadius = 30.0;
                                                 iv.layer.masksToBounds = YES;
                                                 iv.layer.borderColor = [UIColor lightGrayColor].CGColor;
