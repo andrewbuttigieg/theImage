@@ -276,7 +276,7 @@ static id<FBGraphUser> facebookUser;
         self.messageCounter++;
         facebookUser = user;
         
-        UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"What type of user are you?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
+        UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"What type of user are you? (by clicking you are agreeing to our Terms and Conditions and our Privacy Policy): " delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
                                 @"Player",
                                 @"Scout",
                                 @"Agent",
