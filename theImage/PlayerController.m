@@ -223,11 +223,61 @@ static NSString* deviceToken;
                    }];
             }
         }
+        case 3:{
+            if (buttonIndex == 0) {
+                //"Connect"
+                NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/report_you.php"]];
+                [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+                [request setHTTPBody:[[NSString stringWithFormat:@"u=%d", (int)self.playerID]dataUsingEncoding:NSUTF8StringEncoding]];
+                [request setHTTPMethod:@"POST"];
+                [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init]
+                 //returningResponse:&response
+                                       completionHandler:^(NSURLResponse *response,
+                                                           NSData *data,
+                                                           NSError *error) {
+                                           
+                                           if (error) {
+                                               //[self.delegate fetchingGroupsFailedWithError:error];
+                                           } else {
+                                               NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                                                           options:0
+                                                                                                             error:&error];
+                                               for(NSDictionary *dictionary in jsonArray)
+                                               {
+                                                   //NSLog(@"Data Dictionary is : %@",jsonArray);
+                                                   NSString *returned = [jsonArray[0] objectForKey:@"value"];
+                                                   if ([[jsonArray[0] objectForKey:@"accepted"] integerValue] == 1){
+                                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                                           UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
+                                                                                 
+                                                                                                           message:[NSString stringWithFormat:@"%@",returned]
+                                                                                                          delegate:self
+                                                                                                 cancelButtonTitle:@"Ok"
+                                                                                                 otherButtonTitles:nil];
+                                                           [alert show];
+                                                           self.reportButton.enabled = false;
+                                                       });
+                                                   }
+                                               }
+                                               
+                                           }
+                                           
+                                       }];
+            }
+        }
         default:
             break;
     }
 }
 
+
+- (IBAction)reportUser:(id)sender {
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Do you want to report this user:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
+                            @"Yes",
+                            nil];
+    popup.tag = 3;
+    [popup showInView:[UIApplication sharedApplication].keyWindow];
+}
 
 - (IBAction)sendMessage:(id)sender {
     
@@ -461,6 +511,10 @@ static NSString* deviceToken;
                 if (p == p2){
                     self.playerInteract.enabled = TRUE;
                     self.playerInteract.title = @"Edit";
+                    self.reportButton.hidden = true;
+                }
+                else{
+                    self.reportButton.hidden = false;
                 }
                 
                 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_user.php/"]];
@@ -946,6 +1000,15 @@ float imageHeight = 0;
         self.height.hidden = TRUE;
         self.weight.hidden = TRUE;
         self.videoButton.hidden = TRUE;
+        
+        CGRect frame1 = self.reportButton.frame;
+        frame1.origin.x = self.message.frame.origin.x;
+        self.reportButton.frame = frame1;
+        
+        frame1 = self.message.frame;
+        frame1.origin.x = self.videoButton.frame.origin.x;
+        self.message.frame = frame1;
+        
         
         if (
             ![lfpartCountry isEqual:[NSNull null]] &&

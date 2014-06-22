@@ -31,6 +31,9 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *playerInteract;
 - (IBAction)playerInteractionClick:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UIButton *reportButton;
+- (IBAction)reportUser:(id)sender;
+
 - (IBAction)sendMessage:(id)sender;
 @property (strong, nonatomic) IBOutlet UILabel *aboutTitle;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollview;

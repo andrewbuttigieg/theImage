@@ -326,46 +326,46 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signup-box.png" id="gfU-a3-4F1">
-                                <rect key="frame" x="0.0" y="107" width="320" height="220"/>
+                                <rect key="frame" x="1" y="99" width="320" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="18" id="nYb-Os-5g3">
-                                <rect key="frame" x="50" y="161" width="254" height="30"/>
+                                <rect key="frame" x="51" y="153" width="254" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Surname" minimumFontSize="17" id="Q3S-s3-rnj">
-                                <rect key="frame" x="50" y="206" width="254" height="30"/>
+                                <rect key="frame" x="51" y="198" width="254" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" id="onU-lr-Jdr">
-                                <rect key="frame" x="50" y="246" width="254" height="30"/>
+                                <rect key="frame" x="51" y="238" width="254" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" id="H7e-Tw-dRC">
-                                <rect key="frame" x="50" y="290" width="254" height="30"/>
+                                <rect key="frame" x="51" y="282" width="254" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account type" minimumFontSize="17" id="9LZ-Yj-gXd">
-                                <rect key="frame" x="50" y="117" width="254" height="30"/>
+                                <rect key="frame" x="51" y="109" width="254" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XHU-uZ-wcl">
-                                <rect key="frame" x="51" y="345" width="218" height="46"/>
+                                <rect key="frame" x="53" y="363" width="218" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -377,22 +377,53 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" id="c1c-47-lZJ">
-                                <rect key="frame" x="9" y="88" width="121" height="1"/>
+                                <rect key="frame" x="11" y="80" width="121" height="1"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="snb-0C-a1j">
-                                <rect key="frame" x="186" y="88" width="121" height="1"/>
+                                <rect key="frame" x="188" y="80" width="121" height="1"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WMo-OL-mPx">
-                                <rect key="frame" x="138" y="78" width="42" height="21"/>
+                                <rect key="frame" x="140" y="70" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By tapping to coninue, you are indicating you have read the                        and agree to the" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iLs-yZ-brl">
+                                <rect key="frame" x="11" y="314" width="298" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" red="0.98039221759999995" green="0.99215692280000001" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nfn-7r-YKa">
+                                <rect key="frame" x="22" y="332" width="91" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                <state key="normal" title="Privacy Policy">
+                                    <color key="titleColor" red="0.98039221759999995" green="0.99215692280000001" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="kUV-Tq-tTI" kind="push" id="PbA-La-2y0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mGC-Sp-I5h">
+                                <rect key="frame" x="184" y="332" width="106" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                <state key="normal" title="Terms of Service">
+                                    <color key="titleColor" red="0.98039221759999995" green="0.99215692280000001" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="gtH-Cy-GVc" kind="push" id="nVm-up-mpB"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </scrollView>
                     <navigationItem key="navigationItem" id="Z8c-fK-UM7"/>
@@ -1284,7 +1315,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FDI-Q3-pXV">
-                                <rect key="frame" x="231" y="282" width="25" height="24"/>
+                                <rect key="frame" x="229" y="280" width="29" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="chatIcon.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1294,7 +1325,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="E4s-HW-cq5">
-                                <rect key="frame" x="275" y="282" width="25" height="24"/>
+                                <rect key="frame" x="273" y="280" width="29" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="videoIcon.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1331,6 +1362,16 @@
                                 <color key="textColor" red="0.7725490927696228" green="0.7725490927696228" blue="0.7725490927696228" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dWQ-hW-3lk">
+                                <rect key="frame" x="185" y="280" width="29" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="report.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="reportUser:" destination="iMm-Ef-769" eventType="touchUpInside" id="bpn-6U-9qf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </scrollView>
@@ -1372,6 +1413,7 @@
                         <outlet property="playerName" destination="AoK-Jn-gip" id="AxA-S2-CnX"/>
                         <outlet property="playingWhere" destination="lga-QM-KZw" id="H5h-up-V3J"/>
                         <outlet property="postion" destination="n1J-L8-T2j" id="SQ0-zw-vcx"/>
+                        <outlet property="reportButton" destination="dWQ-hW-3lk" id="t8n-kH-ZaM"/>
                         <outlet property="scrollview" destination="Pb8-Om-bF9" id="Shr-M6-gaM"/>
                         <outlet property="userType" destination="11u-fW-opK" id="heB-d3-LLX"/>
                         <outlet property="videoButton" destination="E4s-HW-cq5" id="nto-7R-2uY"/>
@@ -1701,115 +1743,126 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <string key="text">
-PlayerCV
+                        <mutableString key="text">PlayerCV
 
 Terms of Service
-Last Update June 7th 2014
+Last Update June 22nd 2014
+
 PLEASE READ THIS DOCUMENT CAREFULLY
 PlayerCV, Inc. (“PlayerCV Ltd.,” “we,” or “us”) operates the PlayerCV mobile app and related website (“PlayerCV”). By using PlayerCV in any way, you accept these Terms of Service (“Agreement”). If you do not wish to be bound by this Agreement, do not use PlayerCV.
+
 Contents
-	•	Who May Use PlayerCV
-	•	License to Use PlayerCV
-	•	Privacy
-	•	Registration
-	•	Term and Termination; Account Deletion
-	•	Disclaimers; Limitation of Liability
-	•	Code of Conduct; Prohibited Activities
-	•	Content Restrictions
-	•	Licenses Granted by You
-	•	Your Representations and Warranties
-	•	Indemnification
-	•	Third Party Copyrights and Other Rights
-	•	General Provisions
-	•	Who May Use PlayerCV 
+• Who May Use PlayerCV
+• License to Use PlayerCV
+• Privacy
+• Registration
+• Term and Termination; Account Deletion
+• Disclaimers; Limitation of Liability
+• Code of Conduct; Prohibited Activities
+• Content Restrictions
+• Licenses Granted by You
+• Your Representations and Warranties
+• Indemnification
+• Third Party Copyrights and Other Rights
+• General Provisions
+
+Who May Use PlayerCV
 You must be at least 13 years old to use PlayerCV. Use is void where prohibited. By using PlayerCV, you represent and warrant that you have the right, authority and capacity to enter into this Agreement and to abide by all of the terms and conditions of this Agreement. If you use PlayerCV, you represent and warrant that you have never been convicted of a felony and that you are not required to register as a sex offender with any government entity. 
-	•	License to Use PlayerCV 
+
+License to Use PlayerCV 
 PlayerCV, Ltd. grants you a limited, non-exclusive license to access and use PlayerCV for your own personal, non-commercial purposes. This license is personal to you and may not be assigned or sublicensed to anyone else.
 Except as expressly permitted by PlayerCV Co in writing, you will not reproduce, redistribute, sell, create derivative works from, decompile, reverse engineer, or disassemble PlayerCV. Nor will you take any measures to interfere with or damage PlayerCV. All rights not expressly granted by PlayerCV, Ltd. are reserved.
-	•	Privacy 
-Your privacy rights are set forth in our Privacy Policy, which forms a part of this Agreement. Please review the Privacy Policy to learn about:
-	•	What information we may collect about you
-	•	What we use that information for
-	•	What third-party information, if any, you are agreeing to share by using Tiner; and
-	•	With whom we share that information 
 
-	•	Registration 
+Privacy 
+Your privacy rights are set forth in our Privacy Policy, which forms a part of this Agreement. Please review the Privacy Policy to learn about:
+• What information we may collect about you
+• What we use that information for
+• What third-party information, if any, you are agreeing to share by using Tiner; and
+• With whom we share that information 
+
+Registration 
 To use PlayerCV, you must register an account your Facebook login, meaning you are authorizing us to access certain information in your Facebook account, including information about Facebook friends you might share in common with other PlayerCV users. By allowing us to access your Facebook account, you expressly acknowledge and agree that we may obtain and share your name and a profile picture, as well as the name and profile picture of your Facebook friends who are common Facebook friends with other PlayerCV users in your network or geolocation. Please take precautions to protect your password and contact us at info@playercv.com if you believe your account has been accessed by an unauthorized person. 
-	•	Term and Termination; Account Deletion 
+
+Term and Termination; Account Deletion 
 This Agreement begins on the date you first use PlayerCV and continues until terminated in accordance with the provisions hereof.
 PlayerCV, Ltd. may suspend, disable, or delete your account (or any part thereof) if PlayerCV, Ltd. determines that you have violated any provision of this Agreement or that your conduct or content would tend to damage PlayerCV, Ltd.’s reputation or goodwill. If PlayerCV, Ltd. deletes your account for the foregoing reasons, you may not re-register under a different name.
 Upon termination, all licenses granted by PlayerCV, Ltd. will terminate. In the event of account deletion for any reason, content that you submitted may no longer be available. PlayerCV, Ltd. shall not be responsible for the loss of such content.
-	•	Disclaimers; Limitation of Liability 
-	•	YOU ARE SOLELY RESPONSIBLE FOR YOUR INTERACTIONS WITH OTHER PLAYERCV USERS. YOU UNDERSTAND THAT PLAYERCV, LTD. CURRENTLY DOES NOT CONDUCT CRIMINAL BACKGROUND CHECKS ON ITS USERS. PLAYERCV, LTD. ALSO DOES NOT INQUIRE INTO THE BACKGROUNDS OF ALL OF ITS USERS OR ATTEMPT TO VERIFY THE STATEMENTS OF ITS USERS. PLAYERCV, LTD. MAKES NO REPRESENTATIONS OR WARRANTIES AS TO THE CONDUCT OF USERS OR THEIR COMPATIBILITY WITH ANY CURRENT OR FUTURE USER. PLAYERCV, LTD. RESERVES THE RIGHT TO CONDUCT ANY CRIMINAL BACKGROUND CHECK OR OTHER SCREENINGS (SUCH AS SEX OFFENDER REGISTER SEARCHES), AT ANY TIME AND USING AVAILABLE PUBLIC RECORDS.
-	•	IN NO EVENT SHALL PLAYERCV, LTD. BE LIABLE FOR ANY DAMAGES WHATSOEVER, WHETHER DIRECT, INDIRECT, GENERAL, SPECIAL, EMEPLARY, COMPENSATORY, CONSEQUENTIAL, AND/OR INCIDENTAL, ARISING OUT OF OR RELATING TO THE CONDUCT OF YOU OR ANYONE ELSE IN CONNECTION WITH THE USE OF THE SERVICE, INCLUDING WITHOUT LIMITATION, BODILY INJURY, DEATH, EMOTIONAL DISTRESS, AND/OR ANY OTHER DAMAGES RESULTING FROM COMMUNICATIONS OR MEETINGS WITH OTHER USERS OF THE PLAYERCV SERVICE OR PERSONS YOU MEET THROUGH PLAYERCV. YOU AGREE TO TAKE REASONABLE PRECAUTIONS IN ALL INTERACTIONS WITH OTHER USERS OF THE SERVICE, PARTICULARLY IF YOU DECIDE TO MEET OFFLINE OR IN PERSON.
-	•	PlayerCV, Ltd. reserves the right to modify PlayerCV. You are responsible for providing your own access to PlayerCV. PlayerCV, Ltd. has no obligation to screen or monitor any content and does not guarantee that any content available on PlayerCV complies with this Agreement or is suitable for all users.
-	•	PlayerCV, Ltd. provides PlayerCV on an “as is” and “as available” basis. You therefore use PlayerCV at your own risk. PlayerCV, Ltd. expressly disclaims any and all warranties of any kind, whether express or implied, including, but not limited to the implied warranties of merchantability, fitness for a particular purpose, non-infringement, and any other warranty that might arise under any law. Without limiting the foregoing, PlayerCV, Ltd. makes no representations or warranties:
-	•	That PlayerCV will be permitted in your jurisdiction;
-	•	That PlayerCV will be uninterrupted or error-free;
-	•	Concerning any content submitted by any user;
-	•	Concerning any third party’s use of content that you submit;
-	•	That any content you submit will be made available on PlayerCV or will be stored by PlayerCV, Ltd.; 
-	•	That PlayerCV, Ltd. will continue to support any particular feature of PlayerCV;
-	•	Concerning sites and resources outside of PlayerCV, even if linked to from PlayerCV.
 
+Disclaimers; Limitation of Liability 
+• YOU ARE SOLELY RESPONSIBLE FOR YOUR INTERACTIONS WITH OTHER PLAYERCV USERS. YOU UNDERSTAND THAT PLAYERCV, LTD. CURRENTLY DOES NOT CONDUCT CRIMINAL BACKGROUND CHECKS ON ITS USERS. PLAYERCV, LTD. ALSO DOES NOT INQUIRE INTO THE BACKGROUNDS OF ALL OF ITS USERS OR ATTEMPT TO VERIFY THE STATEMENTS OF ITS USERS. PLAYERCV, LTD. MAKES NO REPRESENTATIONS OR WARRANTIES AS TO THE CONDUCT OF USERS OR THEIR COMPATIBILITY WITH ANY CURRENT OR FUTURE USER. PLAYERCV, LTD. RESERVES THE RIGHT TO CONDUCT ANY CRIMINAL BACKGROUND CHECK OR OTHER SCREENINGS (SUCH AS SEX OFFENDER REGISTER SEARCHES), AT ANY TIME AND USING AVAILABLE PUBLIC RECORDS.
+• IN NO EVENT SHALL PLAYERCV, LTD. BE LIABLE FOR ANY DAMAGES WHATSOEVER, WHETHER DIRECT, INDIRECT, GENERAL, SPECIAL, EMEPLARY, COMPENSATORY, CONSEQUENTIAL, AND/OR INCIDENTAL, ARISING OUT OF OR RELATING TO THE CONDUCT OF YOU OR ANYONE ELSE IN CONNECTION WITH THE USE OF THE SERVICE, INCLUDING WITHOUT LIMITATION, BODILY INJURY, DEATH, EMOTIONAL DISTRESS, AND/OR ANY OTHER DAMAGES RESULTING FROM COMMUNICATIONS OR MEETINGS WITH OTHER USERS OF THE PLAYERCV SERVICE OR PERSONS YOU MEET THROUGH PLAYERCV. YOU AGREE TO TAKE REASONABLE PRECAUTIONS IN ALL INTERACTIONS WITH OTHER USERS OF THE SERVICE, PARTICULARLY IF YOU DECIDE TO MEET OFFLINE OR IN PERSON.
+• PlayerCV, Ltd. reserves the right to modify PlayerCV. You are responsible for providing your own access to PlayerCV. PlayerCV, Ltd. has no obligation to screen or monitor any content and does not guarantee that any content available on PlayerCV complies with this Agreement or is suitable for all users.
+• PlayerCV, Ltd. provides PlayerCV on an “as is” and “as available” basis. You therefore use PlayerCV at your own risk. PlayerCV, Ltd. expressly disclaims any and all warranties of any kind, whether express or implied, including, but not limited to the implied warranties of merchantability, fitness for a particular purpose, non-infringement, and any other warranty that might arise under any law. Without limiting the foregoing, PlayerCV, Ltd. makes no representations or warranties:
+• That PlayerCV will be permitted in your jurisdiction;
+• That PlayerCV will be uninterrupted or error-free;
+• Concerning any content submitted by any user;
+• Concerning any third party’s use of content that you submit;
+• That any content you submit will be made available on PlayerCV or will be stored by PlayerCV, Ltd.; 
+• That PlayerCV, Ltd. will continue to support any particular feature of PlayerCV;
+• Concerning sites and resources outside of PlayerCV, even if linked to from PlayerCV.
 To the extent any disclaimer or limitation of liability does not apply, all applicable express, implied, and statutory warranties will be limited in duration to a period of thirty (30) days after the date on which you first used PlayerCV, and no warranties shall apply after such period. 
-	•	Code of Conduct; Prohibited Activities 
+
+Code of Conduct; Prohibited Activities 
 In using PlayerCV, you must behave in a civil and respectful manner at all times. Further, you will not: 
-	•	Harass or stalk any other person;
-	•	Harm or exploit minors;
-	•	Act in a deceptive manner by, among other things, impersonating any person;
-	•	Collect information about others;
-	•	You will not express or imply that any statements you make are endorsed by PlayerCV, Ltd. without our specific prior written consent.
-	•	You will not distribute spam, and will not use any robot, spider, site search/retrieval application, or other manual or automatic device or process to retrieve, index, “data mine”, or in any way reproduce or circumvent the navigational structure or presentation of the Service or its contents.
-	•	You will not post, distribute or reproduce in any way any copyrighted material, trademarks, or other proprietary information without obtaining the prior consent of the owner of such proprietary rights.
-	•	You will not interfere with or disrupt the services or the site or the servers or networks connected to the services or the site.
-	•	You will not post, email or otherwise transmit any material that contains software viruses or any other computer code, files or programs designed to interrupt, destroy or limit the functionality of any computer software or hardware or telecommunications equipment.
+• Harass or stalk any other person;
+• Harm or exploit minors;
+• Act in a deceptive manner by, among other things, impersonating any person;
+• Collect information about others;
+• You will not express or imply that any statements you make are endorsed by PlayerCV, Ltd. without our specific prior written consent.
+• You will not distribute spam, and will not use any robot, spider, site search/retrieval application, or other manual or automatic device or process to retrieve, index, “data mine”, or in any way reproduce or circumvent the navigational structure or presentation of the Service or its contents.
+• You will not post, distribute or reproduce in any way any copyrighted material, trademarks, or other proprietary information without obtaining the prior consent of the owner of such proprietary rights.
+• You will not interfere with or disrupt the services or the site or the servers or networks connected to the services or the site.
+• You will not post, email or otherwise transmit any material that contains software viruses or any other computer code, files or programs designed to interrupt, destroy or limit the functionality of any computer software or hardware or telecommunications equipment.
 PlayerCV, Ltd. has the right, but not the obligation, to monitor all conduct on and content submitted to PlayerCV.
-	•	Content Restrictions 
+
+Content Restrictions 
 You are solely responsible for the content that you publish or display (hereinafter, “post”) on the Service, or transmit to other Members. You will not post on the service, or transmit to other users, any defamatory, inaccurate, abusive, obscene, profane, offensive, sexually oriented, threatening, harassing, racially offensive, or il material, or any material that infringes or violates another party's rights (including, but not limited to, intellectual property rights, and rights of privacy and publicity). You will not provide inaccurate, misleading or false information to PlayerCV, Ltd. or to any other user. If information provided to PlayerCV, Ltd., or another user, subsequently becomes inaccurate, misleading or false, you will promptly notify us of such change. The following is a partial list of content you maynotupload, post, or transmit (collectively, “submit”): 
-	•	is patently offensive to the online community, such as content that promotes racism, bigotry, hatred or physical harm of any kind against any group or individual;
-	•	harasses or advocates harassment of another person;
-	•	promotes information that is false, misleading or promotes illegal activities or conduct that is abusive, threatening, obscene, defamatory or libelous;
-	•	provides material that exploits people under the age of 18 in a sexual or violent manner, or solicits personal information from anyone under the age of 18;
-	•	contains sexually explicit content;
-	•	provides instructional information about illegal activities such as making or buying illegal weapons, violating someone's privacy, or providing or creating computer viruses;
-	•	involves the transmission of “junk mail”, “chain letters,” or unsolicited mass mailing or “spamming”;
-	•	promotes an illegal or unauthorized copy of another person's copyrighted work, such as providing pirated computer programs or links to them, providing information to circumvent manufacture-installed copy-protect devices, or providing pirated images, audio or video, or links to pirated images, audio or video files;
-	•	solicits passwords or personal identifying information for commercial or unlawful purposes from other users; 
-	•	engages in commercial activities and/or sales without our prior written consent such as contests, sweepstakes, barter, advertising, and pyramid schemes;
-	•	infringes any third party’s copyrights or other rights (e.g., trademark, privacy rights, etc.);
+• is patently offensive to the online community, such as content that promotes racism, bigotry, hatred or physical harm of any kind against any group or individual;
+• harasses or advocates harassment of another person;
+• promotes information that is false, misleading or promotes illegal activities or conduct that is abusive, threatening, obscene, defamatory or libelous;
+• provides material that exploits people under the age of 18 in a sexual or violent manner, or solicits personal information from anyone under the age of 18;
+• contains sexually explicit content;
+• provides instructional information about illegal activities such as making or buying illegal weapons, violating someone's privacy, or providing or creating computer viruses;
+• involves the transmission of “junk mail”, “chain letters,” or unsolicited mass mailing or “spamming”;
+• promotes an illegal or unauthorized copy of another person's copyrighted work, such as providing pirated computer programs or links to them, providing information to circumvent manufacture-installed copy-protect devices, or providing pirated images, audio or video, or links to pirated images, audio or video files;
+• solicits passwords or personal identifying information for commercial or unlawful purposes from other users; 
+• engages in commercial activities and/or sales without our prior written consent such as contests, sweepstakes, barter, advertising, and pyramid schemes;
+• infringes any third party’s copyrights or other rights (e.g., trademark, privacy rights, etc.);
 Your use of the Service, including but not limited to the content you post on the service, must be in accordance with any and all applicable laws and regulations.
 You may not include in your user profile any telephone numbers, street addresses, last names, URLs or email addresses. 
-	•	Licenses Granted by You 
+
+Licenses Granted by You 
 You grant PlayerCV, Ltd. and its affiliates a worldwide, perpetual, irrevocable, non-exclusive, royalty-free license and right to copy, transmit, distribute, publicly perform and display (through all media now known or hereafter created), and make derivative works from your content. In addition, you waive any so-called “moral rights” in your content. You further grant all users of PlayerCV permission to view your content for their personal, non-commercial purposes. If you make suggestions to PlayerCV, Ltd. on improving or adding new features to PlayerCV, PlayerCV, Ltd. shall have the right to use your suggestions without any compensation to you.
-	•	Your Representations and Warranties 
+
+Your Representations and Warranties 
 For each piece of content that you submit, you represent and warrant that: (i) you have the right to submit the content to PlayerCV, Ltd. and grant the licenses set forth above; (ii) PlayerCV, Ltd. will not need to obtain licenses from any third party or pay royalties to any third party; (iii) the content does not infringe any third party’s rights, including intellectual property rights and privacy rights; and (iv) the content complies with this Agreement and all applicable laws.
-	•	Indemnification 
+
+Indemnification 
 You will indemnify, defend, and hold harmless PlayerCV, Ltd. and its affiliates, directors, officers, employees, and agents, from and against all third party actions that: (i) arise from your activities on PlayerCV; (ii) assert a violation by you of any term of this Agreement; or (iii) assert that any content you submitted to PlayerCV violates any law or infringes any third party right, including any intellectual property or privacy right.
-	•	Third Party Copyrights and Other Rights Copyright Policy 
+
+Third Party Copyrights and Other Rights Copyright Policy 
 PlayerCV, Ltd. respects the intellectual property of others, and we ask our users to do the same. Each user is responsible for ensuring that the materials they upload to PlayerCV do not infringe any third party copyright.
 PlayerCV, Ltd. will promptly remove materials in accordance with the Digital Millennium Copyright Act (“DMCA”) if properly notified that the materials infringe a third party’s copyright.In addition, PlayerCV, Ltd. may, in appropriate circumstances, terminate the accounts of repeat copyright infringers.
 DMCA Takedown Notice 
 If you believe that your work has been copied in a way that constitutes copyright infringement, please provide us with a written notice containing the following information: 
-	•	Your name, address, telephone number, and email address (if any).
-	•	A description of the copyrighted work that you claim has been infringed.
-	•	A description of where the material that you claim is infringing is located on PlayerCV, sufficient for PlayerCV, Ltd. to locate the material.
-	•	A statement that you have a good faith belief that the use of the copyrighted work is not authorized by the copyright owner, its agent, or the law.
-	•	A statement by you that the information in your notice is accurate and, UNDER PENALTY OF PERJURY, you are the copyright owner or authorized to act on the copyright owner's behalf.
-	•	An electronic or physical signature of the person authorized to act on behalf of the owner of the copyright interest.
+• Your name, address, telephone number, and email address (if any).
+• A description of the copyrighted work that you claim has been infringed.
+• A description of where the material that you claim is infringing is located on PlayerCV, sufficient for PlayerCV, Ltd. to locate the material.
+• A statement that you have a good faith belief that the use of the copyrighted work is not authorized by the copyright owner, its agent, or the law.
+• A statement by you that the information in your notice is accurate and, UNDER PENALTY OF PERJURY, you are the copyright owner or authorized to act on the copyright owner's behalf.
+• An electronic or physical signature of the person authorized to act on behalf of the owner of the copyright interest.
 You may submit this information via: 
-	•	Email: info@playercv.com
+• Email: info@playercv.com
 DMCA Counter-notification 
 If you believe that your material has been removed by mistake or misidentification, please provide PlayerCV, Ltd. with a written counter-notification containing the following information:
-	•	Your name, address, and telephone number.
-	•	A description of the material that was removed and the location where it previously appeared.
-	•	A statement UNDER PENALTY OF PERJURY that you have a good faith belief that the material was removed or disabled as a result of mistake or misidentification.
-	•	A statement that you consent to the jurisdiction of the Federal District Court for the judicial district in which your address is located, or if your address is outside of the United States, any judicial district in which PlayerCV, Ltd. may be found (which includes the United States District Court for the Southern District of New York), and that you will accept service of process from the person who filed the original DMCA notice or an agent of that person.
-	•	Your electronic or physical signature.
+• Your name, address, and telephone number.
+• A description of the material that was removed and the location where it previously appeared.
+• A statement UNDER PENALTY OF PERJURY that you have a good faith belief that the material was removed or disabled as a result of mistake or misidentification.
+• A statement that you consent to the jurisdiction of the Federal District Court for the judicial district in which your address is located, or if your address is outside of the United States, any judicial district in which PlayerCV, Ltd. may be found (which includes the United States District Court for the Southern District of New York), and that you will accept service of process from the person who filed the original DMCA notice or an agent of that person.
+• Your electronic or physical signature.
 
 You may submit this information via:
-	•	Email: info@playercv.com
+• Email: info@playercv.com
 Please note that we will provide complete counter-notifications to the person making the DMCA claim.That person may elect to file a lawsuit against you for copyright infringement.If we do not receive notice that a lawsuit has been filed within ten (10) business days after we provide notice of your counter-notification, we will restore the disabled materials. Until that time, your materials will remain disabled.
 Warning In filing a DMCA notice or counter-notification, please make sure that you have complied with all of the above requirements. If we request additional information necessary to make DMCA your notice or counter-notification complete, please provide that information promptly. If you fail to comply with all of the requirements, your notification or counter-notification may not be processed. 
 In addition, please make sure that all of the information you provide is accurate.UNDER SECTION 512(f) OF THE COPYRIGHT ACT, 17 U.S.C. § 512(f), ANY PERSON WHO KNOWINGLY MATERIALLY MISREPRESENTS THAT MATERIAL OR ACTIVITY IS INFRINGING OR WAS REMOVED OR DISABLED BY MISTAKE OR MISIDENTIFICATION MAY BE SUBJECT TO LIABILITY.
@@ -1817,7 +1870,7 @@ If you have questions about the legal requirements of a DMCA notice, please cont
 Other Complaints 
 You may send non-copyright complaints to: Email: info@playercv.com
 
-	•	General Provisions 
+General Provisions 
 GOVERNING LAW: This Agreement shall be governed by the laws of the State of New York, United States of America, without regard to principles of conflicts of law. The Uniform Commercial Code, the Uniform Computer Information Transaction Act, and the United Nations Convention of Controls for International Sale of Goods shall not apply.
 DISPUTES: Any action arising out of or relating to this Agreement or your use of PlayerCV must be commenced in the state or federal courts located in New York County, New York, United States of America (and you consent to the jurisdiction of those courts).In any such action, PlayerCV, Ltd. and you irrevocably waive any right to a trial by jury.
 INTERPRETATION; SEVERABILITY; WAIVER; REMEDIES:Headings are for convenience only and shall not be used to construe the terms of this Agreement. If any term of this Agreement is found invalid or unenforceable by any court of competent jurisdiction, that term will be severed from this Agreement. No failure or delay by PlayerCV, Ltd. in exercising any right hereunder will waive any further exercise of that right. PlayerCV, Ltd.’s rights and remedies hereunder are cumulative and not exclusive.
@@ -1828,7 +1881,7 @@ This Agreement may not be modified except by a revised Terms of Service posted b
 END OF DOCUMENT. 
 © Copyright PlayerCV 2012 - 2014. All rights reserved.
 
-</string>
+</mutableString>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
@@ -1970,31 +2023,34 @@ END OF DOCUMENT.
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <string key="text">Privacy Policy
-Last Updated: June 7th 2014
+                        <mutableString key="text">Privacy Policy
+
+Last Updated: June 22nd 2014
+
 This Privacy Policy explains the information that PlayerCV, Inc. (“PlayerCV Ltd,” “we,” or “us”) collect about users of the PlayerCV mobile application and related website (“PlayerCV”), how we use that information, and with whom we share it. If we make any material changes to our privacy practices, we will post a revised Privacy Policy on this page. If you have any questions, please contact us by sending an email to info@playercv.com 
 Information we collect 
 Information collected automatically: When you use PlayerCV, we automatically collect and store information about your computer or mobile device and your activities. This information includes:
-	•	Your mobile device's unique ID number
-	•	Your mobile device's geographic location while the app is actively running
-	•	Your computer's IP address
-	•	Technical information about your computer or mobile device (such as type of device, web browser or operating system)
-	•	Your preferences and settings (time zone, language, privacy preferences, product preferences, etc.)
-	•	The URL of the last web page you visited before coming to one of our sites
-	•	The buttons, controls and ads you clicked on (if any)
-	•	How long you used PlayerCV and which services and features you used
-	•	The online or offline status of PlayerCV 
+• Your mobile device's unique ID number
+• Your mobile device's geographic location while the app is actively running
+• Your computer's IP address
+• Technical information about your computer or mobile device (such as type of device, web browser or operating system)
+• Your preferences and settings (time zone, language, privacy preferences, product preferences, etc.)
+• The URL of the last web page you visited before coming to one of our sites
+• The buttons, controls and ads you clicked on (if any)
+• How long you used PlayerCV and which services and features you used
+• The online or offline status of PlayerCV 
+
 Information you choose to provide: 
 In order to register, you will be asked to sign-in using your Facebook login. If you do so, you authorize us to access certain Facebook account information, including information about your Facebook friends who might be common Facebook friends with other PlayerCV users. By allowing us to access your Facebook account, you understand that we will obtain and share your name and a profile picture, as well as the name and profile picture of your Facebook friends who are common Facebook friends with other PlayerCV users in your network or geolocation.
 Whenever you voluntarily disclose personal information on publicly-viewable screens or pages, that information will be publicly available and can be collected and used by others. For example, if you post your email address, you may receive unsolicited messages. We cannot control who reads your posting or what other users may do with the information you voluntarily post, so we encourage you to exercise discretion and caution with respect to your personal information.
 You may also (but are not required to) provide information about yourself (such as your gender, location, URL, or a biography). Any additional image or information you provide may be publicly displayed. If you wish, we will delete your account information; to do so, please close your account by sending an email to info@playercv.com 
 Information about others: 
 We may collect and store personal information about other people that is available to us through your Facebook login, namely the name and picture of certain of your Facebook friends as follows: we will only share this information with other PlayerCV users who are already friends with your Facebook friend and who already have access to such information.
-	•	How we use your information 
+• How we use your information 
 We use your information to provide and improve our services, award loyalty points to you, make special offers, customize services for you, better understand our users, diagnose and fix problems, and sell and display offers and ads that may be relevant to you.
 Geo-location-information: 
 While the PlayerCV application is in use, we keep track of your device’s geographic location so that we can connect you to other PlayerCV users based on your particular geographic location.
-	•	Use of your information by others 
+• Use of your information by others 
 We may share user information with other companies for various reasons as described below. What information we make available to other companies depends on the nature of our relationships with them. We generally require these other companies to keep our users' information confidential.
 Service Providers: We may share all of the types of information we collect with vendors who provide services to us.
 Advertisers: To the extent we display advertising on PlayerCV, we may allow advertisers and advertising networks to collect information about your mobile device (including mobile device IDs), activities, and geographic location to enable them to display targeted ads to you. 
@@ -2003,12 +2059,12 @@ Mobile device IDs: In order to recognize you, store your preferences, and track 
 What we don't share: We do not provide third parties with your name, address, email address, or phone number.
 Aggregated Information: We may publicly disclose aggregated information about our users, such as the total number of our users and their overall demographics.
 Legal matters: We may disclose any information: in response to a legal request, such as a subpoena, court order, or government demand; to investigate or report illegal activity; or to enforce our rights or defend claims. We may also transfer your information to another company in connection with a corporate restructuring, such as a sale or merger.
-	•	Children's privacy 
+• Children's privacy 
 We do not allow persons under 13 to register for any service, and we do not knowingly collect any personally identifiable information from persons under the age of 13.
-	•	Information from users outside the United States 
+• Information from users outside the United States 
 If you’re outside the United States, your information will be sent to and stored in the United States, where our servers are located. By using PlayerCV, you agree to the information collection, use, and sharing practices described in this Privacy Policy.
 
-</string>
+</mutableString>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
@@ -2105,21 +2161,6 @@ If you’re outside the United States, your information will be sent to and stor
                     <scrollView key="view" clipsSubviews="YES" contentMode="scaleToFill" id="wa1-rX-CKi">
                         <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="x32-LO-Ydc">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Players"/>
-                                    <segment title="Agent"/>
-                                    <segment title="Scouts"/>
-                                    <segment title="Coaches"/>
-                                </segments>
-                                <connections>
-                                    <action selector="findThePlayer:" destination="NUa-ev-nve" eventType="valueChanged" id="oNj-Fi-VFw"/>
-                                </connections>
-                            </segmentedControl>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </scrollView>
                     <toolbarItems>
@@ -2172,7 +2213,7 @@ If you’re outside the United States, your information will be sent to and stor
         <image name="MenuLogo.png" width="175" height="42"/>
         <image name="Screen.png" width="320" height="568"/>
         <image name="accept-friend.png" width="36" height="36"/>
-        <image name="chatIcon.png" width="20" height="20"/>
+        <image name="chatIcon.png" width="29" height="26"/>
         <image name="chatMenuIcon.png" width="26" height="26"/>
         <image name="decline-friend.png" width="36" height="36"/>
         <image name="discoverMenuIcon.png" width="26" height="26"/>
@@ -2183,6 +2224,7 @@ If you’re outside the United States, your information will be sent to and stor
         <image name="notificationsMenuIcon.png" width="26" height="26"/>
         <image name="profileMenuIcon.png" width="26" height="26"/>
         <image name="reloadIcon.png" width="26" height="27"/>
+        <image name="report.png" width="29" height="26"/>
         <image name="setting-Upload-Photo.png" width="70" height="70"/>
         <image name="setting-about.png" width="320" height="90"/>
         <image name="setting-box.png" width="640" height="87"/>
@@ -2197,7 +2239,7 @@ If you’re outside the United States, your information will be sent to and stor
         <image name="settingsMenuIcon.png" width="26" height="26"/>
         <image name="signup-box.png" width="320" height="220"/>
         <image name="signup-button.png" width="1" height="45"/>
-        <image name="videoIcon.png" width="24" height="19"/>
+        <image name="videoIcon.png" width="29" height="26"/>
         <image name="weightIcon.png" width="21" height="21"/>
     </resources>
     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -2206,4 +2248,8 @@ If you’re outside the United States, your information will be sent to and stor
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="PbA-La-2y0"/>
+        <segue reference="nVm-up-mpB"/>
+    </inferredMetricsTieBreakers>
 </document>

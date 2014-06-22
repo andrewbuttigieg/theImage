@@ -106,6 +106,8 @@
 		F26D6A63194DF37100957267 /* icon-152@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F26D6A52194DF37100957267 /* icon-152@2x.png */; };
 		F26D6A64194DF37100957267 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F26D6A53194DF37100957267 /* icon.png */; };
 		F26D6A65194DF37100957267 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F26D6A54194DF37100957267 /* icon@2x.png */; };
+		F26D6A681956FCFE00957267 /* report.png in Resources */ = {isa = PBXBuildFile; fileRef = F26D6A661956FCFE00957267 /* report.png */; };
+		F26D6A691956FCFE00957267 /* report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F26D6A671956FCFE00957267 /* report@2x.png */; };
 		F284BFDA18DB7E810002EB81 /* FriendRequestsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F284BFD918DB7E810002EB81 /* FriendRequestsController.m */; };
 		F284BFE018DB9FA10002EB81 /* friendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F284BFDF18DB9FA10002EB81 /* friendCell.m */; };
 		F284BFE518DBB30A0002EB81 /* accept-friend.png in Resources */ = {isa = PBXBuildFile; fileRef = F284BFE118DBB30A0002EB81 /* accept-friend.png */; };
@@ -342,6 +344,8 @@
 		F26D6A52194DF37100957267 /* icon-152@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-152@2x.png"; sourceTree = "<group>"; };
 		F26D6A53194DF37100957267 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		F26D6A54194DF37100957267 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		F26D6A661956FCFE00957267 /* report.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = report.png; sourceTree = "<group>"; };
+		F26D6A671956FCFE00957267 /* report@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "report@2x.png"; sourceTree = "<group>"; };
 		F284BFD818DB7E810002EB81 /* FriendRequestsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequestsController.h; sourceTree = "<group>"; };
 		F284BFD918DB7E810002EB81 /* FriendRequestsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRequestsController.m; sourceTree = "<group>"; };
 		F284BFDE18DB9FA10002EB81 /* friendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = friendCell.h; sourceTree = "<group>"; };
@@ -599,6 +603,8 @@
 				F20175D91911A55B00392DD5 /* no-videoIcon@2x.png */,
 				F20D6E8D19449A8E00E37A47 /* player.png */,
 				F20D6E8E19449A8E00E37A47 /* player@2x.png */,
+				F26D6A661956FCFE00957267 /* report.png */,
+				F26D6A671956FCFE00957267 /* report@2x.png */,
 				F20D6E9319449AAA00E37A47 /* videoIcon.png */,
 				F20D6E9419449AAA00E37A47 /* videoIcon@2x.png */,
 				F20175E01911ADE400392DD5 /* weightIcon.png */,
@@ -1073,6 +1079,7 @@
 				F20D6E9519449AAA00E37A47 /* chatIcon.png in Resources */,
 				F2983D0118CE49D100E96233 /* intro.mp4 in Resources */,
 				F28C2AB118E744D00047DA75 /* setting-password.png in Resources */,
+				F26D6A691956FCFE00957267 /* report@2x.png in Resources */,
 				F20D6E9819449AAA00E37A47 /* videoIcon@2x.png in Resources */,
 				F2983D0918CF9E8800E96233 /* login2.jpg in Resources */,
 				F20175FC1912FCC400392DD5 /* notificationsMenuIcon@2x.png in Resources */,
@@ -1124,6 +1131,7 @@
 				F20D6EA91944DA1400E37A47 /* Locating@2x.png in Resources */,
 				F28C2AAD18E744D00047DA75 /* setting-height@2x.png in Resources */,
 				F26D6A43194DF08800957267 /* icon@2x.png in Resources */,
+				F26D6A681956FCFE00957267 /* report.png in Resources */,
 				F2B9E1E8189D7E060044DE04 /* UIAlertView+AFNetworking.h in Resources */,
 				F26D6A55194DF37100957267 /* icon-29.png in Resources */,
 				F28C2AB018E744D00047DA75 /* setting-login@2x.png in Resources */,
