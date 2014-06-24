@@ -10,7 +10,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface LoginController : UIViewController<FBLoginViewDelegate, UITextFieldDelegate>
+@interface LoginController : UIViewController<UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *email;
 @property (strong, nonatomic) IBOutlet UITextField *password;

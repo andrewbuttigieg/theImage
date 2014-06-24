@@ -119,24 +119,6 @@
         case 5:
             identifier = @"fifthRow";
             break;
-            /*
-        case 6:
-            if ([LogMeIn logout]){
-                
-                if (FBSession.activeSession.isOpen)
-                {
-                    [FBSession.activeSession closeAndClearTokenInformation];
-                }
-                
-                
-                NSString * storyboardName = @"Main_iPhone";
-                NSString * viewControllerID = @"StartController";
-                UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
-                StartController * controller = (StartController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
-                
-                [self.navigationController pushViewController:controller animated:YES];
-            }
-            break;*/
         case 6:
             identifier = @"allVideoRow";
             break;

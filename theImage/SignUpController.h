@@ -10,7 +10,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <FacebookSDK/FacebookSDK.h>
 
-@interface SignUpController : UIViewController<UIActionSheetDelegate, FBLoginViewDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface SignUpController : UIViewController<UIActionSheetDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (strong, nonatomic) IBOutlet MPMoviePlayerController *moviePlayer;
 @property (strong, nonatomic) IBOutlet UIPickerView *picker;

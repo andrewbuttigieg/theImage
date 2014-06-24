@@ -1743,7 +1743,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <mutableString key="text">PlayerCV
+                        <string key="text">PlayerCV
 
 Terms of Service
 Last Update June 22nd 2014
@@ -1881,7 +1881,7 @@ This Agreement may not be modified except by a revised Terms of Service posted b
 END OF DOCUMENT. 
 © Copyright PlayerCV 2012 - 2014. All rights reserved.
 
-</mutableString>
+</string>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
@@ -2023,7 +2023,7 @@ END OF DOCUMENT.
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <mutableString key="text">Privacy Policy
+                        <string key="text">Privacy Policy
 
 Last Updated: June 22nd 2014
 
@@ -2064,7 +2064,7 @@ We do not allow persons under 13 to register for any service, and we do not know
 • Information from users outside the United States 
 If you’re outside the United States, your information will be sent to and stored in the United States, where our servers are located. By using PlayerCV, you agree to the information collection, use, and sharing practices described in this Privacy Policy.
 
-</mutableString>
+</string>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>

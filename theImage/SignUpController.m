@@ -14,7 +14,7 @@
 #import "UIViewController+AMSlideMenu.h"
 #import "AppDelegate.h"
 
-@interface SignUpController ()
+@interface SignUpController () <FBLoginViewDelegate>
 
 @end
 
@@ -84,10 +84,11 @@ static id<FBGraphUser> facebookUser;
     [self.moviePlayer setShouldAutoplay:NO];
     [self.back addSubview:self.moviePlayer.view];
     
+    
     FBLoginView *loginView = [[FBLoginView alloc] init];
     // Align the button in the center horizontally
     //loginView.readPermissions = @[@"user_birthday", @"basic_info", @"email", @"public_profile", @"user_friends", @"user_photos"];
-    loginView.readPermissions = @[@"email", @"public_profile", @"user_friends"];
+    //loginView.readPermissions = @[@"email", @"public_profile", @"user_friends"];
     loginView.delegate = self;
     loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 20);
     
@@ -99,12 +100,25 @@ static id<FBGraphUser> facebookUser;
             loginLabel.text = @"Signup with Facebook";
         }
     }
-
     
-    [self.scrollView addSubview:loginView];
+    [self.view addSubview:loginView];
     
-//    self.activeTextField = self.password;
-
+   /*
+    FBLoginView *loginview = [[FBLoginView alloc] init];
+    
+    loginview.frame = CGRectOffset(loginview.frame, 5, 5);
+#ifdef __IPHONE_7_0
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_7_0
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+        loginview.frame = CGRectOffset(loginview.frame, (self.view.center.x - (loginview.frame.size.width / 2)), 20);
+    }
+#endif
+#endif
+#endif
+    loginview.delegate = self;
+    [self.view addSubview:loginview];*/
+    
     
     self.name.delegate = self;
     self.lastName.delegate = self;
@@ -262,31 +276,6 @@ static id<FBGraphUser> facebookUser;
 }
 
 
-// This method will be called when the user information has been fetched
-- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
-                            user:(id<FBGraphUser>)user {
-    if (!self.isViewLoaded || !self.view.window) {
-        return;
-    }
-    
-    if (self.messageCounter >0)
-        return;
-    else
-    {
-        self.messageCounter++;
-        facebookUser = user;
-        
-        UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"What type of user are you? (by clicking you are agreeing to our Terms and Conditions and our Privacy Policy): " delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
-                                @"Player",
-                                @"Scout",
-                                @"Agent",
-                                @"Coach",
-                                nil];
-        popup.tag = 1;
-        [popup showInView:[UIApplication sharedApplication].keyWindow];
-    }
-}
-
 - (void)viewDidUnload{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -321,16 +310,16 @@ static id<FBGraphUser> facebookUser;
     
     // allow digit 0 to 9
     /*if (
-        [self.activeTextField isEqual:self.weight] &&
-        ([string intValue] || [string isEqualToString:@"0"] || [string isEqualToString:@"."] || [string isEqualToString:@","])
-        )
-    {
-        return YES;
-    }
-    else if (
-             [self.activeTextField isEqual:self.weight]){
-            return NO;
-    }*/
+     [self.activeTextField isEqual:self.weight] &&
+     ([string intValue] || [string isEqualToString:@"0"] || [string isEqualToString:@"."] || [string isEqualToString:@","])
+     )
+     {
+     return YES;
+     }
+     else if (
+     [self.activeTextField isEqual:self.weight]){
+     return NO;
+     }*/
     
     return YES;
 }
@@ -367,7 +356,7 @@ static id<FBGraphUser> facebookUser;
     // Dispose of any resources that can be recreated.
 }
 
--(void)GoToPlayer{    
+-(void)GoToPlayer{
     NSString * storyboardName = @"Main_iPhone";
     NSString * viewControllerID = @"Main";
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
@@ -390,7 +379,7 @@ static id<FBGraphUser> facebookUser;
         NSLog(@"Error:%@", error.localizedDescription);
     }
     else {
-        //success        
+        //success
         NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                     options:0
                                                                       error:&error];
@@ -403,10 +392,10 @@ static id<FBGraphUser> facebookUser;
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (accepted == 0){
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PlayerCV"
-                                                                message:[NSString stringWithFormat:@"%@",returned]
-                                                               delegate:self
-                                                      cancelButtonTitle:@"Ok"
-                                                      otherButtonTitles:nil];
+                                                                    message:[NSString stringWithFormat:@"%@",returned]
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"Ok"
+                                                          otherButtonTitles:nil];
                     [alert show];
                 }
                 else{
@@ -422,6 +411,112 @@ static id<FBGraphUser> facebookUser;
     }
 }
 
+
+
+#pragma mark - FBLoginViewDelegate
+// This method will be called when the user information has been fetched
+- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
+                            user:(id<FBGraphUser>)user {
+    if (!self.isViewLoaded || !self.view.window) {
+        return;
+    }
+    
+    if (self.messageCounter >0)
+        return;
+    else
+    {
+        self.messageCounter++;
+        facebookUser = user;
+        
+        UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"What type of user are you? (by clicking you are agreeing to our Terms and Conditions and our Privacy Policy): " delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
+                                @"Player",
+                                @"Scout",
+                                @"Agent",
+                                @"Coach",
+                                nil];
+        popup.tag = 1;
+        [popup showInView:[UIApplication sharedApplication].keyWindow];
+    }
+}
+
+
+- (void)facebookSessionStateChanged:(FBSession *)session state:(FBSessionState)state error:(NSError *)error
+{
+    switch (state) {
+        case FBSessionStateOpen:
+            // handle successful login here
+        case FBSessionStateClosed:
+        case FBSessionStateClosedLoginFailed:
+            [FBSession.activeSession closeAndClearTokenInformation];
+            
+            if (error) {
+                // handle error here, for example by showing an alert to the user
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not login with Facebook"
+                                                                message:@"Facebook login failed. Please check your Facebook settings on your phone."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
+    // test to see if we can use the share dialog built into the Facebook application
+    FBShareDialogParams *p = [[FBShareDialogParams alloc] init];
+    p.link = [NSURL URLWithString:@"http://developers.facebook.com/ios"];
+#ifdef DEBUG
+    [FBSettings enableBetaFeatures:FBBetaFeaturesShareDialog];
+#endif
+}
+
+// Handle possible errors that can occur during login
+- (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error {
+    NSString *alertMessage, *alertTitle;
+    
+    NSLog(@"FBLoginView encountered an error=%@", error);
+    
+    // If the user should perform an action outside of you app to recover,
+    // the SDK will provide a message for the user, you just need to surface it.
+    // This conveniently handles cases like Facebook password change or unverified Facebook accounts.
+    if ([FBErrorUtility shouldNotifyUserForError:error]) {
+        alertTitle = @"Facebook error";
+        alertMessage = [FBErrorUtility userMessageForError:error];
+        
+        // This code will handle session closures that happen outside of the app
+        // You can take a look at our error handling guide to know more about it
+        // https://developers.facebook.com/docs/ios/errors
+    } else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryAuthenticationReopenSession) {
+        alertTitle = @"Session Error";
+        alertMessage = @"Your current session is no longer valid. Please log in again.";
+        
+        // If the user has cancelled a login, we will do nothing.
+        // You can also choose to show the user a message if cancelling login will result in
+        // the user not being able to complete a task they had initiated in your app
+        // (like accessing FB-stored information or posting to Facebook)
+    } else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
+        NSLog(@"user cancelled login");
+        
+        // For simplicity, this sample handles other errors with a generic message
+        // You can checkout our error handling guide for more detailed information
+        // https://developers.facebook.com/docs/ios/errors
+    } else {
+        alertTitle  = @"Something went wrong";
+        alertMessage = @"Please try again later.";
+        NSLog(@"Unexpected error:%@", error);
+    }
+    
+    if (alertMessage) {
+        [[[UIAlertView alloc] initWithTitle:alertTitle
+                                    message:alertMessage
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil] show];
+    }
+}		
 
 #pragma mark -
 #pragma mark PickerView DataSource
