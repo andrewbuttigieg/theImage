@@ -14,7 +14,7 @@
 #import "AMSlideMenuMainViewController.h"
 #import "UIImageView+AFNetworking.h"
 
-@interface MessageCenterController ()
+@interface MessageCenterController () <MessageCenterChangeDelegate>
 
 @end
 
@@ -58,6 +58,9 @@
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
     MessageViewController * controller = (MessageViewController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
     controller.chattingToID = [o intValue];
+    controller.tagToUpdate = idx;
+    
+    controller.delegate = self;
 
     /*    controller.name = name;
     controller.image = image;*/
@@ -92,15 +95,7 @@
         imageURL = [imageURL stringByReplacingOccurrencesOfString:@".com/"
                                                        withString:@".com/[120]-"];
         
-        
         [cell.personImage setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"player.png"]];
-        
-//        cell.myLabel.text = [imageNameArray objectAtIndex:indexPath.row];
-        
-        //cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:
-        //                                                                               imageURL]]];
-        
-       // cell.personImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.imageForTable objectAtIndex: [indexPath row]]]]];
     }
     else
         cell.personImage.image = [UIImage imageNamed:@"player.png"];
@@ -409,5 +404,27 @@ loads the view - we will get the users messages from the server so that they can
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
 }
+
+
+- (void)chatting:
+(MessageCenterController *)controller update :(NSString *)date :(NSString *)text
+                :(NSString *)unread : (int)idx;
+{
+    self.unreadForTable[idx] = unread;
+    self.textForTable[idx] = text;
+    self.dateForTable[idx] = date;
+    
+    [self.tableView reloadData];
+    /*[self.dateForTable removeObjectAtIndex:idx];
+    [self.imageForTable removeObjectAtIndex:idx];
+    [self.textForTable removeObjectAtIndex:idx];
+    [self.nameForTable removeObjectAtIndex:idx];
+    [self.userTypeForTable removeObjectAtIndex:idx];
+    [self.userIDForTable removeObjectAtIndex:idx];
+    [self.locationForTable removeObjectAtIndex:idx];
+    [self.unreadForTable removeObjectAtIndex:idx];*/
+}
+
+
 
 @end

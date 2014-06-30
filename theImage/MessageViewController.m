@@ -30,6 +30,7 @@ static float top = 0;
     return top;
 }
 
+
 - (id)init {
     self = [super init];
     
@@ -415,6 +416,14 @@ static float top = 0;
 }
 
 - (void)appendTextToTextView:(NSString *)text :(bool)MeOwner :(NSDate *)MessageSent :(bool)fromApp{
+    
+    /*
+     
+     (NSString *)date :(NSString *)text
+     :(NSString *)unread : (int)idx
+     
+     */
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         NSString *newTimeZoneDateString = @"";
         NSDate *date;
@@ -488,6 +497,8 @@ static float top = 0;
                 [dateFormatter setDateFormat:@"yyyy/MM/dd HH:mm"];
                 time = [dateFormatter stringFromDate:date];
             }
+            
+            [self.delegate chatting:self update: time :text: @"0" : self.tagToUpdate];
             //decide whether to show the time or not
             if ([lastMessageDateTime year] == [currentMessageDateTime year] &&
                 [lastMessageDateTime month] == [currentMessageDateTime month] &&
@@ -559,7 +570,7 @@ static float top = 0;
         top = top + textViewInner.frame.size.height + 8;
         [self.textView addSubview:bubbleView];
         
-        
+        NSLog(@"%f", top);
         float xtop = self.textView.frame.size.height;
         if ((top + 45) > xtop){
             //set the scroll of the view

@@ -97,7 +97,7 @@ static id<FBGraphUser> facebookUser;
         if ([obj isKindOfClass:[UILabel class]])
         {
             UILabel * loginLabel =  obj;
-            loginLabel.text = @"Signup with Facebook";
+            loginLabel.text = @"Sign Up with Facebook";
         }
     }
     

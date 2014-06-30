@@ -109,56 +109,63 @@ static int findPlayerID = 0;
         if (error) {
             //[self.delegate fetchingGroupsFailedWithError:error];
         } else {
-            NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
-                                                                        options:0
-                                                                          error:&error];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSInteger col = 0;
-                NSInteger row = 0;
-                NSInteger total = 0;
+            
+            if (findPlayerID == type) {
                 
-                for(NSDictionary *dictionary in jsonArray)
-                {
-                    NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
-                    UIImage *image;
+            
+                NSMutableArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
+                                                                            options:0
+                                                                              error:&error];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSInteger col = -1;
+                    NSInteger row = 0;
+                    NSInteger total = 0;
                     
+                    for(NSDictionary *dictionary in jsonArray)
+                    {
+                        if (col > 2){
+                            col = 0;
+                            row++;
+                        }
+                        else{
+                            col++;
+                        }
+                        
+                        
+                        NSString *imageURL = [dictionary objectForKey:@"PhotoURL"];
+                        UIImage *image;
+                        
+                        
+                        //default image
+                        image = [UIImage imageNamed:@"player.png"];
+                        UIImageView *iv = [[UIImageView alloc] initWithImage:image];
                     
-                    //default image
-                    image = [UIImage imageNamed:@"player.png"];
-                    UIImageView *iv = [[UIImageView alloc] initWithImage:image];
-                
-                    if ([ValidURL isValidUrl :imageURL]){
-                        [iv setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"player.png"]];
+                        if ([ValidURL isValidUrl :imageURL]){
+                            [iv setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"player.png"]];
+                        }
+                    
+                        iv.clipsToBounds = YES;
+                        iv.contentMode = UIViewContentModeScaleAspectFill;
+                        //CGRect frame;
+                        iv.frame=CGRectMake(col * 106 + 1, row * 106, 104,104);
+                        iv.tag = [[dictionary objectForKey:@"UserID"] intValue];
+                        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
+                        [iv addGestureRecognizer:singleTap];
+                        [iv setMultipleTouchEnabled:YES];
+                        [iv setUserInteractionEnabled:YES];
+                        
+                        total++;
+                        [self.putThemThere addSubview:iv];
                     }
-                
-                    iv.clipsToBounds = YES;
-                    iv.contentMode = UIViewContentModeScaleAspectFill;
-                    //CGRect frame;
-                    iv.frame=CGRectMake(col * 106 + 1, row * 106, 104,104);
-                    iv.tag = [[dictionary objectForKey:@"UserID"] intValue];
-                    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
-                    [iv addGestureRecognizer:singleTap];
-                    [iv setMultipleTouchEnabled:YES];
-                    [iv setUserInteractionEnabled:YES];
                     
-                    if (col > 1){
-                        col = 0;
-                        row++;
-                    }
-                    else{
-                        col++;
-                    }
-                    
-                    total++;
-                    [self.putThemThere addSubview:iv];
-                }
+                    self.putThemThere.contentSize = CGSizeMake(320, (row + 1) * 106);
+                    [self.putThemThere setContentSize:(CGSizeMake(320, (row + 1) * 106))];
+                    [spinner stopAnimating];
                 
-                self.putThemThere.contentSize = CGSizeMake(320, (row + 1) * 106);
-                [self.putThemThere setContentSize:(CGSizeMake(320, (row + 1) * 106))];
-                [spinner stopAnimating];
-            });
-            self.putThemThere.userInteractionEnabled=YES;
-            [self.putThemThere setScrollEnabled:YES];
+                });
+                self.putThemThere.userInteractionEnabled=YES;
+                [self.putThemThere setScrollEnabled:YES];
+            }
         }
     }];
 }

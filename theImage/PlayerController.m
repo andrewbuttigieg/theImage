@@ -1052,11 +1052,14 @@ float imageHeight = 0;
             
             self.lookingForPlayer_Labe.hidden = false;
             self.lookingForPlayer.hidden = false;
+
             self.lookingForPlayer.text = [NSString stringWithFormat:@"%@ to play in %@", lfpPosition, lfpCountry];
+            self.lookingForPlayer.numberOfLines = 0;
+            [self.lookingForPlayer sizeToFit];
             
             //telling the next item where to be
             CGRect frame = self.playingWhere.frame;
-            frame.origin.y = self.lookingForPlayer.frame.origin.y + 25;
+            frame.origin.y = self.lookingForPlayer.frame.origin.y + self.lookingForPlayer.frame.size.height + 5;
             self.playingWhere.frame = frame;
         }
         else{
@@ -1121,6 +1124,16 @@ float imageHeight = 0;
         else{
             self.postion.text = @"This user has not chosen their playing position";
         }
+        self.postion.numberOfLines = 0;
+        [self.postion sizeToFit];
+        
+        CGRect frame = self.aboutTitle.frame;
+        frame.origin.y = self.postion.frame.origin.y + self.postion.frame.size.height + 5;
+        self.aboutTitle.frame = frame;
+        
+        frame = self.aboutLabel.frame;
+        frame.origin.y = self.aboutTitle.frame.origin.y + 25;
+        self.aboutLabel.frame = frame;
     }
     else{
         self.playingWhere.hidden = TRUE;
@@ -1167,6 +1180,7 @@ float imageHeight = 0;
     else{
         self.aboutLabel.text = about;
     }
+//    [self.aboutLabel sizeToFit];
     
     [self fixDisplay:position :lookingForPlayer :lfpCountry :lfpPosition :lookingForPartner :lfpartCountry];
     
