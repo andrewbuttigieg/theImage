@@ -123,7 +123,7 @@ static int findPlayerID = 0;
                     
                     for(NSDictionary *dictionary in jsonArray)
                     {
-                        if (col > 2){
+                        if (col > 1){
                             col = 0;
                             row++;
                         }

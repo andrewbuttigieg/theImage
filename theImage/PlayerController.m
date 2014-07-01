@@ -33,8 +33,14 @@ static bool player = false;
             self.playerImage.image = (UIImage *)self.pageImages[currentPage];
         }
         else{
-            //[ValidURL isValidUrl :self.pageImages[currentPage]]){
-            self.playerImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.pageImages[currentPage]]]];
+            if ([ValidURL isValidUrl :self.pageImages[currentPage]]){
+                self.playerImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.pageImages[currentPage]]]];
+                
+//                [self.playerImage setImageWithURL:[NSURL URLWithString:self.pageImages[currentPage]] placeholderImage:[UIImage imageNamed:@"player.png"]];
+            }
+            else{
+                self.playerImage.image = [UIImage imageNamed:@"player.png"];
+            }
         }
     }
     else{
