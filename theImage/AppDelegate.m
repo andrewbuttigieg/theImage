@@ -285,7 +285,7 @@ bool isAppResumingFromBackground = NO;
                                     [FBSession.activeSession closeAndClearTokenInformation];
                                 }
                                 UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle: nil];
-                                StartController * startController = (StartController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"StartController"];
+                                UINavigationController * startController = (UINavigationController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"Beginning"];
                                 
                                 //set the root controller to it
                                 self.window.rootViewController = startController;

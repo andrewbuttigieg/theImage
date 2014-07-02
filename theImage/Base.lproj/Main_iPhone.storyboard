@@ -1413,7 +1413,7 @@
         <!--Navigation Controller-->
         <scene sceneID="nga-yG-Os0">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5xo-DO-cjC" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Beginning" automaticallyAdjustsScrollViewInsets="NO" id="5xo-DO-cjC" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="biW-sc-KOL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
