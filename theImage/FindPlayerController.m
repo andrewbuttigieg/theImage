@@ -184,7 +184,7 @@ static int findPlayerID = 0;
     [super viewDidLoad];
     
     self.putThemThere.scrollsToTop = YES;
-    
+        
     self.agent.tintColor = [UIColor blackColor];
     self.player.tintColor = [UIColor colorWithRed:0.0f green:0.674f blue:0.933f alpha:1];
     self.scout.tintColor = [UIColor blackColor];

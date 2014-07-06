@@ -841,6 +841,10 @@ static NSString* deviceToken;
                                         //not a friend yet, but req there
                                         self.playerInteract.enabled = TRUE;
                                         self.playerInteract.title = @"Respond";
+                                        [self.playerInteract setTitleTextAttributes:
+                                         [NSDictionary dictionaryWithObjectsAndKeys:
+                                          [UIColor colorWithRed:0.0f green:0.674f blue:0.933f alpha:1], NSForegroundColorAttributeName,nil]
+                                                                           forState:UIControlStateNormal];
                                     }
                                     else{
                                         self.navigationItem.leftBarButtonItem = nil;

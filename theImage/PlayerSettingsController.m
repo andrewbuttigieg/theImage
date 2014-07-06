@@ -350,6 +350,9 @@ static int updateImage = 1;
                     @catch (NSException * ex) {
                         
                     }
+                    
+                    if (self.toUpload.currentBackgroundImage == nil)
+                        updateImage = 1;
                     [self lookingForPlayerAlign];
                 }
             });
@@ -684,6 +687,7 @@ UIDatePicker *itsDatePicker;
     //show the image view with the picked image
     [picker dismissModalViewControllerAnimated:YES];
 //    self.toUpload.image = image;
+    
     switch (updateImage) {
         case 1:
             [self.toUpload setBackgroundImage:image forState:UIControlStateNormal];
@@ -873,7 +877,11 @@ UIDatePicker *itsDatePicker;
 - (IBAction)changePwdClick:(id)sender {
 }
 - (IBAction)image2:(id)sender {
-    updateImage = 2;
+//    self.toUpload.imageView
+    if (self.toUpload.currentBackgroundImage == nil)
+        updateImage = 1;
+    else
+        updateImage = 2;
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
     imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
@@ -884,7 +892,10 @@ UIDatePicker *itsDatePicker;
 }
 
 - (IBAction)image3:(id)sender {
-    updateImage = 3;
+    if (self.toUpload.currentBackgroundImage == nil)
+        updateImage = 1;
+    else
+        updateImage = 3;
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
     imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
@@ -895,7 +906,10 @@ UIDatePicker *itsDatePicker;
 }
 
 - (IBAction)image4:(id)sender {
-    updateImage = 4;
+    if (self.toUpload.currentBackgroundImage == nil)
+        updateImage = 1;
+    else
+        updateImage = 4;
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
     imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
@@ -906,7 +920,10 @@ UIDatePicker *itsDatePicker;
 }
 
 - (IBAction)image5:(id)sender {
-    updateImage = 5;
+    if (self.toUpload.currentBackgroundImage == nil)
+        updateImage = 1;
+    else
+        updateImage = 5;
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
     imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
