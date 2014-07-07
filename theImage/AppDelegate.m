@@ -244,7 +244,14 @@ bool isAppResumingFromBackground = NO;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
-{    
+{
+    
+    NSString * storyboardName = @"Main_iPhone";
+    NSString * viewControllerID = @"Main";
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    MainVC * controller = (MainVC *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+    connectionAPNID = 87;
+    self.window.rootViewController = controller;
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     isAppResumingFromBackground = YES;
     

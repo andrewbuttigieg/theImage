@@ -85,6 +85,14 @@ static int findPlayerID = 0;
 }
 
 - (void)findPeople:(NSInteger) type{
+    [self.putThemThere setContentOffset:CGPointZero animated:YES];
+    
+    for (UIView *view in self.putThemThere.subviews)
+    {
+        if (![view isKindOfClass:[UIImageView class]]){
+            [view removeFromSuperview];
+        }
+    }
     
     spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.center = CGPointMake(160, 200);
@@ -141,7 +149,25 @@ static int findPlayerID = 0;
                         UIImageView *iv = [[UIImageView alloc] initWithImage:image];
                     
                         if ([ValidURL isValidUrl :imageURL]){
-                            [iv setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"player.png"]];
+                            
+                            NSMutableURLRequest * request = [[NSMutableURLRequest  alloc] initWithURL:[NSURL URLWithString:imageURL]];
+                            
+                            //[[NSURL alloc] initWithString:imageURL];
+                            request.cachePolicy = NSURLRequestReloadIgnoringCacheData;
+                            [iv setImageWithURLRequest:request
+                                             placeholderImage:[UIImage imageNamed:@"player.png"]
+                                                      success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                                          dispatch_async(dispatch_get_main_queue(), ^{
+                                                              iv.image = image;
+                                                          });
+                                                          
+                                                      } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                                          NSLog(@"failed loading image: %@", error);
+                                                      }];
+                            //[iv setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"player.png"]];
+                            
+                            
+                            //[iv setImageWithURLRequest:request placeholderImage:[UIImage imageNamed:@"player.png"]];
                         }
                     
                         iv.clipsToBounds = YES;
