@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 //#import "FindPlayerController.h"
 
 @interface PlayerController : UIViewController<UIActionSheetDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>

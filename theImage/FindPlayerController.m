@@ -85,7 +85,8 @@ static int findPlayerID = 0;
 }
 
 - (void)findPeople:(NSInteger) type{
-    [self.putThemThere setContentOffset:CGPointZero animated:YES];
+    [self.putThemThere setContentOffset:CGPointMake(0.0, -60.0) animated:NO];
+    
     
     for (UIView *view in self.putThemThere.subviews)
     {
