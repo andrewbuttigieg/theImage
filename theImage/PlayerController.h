@@ -20,6 +20,7 @@
 @property (nonatomic) NSString* yourName;
 @property (nonatomic) NSString * facebookID;
 @property (nonatomic, assign) bool useLocalisation;
+@property (nonatomic, assign) bool allowFacebook;
 
 @property (strong, nonatomic) IBOutlet UILabel *name;
 @property (strong, nonatomic) IBOutlet UILabel *weight;
@@ -62,7 +63,9 @@
 - (void)changeImage:(int)currentPage;
 
 + (bool)useLocalisation;
++ (bool)allowFacebook;
 + (void)setUseLocalisation:(bool) value;
++ (void)setAllowFacebook:(bool) value;
 + (int)playerID;
 + (int)meID;
 + (NSString *)yourName;

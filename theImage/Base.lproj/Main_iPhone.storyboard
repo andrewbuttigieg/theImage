@@ -1909,8 +1909,31 @@ END OF DOCUMENT.
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4jW-Vp-hjB">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="RYQ-zc-Fkl">
                                         <rect key="frame" x="0.0" y="143" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RYQ-zc-Fkl" id="dtg-6d-Tez">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use Facebook Share" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="K1S-i5-0Xt">
+                                                    <rect key="frame" x="20" y="11" width="202" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="mdA-7y-pLN">
+                                                    <rect key="frame" x="251" y="6" width="51" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="facebookShareSwitch:" destination="VWp-aI-RQT" eventType="valueChanged" id="KwY-rj-qyj"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4jW-Vp-hjB">
+                                        <rect key="frame" x="0.0" y="187" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4jW-Vp-hjB" id="fsK-bn-yb2">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -1929,7 +1952,7 @@ END OF DOCUMENT.
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="VGn-0x-Gd1">
-                                        <rect key="frame" x="0.0" y="187" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="231" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VGn-0x-Gd1" id="Sg6-yH-rlo">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -1952,7 +1975,7 @@ END OF DOCUMENT.
                             <tableViewSection id="Bor-e0-789">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="nY1-cm-Ohi">
-                                        <rect key="frame" x="0.0" y="251" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="295" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nY1-cm-Ohi" id="yPx-3J-pr5">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1968,7 +1991,7 @@ END OF DOCUMENT.
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="HUf-Io-J0Q">
-                                        <rect key="frame" x="0.0" y="295" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="339" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HUf-Io-J0Q" id="4BM-nw-lSQ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1993,6 +2016,7 @@ END OF DOCUMENT.
                     </tableView>
                     <navigationItem key="navigationItem" id="JLC-ht-wO5"/>
                     <connections>
+                        <outlet property="facebookShareCliick" destination="mdA-7y-pLN" id="gZx-ZC-oFi"/>
                         <outlet property="useLocalizationSwitch" destination="dfc-PE-gEK" id="PjR-Cy-UKF"/>
                     </connections>
                 </tableViewController>
@@ -2234,7 +2258,7 @@ If you’re outside the United States, your information will be sent to and stor
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="PbA-La-2y0"/>
-        <segue reference="nVm-up-mpB"/>
+        <segue reference="6tx-DZ-F0o"/>
+        <segue reference="Kvb-rs-oE0"/>
     </inferredMetricsTieBreakers>
 </document>

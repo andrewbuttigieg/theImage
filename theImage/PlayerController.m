@@ -58,6 +58,7 @@ static bool player = false;
 }
 
 bool useLocalisation = true;
+bool allowFacebook = true;
 
 static NSString* facebookID;
 static NSString* name;
@@ -90,6 +91,14 @@ static NSString* deviceToken;
 
 + (void)setUseLocalisation:(bool) value{
     useLocalisation = value;
+}
+
++ (bool) allowFacebook{
+    return allowFacebook;
+}
+
++ (void)setAllowFacebook:(bool) value{
+    allowFacebook = value;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -431,7 +440,9 @@ static NSString* deviceToken;
                                              [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1], NSForegroundColorAttributeName,nil]
                                                                               forState:UIControlStateNormal];
                                            
-                                           [FacebookShare shareLinkWithShareDialog:[NSString stringWithFormat:@"%@ is now connected with Football %@ %@ on Player CV!", self.yourName, self.userType.text, otherPlayerName]];
+                                           if (self.allowFacebook){
+                                               [FacebookShare shareLinkWithShareDialog:[NSString stringWithFormat:@"%@ is now connected with Football %@ %@ on Player CV!", self.yourName, self.userType.text, otherPlayerName]];
+                                           }
                                            //Andrew Buttigieg is now connected with Football Agent Clayton Tonna on PlayerCV
                                        });
                                    }
@@ -604,6 +615,10 @@ static NSString* deviceToken;
                     
                     self.useLocalisation = [[dictionary objectForKey:@"AllowLocalisation"] boolValue];
                     useLocalisation = [[dictionary objectForKey:@"AllowLocalisation"] boolValue];
+                    
+                    self.allowFacebook = [[dictionary objectForKey:@"AllowFacebook"] boolValue];
+                    allowFacebook = [[dictionary objectForKey:@"AllowFacebook"] boolValue];
+                    
                 }
                 
                 if (p == p2){

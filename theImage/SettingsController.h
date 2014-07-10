@@ -16,4 +16,8 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *deleteUser;
 
+
+@property (strong, nonatomic) IBOutlet UISwitch *facebookShareCliick;
+- (IBAction)facebookShareSwitch:(id)sender;
+
 @end

@@ -113,8 +113,9 @@
                                                    type = @"Coach";
                                                }
                                                
-                                               [FacebookShare shareLinkWithShareDialog:[NSString stringWithFormat:@"%@ is now connected with Football %@ %@ on Player CV!", PlayerController.yourName, type, [self.nameForFR objectAtIndex:sender.tag]]];
-                                               
+                                               if (PlayerController.allowFacebook){
+                                                   [FacebookShare shareLinkWithShareDialog:[NSString stringWithFormat:@"%@ is now connected with Football %@ %@ on Player CV!", PlayerController.yourName, type, [self.nameForFR objectAtIndex:sender.tag]]];
+                                               }
                                                 [self.dateForFR removeObjectAtIndex:sender.tag];
                                                 [self.imageForFR removeObjectAtIndex:sender.tag];
                                            //[self.textForFR removeObjectAtIndex:sender.tag];
