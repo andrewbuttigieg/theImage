@@ -11,6 +11,9 @@
 #import "FindPlayerController.h"
 #import "ValidURL.h"
 
+#import "FacebookShare.h"
+#import "PlayerController.h"
+
 @interface FriendRequestsController ()
 
 @end
@@ -92,6 +95,26 @@
                                        int accepted = [[jsonArray[0] objectForKey:@"accepted"] intValue];
                                        if (accepted == 1){
                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                               NSString *type = [self.userTypeForFR objectAtIndex:sender.tag];
+                                               if ([type isEqual: @"1"])
+                                               {
+                                                   type = @"Player";
+                                               }
+                                               else if ([type isEqual: @"2"])
+                                               {
+                                                   type = @"Scout";
+                                               }
+                                               else if ([type isEqual: @"3"])
+                                               {
+                                                   type = @"Agent";
+                                               }
+                                               else if ([type isEqual: @"4"])
+                                               {
+                                                   type = @"Coach";
+                                               }
+                                               
+                                               [FacebookShare shareLinkWithShareDialog:[NSString stringWithFormat:@"%@ is now connected with Football %@ %@ on Player CV!", PlayerController.yourName, type, [self.nameForFR objectAtIndex:sender.tag]]];
+                                               
                                                 [self.dateForFR removeObjectAtIndex:sender.tag];
                                                 [self.imageForFR removeObjectAtIndex:sender.tag];
                                            //[self.textForFR removeObjectAtIndex:sender.tag];

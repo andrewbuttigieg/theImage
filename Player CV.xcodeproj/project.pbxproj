@@ -72,6 +72,7 @@
 		F22781BF19059B030016C3F1 /* NearYouController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781BE19059B030016C3F1 /* NearYouController.m */; };
 		F22781C21905B4CD0016C3F1 /* nearYouCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781C11905B4CD0016C3F1 /* nearYouCell.m */; };
 		F22781C519099DDC0016C3F1 /* AllVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781C419099DDC0016C3F1 /* AllVideoController.m */; };
+		F230AC2C196F1031007012CF /* FacebookShare.m in Sources */ = {isa = PBXBuildFile; fileRef = F230AC2B196F1031007012CF /* FacebookShare.m */; };
 		F2336E58196B6B4B00A7CA9C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2336E57196B6B4B00A7CA9C /* FacebookSDK.framework */; };
 		F2401BB418F99584002E5E2C /* VideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2401BB318F99584002E5E2C /* VideoController.m */; };
 		F2410E49192D4DF7004658BD /* MENU-Open@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F2410E48192D4DF7004658BD /* MENU-Open@2x.jpg */; };
@@ -308,6 +309,8 @@
 		F22781C11905B4CD0016C3F1 /* nearYouCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nearYouCell.m; sourceTree = "<group>"; };
 		F22781C319099DDB0016C3F1 /* AllVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllVideoController.h; sourceTree = "<group>"; };
 		F22781C419099DDC0016C3F1 /* AllVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllVideoController.m; sourceTree = "<group>"; };
+		F230AC2A196F1031007012CF /* FacebookShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookShare.h; sourceTree = "<group>"; };
+		F230AC2B196F1031007012CF /* FacebookShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookShare.m; sourceTree = "<group>"; };
 		F2336E57196B6B4B00A7CA9C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../PlayerCV/FacebookSDK.framework; sourceTree = "<group>"; };
 		F2401BB218F99584002E5E2C /* VideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoController.h; sourceTree = "<group>"; };
 		F2401BB318F99584002E5E2C /* VideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoController.m; sourceTree = "<group>"; };
@@ -641,6 +644,8 @@
 				F2410E4D192FED66004658BD /* ImageEffect.m */,
 				F2C8B63A193156D100FF5E18 /* ValidURL.h */,
 				F2C8B63B193156D100FF5E18 /* ValidURL.m */,
+				F230AC2A196F1031007012CF /* FacebookShare.h */,
+				F230AC2B196F1031007012CF /* FacebookShare.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1305,6 +1310,7 @@
 				F2ABD43818C6EF27003F03E5 /* JNKeychain.m in Sources */,
 				F2EC5DF31883204900D93403 /* PlayerSettingsController.m in Sources */,
 				F2ABD42B18C68280003F03E5 /* SignUpController.m in Sources */,
+				F230AC2C196F1031007012CF /* FacebookShare.m in Sources */,
 				F22781C519099DDC0016C3F1 /* AllVideoController.m in Sources */,
 				F28699EA1874C06C0086D665 /* AppDelegate.m in Sources */,
 				F287CD2D18A972C800A196E3 /* MessageCenterController.m in Sources */,

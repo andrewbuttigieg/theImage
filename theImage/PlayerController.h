@@ -17,6 +17,7 @@
 
 @property (nonatomic) int playerID;
 @property (nonatomic) int meID;
+@property (nonatomic) NSString* yourName;
 @property (nonatomic) NSString * facebookID;
 @property (nonatomic, assign) bool useLocalisation;
 
@@ -64,6 +65,7 @@
 + (void)setUseLocalisation:(bool) value;
 + (int)playerID;
 + (int)meID;
++ (NSString *)yourName;
 + (NSString *)facebookID;
 + (NSString *)deviceToken;
 @end

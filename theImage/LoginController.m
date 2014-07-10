@@ -100,6 +100,7 @@ bool movedHere = false;
     
     // Create Login View so that the app will be granted "status_update" permission.
     FBLoginView *loginview = [[FBLoginView alloc] init];
+    loginview.readPermissions = @[@"email", @"public_profile", @"user_friends", @"publish_actions"];
     
     loginview.frame = CGRectOffset(loginview.frame, 5, 5);
 #ifdef __IPHONE_7_0
