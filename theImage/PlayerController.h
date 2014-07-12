@@ -10,8 +10,7 @@
 
 //#import "FindPlayerController.h"
 
-@interface PlayerController : UIViewController<UIActionSheetDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
-/*<FindPlayerControllerDelegate>*/
+@interface PlayerController : UIViewController<UIActionSheetDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) NSMutableArray *pageImages;
 
@@ -59,6 +58,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *userType;
 @property (strong, nonatomic) IBOutlet UILabel *location;
 @property (strong, nonatomic) IBOutlet UIPageControl *pageView;
+
+@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic) int currentIndex;
+
 - (IBAction)changeScreen:(id)sender;
 - (void)changeImage:(int)currentPage;
 

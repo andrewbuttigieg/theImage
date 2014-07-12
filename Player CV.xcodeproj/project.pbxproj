@@ -73,6 +73,11 @@
 		F22781C21905B4CD0016C3F1 /* nearYouCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781C11905B4CD0016C3F1 /* nearYouCell.m */; };
 		F22781C519099DDC0016C3F1 /* AllVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22781C419099DDC0016C3F1 /* AllVideoController.m */; };
 		F230AC2C196F1031007012CF /* FacebookShare.m in Sources */ = {isa = PBXBuildFile; fileRef = F230AC2B196F1031007012CF /* FacebookShare.m */; };
+		F230AC2F196F4910007012CF /* ImagiController.m in Sources */ = {isa = PBXBuildFile; fileRef = F230AC2E196F4910007012CF /* ImagiController.m */; };
+		F230AC37196F52B1007012CF /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F230AC34196F52B1007012CF /* 1.jpg */; };
+		F230AC38196F52B1007012CF /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F230AC35196F52B1007012CF /* 2.jpg */; };
+		F230AC39196F52B1007012CF /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F230AC36196F52B1007012CF /* 3.jpg */; };
+		F230AC3C196F52CB007012CF /* CMFGalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F230AC3B196F52CB007012CF /* CMFGalleryCell.m */; };
 		F2336E58196B6B4B00A7CA9C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2336E57196B6B4B00A7CA9C /* FacebookSDK.framework */; };
 		F2401BB418F99584002E5E2C /* VideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2401BB318F99584002E5E2C /* VideoController.m */; };
 		F2410E49192D4DF7004658BD /* MENU-Open@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F2410E48192D4DF7004658BD /* MENU-Open@2x.jpg */; };
@@ -311,6 +316,13 @@
 		F22781C419099DDC0016C3F1 /* AllVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllVideoController.m; sourceTree = "<group>"; };
 		F230AC2A196F1031007012CF /* FacebookShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookShare.h; sourceTree = "<group>"; };
 		F230AC2B196F1031007012CF /* FacebookShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookShare.m; sourceTree = "<group>"; };
+		F230AC2D196F4910007012CF /* ImagiController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagiController.h; sourceTree = "<group>"; };
+		F230AC2E196F4910007012CF /* ImagiController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagiController.m; sourceTree = "<group>"; };
+		F230AC34196F52B1007012CF /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		F230AC35196F52B1007012CF /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		F230AC36196F52B1007012CF /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
+		F230AC3A196F52CB007012CF /* CMFGalleryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMFGalleryCell.h; sourceTree = "<group>"; };
+		F230AC3B196F52CB007012CF /* CMFGalleryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMFGalleryCell.m; sourceTree = "<group>"; };
 		F2336E57196B6B4B00A7CA9C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../PlayerCV/FacebookSDK.framework; sourceTree = "<group>"; };
 		F2401BB218F99584002E5E2C /* VideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoController.h; sourceTree = "<group>"; };
 		F2401BB318F99584002E5E2C /* VideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoController.m; sourceTree = "<group>"; };
@@ -650,6 +662,16 @@
 			name = API;
 			sourceTree = "<group>";
 		};
+		F230AC33196F5299007012CF /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				F230AC34196F52B1007012CF /* 1.jpg */,
+				F230AC35196F52B1007012CF /* 2.jpg */,
+				F230AC36196F52B1007012CF /* 3.jpg */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 		F26D6A2C194DBB1700957267 /* Login and Signup */ = {
 			isa = PBXGroup;
 			children = (
@@ -739,6 +761,7 @@
 		F28699DF1874C06C0086D665 /* theImage */ = {
 			isa = PBXGroup;
 			children = (
+				F230AC33196F5299007012CF /* Assets */,
 				F226AE6B18D7735A00862048 /* API */,
 				F2905ECD18D8099F007F16D1 /* Login and Signup */,
 				F2905ECC18D8097E007F16D1 /* Menu */,
@@ -774,6 +797,10 @@
 				F28699EE1874C06C0086D665 /* Main_iPad.storyboard */,
 				F28699F41874C06C0086D665 /* Images.xcassets */,
 				F28699E01874C06C0086D665 /* Supporting Files */,
+				F230AC2D196F4910007012CF /* ImagiController.h */,
+				F230AC2E196F4910007012CF /* ImagiController.m */,
+				F230AC3A196F52CB007012CF /* CMFGalleryCell.h */,
+				F230AC3B196F52CB007012CF /* CMFGalleryCell.m */,
 			);
 			path = theImage;
 			sourceTree = "<group>";
@@ -1193,6 +1220,7 @@
 				F2B9E1D2189D7E060044DE04 /* AFURLConnectionOperation.h in Resources */,
 				F284BFE618DBB30A0002EB81 /* accept-friend@2x.png in Resources */,
 				F20D6EAA1944DA1400E37A47 /* no-chats.png in Resources */,
+				F230AC38196F52B1007012CF /* 2.jpg in Resources */,
 				F20175CB190C209600392DD5 /* done@2x.png in Resources */,
 				F28C2AAA18E744D00047DA75 /* setting-height.png in Resources */,
 				F20176161913DD5600392DD5 /* simpleMenuButton@2x.png in Resources */,
@@ -1209,8 +1237,10 @@
 				F2ABD42118C4FFA9003F03E5 /* login-button.png in Resources */,
 				F20175DA1911A55B00392DD5 /* no-videoIcon.png in Resources */,
 				F284BFE718DBB30A0002EB81 /* decline-friend.png in Resources */,
+				F230AC37196F52B1007012CF /* 1.jpg in Resources */,
 				F28C2AA818E744D00047DA75 /* setting-gender.png in Resources */,
 				F2B9E1E5189D7E060044DE04 /* AFNetworkActivityIndicatorManager.m in Resources */,
+				F230AC39196F52B1007012CF /* 3.jpg in Resources */,
 				F284BFED18DFB4A90002EB81 /* EditPlayer.jpg in Resources */,
 				F2983D0B18D23BB800E96233 /* profilevisitor.jpg in Resources */,
 				F20175BE190C1C5700392DD5 /* signup-background.jpg in Resources */,
@@ -1319,8 +1349,10 @@
 				F2A00E04187DCE7A00CB0D3F /* FindPlayerController.m in Sources */,
 				F22781BF19059B030016C3F1 /* NearYouController.m in Sources */,
 				F2905EBF18D7D5CE007F16D1 /* MainVC.m in Sources */,
+				F230AC2F196F4910007012CF /* ImagiController.m in Sources */,
 				F2410E4E192FED66004658BD /* ImageEffect.m in Sources */,
 				F2C8B63C193156D100FF5E18 /* ValidURL.m in Sources */,
+				F230AC3C196F52CB007012CF /* CMFGalleryCell.m in Sources */,
 				F2ABD43218C6C610003F03E5 /* StartController.m in Sources */,
 				F2ABD41A18BC72BE003F03E5 /* MessageViewController.m in Sources */,
 				F28699E61874C06C0086D665 /* main.m in Sources */,

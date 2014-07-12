@@ -15,6 +15,7 @@
 #import "UIViewController+AMSlideMenu.h"
 #import "UIImageView+AFNetworking.h"
 #import "FacebookShare.h"
+#import "CMFGalleryCell.h"
 
 @interface PlayerController ()<PlayerImageDelegate>
 
@@ -120,9 +121,9 @@ static NSString* deviceToken;
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    if (self.pageView.numberOfPages > 1){
+    /*if (self.pageView.numberOfPages > 1){
         self.mainSlideMenu.panGesture.minimumNumberOfTouches = 2;
-    }
+    }*/
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     appDelegate.currentView = @"player";
 }
@@ -546,6 +547,11 @@ static NSString* deviceToken;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    self.dataArray = [[NSMutableArray alloc] init];
+    [self setupCollectionView];
+    
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
     
 //    [self shareLinkWithShareDialog];
     
@@ -700,9 +706,9 @@ static NSString* deviceToken;
                                 self.pageView.numberOfPages = pageCount;
                                 self.pageView.currentPage = 0;
                                 
-                                if (self.pageView.numberOfPages > 1){
+                               /* if (self.pageView.numberOfPages > 1){
                                     self.mainSlideMenu.panGesture.minimumNumberOfTouches = 2;
-                                }
+                                }*/
                                 
                                 
                                 
@@ -1021,6 +1027,7 @@ static NSString* deviceToken;
                                                 :[theUser valueForKey:@"LFPPosition"]
                                                 :lookingForPartner
                                                 :[theUser valueForKey:@"PartnerCountry"]];
+                                [self.collectionView reloadData];
                             });
                         }
                     }
@@ -1277,13 +1284,20 @@ float imageHeight = 0;
         if ([view isKindOfClass:[UIScrollView class]] || [view isKindOfClass:[UIWebView class]])
         {
             CGRect frame = view.frame;
-            frame.origin.y = newY;
-            view.frame = frame;
-            newY += 150;
-            self.scrollview.contentSize = CGSizeMake(320, newY);
+            if (frame.origin.y != 0){
+                frame.origin.y = newY;
+                view.frame = frame;
+                newY += 150;
+                self.scrollview.contentSize = CGSizeMake(320, newY);
+            }
         }
     }
-    
+    CGRect frame = self.collectionView.frame;
+    frame.size.height = 320;
+    frame.size.width = 320;
+    frame.origin.y = 0;
+    self.collectionView.frame = frame;
+    self.collectionView.hidden = false;
 }
 
 - (void)addItemViewController:
@@ -1327,5 +1341,67 @@ float imageHeight = 0;
     self.age.text = age;
 }
 
+#pragma mark -
+#pragma mark UICollectionView methods
+
+-(void)setupCollectionView {
+    [self.collectionView registerClass:[CMFGalleryCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
+    
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+    [flowLayout setMinimumInteritemSpacing:0.0f];
+    [flowLayout setMinimumLineSpacing:0.0f];
+    [self.collectionView setPagingEnabled:YES];
+    [self.collectionView setCollectionViewLayout:flowLayout];
+}
+
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return [self.pageImages count];
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    CMFGalleryCell *cell = (CMFGalleryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
+    
+/*    UIImage *imageName = [self.pageImages objectAtIndex:indexPath.row];
+    [cell setImageName:imageName.description];*/
+    
+    if ([ValidURL isValidUrl :[self.pageImages objectAtIndex:indexPath.row]]){
+        cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.pageImages objectAtIndex:indexPath.row]]]];
+        
+        //                [self.playerImage setImageWithURL:[NSURL URLWithString:self.pageImages[currentPage]] placeholderImage:[UIImage imageNamed:@"player.png"]];
+    }
+    else{
+        cell.imageView.image = [UIImage imageNamed:@"player.png"];
+    }
+    //cell.imageView.image = [self.pageImages objectAtIndex:indexPath.row];
+    [cell updateCell];
+    self.collectionView.hidden = false;
+    
+    self.pageView.currentPage = indexPath.row;
+    
+    return cell;
+}
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return self.collectionView.frame.size;
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingSupplementaryView:(UICollectionReusableView *)view forElementOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
 
 @end
