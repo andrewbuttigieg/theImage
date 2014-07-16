@@ -799,8 +799,6 @@
 				F28699E01874C06C0086D665 /* Supporting Files */,
 				F230AC2D196F4910007012CF /* ImagiController.h */,
 				F230AC2E196F4910007012CF /* ImagiController.m */,
-				F230AC3A196F52CB007012CF /* CMFGalleryCell.h */,
-				F230AC3B196F52CB007012CF /* CMFGalleryCell.m */,
 			);
 			path = theImage;
 			sourceTree = "<group>";
@@ -877,6 +875,8 @@
 		F287CD3118AABBB400A196E3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F230AC3A196F52CB007012CF /* CMFGalleryCell.h */,
+				F230AC3B196F52CB007012CF /* CMFGalleryCell.m */,
 				F287CD2E18AAB79F00A196E3 /* messageGroupCell.h */,
 				F287CD2F18AAB79F00A196E3 /* messageGroupCell.m */,
 				F284BFDE18DB9FA10002EB81 /* friendCell.h */,

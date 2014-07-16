@@ -568,9 +568,18 @@ static NSString* deviceToken;
         [self.navigationController pushViewController:controller animated:YES];
     }
     else if (appDelegate.connectionAPNID > 0){
-        self.playerID = appDelegate.connectionAPNID;
-        playerID = appDelegate.connectionAPNID;
+        
+        NSString * storyboardName = @"Main_iPhone";
+        NSString * viewControllerID = @"PlayerController";
+        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+        PlayerController * controller = (PlayerController *)[storyboard instantiateViewControllerWithIdentifier:viewControllerID];
+        controller.playerID = appDelegate.connectionAPNID;
         appDelegate.connectionAPNID = 0;
+        [self.navigationController pushViewController:controller animated:YES];
+        
+/*        self.playerID = ;
+        playerID = appDelegate.connectionAPNID;
+        appDelegate.connectionAPNID = 0;*/
     }
     
     NSString *empty = [NSString stringWithFormat:@""];
@@ -1048,7 +1057,7 @@ float imageWidth = 0;
 float imageHeight = 0;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
+    /*
     CGFloat y = -scrollView.contentOffset.y;
     
     if (y < 64 && y > 0){
@@ -1057,12 +1066,20 @@ float imageHeight = 0;
         frame.size.height = 320;
         self.playerImage.frame = frame;
         self.playerImage.center = CGPointMake(self.view.center.x, self.playerImage.center.y);
+        
+        frame = self.collectionView.frame;
+        self.collectionView.frame = frame;
+        self.collectionView.center = CGPointMake(self.view.center.x, self.collectionView.center.y);
+
         //        self.playerImage.center = CGPointMake(self.view.center.x, self.playerImage.center.y);
     }
     else if (y > 64) {
         self.playerImage.frame = CGRectMake(0, scrollView.contentOffset.y + 64, 320 + y - 64, 320 + y - 64);
         self.playerImage.center = CGPointMake(self.view.center.x, self.playerImage.center.y);
-    }
+        
+        self.collectionView.frame = CGRectMake(0, scrollView.contentOffset.y + 64, 320 + y - 64, 320 + y - 64);
+        self.collectionView.center = CGPointMake(self.view.center.x, self.collectionView.center.y);
+    }*/
 }
 
 - (IBAction)videoClick:(id)sender {
@@ -1108,12 +1125,14 @@ float imageHeight = 0;
         self.playerImage.image = item;
     }
     
+    [self.collectionView reloadData];
+    /*
     if (self.pageView.numberOfPages > 1){
         self.mainSlideMenu.panGesture.minimumNumberOfTouches = 2;
     }
     else{
         self.mainSlideMenu.panGesture.minimumNumberOfTouches = 1;
-    }
+    }*/
 }
 
 - (void)fixDisplay:(NSString *)position
@@ -1346,7 +1365,6 @@ float imageHeight = 0;
 
 -(void)setupCollectionView {
     [self.collectionView registerClass:[CMFGalleryCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
-    
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     [flowLayout setMinimumInteritemSpacing:0.0f];
@@ -1372,7 +1390,10 @@ float imageHeight = 0;
     [cell setImageName:imageName.description];*/
     
     if ([ValidURL isValidUrl :[self.pageImages objectAtIndex:indexPath.row]]){
-        cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.pageImages objectAtIndex:indexPath.row]]]];
+//        cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.pageImages objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"player.png" ]];
+        
+        NSURL *xxx = [NSURL URLWithString:[self.pageImages objectAtIndex:indexPath.row]];
+        [cell.imageView setImageWithURL:xxx placeholderImage:[UIImage imageNamed:@"player.png"]];
         
         //                [self.playerImage setImageWithURL:[NSURL URLWithString:self.pageImages[currentPage]] placeholderImage:[UIImage imageNamed:@"player.png"]];
     }

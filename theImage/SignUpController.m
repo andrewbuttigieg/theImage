@@ -87,6 +87,8 @@ static id<FBGraphUser> facebookUser;
     
     FBLoginView *loginView = [[FBLoginView alloc] init];
     // Align the button in the center horizontally
+    loginView.readPermissions = @[@"email", @"public_profile", @"user_friends", @"publish_actions"];
+    
     //loginView.readPermissions = @[@"user_birthday", @"basic_info", @"email", @"public_profile", @"user_friends", @"user_photos"];
     //loginView.readPermissions = @[@"email", @"public_profile", @"user_friends"];
     loginView.delegate = self;
