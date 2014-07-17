@@ -14,6 +14,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "UIViewController+AMSlideMenu.h"
 #import "AppDelegate.h"
+#import "MBProgressHUD.h"
 
 @interface LoginController () <FBLoginViewDelegate>
 
@@ -285,7 +286,16 @@ bool movedHere = false;
         NSString *facebookPlayerID = user.id;
         //playerName.text = user.name;
         
-        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"Loading";
+
+       // [self doSomethingInBackgroundWithProgressCallback:^(float progress) {
+       //     hud.progress = progress;
+        //} completionCallback:^{
+       //     [hud hide:YES];
+       // }];
+      
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/login_player_fb.php"]];
         [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
         [request setHTTPBody:[[NSString stringWithFormat:@"fb=%@", facebookPlayerID]dataUsingEncoding:NSUTF8StringEncoding]];
@@ -294,6 +304,7 @@ bool movedHere = false;
         
         [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
             
+            [hud hide:YES];
             if (error) {
                 //[self.delegate fetchingGroupsFailedWithError:error];
             } else {

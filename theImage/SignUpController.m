@@ -13,6 +13,7 @@
 #import "MainVC.h"
 #import "UIViewController+AMSlideMenu.h"
 #import "AppDelegate.h"
+#import "MBProgressHUD.h"
 
 @interface SignUpController () <FBLoginViewDelegate>
 
@@ -146,6 +147,9 @@ static id<FBGraphUser> facebookUser;
     NSLog(@"%@", facebookUser);
     NSLog(@"%@", facebookUser[@"birthday"]);
     
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"Loading";
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/reg_player.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     
@@ -157,6 +161,7 @@ static id<FBGraphUser> facebookUser;
     [request setHTTPMethod:@"POST"];
     NSError *error = nil; NSURLResponse *response = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    [hud hide:YES];
     if (error) {
         NSLog(@"Error:%@", error.localizedDescription);
     }
@@ -369,6 +374,9 @@ static id<FBGraphUser> facebookUser;
 - (IBAction)Done:(id)sender {
     
     NSLog(@"%@", self.accountType.text);
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"Loading";
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/reg_player.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
@@ -377,6 +385,7 @@ static id<FBGraphUser> facebookUser;
     [request setHTTPMethod:@"POST"];
     NSError *error = nil; NSURLResponse *response = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    [hud hide:YES];
     if (error) {
         NSLog(@"Error:%@", error.localizedDescription);
     }

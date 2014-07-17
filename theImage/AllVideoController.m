@@ -175,7 +175,9 @@ static UIRefreshControl *refreshControl;
         lb = [[UILabel alloc] initWithFrame:CGRectMake(90, 53, 60, 30)];
         lb.textColor = [UIColor colorWithRed:(1.0f) green:(1.0f) blue:(1.0f) alpha:1];
         [lb setFont:[UIFont systemFontOfSize:13]];
-        lb.text = self.country[i];
+        if (self.country[i] != [NSNull null] && self.country[i] != nil) {
+            lb.text = self.country[i];
+        }
         [lb sizeToFit];
         lb.textAlignment = NSTextAlignmentLeft;
         [secondScroll addSubview:lb];

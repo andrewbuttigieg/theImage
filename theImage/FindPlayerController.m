@@ -151,10 +151,8 @@ static int findPlayerID = 0;
                     
                         if ([ValidURL isValidUrl :imageURL]){
                             
-                            NSMutableURLRequest * request = [[NSMutableURLRequest  alloc] initWithURL:[NSURL URLWithString:imageURL]];
-                            
-                            //[[NSURL alloc] initWithString:imageURL];
-                            request.cachePolicy = NSURLRequestReloadIgnoringCacheData;
+                          //  NSMutableURLRequest * request = [[NSMutableURLRequest  alloc] initWithURL:[NSURL URLWithString:imageURL]];
+                        /*    request.cachePolicy = NSURLRequestReloadIgnoringCacheData;
                             [iv setImageWithURLRequest:request
                                              placeholderImage:[UIImage imageNamed:@"player.png"]
                                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
@@ -164,9 +162,11 @@ static int findPlayerID = 0;
                                                           
                                                       } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                                           NSLog(@"failed loading image: %@", error);
-                                                      }];
-                            //[iv setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"player.png"]];
+                                                      }];*/
+                            [iv setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"player.png"]];
+
                             
+//                            [iv setImageWithURL:[NSURL URLWithString:imageURL]];
                             
                             //[iv setImageWithURLRequest:request placeholderImage:[UIImage imageNamed:@"player.png"]];
                         }
