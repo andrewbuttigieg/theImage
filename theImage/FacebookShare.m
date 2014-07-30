@@ -93,11 +93,11 @@
                         [FBRequestConnection startForPostWithGraphPath:@"/me/player-cv:connected_with" graphObject:action completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                             if(!error) {
                                 NSLog(@"OG story posted, story id: %@", [result objectForKey:@"id"]);
-                                [[[UIAlertView alloc] initWithTitle:@"OG story posted"
+                                /*[[[UIAlertView alloc] initWithTitle:@"OG story posted"
                                                             message:@"Check your Facebook profile or activity log to see the story."
                                                            delegate:self
                                                   cancelButtonTitle:@"OK!"
-                                                  otherButtonTitles:nil] show];
+                                                  otherButtonTitles:nil] show];*/
                             } else {
                                 // An error occurred, we need to handle the error
                                 // See: https://developers.facebook.com/docs/ios/errors
