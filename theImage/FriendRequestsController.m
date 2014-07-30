@@ -13,6 +13,7 @@
 
 #import "FacebookShare.h"
 #import "PlayerController.h"
+#import "MBProgressHUD.h"
 
 @interface FriendRequestsController ()
 
@@ -74,6 +75,10 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/accept_friend.php/"]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"Connecting";
+    
     NSString *o = [self.userIDForFR objectAtIndex:sender.tag];
     [request setHTTPBody:[[NSString stringWithFormat:@"p2=%d", [o intValue]]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
@@ -83,6 +88,7 @@
                                                NSData *data,
                                                NSError *error) {
                                
+                               [hud hide:YES];
                                if (error) {
                                    //[self.delegate fetchingGroupsFailedWithError:error];
                                }
@@ -114,7 +120,9 @@
                                                }
                                                
                                                if (PlayerController.allowFacebook){
-                                                   [FacebookShare shareLinkWithShareDialog:[NSString stringWithFormat:@"%@ is now connected with Football %@ %@ on Player CV!", PlayerController.yourName, type, [self.nameForFR objectAtIndex:sender.tag]]];
+                                                   //[FacebookShare shareLinkWithShareDialog:[NSString stringWithFormat:@"%@ is now connected with Football %@ %@ on Player CV!", PlayerController.yourName, type, [self.nameForFR objectAtIndex:sender.tag]]];
+                                                   
+                                                   [FacebookShare shareLinkWithShareDialog:[NSString stringWithFormat:@"Football %@ %@", type, [self.nameForFR objectAtIndex:sender.tag]]];
                                                }
                                                 [self.dateForFR removeObjectAtIndex:sender.tag];
                                                 [self.imageForFR removeObjectAtIndex:sender.tag];

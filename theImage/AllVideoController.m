@@ -10,6 +10,7 @@
 #import "PlayerController.h"
 #import "ImageEffect.h"
 #import "AppDelegate.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface AllVideoController ()
 
@@ -118,14 +119,17 @@ static UIRefreshControl *refreshControl;
         imageURL = [imageURL stringByReplacingOccurrencesOfString:@".com/"
                                                        withString:@".com/[120]-"];
         UIImage *image;
+        image = [UIImage imageNamed:@"player.png"];
+        UIImageView *iv = [[UIImageView alloc] initWithImage:image];
         if ([self isValidUrl : imageURL] ){
-            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+            //image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+            [iv setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"player.png"]];
         }
         else{
             //default image
             image = [UIImage imageNamed:@"player.png"];
+            iv = [[UIImageView alloc] initWithImage:image];
         }
-        UIImageView *iv = [[UIImageView alloc] initWithImage:image];
         iv.layer.cornerRadius = 30.0;
         iv.layer.masksToBounds = YES;
         iv.layer.borderColor = [UIColor lightGrayColor].CGColor;

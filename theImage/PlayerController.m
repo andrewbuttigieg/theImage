@@ -442,7 +442,7 @@ static NSString* deviceToken;
                                                                               forState:UIControlStateNormal];
                                            
                                            if (self.allowFacebook){
-                                               [FacebookShare shareLinkWithShareDialog:[NSString stringWithFormat:@"%@ is now connected with Football %@ %@ on Player CV!", self.yourName, self.userType.text, otherPlayerName]];
+                                               [FacebookShare shareLinkWithShareDialog:[NSString stringWithFormat:@"Football %@ %@", self.userType.text, otherPlayerName]];
                                            }
                                            //Andrew Buttigieg is now connected with Football Agent Clayton Tonna on PlayerCV
                                        });
