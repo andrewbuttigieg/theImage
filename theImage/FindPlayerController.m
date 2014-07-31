@@ -132,7 +132,7 @@ static int findPlayerID = 0;
                     
                     for(NSDictionary *dictionary in jsonArray)
                     {
-                        if (col > 1){
+                        if (col > 0){
                             col = 0;
                             row++;
                         }
@@ -174,7 +174,7 @@ static int findPlayerID = 0;
                         iv.clipsToBounds = YES;
                         iv.contentMode = UIViewContentModeScaleAspectFill;
                         //CGRect frame;
-                        iv.frame=CGRectMake(col * 106 + 1, row * 106, 104,104);
+                        iv.frame=CGRectMake(col * 157 + 5, (row * (157 + 30)) + 5, 152, 152);
                         iv.tag = [[dictionary objectForKey:@"UserID"] intValue];
                         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
                         [iv addGestureRecognizer:singleTap];
@@ -183,10 +183,36 @@ static int findPlayerID = 0;
                         
                         total++;
                         [self.putThemThere addSubview:iv];
+                        
+                        //UIFont * customFont = [UIFont fontWithName:ProximaNovaSemibold size:12]; //custom font
+                        NSString * text;
+                        
+                        if ([dictionary objectForKey:@"Age"] != [NSNull null])
+                            text = [NSString stringWithFormat:@"%@ %@, %@", [dictionary objectForKey:@"Firstname"], [dictionary objectForKey:@"Lastname"]
+                                           , [dictionary objectForKey:@"Age"] ];
+                        else
+                            text = [NSString stringWithFormat:@"%@ %@", [dictionary objectForKey:@"Firstname"], [dictionary objectForKey:@"Lastname"]];
+                        
+                        
+                        UILabel *fromLabel = [[UILabel alloc]initWithFrame:CGRectMake(91, 15, 150, 30)];
+                        fromLabel.text = text;
+                        //fromLabel.font = customFont;
+                        fromLabel.numberOfLines = 1;
+                        fromLabel.baselineAdjustment = UIBaselineAdjustmentAlignBaselines;
+                        fromLabel.adjustsFontSizeToFitWidth = YES;
+                        //fromLabel.adjustsLetterSpacingToFitWidth = YES;
+                        fromLabel.minimumScaleFactor = 10.0f/12.0f;                        
+                        fromLabel.font=[fromLabel.font fontWithSize:12];
+                        fromLabel.clipsToBounds = YES;
+                        fromLabel.backgroundColor = [UIColor clearColor];
+                        fromLabel.textColor = [UIColor blackColor];
+                        fromLabel.textAlignment = NSTextAlignmentLeft;
+                        fromLabel.frame=CGRectMake(col * 157 + 5, ((row) * (157 + 30)) + 5 + 157, 150, 30);
+                        [self.putThemThere addSubview:fromLabel];
                     }
                     
-                    self.putThemThere.contentSize = CGSizeMake(320, (row + 1) * 106);
-                    [self.putThemThere setContentSize:(CGSizeMake(320, (row + 1) * 106))];
+                    self.putThemThere.contentSize = CGSizeMake(320, (row * (157 + 30)) + 5);
+                    [self.putThemThere setContentSize:(CGSizeMake(320, (row * (157 + 30)) + 5))];
                     [spinner stopAnimating];
                 
                 });
