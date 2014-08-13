@@ -35,7 +35,7 @@
     params.link = [NSURL URLWithString:@"https://developers.facebook.com/docs/ios/share/"];
     
     // If the Facebook app is installed and we can present the share dialog
-    if ([FBDialogs canPresentShareDialogWithParams:params]) {
+    /*if ([FBDialogs canPresentShareDialogWithParams:params]) {
         // Present share dialog
         [FBDialogs presentShareDialogWithLink:params.link
                                       handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
@@ -48,7 +48,9 @@
                                               NSLog(@"result %@", results);
                                           }
                                       }];
-    } else {
+    } else */
+    
+    //{
         
         NSURL *imageURL = [NSURL URLWithString:@"http://playercv.com/fb-icon.png"];
         NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
@@ -202,7 +204,7 @@
                                   }
                               }];
         */
-    }
+    //}
 }
 
 @end
