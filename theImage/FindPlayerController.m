@@ -174,7 +174,7 @@ static int findPlayerID = 0;
                         iv.clipsToBounds = YES;
                         iv.contentMode = UIViewContentModeScaleAspectFill;
                         //CGRect frame;
-                        iv.frame=CGRectMake(col * 157 + 5, (row * (157 + 30)) + 5, 152, 152);
+                        iv.frame=CGRectMake(col * 157 + 5, (row * (157 + 35)) + 5, 152, 152);
                         iv.tag = [[dictionary objectForKey:@"UserID"] intValue];
                         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
                         [iv addGestureRecognizer:singleTap];
@@ -193,8 +193,10 @@ static int findPlayerID = 0;
                         else
                             text = [NSString stringWithFormat:@"%@ %@", [dictionary objectForKey:@"Firstname"], [dictionary objectForKey:@"Lastname"]];
                         
-                        
-                        UILabel *fromLabel = [[UILabel alloc]initWithFrame:CGRectMake(91, 15, 150, 30)];
+                        UIView *bubbleView = [[UIView alloc] initWithFrame:CGRectMake(col * 157 + 5, ((row) * (157 + 35)) + 157, 152, 35)];
+                        bubbleView.backgroundColor = [UIColor blackColor];
+                        //
+                        UILabel *fromLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, -5, 150, 30)];
                         fromLabel.text = text;
                         //fromLabel.font = customFont;
                         fromLabel.numberOfLines = 1;
@@ -202,17 +204,46 @@ static int findPlayerID = 0;
                         fromLabel.adjustsFontSizeToFitWidth = YES;
                         //fromLabel.adjustsLetterSpacingToFitWidth = YES;
                         fromLabel.minimumScaleFactor = 10.0f/12.0f;                        
-                        fromLabel.font=[fromLabel.font fontWithSize:12];
+                        fromLabel.font=[fromLabel.font fontWithSize:10];
+                        [fromLabel setFont:[UIFont boldSystemFontOfSize:12]];
                         fromLabel.clipsToBounds = YES;
                         fromLabel.backgroundColor = [UIColor clearColor];
-                        fromLabel.textColor = [UIColor blackColor];
+                        fromLabel.textColor = [UIColor whiteColor];
                         fromLabel.textAlignment = NSTextAlignmentLeft;
-                        fromLabel.frame=CGRectMake(col * 157 + 5, ((row) * (157 + 30)) + 5 + 157, 150, 30);
-                        [self.putThemThere addSubview:fromLabel];
+                        
+                        
+                        
+                        
+                        text = [NSString stringWithFormat:@"%@", [dictionary objectForKey:@"Position"]];
+                        
+                        NSRange rangeOfYourString = [text rangeOfString:@"("];
+                        if(rangeOfYourString.location != NSNotFound)
+                        {
+                            text = [text substringToIndex:rangeOfYourString.location];
+                        }
+                        
+                        UILabel *positionLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 14, 150, 20)];
+                        positionLabel.text = text;
+                        //fromLabel.font = customFont;
+                        positionLabel.numberOfLines = 1;
+                        positionLabel.baselineAdjustment = UIBaselineAdjustmentAlignBaselines;
+                        positionLabel.adjustsFontSizeToFitWidth = YES;
+                        //fromLabel.adjustsLetterSpacingToFitWidth = YES;
+                        positionLabel.minimumScaleFactor = 10.0f/12.0f;
+                        positionLabel.font=[positionLabel.font fontWithSize:10];
+                        positionLabel.clipsToBounds = YES;
+                        positionLabel.backgroundColor = [UIColor clearColor];
+                        positionLabel.textColor = [UIColor whiteColor];
+                        positionLabel.textAlignment = NSTextAlignmentLeft;
+                        
+                        [bubbleView addSubview:fromLabel];
+                        [bubbleView addSubview:positionLabel];
+
+                        [self.putThemThere addSubview:bubbleView];
                     }
                     
-                    self.putThemThere.contentSize = CGSizeMake(320, (row * (157 + 30)) + 5);
-                    [self.putThemThere setContentSize:(CGSizeMake(320, (row * (157 + 30)) + 5))];
+                    self.putThemThere.contentSize = CGSizeMake(320, ((row + 1) * (157 + 35)) + 5);
+                    [self.putThemThere setContentSize:(CGSizeMake(320, ((row + 1) * (157 + 35)) + 5))];
                     [spinner stopAnimating];
                 
                 });
