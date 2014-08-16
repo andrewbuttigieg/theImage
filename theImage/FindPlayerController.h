@@ -16,9 +16,9 @@
 @end
  */
 
-@interface FindPlayerController : UIViewController
+@interface FindPlayerController : UIViewController<UITextFieldDelegate>
 
-- (void)findPeople:(NSInteger) type;
+- (void)findPeople:(NSInteger) type :(NSString*)name;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *coach;
 
@@ -42,5 +42,6 @@
 
 - (IBAction)findThePlayer:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UITextField *finder;
 
 @end

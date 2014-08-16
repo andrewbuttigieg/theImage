@@ -21,7 +21,7 @@
 UIActivityIndicatorView *spinner;
 
 - (IBAction)reloadExplore:(id)sender {
-    [self findPeople:findPlayerID];
+    [self findPeople:findPlayerID :@""];
 }
 
 - (IBAction)findCoach:(id)sender {
@@ -30,7 +30,7 @@ UIActivityIndicatorView *spinner;
     self.scout.tintColor = [UIColor blackColor];
     self.coach.tintColor = [UIColor colorWithRed:0.0f green:0.674f blue:0.933f alpha:1];
     findPlayerID = 4;
-    [self findPeople:findPlayerID];
+    [self findPeople:findPlayerID : @""];
 }
 
 static int findPlayerID = 0;
@@ -84,13 +84,14 @@ static int findPlayerID = 0;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)findPeople:(NSInteger) type{
+- (void)findPeople:(NSInteger) type :(NSString*)name{
+    
     [self.putThemThere setContentOffset:CGPointMake(0.0, -60.0) animated:NO];
     
     
     for (UIView *view in self.putThemThere.subviews)
     {
-        if (![view isKindOfClass:[UIImageView class]]){
+        if ([view isKindOfClass:[UIImageView class]] || ( [view isKindOfClass:[UIView class]] && ![view isKindOfClass:[UITextField class]] && view.tag != -69)){
             [view removeFromSuperview];
         }
     }
@@ -102,13 +103,15 @@ static int findPlayerID = 0;
     [self.view addSubview:spinner];
     [spinner startAnimating];
     
-    [[self.putThemThere subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [self.putThemThere addSubview:spinner];    
+   /* [[self.putThemThere subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];*/
+    [self.putThemThere addSubview:spinner];
+    
+    
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://newfootballers.com/get_users.php"]];
     
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"&u=%d", (int)type]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[NSString stringWithFormat:@"&u=%d&q=%@", (int)type, name]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     //dont get me
     
@@ -174,7 +177,7 @@ static int findPlayerID = 0;
                         iv.clipsToBounds = YES;
                         iv.contentMode = UIViewContentModeScaleAspectFill;
                         //CGRect frame;
-                        iv.frame=CGRectMake(col * 157 + 5, (row * (157 + 35)) + 5, 152, 152);
+                        iv.frame=CGRectMake(col * 157 + 5, (row * (157 + 35)) + 45, 152, 152);
                         iv.tag = [[dictionary objectForKey:@"UserID"] intValue];
                         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
                         [iv addGestureRecognizer:singleTap];
@@ -193,7 +196,7 @@ static int findPlayerID = 0;
                         else
                             text = [NSString stringWithFormat:@"%@ %@", [dictionary objectForKey:@"Firstname"], [dictionary objectForKey:@"Lastname"]];
                         
-                        UIView *bubbleView = [[UIView alloc] initWithFrame:CGRectMake(col * 157 + 5, ((row) * (157 + 35)) + 157, 152, 35)];
+                        UIView *bubbleView = [[UIView alloc] initWithFrame:CGRectMake(col * 157 + 5, ((row) * (157 + 35)) + 35 + 157, 152, 35)];
                         bubbleView.backgroundColor = [UIColor blackColor];
                         //
                         UILabel *fromLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, -5, 150, 30)];
@@ -242,8 +245,8 @@ static int findPlayerID = 0;
                         [self.putThemThere addSubview:bubbleView];
                     }
                     
-                    self.putThemThere.contentSize = CGSizeMake(320, ((row + 1) * (157 + 35)) + 5);
-                    [self.putThemThere setContentSize:(CGSizeMake(320, ((row + 1) * (157 + 35)) + 5))];
+                    self.putThemThere.contentSize = CGSizeMake(320, ((row + 1) * (157 + 35)) + 5 + 35);
+                    [self.putThemThere setContentSize:(CGSizeMake(320, ((row + 1) * (157 + 35)) + 5 + 35))];
                     [spinner stopAnimating];
                 
                 });
@@ -260,13 +263,21 @@ static int findPlayerID = 0;
     self.scout.tintColor = [UIColor colorWithRed:0.0f green:0.674f blue:0.933f alpha:1];
     self.coach.tintColor = [UIColor blackColor];
     findPlayerID = 2;
-    [self findPeople:findPlayerID];
+    [self findPeople:findPlayerID:@""];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)aTextfield {
+    [aTextfield resignFirstResponder];
+    [self findPeople:findPlayerID:self.finder.text];
+    return YES;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    self.finder.returnKeyType=UIReturnKeyDone;
+    self.finder.delegate = self;
     self.putThemThere.scrollsToTop = YES;
         
     self.agent.tintColor = [UIColor blackColor];
@@ -275,7 +286,7 @@ static int findPlayerID = 0;
     self.coach.tintColor = [UIColor blackColor];
     self.title = @"Explore";
     findPlayerID = 1; //player...
-    [self findPeople:findPlayerID];
+    [self findPeople:findPlayerID:@""];
 }
 
 - (void)didReceiveMemoryWarning
@@ -290,7 +301,7 @@ static int findPlayerID = 0;
     self.scout.tintColor = [UIColor blackColor];
     self.coach.tintColor = [UIColor blackColor];
     findPlayerID = 1;
-    [self findPeople:findPlayerID];
+    [self findPeople:findPlayerID:@""];
 }
 - (IBAction)findAgent:(id)sender {
     self.agent.tintColor = [UIColor colorWithRed:0.0f green:0.674f blue:0.933f alpha:1];
@@ -298,6 +309,6 @@ static int findPlayerID = 0;
     self.scout.tintColor = [UIColor blackColor];
     self.coach.tintColor = [UIColor blackColor];
     findPlayerID = 3;
-    [self findPeople:findPlayerID];
+    [self findPeople:findPlayerID:@""];
 }
 @end

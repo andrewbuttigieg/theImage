@@ -1147,6 +1147,20 @@
                     <scrollView key="view" clipsSubviews="YES" contentMode="scaleToFill" id="lZi-qB-r8N">
                         <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search Name" minimumFontSize="17" id="bLJ-Sm-mqK">
+                                <rect key="frame" x="16" y="6" width="298" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view tag="-69" contentMode="scaleToFill" id="l9U-Nm-Zck">
+                                <rect key="frame" x="16" y="35" width="304" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </scrollView>
                     <toolbarItems>
@@ -1188,6 +1202,7 @@
                     <connections>
                         <outlet property="agent" destination="uyy-10-Bhg" id="3If-ii-86B"/>
                         <outlet property="coach" destination="BQ7-sc-fqv" id="LDq-g4-iT0"/>
+                        <outlet property="finder" destination="bLJ-Sm-mqK" id="zcO-vE-Jxg"/>
                         <outlet property="player" destination="rQi-JC-gr4" id="Ri9-td-q1a"/>
                         <outlet property="putThemThere" destination="lZi-qB-r8N" id="f3j-IU-MFI"/>
                         <outlet property="scout" destination="Mwa-hb-kw5" id="5zL-ce-3ZP"/>
@@ -2267,6 +2282,13 @@ If you’re outside the United States, your information will be sent to and stor
                     <scrollView key="view" clipsSubviews="YES" contentMode="scaleToFill" id="wa1-rX-CKi">
                         <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view tag="-69" contentMode="scaleToFill" id="KuB-OM-qvK">
+                                <rect key="frame" x="8" y="37" width="312" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </scrollView>
                     <toolbarItems>

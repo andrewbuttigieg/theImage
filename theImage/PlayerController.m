@@ -245,6 +245,7 @@ static NSString* deviceToken;
                        
                    }];
             }
+            break;
         }
         case 3:{
             if (buttonIndex == 0) {
@@ -287,6 +288,7 @@ static NSString* deviceToken;
                                            
                                        }];
             }
+            break;
         }
         default:
             break;
