@@ -46,7 +46,8 @@
     //UIImage *image = [UIImage imageNamed:filename];
     /*
     self.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:filename]]];*/
-    [self.imageView setContentMode:UIViewContentModeScaleAspectFill];
+    [self.imageView setContentMode:UIViewContentModeScaleAspectFill];    
+    self.imageView.clipsToBounds = true;
 //    self.imageView.backgroundColor = [UIColor blackColor];
     
 }

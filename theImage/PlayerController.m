@@ -699,19 +699,82 @@ static NSString* deviceToken;
                                 if ([ValidURL isValidUrl :imageURL]){
                                     [self.pageImages addObject:[theUser valueForKey:@"Photo2"]];
                                     pageCount++;
+                                    
+                                    NSString *imageURL = [theUser valueForKey:@"Photo2"];
+                                    imageURL = [imageURL stringByReplacingOccurrencesOfString:@".com/"
+                                                                                   withString:@".com/[120]-"];
+                                    
+                                    UIImage *image;
+                                    //default image
+                                    image = [UIImage imageNamed:@"player.png"];
+                                    
+                                    UIImageView *iv = [[UIImageView alloc] initWithImage:image];
+                                    
+                                    if ([ValidURL isValidUrl :imageURL]){
+                                        [iv setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"player.png" ]];
+                                        iv.image = [self fixrotation:iv.image];
+                                    }
+                                    
                                 }
                                 if ([ValidURL isValidUrl :[theUser valueForKey:@"Photo3"]]){
                                     [self.pageImages addObject:[theUser valueForKey:@"Photo3"]];
                                     pageCount++;
+                                    
+                                    NSString *imageURL = [theUser valueForKey:@"Photo3"];
+                                    imageURL = [imageURL stringByReplacingOccurrencesOfString:@".com/"
+                                                                                   withString:@".com/[120]-"];
+                                    
+                                    UIImage *image;
+                                    //default image
+                                    image = [UIImage imageNamed:@"player.png"];
+                                    
+                                    UIImageView *iv = [[UIImageView alloc] initWithImage:image];
+                                    
+                                    if ([ValidURL isValidUrl :imageURL]){
+                                        [iv setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"player.png" ]];
+                                        iv.image = [self fixrotation:iv.image];
+                                    }
                                 }
                                 if ([ValidURL isValidUrl :[theUser valueForKey:@"Photo4"]]){
                                     [self.pageImages addObject:[theUser valueForKey:@"Photo4"]];
                                     pageCount++;
+                                    
+                                    NSString *imageURL = [theUser valueForKey:@"Photo4"];
+                                    imageURL = [imageURL stringByReplacingOccurrencesOfString:@".com/"
+                                                                                   withString:@".com/[120]-"];
+                                    
+                                    UIImage *image;
+                                    //default image
+                                    image = [UIImage imageNamed:@"player.png"];
+                                    
+                                    UIImageView *iv = [[UIImageView alloc] initWithImage:image];
+                                    
+                                    if ([ValidURL isValidUrl :imageURL]){
+                                        [iv setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"player.png" ]];
+                                        iv.image = [self fixrotation:iv.image];
+                                    }
                                 }
                                 if ([ValidURL isValidUrl :[theUser valueForKey:@"Photo5"]]){
                                     [self.pageImages addObject:[theUser valueForKey:@"Photo5"]];
                                     pageCount++;
+                                    
+                                    NSString *imageURL = [theUser valueForKey:@"Photo5	"];
+                                    imageURL = [imageURL stringByReplacingOccurrencesOfString:@".com/"
+                                                                                   withString:@".com/[120]-"];
+                                    
+                                    UIImage *image;
+                                    //default image
+                                    image = [UIImage imageNamed:@"player.png"];
+                                    
+                                    UIImageView *iv = [[UIImageView alloc] initWithImage:image];
+                                    
+                                    if ([ValidURL isValidUrl :imageURL]){
+                                        [iv setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"player.png" ]];
+                                        iv.image = [self fixrotation:iv.image];
+                                    }
                                 }
+                                
+                                //[cell.imageView setImageWithURL:xxx placeholderImage:[UIImage imageNamed:@"player.png"]];
                                 
                                 //set the right amount of balls for images
                                 self.pageView.numberOfPages = pageCount;
@@ -1396,7 +1459,7 @@ float imageHeight = 0;
         
         NSURL *xxx = [NSURL URLWithString:[self.pageImages objectAtIndex:indexPath.row]];
         [cell.imageView setImageWithURL:xxx placeholderImage:[UIImage imageNamed:@"player.png"]];
-        
+
         //                [self.playerImage setImageWithURL:[NSURL URLWithString:self.pageImages[currentPage]] placeholderImage:[UIImage imageNamed:@"player.png"]];
     }
     else{
